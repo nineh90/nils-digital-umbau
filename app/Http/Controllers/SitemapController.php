@@ -100,8 +100,11 @@ class SitemapController extends Controller
             $zeilen[] = '';
             $zeilen[] = 'Sitemap: '.route('sitemap');
         } else {
-            array_unshift($zeilen, '# Vorschau. Die Indexierung regelt der X-Robots-Tag-Header,');
-            array_unshift($zeilen, '# nicht diese Datei – siehe Kommentar im SitemapController.');
+            array_unshift(
+                $zeilen,
+                '# Vorschau. Die Indexierung regelt der X-Robots-Tag-Header,',
+                '# nicht diese Datei – siehe Kommentar im SitemapController.',
+            );
         }
 
         return response(implode("\n", $zeilen)."\n")
