@@ -92,11 +92,28 @@ main() {
     # Pruefung meldete dadurch faelschlich, die Vorschau sei offen.
     # --connect-to schickt die Anfrage an den Traefik-Container, der Name bleibt
     # fuer SNI und Zertifikatspruefung erhalten.
-    ROBOTS=$(docker run --rm --network n8n_default curlimages/curl:latest \
-        -sI --max-time 10 --connect-timeout 5 \
-        --connect-to "$NAME:443:n8n-traefik-1:443" \
-        "https://$NAME/" 2>/dev/null \
-        | grep -i '^x-robots-tag' || true)
+    #
+    # Mit Wiederholung: Traefik braucht nach dem Neuanlegen des Containers
+    # einige Sekunden, bis der Router samt Middlewares wieder steht. Vorher
+    # antwortet der Standard-Backend ohne die Header – die Pruefung meldete
+    # dadurch bei jedem Deploy faelschlich, die Vorschau sei offen.
+    ROBOTS=''
+    for _ in $(seq 1 10); do
+        ANTWORT=$(docker run --rm --network n8n_default curlimages/curl:latest \
+            -sI --max-time 10 --connect-timeout 5 \
+            --connect-to "$NAME:443:n8n-traefik-1:443" \
+            "https://$NAME/" 2>/dev/null || true)
+
+        # Solange Traefik den Router noch nicht kennt, kommt eine 404 aus dem
+        # Standard-Backend. Erst wenn die eigene Anwendung antwortet – 200 oder
+        # die 401 der Passwortabfrage – ist die Auskunft belastbar.
+        if echo "$ANTWORT" | grep -qE '^HTTP/[0-9.]+ (200|401|30[128])'; then
+            ROBOTS=$(echo "$ANTWORT" | grep -i '^x-robots-tag' || true)
+            break
+        fi
+
+        sleep 3
+    done
 
     case "$KOPF" in
         *neu.nils-digital.de*)
