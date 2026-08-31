@@ -71,9 +71,16 @@ fi
 # trotzdem da – ein Deploy darf nie an einer Kontrolle haengenbleiben.
 KOPF=$(docker exec nils-digital-web sh -c 'echo "$APP_URL"')
 NAME=$(echo "$KOPF" | sed -E 's|https?://||; s|/.*||')
+#
+# Ueber HTTPS, nicht ueber Port 80: dort antwortet Traefik mit einer
+# 308-Umleitung auf HTTPS, und an der haengt der noindex-Header nicht – die
+# Pruefung meldete dadurch faelschlich, die Vorschau sei offen.
+# --connect-to schickt die Anfrage an den Traefik-Container, der Name bleibt
+# fuer SNI und Zertifikatspruefung erhalten.
 ROBOTS=$(docker run --rm --network n8n_default curlimages/curl:latest \
     -sI --max-time 10 --connect-timeout 5 \
-    -H "Host: $NAME" "http://n8n-traefik-1/" 2>/dev/null \
+    --connect-to "$NAME:443:n8n-traefik-1:443" \
+    "https://$NAME/" 2>/dev/null \
     | grep -i '^x-robots-tag' || true)
 
 case "$KOPF" in
