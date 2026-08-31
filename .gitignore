@@ -62,9 +62,12 @@ id_ed25519*
 sftp-config.json
 filezilla.xml
 sitemanager.xml
-/deploy/
 /backup/
 /backups/
+
+# Achtung: deploy/ ist NICHT ignoriert. Dort liegen Dockerfile,
+# docker-compose.yml und das Deploy-Skript – die gehoeren ins Repo, der Server
+# holt sie von dort. Nur deploy/.env bleibt draussen (eigene .gitignore dort).
 
 
 # ------------------------------------------------------------

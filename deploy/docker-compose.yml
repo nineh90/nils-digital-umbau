@@ -1,0 +1,106 @@
+name: nils-digital-web
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: nils-digital-web:aktuell
+    container_name: nils-digital-web
+    restart: unless-stopped
+
+    environment: &umgebung
+      TZ: Europe/Berlin
+      APP_NAME: Nils-Digital
+      APP_ENV: production
+      APP_DEBUG: 'false'
+      APP_KEY: ${APP_KEY:?APP_KEY fehlt – einmalig mit "php artisan key:generate --show" erzeugen und in deploy/.env eintragen}
+      APP_URL: ${APP_URL:-https://neu.nils-digital.de}
+      APP_LOCALE: de
+      APP_FALLBACK_LOCALE: en
+      APP_TIMEZONE: Europe/Berlin
+
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: ${DB_DATABASE:-nils_digital_web}
+      DB_USERNAME: ${DB_USERNAME:-nils_digital_web}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD fehlt}
+
+      SESSION_DRIVER: database
+      SESSION_SECURE_COOKIE: 'true'
+      CACHE_STORE: database
+      QUEUE_CONNECTION: database
+
+      LOG_CHANNEL: stack
+      LOG_STACK: single
+      LOG_LEVEL: warning
+
+      # Versand über Google Workspace. Der SPF-Eintrag der Domain autorisiert
+      # ausschließlich Google – über einen anderen Server verschickte Mails
+      # laufen in einen Softfail und landen im Spam.
+      MAIL_MAILER: ${MAIL_MAILER:-log}
+      MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_SCHEME: ${MAIL_SCHEME:-smtp}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-info@nils-digital.de}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Nils-Digital}
+
+    volumes:
+      # Hochgeladene Bilder überleben den Neubau des Abbilds nur hier: public/
+      # entsteht bei jedem Deploy neu aus dem Repository.
+      - uploads:/var/www/html/public/uploads
+      - storage:/var/www/html/storage
+
+    networks:
+      - n8n_default
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ndweb.entrypoints=web,websecure"
+      - "traefik.http.routers.ndweb.rule=Host(`neu.nils-digital.de`)"
+      - "traefik.http.routers.ndweb.tls.certresolver=mytlschallenge"
+
+      # --- Vorschaubetrieb: dreifach abgesichert ---------------------------
+      #
+      # Solange die Seite unter neu.nils-digital.de läuft, darf sie nicht in
+      # den Index geraten. Eine Sperre allein reicht erfahrungsgemäß nicht:
+      # hier der Header, dazu die robots.txt (siehe SitemapController) und die
+      # Passwortabfrage unten.
+      #
+      # BEIM UMSCHALTEN AUF DIE ECHTE DOMAIN müssen die nächsten drei Zeilen
+      # UND die middlewares-Zeile entfernt werden. Das ist der häufigste
+      # Relaunch-Fehler: die Seite geht live und bleibt wochenlang auf noindex.
+      - "traefik.http.middlewares.ndweb-noindex.headers.customresponseheaders.X-Robots-Tag=noindex, nofollow, noarchive"
+      - "traefik.http.middlewares.ndweb-auth.basicauth.users=${VORSCHAU_AUTH:?VORSCHAU_AUTH fehlt – mit htpasswd erzeugen}"
+      - "traefik.http.routers.ndweb.middlewares=ndweb-noindex@docker,ndweb-auth@docker"
+
+  # Verschickt die Mails aus dem Kontaktformular. Ohne diesen Container bleibt
+  # jede Anfrage in der Warteschlange liegen – das Formular meldet Erfolg, aber
+  # es kommt nie etwas an.
+  warteschlange:
+    image: nils-digital-web:aktuell
+    container_name: nils-digital-web-warteschlange
+    restart: unless-stopped
+    depends_on:
+      - app
+    user: www-data
+    environment:
+      <<: *umgebung
+      ROLLE: worker
+    command: ["php", "artisan", "queue:work", "--sleep=3", "--tries=3", "--max-time=3600"]
+    volumes:
+      - uploads:/var/www/html/public/uploads
+      - storage:/var/www/html/storage
+    networks:
+      - n8n_default
+
+volumes:
+  uploads:
+  storage:
+
+networks:
+  n8n_default:
+    external: true

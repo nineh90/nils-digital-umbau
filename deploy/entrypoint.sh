@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+#
+# Läuft bei jedem Containerstart, vor Apache.
+#
+# Hier steht ausschließlich Idempotentes. Insbesondere KEIN migrate:fresh und
+# kein Import, der Daten ersetzt: das Skript läuft auch bei jedem Neustart des
+# Containers, nicht nur beim Deploy.
+set -euo pipefail
+
+cd /var/www/html
+
+echo '→ Warte auf die Datenbank …'
+for i in $(seq 1 30); do
+    if php -r '
+        try {
+            new PDO(
+                sprintf("pgsql:host=%s;port=%s;dbname=%s",
+                    getenv("DB_HOST"), getenv("DB_PORT") ?: 5432, getenv("DB_DATABASE")),
+                getenv("DB_USERNAME"), getenv("DB_PASSWORD")
+            );
+            exit(0);
+        } catch (Throwable $e) { exit(1); }
+    ' 2>/dev/null; then
+        break
+    fi
+
+    if [ "$i" = 30 ]; then
+        echo '✗ Datenbank nicht erreichbar — Abbruch.' >&2
+        exit 1
+    fi
+
+    sleep 2
+done
+
+# Der Warteschlangen-Arbeiter teilt sich Abbild und Einstiegsskript mit der
+# Anwendung, aber nichts von dem, was jetzt kommt. Migrationen und
+# Zwischenspeicher erledigt der app-Container; zweimal gleichzeitig ist im
+# besten Fall doppelt und im schlimmsten ein Rennen.
+if [ "${ROLLE:-app}" = 'worker' ]; then
+    echo '✓ Warteschlange bereit.'
+    exec "$@"
+fi
+
+# Diese beiden liefen wegen --no-scripts nicht beim Bauen nach. filament:upgrade
+# legt die publizierten Filament-Assets unter public/ ab; ohne den Aufruf lädt
+# die Redaktion ohne Stile und ohne JavaScript.
+echo '→ Pakete erkennen …'
+php artisan package:discover --ansi
+php artisan filament:upgrade
+
+echo '→ Migrationen …'
+php artisan migrate --force --no-interaction
+
+echo '→ Zwischenspeicher aufbauen …'
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+chown -R www-data:www-data storage bootstrap/cache public/uploads
+
+echo '✓ Bereit.'
+
+exec "$@"

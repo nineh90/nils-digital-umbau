@@ -1,0 +1,3 @@
+# Die .env des Deploys enthält APP_KEY, DB-Passwort, SMTP-Zugang und den
+# Passwortschutz der Vorschau. Sie liegt ausschließlich auf dem Server.
+.env
