@@ -164,11 +164,37 @@ class SeitenTest extends TestCase
         $this->assertStringNotContainsString('/projekte/lerndex', $this->get('/sitemap.xml')->getContent());
     }
 
-    public function test_robots_sperrt_ausserhalb_der_produktion_alles(): void
+    public function test_robots_sperrt_die_vorschau(): void
     {
-        $this->get('/robots.txt')
+        // Die Vorschau laeuft mit APP_ENV=production. Eine Pruefung auf die
+        // Umgebung haette sie deshalb freigegeben – entscheidend ist die Domain.
+        $this->get('http://neu.nils-digital.de/robots.txt')
             ->assertOk()
             ->assertSee('Disallow: /');
+    }
+
+    public function test_robots_gibt_die_live_domain_frei(): void
+    {
+        $inhalt = $this->get('http://nils-digital.de/robots.txt')->assertOk()->getContent();
+
+        $this->assertStringContainsString('Allow: /', $inhalt);
+        $this->assertStringContainsString('Sitemap:', $inhalt);
+        $this->assertStringNotContainsString('Disallow: /'.PHP_EOL, $inhalt);
+    }
+
+    /**
+     * Sitemap und Feed enthalten eine XML-Deklaration. Steht "<?xml" woertlich
+     * in der Vorlage, laesst Blade die Zeile bei eingeschaltetem
+     * short_open_tag unkompiliert stehen und PHP bricht mit einem
+     * Syntaxfehler ab – lokal unauffaellig, auf dem Server ein 500er.
+     */
+    public function test_xml_ausgaben_beginnen_mit_gueltiger_deklaration(): void
+    {
+        foreach (['/sitemap.xml', '/blog/feed'] as $pfad) {
+            $inhalt = $this->get($pfad)->assertOk()->getContent();
+
+            $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', trim($inhalt), $pfad);
+        }
     }
 
     public function test_404_seite_hilft_weiter(): void

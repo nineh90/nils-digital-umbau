@@ -12,7 +12,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        /*
+         * Traefik beendet TLS und reicht die Anfrage per HTTP weiter.
+         * Ohne diese Zeile hält Laravel jede Anfrage für unverschlüsselt und
+         * baut alle Adressen mit http:// – Canonical, og:url, Sitemap und
+         * jede 301. Für Google wäre das eine zweite, unverschlüsselte Fassung
+         * der Seite.
+         *
+         * "*" ist hier richtig: der Container ist ausschließlich über Traefik
+         * erreichbar, es gibt keinen Weg an dem Proxy vorbei.
+         */
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

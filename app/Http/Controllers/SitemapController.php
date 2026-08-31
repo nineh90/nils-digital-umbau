@@ -72,22 +72,26 @@ class SitemapController extends Controller
             ->header('Content-Type', 'application/xml; charset=UTF-8');
     }
 
+    /**
+     * Die Sperre hängt an der Domain, nicht an der Umgebung.
+     *
+     * Die Vorschau läuft mit APP_ENV=production – sie soll sich schließlich
+     * genauso verhalten wie das Original. Eine Prüfung auf die Umgebung hätte
+     * dort also alles freigegeben. Freigegeben wird nur, was tatsächlich unter
+     * der Live-Domain läuft.
+     *
+     * Das ist die erste von drei Sperren; dazu kommen der noindex-Header aus
+     * den Traefik-Labels und die Passwortabfrage. Eine allein reicht
+     * erfahrungsgemäß nicht.
+     */
     public function robots(): Response
     {
-        $zeilen = [
-            'User-agent: *',
-            'Allow: /',
-            'Disallow: /admin',
-            '',
-            'Sitemap: '.route('sitemap'),
-        ];
+        $liveDomain = 'nils-digital.de';
+        $istLive = in_array(request()->getHost(), [$liveDomain, 'www.'.$liveDomain], true);
 
-        // Auf der Vorschau-Domain darf nichts indexiert werden. Das ist die
-        // erste von drei Sperren; dazu kommen der noindex-Header und die
-        // Passwortabfrage. Eine allein reicht erfahrungsgemäß nicht.
-        if (! app()->environment('production')) {
-            $zeilen = ['User-agent: *', 'Disallow: /'];
-        }
+        $zeilen = $istLive
+            ? ['User-agent: *', 'Allow: /', 'Disallow: /admin', '', 'Sitemap: '.route('sitemap')]
+            : ['# Vorschau – nicht indexieren.', 'User-agent: *', 'Disallow: /'];
 
         return response(implode("\n", $zeilen)."\n")
             ->header('Content-Type', 'text/plain; charset=UTF-8');

@@ -1,4 +1,7 @@
-{!! '<?xml version="1.0" encoding="UTF-8"?>' !!}
+{{-- Die XML-Deklaration wird zusammengesetzt statt direkt geschrieben.
+     Steht "<?xml" wortwoertlich in der Vorlage, laesst Blade die Zeile bei
+     eingeschaltetem short_open_tag unkompiliert stehen und PHP bricht ab. --}}
+@php echo '<'.'?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL @endphp
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Blog von Nils-Digital</title>
