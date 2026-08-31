@@ -1,0 +1,100 @@
+# Deploy nach neu.nils-digital.de
+#
+# Push auf main stößt über SSH das Skript /docker/nils-digital-web/deploy/deploy.sh
+# auf dem VPS an. Der hinterlegte Schlüssel ist in authorized_keys per
+# erzwungenem Kommando auf genau dieses Skript festgenagelt — eine Shell
+# bekommt man damit nicht, und der Schlüssel gilt nur für dieses Projekt.
+#
+# Dasselbe Vorgehen wie beim Ticketsystem.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Zwei gleichzeitige Deploys würden sich beim Bauen des Abbilds in die Quere
+# kommen. Der laufende darf zu Ende laufen, ein neuerer Push wartet.
+concurrency:
+  group: nils-digital-web-deploy
+  cancel-in-progress: false
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: nils_digital_web
+          POSTGRES_PASSWORD: nils_digital_web_dev
+          POSTGRES_DB: nils_digital_web_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DB_CONNECTION: pgsql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_DATABASE: nils_digital_web_test
+      DB_USERNAME: nils_digital_web
+      DB_PASSWORD: nils_digital_web_dev
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: pdo_pgsql, intl, zip, gd, mbstring
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: composer install --no-interaction --prefer-dist
+
+      - run: cp .env.example .env && php artisan key:generate
+
+      # Muss vor den Tests laufen: sie rendern Blade-Seiten, und @vite bricht
+      # ohne public/build/manifest.json mit "Vite manifest not found" ab.
+      # Lokal fällt das nicht auf, weil das Manifest vom letzten Build
+      # herumliegt.
+      - run: npm ci && npm run build
+
+      # Gegen Postgres, nicht gegen SQLite: sonst prüften wir eine andere
+      # Datenbank als die betriebene. Lokal läuft die Entwicklung mangels
+      # Docker auf SQLite, Abweichungen müssen also spätestens hier auffallen.
+      - run: php artisan test
+
+  deploy:
+    name: Ausrollen
+    needs: tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH-Schlüssel hinterlegen
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          # ssh-keyscan scheitert gelegentlich (Netz, Zeitüberschreitung) und
+          # risse damit den ganzen Deploy mit, obwohl er nur den
+          # Schlüsselabdruck vorab holt. Ein Fehlschlag ist hier unschädlich:
+          # der Aufruf unten nimmt den Abdruck dann selbst beim ersten
+          # Verbinden an. Ohne || true bricht der Schritt wegen "bash -e" ab.
+          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Deploy anstoßen
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -o BatchMode=yes \
+            -o StrictHostKeyChecking=accept-new \
+            "root@${{ secrets.VPS_HOST }}" deploy-nils-digital-web

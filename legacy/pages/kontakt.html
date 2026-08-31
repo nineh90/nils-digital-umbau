@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt – Webentwicklung anfragen | Nils-Digital</title>
+  <!-- SEO -->
+  <meta name="description" content="Webentwicklung anfragen bei Nils-Digital – persönlich, direkt und unverbindlich. Für Unternehmen in Münster, Osnabrück, Ibbenbüren und deutschlandweit.">
+  <meta name="keywords" content="Kontakt, Webentwicklung anfragen, Website erstellen lassen, Freelancer kontaktieren, Nils-Digital, Nils Nehring, Webdesign Münster, Webentwicklung Osnabrück">
+  <meta name="author" content="Nils Nehring">
+  <link rel="canonical" href="https://nils-digital.de/pages/kontakt.html">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kontakt – Webentwicklung anfragen | Nils-Digital">
+  <meta property="og:description" content="Webentwicklung, KI-Automatisierung oder App-Projekt anfragen – persönlich, direkt und unverbindlich. Für Unternehmen deutschlandweit.">
+  <meta property="og:image" content="https://nils-digital.de/assets/images/logo/logo.png">
+  <meta property="og:url" content="https://nils-digital.de/pages/kontakt.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kontakt – Webentwicklung anfragen | Nils-Digital">
+  <meta name="twitter:description" content="Webentwicklung oder KI-Automatisierung anfragen – persönlich, direkt und unverbindlich. Für Unternehmen deutschlandweit.">
+  <meta name="twitter:image" content="https://nils-digital.de/assets/images/logo/logo.png">
+  <!-- Datenschutz-Hinweis für Formular -->
+  <meta name="privacy-policy" content="Durch Absenden des Formulars erklärst du dich mit der Verarbeitung deiner Daten gemäß Datenschutzerklärung einverstanden.">
+  <!-- Styles & Fonts -->
+  <link rel="stylesheet" href="../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!--Favicon & App Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0d1117">
+  <!--Sicherheit & Indexierung -->
+  <meta name="robots" content="index, follow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Kontakt – Nils-Digital",
+    "url": "https://nils-digital.de/pages/kontakt.html",
+    "description": "Kontaktformular für Webentwicklung, KI-Automatisierung und digitale Projekte – persönlich und unverbindlich.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Nils-Digital",
+      "email": "info@nils-digital.de",
+      "url": "https://nils-digital.de"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://nils-digital.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Kontakt", "item": "https://nils-digital.de/pages/kontakt.html" }
+    ]
+  }
+  </script>
+
+</head>
+<body>
+  <div id="header"></div>
+
+  <main>
+    <section class="page-hero">
+      <h1>Schreib <span>uns an</span></h1>
+      <p>Du hast ein Projekt, eine Frage oder möchtest einfach Hallo sagen? Wir freuen uns über deine Nachricht.</p>
+    </section>
+
+    <section class="content-section">
+    <form class="contact-form" id="contactForm">
+        <input type="text" name="name" placeholder="Dein Name" required>
+        <input type="email" name="email" placeholder="Deine E-Mail" required>
+        <input type="text" name="subject" placeholder="Betreff" required>
+        <textarea name="message" rows="5" placeholder="Deine Nachricht..." required></textarea>
+
+        <label class="privacy-check">
+          <div class="checkbox-wrapper">
+            <input type="checkbox" id="privacy" required>
+          </div>
+
+          <div class="checkbox-text">
+            Ich stimme der Verarbeitung meiner Daten gemäß 
+            <a href="/pages/datenschutz.html" target="_blank"><strong>Datenschutzerklärung</strong></a> zu.
+          </div>
+        </label>
+
+        <!-- Honeypot für Anti-Spam -->
+        <input type="text" name="website" id="website" style="display:none !important">
+
+        <button type="submit" class="btn">Absenden</button>
+    </form>
+
+          <!-- Erfolgsmeldung (jetzt korrekt versteckt) -->
+    <div id="successBox" 
+          style="display:none; margin-top:20px; padding:15px; background:#1a1f27; border-left:4px solid var(--accent); border-radius:8px;">
+
+        <div class="success-check">
+          <svg viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+
+        <strong>Danke! 🎉</strong>
+        <p>Deine Nachricht wurde erfolgreich gesendet. Ich melde mich so schnell wie möglich bei dir.</p>
+    </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="../js/include.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/kontakt.js"></script>
+</body>
+</html>

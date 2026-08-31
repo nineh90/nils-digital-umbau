@@ -8,11 +8,17 @@
 
 # ------------------------------------------------------------
 #  Zugangsdaten – niemals einchecken
-#  backend/config.php enthält die echten SMTP-Zugangsdaten für
+#  # Ohne führenden Slash und ohne Pfad-Anker: die Datei ist beim Umbau nach
+# legacy/backend/ gewandert, eine auf die Wurzel verankerte Regel hätte sie
+# danach durchgelassen.
+**/backend/config.php enthält die echten SMTP-Zugangsdaten für
 #  den Mailversand. Vorlage ist backend/config.example.php,
 #  die bleibt im Repo.
 # ------------------------------------------------------------
-backend/config.php
+# Ohne führenden Slash und ohne Pfad-Anker: die Datei ist beim Umbau nach
+# legacy/backend/ gewandert, eine auf die Wurzel verankerte Regel hätte sie
+# danach durchgelassen.
+**/backend/config.php
 
 # Für den späteren Laravel-Umbau
 .env
@@ -107,3 +113,42 @@ yarn-error.log*
 /tmp/
 /scratch/
 *.tmp
+
+
+# ------------------------------------------------------------
+#  Laravel-Gerüst
+#  Übernommen aus dem Standard-Skeleton, damit beim Umbau
+#  nichts fehlt.
+# ------------------------------------------------------------
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.codex
+/.cursor/
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/fonts-manifest.dev.json
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+_ide_helper.php
+Homestead.json
+Homestead.yaml
+
+# Lokale Entwicklungsdatenbank (produktiv läuft Postgres)
+/database/database.sqlite
+
+# Von Filament erzeugte Assets. Werden beim Deploy durch
+# "php artisan filament:upgrade" neu geschrieben – 4 MB Generat
+# gehören nicht in die Historie.
+/public/css/filament
+/public/js/filament

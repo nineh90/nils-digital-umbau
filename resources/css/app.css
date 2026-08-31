@@ -1,0 +1,144 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/*
+ * Marken-Tokens.
+ *
+ * Werte unverändert aus dem :root der alten legacy/css/main.css übernommen –
+ * die Farbwelt bleibt damit exakt die bisherige, auch wenn darüber ein neues
+ * Layout entsteht. Als Tailwind-Theme hinterlegt, damit daraus Klassen wie
+ * bg-flaeche, text-akzent oder border-linie entstehen und die Farben nirgends
+ * hart im Markup stehen.
+ */
+@theme {
+    --font-sans: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font-display: 'Fredoka', ui-sans-serif, system-ui, sans-serif;
+
+    --color-flaeche: #0d1117;
+    --color-flaeche-2: #111827;
+    --color-karte: #1a1f27;
+    --color-fuss: #0b0f14;
+
+    --color-text: #f9fafb;
+    --color-text-leise: #9ca3af;
+    --color-akzent: #00bcd4;
+    --color-akzent-hell: #02c8e3;
+    --color-linie: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /*
+     * Wer "Bewegung reduzieren" eingestellt hat, bekommt keine. Betrifft auch
+     * das weiche Scrollen oben – das ist für manche Menschen der unangenehmste
+     * Teil. Dieselbe Rücksicht, die Sarahs Seite über ihr Darstellungs-Panel
+     * anbietet, gilt hier ab Werk.
+     */
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    body {
+        background-color: var(--color-flaeche);
+        color: var(--color-text);
+    }
+
+    h1, h2, h3, h4 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+    }
+
+    /* Sichtbarer Fokusrahmen – die Vorgabe des Browsers verschwindet auf
+       dunklem Grund fast vollständig. */
+    :focus-visible {
+        outline: 2px solid var(--color-akzent);
+        outline-offset: 3px;
+        border-radius: 2px;
+    }
+}
+
+@layer components {
+    /*
+     * Fließtext der Beiträge.
+     *
+     * Der Text kommt als fertiges HTML aus CommonMark, es lassen sich also
+     * keine Klassen an die einzelnen Elemente hängen. Deshalb hier gebündelt.
+     */
+    .fliesstext {
+        line-height: 1.75;
+    }
+
+    .fliesstext > * + * {
+        margin-top: 1.25rem;
+    }
+
+    .fliesstext h2 {
+        margin-top: 2.75rem;
+        font-size: 1.5rem;
+    }
+
+    .fliesstext h3 {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+    }
+
+    .fliesstext ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+    }
+
+    .fliesstext ol {
+        list-style: decimal;
+        padding-left: 1.5rem;
+    }
+
+    .fliesstext li + li {
+        margin-top: 0.4rem;
+    }
+
+    .fliesstext a {
+        color: var(--color-akzent);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    .fliesstext a:hover {
+        color: var(--color-akzent-hell);
+    }
+
+    .fliesstext strong {
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .fliesstext blockquote {
+        border-left: 3px solid var(--color-akzent);
+        padding-left: 1.25rem;
+        color: var(--color-text-leise);
+        font-style: italic;
+    }
+
+    .fliesstext code {
+        background: var(--color-flaeche-2);
+        border: 1px solid var(--color-linie);
+        border-radius: 4px;
+        padding: 0.1em 0.4em;
+        font-size: 0.9em;
+    }
+}

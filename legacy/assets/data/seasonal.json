@@ -1,0 +1,106 @@
+[
+  {
+    "start": "11-30",
+    "end": "11-30",
+    "message": "🕯️ 1. Advent – die erste Kerze brennt!",
+    "effect": "candle1",
+    "priority": 4,
+    "placement": "overlay"
+  },
+  {
+    "start": "12-07",
+    "end": "12-07",
+    "message": "🕯️🕯️ 2. Advent – zwei Kerzen leuchten hell!",
+    "effect": "candle2",
+    "priority": 4,
+    "placement": "overlay"
+  },
+  {
+    "start": "12-14",
+    "end": "12-14",
+    "message": "🕯️🕯️🕯️ 3. Advent – bald ist Weihnachten!",
+    "effect": "candle3",
+    "priority": 4,
+    "placement": "overlay"
+  },
+  {
+    "start": "12-21",
+    "end": "12-21",
+    "message": "🕯️🕯️🕯️🕯️ 4. Advent – die letzte Kerze brennt!",
+    "effect": "candle4",
+    "priority": 4,
+    "placement": "overlay"
+  },
+  {
+    "start": "12-06",
+    "end": "12-06",
+    "message": "🎅 Nikolaus: 'Habt ihr eure Stiefel geputzt?'",
+    "effect": "snow",
+    "priority": 4,
+    "placement": "underHeader"
+  },
+  {
+    "start": "12-24",
+    "end": "12-26",
+    "message": "🎄 Frohe Weihnachten wünscht nils-digital!",
+    "effect": "snow",
+    "priority": 4,
+    "placement": "underHeader"
+  },
+  {
+    "start": "12-28",
+    "end": "12-31",
+    "message": "🎉 Guten Rutsch ins neue Jahr!",
+    "effect": "confetti",
+    "priority": 4,
+    "placement": "underHeader"
+  },
+  {
+    "start": "01-01",
+    "end": "01-07",
+    "message": "✨ Frohes neues Jahr wünacht nils-digital!",
+    "effect": "confetti",
+    "priority": 4,
+    "placement": "underHeader"
+  },
+  {
+    "start": "10-31",
+    "end": "10-31",
+    "message": "🎃 Happy Halloween – bleibt spooky!",
+    "effect": "pumpkin",
+    "priority": 3,
+    "placement": "overlay"
+  },
+  {
+    "start": "04-01",
+    "end": "04-15",
+    "message": "🐣 Frohe Ostern!",
+    "effect": "eggs",
+    "priority": 3,
+    "placement": "overlay"
+  },
+  {
+    "start": "02-14",
+    "end": "02-14",
+    "message": "💖 Happy Valentine’s Day!",
+    "effect": "hearts",
+    "priority": 3,
+    "placement": "overlay"
+  },
+  {
+    "start": "11-28",
+    "end": "11-29",
+    "message": "🖤 Black Friday Deals – 25% Rabatt ab 70€ Einkaufswert!",
+    "effect": "confetti",
+    "priority": 5,
+    "placement": "underHeader"
+  },
+  {
+    "start": "12-01",
+    "end": "12-01",
+    "message": "💻 Cyber Monday – heute 25% auf alles!",
+    "effect": "confetti",
+    "priority": 5,
+    "placement": "underHeader"
+  }
+]

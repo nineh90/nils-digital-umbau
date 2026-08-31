@@ -1,0 +1,78 @@
+typ,alt,neu,titel
+seite,/,/,
+seite,/index.html,/,
+seite,/pages/webdesign-leistung.html,/leistungen,
+seite,/pages/projekte.html,/projekte,
+seite,/pages/blog.html,/blog,
+seite,/pages/ueber-uns.html,/ueber-uns,
+seite,/pages/team.html,/team,
+seite,/pages/kontakt.html,/kontakt,
+seite,/pages/projektfragebogen.html,/projektanfrage,
+seite,/pages/reservierung.html,/termine,
+seite,/pages/impressum.html,/impressum,
+seite,/pages/datenschutz.html,/datenschutz,
+seite,/pages/agb.html,/agb,
+seite,/pages/shop.html,/shop,
+seite,/pages/sunnycam.html,/sunnycam,
+projekt,,/projekte/lerndex,Lerndex
+projekt,,/projekte/pflegedex,Pflegedex
+projekt,,/projekte/fahrlehrerin-sarah,Fahrlehrerin Sarah
+projekt,,/projekte/das-landhaus,Das Landhaus
+projekt,,/projekte/crazyfamily,CRAZYFAMILY
+projekt,,/projekte/sunnycam,SunnyCam
+projekt,,/projekte/handmade-by-fischer,Handmade by Fischer
+beitrag,/pages/blog-post.html?id=1,/blog/willkommen-auf-nils-digital-de,Willkommen auf nils-digital.de 🎉
+beitrag,/pages/blog-post.html?id=2,/blog/was-mich-antreibt,Was mich antreibt 💡
+beitrag,/pages/blog-post.html?id=3,/blog/projekt-mit-herz-sunnycam,Projekt mit Herz - SunnyCam ❤️
+beitrag,/pages/blog-post.html?id=4,/blog/sunnycam-hoodie-hunde-heilen-menschen-warm-weich-mega-gemuetlich,"SunnyCam Hoodie - Hunde heilen Menschen – Warm, weich & mega gemütlich 🐾"
+beitrag,/pages/blog-post.html?id=5,/blog/sunnycam-tasse-hunde-heilen-menschen-perfekt-fuer-kaffee-tee-gute-laune,"SunnyCam Tasse - Hunde heilen Menschen – Perfekt für Kaffee, Tee & gute Laune ☕🐶"
+beitrag,/pages/blog-post.html?id=6,/blog/frohe-weihnachten-festliches-design-mit-schaeferhund-katze,Frohe Weihnachten – Festliches Design mit Schäferhund & Katze 🎄🐾
+beitrag,/pages/blog-post.html?id=7,/blog/frohe-weihnachten-santa-edition,Frohe Weihnachten – Santa Edition 🎅✨
+beitrag,/pages/blog-post.html?id=8,/blog/mein-shop-ist-online-jetzt-auch-mit-personalisierung,Mein Shop ist online – jetzt auch mit Personalisierung! 🎨✨
+beitrag,/pages/blog-post.html?id=9,/blog/gestalte-dein-eigenes-produkt-personalisieren-leicht-gemacht,Gestalte dein eigenes Produkt – Personalisieren leicht gemacht 🎨🛍️
+beitrag,/pages/blog-post.html?id=10,/blog/katzenthron-auf-blumenregal-wenn-pflanzen-keine-chance-haben,Katzenthron auf Blumenregal – Wenn Pflanzen keine Chance haben 😼🌿
+beitrag,/pages/blog-post.html?id=11,/blog/tierische-freundschaft-hund-katze-im-herzdesign,Tierische Freundschaft – Hund & Katze im Herzdesign ❤️🐾
+beitrag,/pages/blog-post.html?id=12,/blog/crazyfamily-mein-webdesign-projekt-fuer-eine-besondere-community,CRAZYFAMILY – Mein Webdesign-Projekt für eine besondere Community 💛
+beitrag,/pages/blog-post.html?id=13,/blog/hunde-heilen-menschen-ein-design-mit-echter-bedeutung,Hunde heilen Menschen – Ein Design mit echter Bedeutung 🐾❤️
+beitrag,/pages/blog-post.html?id=14,/blog/hoodie-kleid-frohe-weihnachten-tier-edition,Hoodie Kleid – Frohe Weihnachten Tier Edition 🎄🐾
+beitrag,/pages/blog-post.html?id=15,/blog/sunnycam-hinter-den-kulissen,SunnyCam – Hinter den Kulissen 🐾🎥
+beitrag,/pages/blog-post.html?id=16,/blog/wie-nils-digital-entstanden-ist-eine-herzensreise,Wie nils-digital entstanden ist – Eine Herzensreise 💡
+beitrag,/pages/blog-post.html?id=17,/blog/meine-lernsoftware-lerndex,Meine Lernsoftware – Lerndex 🎓✨
+beitrag,/pages/blog-post.html?id=18,/blog/frohe-weihnachten-santa-edition-unisex-hoodie,Frohe Weihnachten – Santa Edition Unisex Hoodie 🎅✨
+beitrag,/pages/blog-post.html?id=19,/blog/warum-ich-webseiten-anders-baue-als-viele-agenturen-meine-webdesign-leistungen-erklaert,Warum ich Webseiten anders baue als viele Agenturen – meine Webdesign-Leistungen erklärt
+beitrag,/pages/blog-post.html?id=20,/blog/frohe-weihnachten-tier-edition-kochschuerze,Frohe Weihnachten – Tier Edition Kochschürze 🎄🐧🦌
+beitrag,/pages/blog-post.html?id=21,/blog/der-onepager-moderne-website-auf-einer-seite,Der Onepager – moderne Website auf einer Seite ✨
+beitrag,/pages/blog-post.html?id=22,/blog/schaeferhund-sunny-mit-nikolausmuetze-limited-christmas-edition,Schäferhund Sunny mit Nikolausmütze – Limited Christmas Edition 🎅🐾
+beitrag,/pages/blog-post.html?id=23,/blog/eine-kleine-ueberraschung-fuer-sunny-kooperation-in-aussicht,Eine kleine Überraschung für Sunny – Kooperation in Aussicht 🐶✨
+beitrag,/pages/blog-post.html?id=24,/blog/anja-sarder-kinderbuchautorin-mit-herz-fantasie-tiefe,"Anja Sarder – Kinderbuchautorin mit Herz, Fantasie & Tiefe 📚✨"
+beitrag,/pages/blog-post.html?id=25,/blog/helfer-fuer-tiere-in-not-e-v-ibbenbueren-pflegestellen-dringend-gesucht,Helfer für Tiere in Not e.V. Ibbenbüren – Pflegestellen dringend gesucht 🐾🎄
+beitrag,/pages/blog-post.html?id=26,/blog/helfer-fuer-tiere-in-not-e-v-ibbenbueren-pflegestelle-fuer-barney-dringend-gesucht,Helfer für Tiere in Not e.V. Ibbenbüren – Pflegestelle für Barney dringend gesucht 🐶💛
+beitrag,/pages/blog-post.html?id=27,/blog/handmade-by-fischer-ein-herzensprojekt-mit-liebe-zum-detail,Handmade by Fischer – Ein Herzensprojekt mit Liebe zum Detail 🐾
+beitrag,/pages/blog-post.html?id=28,/blog/sunnycam-tasse-hunde-heilen-menschen-perfekt-fuer-kaffee-tee-gute-laune-2,"SunnyCam Tasse - Hunde heilen Menschen – Perfekt für Kaffee, Tee & gute Laune ☕🐶"
+beitrag,/pages/blog-post.html?id=29,/blog/tierische-freundschaft-hund-katze-im-herzdesign-2,Tierische Freundschaft – Hund & Katze im Herzdesign ❤️🐾
+beitrag,/pages/blog-post.html?id=30,/blog/sunnycam-hoodie-hunde-heilen-menschen-warm-weich-mega-gemuetlich-2,"SunnyCam Hoodie - Hunde heilen Menschen – Warm, weich & mega gemütlich 🐾"
+beitrag,/pages/blog-post.html?id=31,/blog/projektanfrage-bei-nils-digital-webdesign-einfach-persoenlich-anfragen,Projektanfrage bei Nils-Digital – Webdesign einfach & persönlich anfragen
+beitrag,/pages/blog-post.html?id=32,/blog/lerndex-warum-ich-eine-sichere-ki-lernumgebung-fuer-kinder-entwickle,Lerndex – Warum ich eine sichere KI-Lernumgebung für Kinder entwickle
+beitrag,/pages/blog-post.html?id=33,/blog/verstaerkung-fuer-lerndex-kevin-steigt-als-entwickler-bei-nils-digital-ein,Verstärkung für Lerndex – Kevin steigt als Entwickler bei Nils-Digital ein
+beitrag,/pages/blog-post.html?id=34,/blog/der-ki-tutor-von-lerndex-intelligent-helfen-sicher-begleiten,"Der KI-Tutor von Lerndex – intelligent helfen, sicher begleiten"
+beitrag,/pages/blog-post.html?id=35,/blog/lerndex-update-payments-app-launch-die-naechsten-schritte,"Lerndex Update: Payments, App-Launch & die nächsten Schritte 🚀"
+beitrag,/pages/blog-post.html?id=36,/blog/lerndex-startet-in-die-android-beta-ein-grosser-meilenstein-ist-erreicht,Lerndex startet in die Android Beta – ein großer Meilenstein ist erreicht
+beitrag,/pages/blog-post.html?id=37,/blog/lerndex-lebt-von-eurem-feedback-und-genau-das-macht-es-besonders,Lerndex lebt von eurem Feedback – und genau das macht es besonders 💬
+beitrag,/pages/blog-post.html?id=38,/blog/lerndex-fuer-ios-warum-apple-noch-etwas-geduld-braucht,Lerndex für iOS – warum Apple noch etwas Geduld braucht 🍏
+beitrag,/pages/blog-post.html?id=39,/blog/lerndex-im-play-store-jetzt-vorregistrieren-und-nichts-verpassen,"Lerndex im Play Store, jetzt vorregistrieren und nichts verpassen"
+beitrag,/pages/blog-post.html?id=40,/blog/lerndex-ist-jetzt-im-play-store-verfuegbar,Lerndex ist jetzt im Play Store verfügbar 🚀📚
+beitrag,/pages/blog-post.html?id=41,/blog/von-einer-anfrage-zur-echten-kooperation,Von einer Anfrage zur echten Kooperation 🐾
+beitrag,/pages/blog-post.html?id=43,/blog/von-herz-zu-herz-andrea-startet-als-alltagsbegleiterin,Von Herz zu Herz – Andrea startet als Alltagsbegleiterin ❤️
+beitrag,/pages/blog-post.html?id=44,/blog/pflegedex-digitale-unterstuetzung-fuer-die-pflegebranche,Pflegedex – Digitale Unterstützung für die Pflegebranche 💙
+beitrag,/pages/blog-post.html?id=45,/blog/das-landhaus-in-tecklenburg-leeden-eine-website-fuer-drei-bereiche,Das Landhaus in Tecklenburg-Leeden – eine Website für drei Bereiche 🏡
+beitrag,/pages/blog-post.html?id=46,/blog/pflegedex-warum-unsere-pflegesoftware-bewusst-ohne-cloud-auskommt,Pflegedex: Warum unsere Pflegesoftware bewusst ohne Cloud auskommt 🔒
+beitrag,/pages/blog-post.html?id=47,/blog/fahrlehrerin-sarah-eine-website-die-wirklich-jeder-bedienen-kann,"Fahrlehrerin Sarah – eine Website, die wirklich jeder bedienen kann ♿"
+kategorie,,/blog/kategorie/allgemein,Allgemein
+kategorie,,/blog/kategorie/community,Community
+kategorie,,/blog/kategorie/kooperationen,Kooperationen
+kategorie,,/blog/kategorie/lernsoftware-lerndex,Lernsoftware - Lerndex
+kategorie,,/blog/kategorie/pflegesoftware-pflegedex,Pflegesoftware - Pflegedex
+kategorie,,/blog/kategorie/projekte,Projekte
+kategorie,,/blog/kategorie/shop,Shop
+kategorie,,/blog/kategorie/sunnycam,SunnyCam
+kategorie,,/blog/kategorie/ueber-mich,Über mich
