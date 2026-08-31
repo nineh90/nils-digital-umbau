@@ -164,13 +164,25 @@ class SeitenTest extends TestCase
         $this->assertStringNotContainsString('/projekte/lerndex', $this->get('/sitemap.xml')->getContent());
     }
 
-    public function test_robots_sperrt_die_vorschau(): void
+    /**
+     * Die Vorschau muss crawlbar bleiben.
+     *
+     * Ein "Disallow: /" waere hier ein Eigentor: es verbietet das Crawlen,
+     * verhindert aber nicht, dass eine verlinkte Adresse im Index landet – und
+     * weil Google die Seite dann nicht abrufen darf, saehe es den
+     * noindex-Header nie, der genau das verhindern wuerde.
+     */
+    public function test_robots_sperrt_die_vorschau_nicht_aus(): void
     {
-        // Die Vorschau laeuft mit APP_ENV=production. Eine Pruefung auf die
-        // Umgebung haette sie deshalb freigegeben – entscheidend ist die Domain.
-        $this->get('http://neu.nils-digital.de/robots.txt')
+        $inhalt = $this->get('http://neu.nils-digital.de/robots.txt')
             ->assertOk()
-            ->assertSee('Disallow: /');
+            ->getContent();
+
+        $this->assertStringNotContainsString('Disallow: /'.PHP_EOL, $inhalt);
+        $this->assertStringContainsString('Allow: /', $inhalt);
+
+        // Aber keine Einladung: die Sitemap gehoert nur zur Live-Fassung.
+        $this->assertStringNotContainsString('Sitemap:', $inhalt);
     }
 
     public function test_robots_gibt_die_live_domain_frei(): void

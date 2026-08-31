@@ -63,19 +63,23 @@ services:
       - "traefik.http.routers.ndweb.rule=Host(`neu.nils-digital.de`)"
       - "traefik.http.routers.ndweb.tls.certresolver=mytlschallenge"
 
-      # --- Vorschaubetrieb: dreifach abgesichert ---------------------------
+      # --- Vorschaubetrieb -------------------------------------------------
       #
-      # Solange die Seite unter neu.nils-digital.de läuft, darf sie nicht in
-      # den Index geraten. Eine Sperre allein reicht erfahrungsgemäß nicht:
-      # hier der Header, dazu die robots.txt (siehe SitemapController) und die
-      # Passwortabfrage unten.
+      # Die Vorschau ist frei erreichbar, damit der Link teilbar ist. Aus dem
+      # Suchindex hält sie allein dieser Header heraus.
       #
-      # BEIM UMSCHALTEN AUF DIE ECHTE DOMAIN müssen die nächsten drei Zeilen
-      # UND die middlewares-Zeile entfernt werden. Das ist der häufigste
-      # Relaunch-Fehler: die Seite geht live und bleibt wochenlang auf noindex.
-      - "traefik.http.middlewares.ndweb-noindex.headers.customresponseheaders.X-Robots-Tag=noindex, nofollow, noarchive"
-      - "traefik.http.middlewares.ndweb-auth.basicauth.users=${VORSCHAU_AUTH:?VORSCHAU_AUTH fehlt – mit htpasswd erzeugen}"
-      - "traefik.http.routers.ndweb.middlewares=ndweb-noindex@docker,ndweb-auth@docker"
+      # Bewusst OHNE Sperre in der robots.txt: ein "Disallow: /" verbietet das
+      # Crawlen, verhindert aber nicht, dass eine verlinkte Adresse im Index
+      # landet – und weil Google die Seite dann nicht abrufen darf, sieht es
+      # diesen noindex nie. Die beiden Sperren blockieren sich gegenseitig.
+      # Google muss die Seite lesen dürfen, damit es sie draußen lassen kann.
+      #
+      # BEIM UMSCHALTEN AUF DIE ECHTE DOMAIN müssen die nächsten beiden Zeilen
+      # entfernt werden. Das ist der häufigste Relaunch-Fehler: die Seite geht
+      # live und bleibt wochenlang auf noindex. Die Prüfung am Ende von
+      # deploy.sh schlägt in dem Fall Alarm.
+      - "traefik.http.middlewares.ndweb-noindex.headers.customresponseheaders.X-Robots-Tag=noindex, nofollow"
+      - "traefik.http.routers.ndweb.middlewares=ndweb-noindex@docker"
 
   # Verschickt die Mails aus dem Kontaktformular. Ohne diesen Container bleibt
   # jede Anfrage in der Warteschlange liegen – das Formular meldet Erfolg, aber

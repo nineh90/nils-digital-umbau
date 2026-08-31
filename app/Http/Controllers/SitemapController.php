@@ -73,25 +73,36 @@ class SitemapController extends Controller
     }
 
     /**
-     * Die Sperre hängt an der Domain, nicht an der Umgebung.
+     * Die Unterscheidung hängt an der Domain, nicht an der Umgebung.
      *
      * Die Vorschau läuft mit APP_ENV=production – sie soll sich schließlich
-     * genauso verhalten wie das Original. Eine Prüfung auf die Umgebung hätte
-     * dort also alles freigegeben. Freigegeben wird nur, was tatsächlich unter
-     * der Live-Domain läuft.
+     * genauso verhalten wie das Original. Eine Prüfung auf die Umgebung wäre
+     * dort also wirkungslos.
      *
-     * Das ist die erste von drei Sperren; dazu kommen der noindex-Header aus
-     * den Traefik-Labels und die Passwortabfrage. Eine allein reicht
-     * erfahrungsgemäß nicht.
+     * Wichtig: Auf der Vorschau steht bewusst KEIN "Disallow: /". Das würde
+     * zwar das Crawlen verbieten, aber nicht verhindern, dass eine verlinkte
+     * Adresse im Index landet – und weil Google die Seite dann nicht abrufen
+     * darf, sähe es den noindex-Header aus den Traefik-Labels nie. Beide
+     * Sperren blockieren sich gegenseitig. Google muss die Seite lesen dürfen,
+     * damit es sie draußen lassen kann.
+     *
+     * Der Unterschied zur Live-Fassung ist deshalb nur die fehlende
+     * Sitemap-Zeile: die Vorschau lädt niemanden zum Indexieren ein.
      */
     public function robots(): Response
     {
         $liveDomain = 'nils-digital.de';
         $istLive = in_array(request()->getHost(), [$liveDomain, 'www.'.$liveDomain], true);
 
-        $zeilen = $istLive
-            ? ['User-agent: *', 'Allow: /', 'Disallow: /admin', '', 'Sitemap: '.route('sitemap')]
-            : ['# Vorschau – nicht indexieren.', 'User-agent: *', 'Disallow: /'];
+        $zeilen = ['User-agent: *', 'Allow: /', 'Disallow: /admin'];
+
+        if ($istLive) {
+            $zeilen[] = '';
+            $zeilen[] = 'Sitemap: '.route('sitemap');
+        } else {
+            array_unshift($zeilen, '# Vorschau. Die Indexierung regelt der X-Robots-Tag-Header,');
+            array_unshift($zeilen, '# nicht diese Datei – siehe Kommentar im SitemapController.');
+        }
 
         return response(implode("\n", $zeilen)."\n")
             ->header('Content-Type', 'text/plain; charset=UTF-8');
