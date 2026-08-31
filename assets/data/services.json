@@ -1,0 +1,148 @@
+[
+  {
+    "category": "KI-Automatisierung",
+    "services": [
+      {
+        "id": "ki-workflow",
+        "name": "Workflow-Automatisierung",
+        "price": 499,
+        "unit": "eur-ab",
+        "description": "Wiederkehrende Prozesse automatisieren – z. B. mit Make, n8n oder Zapier. Formulare, E-Mails, Datenübertragungen und mehr laufen selbstständig, damit du dich auf dein Kerngeschäft konzentrierst.",
+        "icon": "⚡"
+      },
+      {
+        "id": "ki-chatbot",
+        "name": "KI-Chatbot Integration",
+        "price": 799,
+        "unit": "eur-ab",
+        "description": "Intelligenter Chatbot für deine Website – beantwortet Kundenfragen rund um die Uhr, qualifiziert Anfragen vor und entlastet deinen Support. Individuell auf dein Unternehmen trainiert.",
+        "icon": "🤖"
+      },
+      {
+        "id": "ki-dokumente",
+        "name": "Dokument- & E-Mail-Automatisierung",
+        "price": 699,
+        "unit": "eur-ab",
+        "description": "Automatische Verarbeitung von Bestellungen, Rechnungen, Bewerbungen oder Kundenanfragen. Eingehende Daten werden sortiert, weitergeleitet und bearbeitet – ohne manuellen Aufwand.",
+        "icon": "📂"
+      },
+      {
+        "id": "ki-individuell",
+        "name": "Individuelle KI-Lösung",
+        "price": 1499,
+        "unit": "eur-ab",
+        "description": "Maßgeschneiderte KI-Integration für dein Unternehmen – von der Analyse bis zur Umsetzung. Ob OpenAI API, Custom GPT, automatisierte Datenauswertung oder komplexe Workflows: wir finden die passende Lösung.",
+        "icon": "🧠"
+      }
+    ]
+  },
+  {
+    "category": "Webseiten",
+    "services": [
+      {
+        "id": "basic-website",
+        "name": "Basic Website (Onepager)",
+        "price": 499,
+        "unit": "eur-ab",
+        "description": "Ein moderner Onepager mit responsivem Layout und allen wichtigen Informationen auf einer Seite. Ideal für Freelancer, kleine Unternehmen oder als digitale Visitenkarte.",
+        "icon": "📄"
+      },
+      {
+        "id": "standard-website",
+        "name": "Standard Website (2–4 Seiten)",
+        "price": 999,
+        "unit": "eur-ab",
+        "description": "Mehrseitige Website mit Startseite, Unterseiten, SEO-Basics, sauberem Layout und Kontaktmöglichkeiten. Optimal für kleine Betriebe, Selbstständige und lokale Dienstleister.",
+        "icon": "🖥️"
+      },
+      {
+        "id": "pro-website",
+        "name": "Pro Website (ab 5 Seiten)",
+        "price": 1799,
+        "unit": "eur-ab",
+        "description": "Professionelle Website ab 5 Unterseiten mit erweiterter Struktur, Social-Media-Integration, Blog-System und moderner Optik. Inkl. SEO-Optimierung und Ladezeit-Tuning.",
+        "icon": "🏢",
+        "demo": "https://crazyfamily.info"
+      },
+      {
+        "id": "extended-website",
+        "name": "Individuelle Webanwendung",
+        "price": 2999,
+        "unit": "eur-ab",
+        "description": "Für komplexe Projekte wie Mitgliederbereiche, Buchungssysteme, interne Tools oder vollständige Webapplikationen. Preis richtet sich nach Aufwand – kostenloses Erstgespräch vorab.",
+        "icon": "⚙️"
+      }
+    ]
+  },
+  {
+    "category": "Erweiterungen",
+    "services": [
+      {
+        "id": "shop-integration",
+        "name": "Shop Integration",
+        "price": 299,
+        "unit": "eur-ab",
+        "description": "Integration eines Onlineshops – unabhängig vom Anbieter (z. B. Shopify, WooCommerce, Printify). Inklusive SEO-Basics, Produktstruktur und Einbindung in die bestehende Website.",
+        "icon": "🛍️"
+      },
+      {
+        "id": "blog-system",
+        "name": "Dynamischer Blog",
+        "price": 299,
+        "unit": "eur-ab",
+        "description": "Leichtgewichtiges Blogsystem mit Kategorien, Suche, Pagination und optimiertem Template. Inhalte pflegst du selbst – technisch kümmern wir uns darum.",
+        "icon": "✍️"
+      }
+    ]
+  },
+  {
+    "category": "Hosting & Pflege",
+    "services": [
+      {
+        "id": "hosting-basic",
+        "name": "Hosting – Basic",
+        "price": 29,
+        "unit": "eur-pro-monat",
+        "description": "Einrichtung & Verwaltung von Domain und Hosting im Auftrag des Kunden. Inklusive SSL, technischer Grundbetreuung, Backup-Check und kleinen Änderungen (Text/Bild).",
+        "icon": "🌐"
+      },
+      {
+        "id": "hosting-care",
+        "name": "Hosting – Care",
+        "price": 59,
+        "unit": "eur-pro-monat",
+        "description": "Erweiterte Betreuung mit regelmäßiger Pflege, kleinen Designanpassungen, SEO-Feinschliff und bevorzugter Bearbeitung bei Änderungswünschen.",
+        "icon": "🛠️"
+      },
+      {
+        "id": "hosting-premium",
+        "name": "Hosting – Rundum-sorglos",
+        "price": 119,
+        "unit": "eur-pro-monat",
+        "description": "Komplettpaket mit laufenden Inhaltsanpassungen, Blogpflege, kleinen Erweiterungen, Notfallhilfe innerhalb von 24h und persönlicher monatlicher Beratung.",
+        "icon": "🔒"
+      }
+    ]
+  },
+  {
+    "category": "Service & Support",
+    "services": [
+      {
+        "id": "update-service",
+        "name": "Updates & Änderungen",
+        "price": 75,
+        "unit": "eur-pro-stunde",
+        "description": "Kleine Änderungen, Textupdates, Bildwechsel oder technische Nachbesserungen – flexibel abrufbar, ohne Vertragsbindung.",
+        "icon": "🔧"
+      },
+      {
+        "id": "urgent-service",
+        "name": "Express-Änderungen (24h)",
+        "price": 99,
+        "unit": "eur-pro-stunde",
+        "description": "Für dringende Änderungen mit garantierter Umsetzung innerhalb von 24 Stunden.",
+        "icon": "⏱️"
+      }
+    ]
+  }
+]

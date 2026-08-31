@@ -1,0 +1,109 @@
+# ============================================================
+#  Nils-Digital – .gitignore
+#  Achtung: .htaccess wird bewusst NICHT ignoriert – sie gehört
+#  ins Repo und ist beim FTP-Upload die Datei, die am ehesten
+#  vergessen wird.
+# ============================================================
+
+
+# ------------------------------------------------------------
+#  Zugangsdaten – niemals einchecken
+#  backend/config.php enthält die echten SMTP-Zugangsdaten für
+#  den Mailversand. Vorlage ist backend/config.example.php,
+#  die bleibt im Repo.
+# ------------------------------------------------------------
+backend/config.php
+
+# Für den späteren Laravel-Umbau
+.env
+.env.*
+!.env.example
+
+
+# ------------------------------------------------------------
+#  Schlüssel und Zertifikate
+# ------------------------------------------------------------
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+
+# ------------------------------------------------------------
+#  Datenbank-Dumps und Backups
+#  Dieselben Endungen sperrt auch die .htaccess für die
+#  Auslieferung – hier gilt dasselbe fürs Repo.
+# ------------------------------------------------------------
+*.sql
+*.sql.gz
+*.dump
+*.bak
+*.old
+*.save
+*.orig
+*.log
+
+
+# ------------------------------------------------------------
+#  Deployment-Reste
+#  Das Deployment läuft per FTP – die Zugangsdaten der
+#  FTP-Clients haben im Repo nichts verloren.
+# ------------------------------------------------------------
+.ftpquota
+.ftpconfig
+sftp-config.json
+filezilla.xml
+sitemanager.xml
+/deploy/
+/backup/
+/backups/
+
+
+# ------------------------------------------------------------
+#  Betriebssystem
+# ------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+
+# ------------------------------------------------------------
+#  Editoren und IDEs
+# ------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.code-workspace
+
+
+# ------------------------------------------------------------
+#  Abhängigkeiten und Build-Artefakte
+#  Aktuell nicht in Benutzung (kein Paketmanager, kein Build),
+#  aber ab dem Laravel-Umbau relevant.
+# ------------------------------------------------------------
+/node_modules/
+/vendor/
+/public/build/
+/public/hot
+npm-debug.log*
+yarn-error.log*
+
+
+# ------------------------------------------------------------
+#  Arbeitsdateien
+#  Zwischenstände, Exporte und Notizen, die beim Umbau
+#  entstehen und nicht auf den Webspace gehören.
+# ------------------------------------------------------------
+/tmp/
+/scratch/
+*.tmp

@@ -1,0 +1,16 @@
+{
+  "name": "Nils-Digital",
+  "short_name": "Nils-Digital",
+  "description": "KI-Automatisierung, Webentwicklung & individuelle Apps",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0d1117",
+  "theme_color": "#00bcd4",
+  "icons": [
+    {
+      "src": "/android-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

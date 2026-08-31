@@ -1,0 +1,900 @@
+[
+  {
+    "id": 1,
+    "category": "Allgemein",
+    "title": "Willkommen auf nils-digital.de 🎉",
+    "date": "2025-11-10",
+    "teaser": "Endlich ist es soweit – meine eigene Seite ist online! Eine Plattform, die nicht nur zeigt, was ich mache, sondern auch wer ich bin ...",
+    "content": "Nach vielen Stunden Code, Kaffee und Ideen ist nils-digital.de endlich live. Diese Seite ist mein digitaler Ort für alles, was mich bewegt: Projekte, Gedanken, Kreativität – und manchmal auch das echte Leben dazwischen.\n\nHier geht’s nicht um Perfektion, sondern um Echtheit. Ich will zeigen, was man schaffen kann, wenn man einfach anfängt.\n\nTechnik mit Herz, Projekte mit Sinn und Ideen, die Spaß machen. Danke, dass du hier bist und Teil davon wirst!"
+  },
+  {
+    "id": 2,
+    "category": "Über mich",
+    "title": "Was mich antreibt 💡",
+    "date": "2025-11-09",
+    "teaser": "Ich habe nie aufgehört zu glauben, dass man mit Ehrlichkeit, Neugier und Mut viel bewegen kann – digital wie im echten Leben ...",
+    "content": "Was mich antreibt, ist nicht nur die Technik selbst, sondern das, was man damit bewirken kann. Ich baue gern Dinge, die Menschen helfen oder einfach Freude bringen – egal ob Lernsoftware, Webseiten oder kleine Tools.\n\nIch mag es, wenn Projekte wachsen, sich verändern und am Ende jemandem etwas geben.\n\nFür mich geht’s beim Entwickeln nicht ums Geldverdienen, sondern ums Machen. Um Kreativität, Menschlichkeit und darum, etwas zu hinterlassen, das bleibt."
+  },
+  {
+    "id": 3,
+    "category": "Projekte",
+    "title": "Projekt mit Herz - SunnyCam ❤️",
+    "date": "2025-11-08",
+    "teaser": "Ich arbeite nicht an Projekten, um sie einfach fertigzustellen – ich will, dass sie Menschen erreichen. Das gilt auch für SunnyCam ...",
+    "content": "SunnyCam ist eines meiner Lieblingsprojekte. Es steht für Lebensfreude, Echtheit und für den Blick durchs Hundeauge 🐾.\n\nAber genauso wichtig sind mir alle anderen Ideen, die auf nils-digital entstehen. Ob Lernsoftware für Kinder oder kreative Community-Seiten – jedes Projekt hat eine Geschichte.\n\nIch will, dass man beim Besuch meiner Seite spürt, dass hinter all dem ein Mensch steht, der liebt, was er tut – und der an das Gute in echten Verbindungen glaubt.",
+    "links": [
+      {
+        "url": "https://www.tiktok.com/@sunnycam28",
+        "text": "→ SunnyCam auf TikTok"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "category": "Shop",
+    "title": "SunnyCam Hoodie - Hunde heilen Menschen – Warm, weich & mega gemütlich 🐾",
+    "date": "2025-11-13",
+    "teaser": "Der neue SunnyCam Hoodie ist da! Warm, hochwertig und mit frischem Design – perfekt für kalte Tage.",
+    "content": "Heute gibt es etwas ganz Besonderes: Der neue SunnyCam Hoodie! Ein warmes, gemütliches und hochwertiges Kleidungsstück, das die perfekte Mischung aus Style und Liebe zu Sunny bietet.\n\nDas Design lässt sich super kombinieren – egal ob für Spaziergänge, Zuhause oder unterwegs. Der Hoodie ist in verschiedenen Farben verfügbar.\n\nHier findest du die ersten Beispielbilder, wie der Hoodie aussieht.",
+    "images": [
+      "../assets/images/shop/hunde_heilen_menschen_hoodie.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen-A68f6968aa9ec7c35481a0599?productType=1047&sellable=mNbMAmlqXRcgwjVBZQbn-1047-22&appearance=2",
+        "text": "→ Hoodie jetzt bestellen"
+      }
+    ],
+    "product": {
+      "name": "SunnyCam Hoodie – Hunde heilen Menschen",
+      "image": "../assets/images/shop/hunde_heilen_menschen_hoodie.jpg",
+      "price": "39.99",
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen-A68f6968aa9ec7c35481a0599?productType=1047&sellable=mNbMAmlqXRcgwjVBZQbn-1047-22&appearance=2",
+      "type": "hoodie"
+    }
+  },
+  {
+    "id": 5,
+    "category": "Shop",
+    "title": "SunnyCam Tasse - Hunde heilen Menschen – Perfekt für Kaffee, Tee & gute Laune ☕🐶",
+    "date": "2025-11-13",
+    "teaser": "Brandneu im Shop – eine SunnyCam Tasse, die jeden Morgen ein bisschen besser macht!",
+    "content": "Ab heute gibt’s etwas für alle Kaffee- und Teeliebhaber: Die neue SunnyCam Tasse! Sie ist leicht, hochwertig bedruckt und bringt jeden Morgen ein Lächeln ins Gesicht.\n\nDas Design ist klar, freundlich und passt perfekt zu allem, was SunnyCam ausmacht.\n\nHier findest du die erste Produktvorschau:",
+    "images": [
+      "../assets/images/shop/hunde_heilen_menschen_tasse.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen-A68f6968aa9ec7c35481a0599?productType=268&sellable=mNbMAmlqXRcgwjVBZQbn-268-32&appearance=71&size=29",
+        "text": "→ Tasse hier bestellen"
+      }
+    ],
+    "product": {
+      "name": "SunnyCam Tasse – Hunde heilen Menschen",
+      "image": "../assets/images/shop/hunde_heilen_menschen_tasse.jpg",
+      "price": "17.49",
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen-A68f6968aa9ec7c35481a0599?productType=268&sellable=mNbMAmlqXRcgwjVBZQbn-268-32&appearance=71&size=29",
+      "type": "tasse"
+    }
+  },
+  {
+    "id": 6,
+    "category": "Shop",
+    "title": "Frohe Weihnachten – Festliches Design mit Schäferhund & Katze 🎄🐾",
+    "date": "2025-11-13",
+    "teaser": "Ein warmherziges Weihnachtsdesign mit Schäferhund & Katze – perfekt als Geschenk für Tierliebhaber oder zum selbst Tragen!",
+    "content": "Weihnachten wird dieses Jahr tierisch gemütlich! Das neue Design zeigt einen fröhlichen Schäferhund mit Weihnachtsmütze und eine süße, lächelnde Katze – umgeben von Sternen und Schneeflocken.\n\nDer Schriftzug ‚Frohe Weihnachten‘ rundet das Design perfekt ab.\n\nEin Motiv, das Liebe, Freundschaft und diese besondere Wintermagie einfängt. Ideal für Hoodies, Shirts, Tassen oder als Geschenk für Tierliebhaber!",
+    "images": [
+      "../assets/images/shop/frohe_weihnachten_schaeferhund_katze_design.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+-+sch%C3%A4ferhund+und+katze?idea=69132d566bee861bac096a2e",
+        "text": "→ Weihnachtsdesign ansehen"
+      }
+    ],
+    "product": {
+      "name": "Frohe Weihnachten – Schäferhund & Katze",
+      "image": "../assets/images/shop/frohe_weihnachten_schaeferhund_katze_design.jpg",
+      "price": null,
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+-+sch%C3%A4ferhund+und+katze?idea=69132d566bee861bac096a2e",
+      "type": "design"
+    }
+  },
+  {
+    "id": 7,
+    "category": "Shop",
+    "title": "Frohe Weihnachten – Santa Edition 🎅✨",
+    "date": "2025-11-13",
+    "teaser": "Minimalistisch, klar und festlich – die Santa Edition ist das perfekte Weihnachtsdesign für jeden Stil.",
+    "content": "Manchmal braucht es gar nicht viel, um echte Weihnachtsstimmung zu erzeugen.\n\nDie neue *Santa Edition* zeigt eine klassische Weihnachtsmütze über dem Schriftzug ‚Frohe Weihnachten‘ – schlicht, modern und absolut vielseitig.\n\nDieses Design passt perfekt auf Hoodies, Shirts, Tassen oder Beutel und ist ideal für alle, die es festlich, aber nicht zu verspielt mögen. Ein zeitloses Motiv, das einfach immer gut funktioniert.",
+    "images": [
+      "../assets/images/shop/frohe_weihnachten_santa_edition.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+-+santa+edition?idea=69133f196bee861bac5c8632",
+        "text": "→ Santa Edition im Shop"
+      }
+    ],
+    "product": {
+      "name": "Frohe Weihnachten – Santa Edition",
+      "image": "../assets/images/shop/frohe_weihnachten_santa_edition.jpg",
+      "price": null,
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+-+santa+edition?idea=69133f196bee861bac5c8632",
+      "type": "design"
+    }
+  },
+  {
+    "id": 8,
+    "category": "Shop",
+    "title": "Mein Shop ist online – jetzt auch mit Personalisierung! 🎨✨",
+    "date": "2025-11-13",
+    "teaser": "Neue Designs & die Möglichkeit, Produkte selbst zu personalisieren – für Weihnachten, Geburtstage, Partys & mehr!",
+    "content": "Mein Shop ist endlich online – und das Beste daran: Du kannst jetzt nicht nur meine eigenen Designs nutzen, sondern auch ganz persönliche Produkte gestalten!\n\nOb Weihnachtsgeschenk, Geburtstag, Junggesellenabschied, Party, Schulabschluss oder einfach etwas Einzigartiges für dich selbst – du kannst im Shop Text hinzufügen, Farben ändern oder sogar komplett eigene Ideen umsetzen.\n\nDazu gibt es viele liebevoll gestaltete Motive wie Tierdesigns, Weihnachtsspecials und SunnyCam-Styles.\n\nDer Shop wächst stetig weiter, also schau gern regelmäßig vorbei!",
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/",
+        "text": "→ Jetzt personalisieren & shoppen"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "category": "Shop",
+    "title": "Gestalte dein eigenes Produkt – Personalisieren leicht gemacht 🎨🛍️",
+    "date": "2025-11-13",
+    "teaser": "Ob Name, Spruch, Foto oder komplett eigenes Design – jetzt kannst du jedes Produkt im Shop individuell gestalten!",
+    "content": "Du möchtest etwas Einzigartiges erstellen? Kein Problem!\n\nIn meinem Shop kannst du ab sofort jedes Produkt komplett personalisieren. Füge Text hinzu, passe Farben an, lade ein eigenes Bild hoch oder ersetze mein Design vollständig durch dein eigenes.\n\nPerfekt für persönliche Geschenke zu Weihnachten, Geburtstagen, Schulabschlüssen, Junggesellenabschieden, Partys oder einfach für dich selbst.\n\nDer Creator-Bereich macht es super einfach: Motiv auswählen, anpassen, speichern – fertig!\n\nProbiere es aus und werde kreativ!",
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/create",
+        "text": "→ Jetzt eigenes Design erstellen"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "category": "Shop",
+    "title": "Katzenthron auf Blumenregal – Wenn Pflanzen keine Chance haben 😼🌿",
+    "date": "2025-11-13",
+    "teaser": "Ein König sitzt auf seinem Thron – und er heißt Katze! Perfekt für alle, die Pflanzen, Humor und Katzen lieben.",
+    "content": "Dieses Design ist für jeden, der eine Katze hat – oder von einer besitzt wird.\n\nDie stolze Tigerkatze sitzt erhaben auf einem Blumenregal, voller Persönlichkeit und mit diesem typischen Blick: ‚Das hier gehört jetzt mir.‘ Drum herum fallen Pflanzen leicht ins Chaos, weil natürlich nichts neben einer Katze wichtiger ist als sie selbst. Ein humorvolles, stilvolles Motiv, ideal für Hoodies, Tassen oder Shirts – besonders für Pflanzenliebhaber und Katzenfans!",
+    "images": [
+      "../assets/images/shop/katzenthron_auf_blumenregal.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/katzenthron+auf+blumenregal?idea=68f933dd9dc7e3188190e313",
+        "text": "→ Katzenthron im Shop ansehen"
+      }
+    ],
+    "product": {
+      "name": "Katzenthron auf Blumenregal",
+      "image": "../assets/images/shop/katzenthron_auf_blumenregal.jpg",
+      "price": null,
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/katzenthron+auf+blumenregal?idea=68f933dd9dc7e3188190e313",
+      "type": "design"
+    }
+  },
+  {
+    "id": 11,
+    "category": "Shop",
+    "title": "Tierische Freundschaft – Hund & Katze im Herzdesign ❤️🐾",
+    "date": "2025-11-13",
+    "teaser": "Ein warmes Motiv voller Liebe, Freundschaft und tierischer Harmonie – perfekt als Geschenk!",
+    "content": "Dieses Design zeigt, was echte Freundschaft bedeutet: Ein fröhlicher Schäferhund und eine glückliche Katze geben sich die Pfote, eingerahmt von einem strahlenden Herz voller kleiner Funken und Liebe.\n\nEgal ob für Paare, beste Freunde oder einfach Tierliebhaber – dieses Motiv bringt Wärme, Freude und positive Energie.\n\nIdeal für Tassen, Hoodies, Kissen oder Shirts – ein echtes Feel-Good-Design!",
+    "images": [
+      "../assets/images/shop/tierische_freundschaft.jpg"
+    ],
+    "links": [
+      {
+        "url": "http://nils-digital.de/pages/shop.html#!/tierische+freundschaft?idea=68fab73b9dc7e31881d103d3",
+        "text": "→ Tierische Freundschaft ansehen"
+      }
+    ],
+    "product": {
+      "name": "Tierische Freundschaft – Hund & Katze",
+      "image": "../assets/images/shop/tierische_freundschaft.jpg",
+      "price": null,
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "http://nils-digital.de/pages/shop.html#!/tierische+freundschaft?idea=68fab73b9dc7e31881d103d3",
+      "type": "design"
+    }
+  },
+  {
+    "id": 12,
+    "thumbFit": "contain",
+    "category": "Projekte",
+    "title": "CRAZYFAMILY – Mein Webdesign-Projekt für eine besondere Community 💛",
+    "date": "2025-11-13",
+    "teaser": "Livestreams, Humor & eine starke Community – und ich darf die Webseite dafür gestalten. Ein Projekt, das mir besonders am Herzen liegt.",
+    "content": "Die CRAZYFAMILY ist eine lebendige Streamer-Community rund um Kevin & Alex – voller Humor, Zusammenhalt und ehrlichen Momenten.\n\nFür dieses Projekt übernehme ich die komplette Webgestaltung: Von der Struktur über das Design bis hin zu Funktionen wie Sounds, Highlights, Clips, dem Mod-Bereich und dem Merch.\n\nDie Seite wird ständig erweitert und modernisiert, damit sie den Charakter der Community widerspiegelt – laut, herzlich und authentisch.\n\nIch freue mich, dieses Projekt als Webdesigner begleiten zu dürfen und die CRAZYFAMILY digital nach außen zu präsentieren.",
+    "images": [
+      "../assets/images/shop/crazy_family_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://crazyfamily.info",
+        "text": "→ CRAZYFAMILY besuchen"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "category": "Shop",
+    "title": "Hunde heilen Menschen – Ein Design mit echter Bedeutung 🐾❤️",
+    "date": "2025-11-13",
+    "teaser": "Ein emotionales Design mit echter Botschaft – für alle, die wissen, wie viel ein Hund im Leben bewirken kann.",
+    "content": "Dieses Design steht für etwas, das viele Hundebesitzer tief im Herzen tragen: Hunde können Wunden heilen, die kein Mensch sieht.\n\nDer Schäferhund im Motiv wirkt stark, loyal und tröstend – kombiniert mit einer klaren, kraftvollen Typografie.\n\nOb als Hoodie, Shirt, Tasse oder Sticker: Dieses Motiv ist perfekt für alle, die ihre Liebe zu Hunden zeigen möchten oder selbst erlebt haben, wie sehr ein Hund das Leben bereichern kann. Eine Botschaft, die berührt und verbindet.",
+    "images": [
+      "../assets/images/shop/hunde_heilen_menschen_design.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen?idea=68f6968aa9ec7c35481a0599",
+        "text": "→ Design ansehen"
+      }
+    ],
+    "product": {
+      "name": "Hunde heilen Menschen – Design",
+      "image": "../assets/images/shop/hunde_heilen_menschen_design.jpg",
+      "price": null,
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen?idea=68f6968aa9ec7c35481a0599",
+      "type": "design"
+    }
+  },
+  {
+    "id": 14,
+    "category": "Shop",
+    "title": "Hoodie Kleid – Frohe Weihnachten Tier Edition 🎄🐾",
+    "date": "2025-11-12",
+    "teaser": "Stylisch, warm und festlich – das Weihnachts-Hoodie-Kleid mit Tiermotiven ist perfekt für die Winterzeit!",
+    "content": "Dieses Hoodie-Kleid kombiniert Komfort, Style und Weihnachtsstimmung in einem.\n\nDas verspielte Tier-Design mit Rentier, Schneemann und Pinguin macht das Kleid zu einem echten Hingucker – ideal für gemütliche Wintertage, Weihnachtsmärkte oder festliche Abende Zuhause.\n\nDer Stoff ist weich, warm und hochwertig, die Passform lässig und super angenehm zu tragen.\n\nEin Must-Have für alle, die Weihnachten lieben und es bequem mögen.",
+    "images": [
+      "../assets/images/shop/frohe_weihnachten_tier_edition_hoodie_kleid.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+tier+edition-A691331d46bee861bac1efbdf?productType=1249&sellable=gN2bjyN25eS9w8GwDRA8-1249-23&appearance=2",
+        "text": "→ Hoodie Kleid jetzt ansehen"
+      }
+    ],
+    "product": {
+      "name": "Hoodie Kleid – Frohe Weihnachten Tier Edition",
+      "image": "../assets/images/shop/frohe_weihnachten_tier_edition_hoodie_kleid.jpg",
+      "price": "44.99",
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+tier+edition-A691331d46bee861bac1efbdf?productType=1249&sellable=gN2bjyN25eS9w8GwDRA8-1249-23&appearance=2",
+      "type": "hoodie-kleid"
+    }
+  },
+  {
+    "id": 15,
+    "category": "SunnyCam",
+    "title": "SunnyCam – Hinter den Kulissen 🐾🎥",
+    "date": "2025-11-14",
+    "teaser": "SunnyCam zeigt nicht nur süße Hundemomente – es steckt viel Herz, Liebe und echte Freundschaft dahinter.",
+    "content": "SunnyCam war nie geplant – es ist entstanden, weil Sunny einfach ein Hund mit Charakter ist. Jeder Tag bringt neue Momente: lustige Situationen, kleine Abenteuer und ehrliche Augenblicke. Besonders schön finde ich, dass Sunny Menschen verbindet. Viele schreiben, dass sie durch Sunny lachen, sich verstanden fühlen oder einfach den Tag ein Stück besser starten.\n\nHinter der Kamera ist Sunny genau so wie vor der Kamera: verspielt, sensibel und unglaublich loyal. Für mich ist SunnyCam mehr als ein Projekt – es ist eine Erinnerung daran, wie viel Freude ein Tier ins Leben bringen kann.\n\nIn Zukunft möchte ich SunnyCam noch weiter ausbauen: mehr Clips, mehr Storytelling und vielleicht auch kleine Serien. Sunny hat ihre eigene Art zu sprechen – und ich helfe ihr, diese Stimme hörbar zu machen.",
+    "images": [
+      "../assets/images/sunny.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://www.tiktok.com/@sunnycam28",
+        "text": "SunnyCam auf TikTok"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "category": "Projekte",
+    "title": "Wie nils-digital entstanden ist – Eine Herzensreise 💡",
+    "date": "2025-11-14",
+    "teaser": "Von einer spontanen Idee zur eigenen Marke – nils-digital & SunnyCam ist mehr als nur eine Webseite.",
+    "content": "Als ich mit der Seite nils-digital angefangen habe, wollte ich eigentlich nur eine kleine Portfolio-Seite bauen. Doch während des Entwicklungsprozesses ist mir klar geworden, dass hier viel mehr entstehen kann. Eine Plattform für meine Projekte, meine Ideen, meine Lernsoftware, meine Kreativität – und natürlich Sunny.\n\nIch wollte etwas schaffen, das ehrlich ist. Keine sterile Business-Seite, sondern ein Ort, der zeigt, wer ich bin und was mich antreibt. Von der Startseite über die rotierenden Sprüche bis hin zum Blog war alles ein Prozess, der mit jeder Stunde mehr Spaß gemacht hat.\n\nHeute ist nils-digital nicht nur meine persönliche Homepage. Es ist meine digitale Identität. Ein Ort, an dem Technik, Emotionen und echte Geschichten zusammenkommen. Und das Beste: Es ist erst der Anfang. Viele Ideen folgen noch – und ich freue mich darauf, diesen Weg weiterzugehen.",
+    "images": [
+      "../assets/images/sunny-nils.jpg"
+    ]
+  },
+  {
+    "id": 17,
+    "category": "Projekte",
+    "title": "Meine Lernsoftware – Lerndex 🎓✨",
+    "date": "2025-11-14",
+    "teaser": "Lernen soll Spaß machen! XP, Level-Ups, Belohnungen und Motivation – so macht Lernen wieder Spaß. Ein Blick hinter die Idee meiner Lernsoftware.",
+    "content": "Die Lernsoftware ist eines meiner größten Herzensprojekte. Ich wollte ein System entwickeln, das Kinder motiviert, ohne Druck aufzubauen – und das gleichzeitig flexibel genug ist, um mit ihnen mitzuwachsen. Die Idee: Lernen wie ein Spiel.\n\nMit jedem gelösten Aufgabenblock gibt es XP, Level-Ups und kleine Belohnungen. Je länger man lernt, desto mehr Sterne sammelt man – aber immer mit Pausen und gesunder Balance. Kinder sollen stolz auf ihre Fortschritte sein, ohne ständig bewertet zu werden.\n\nDie Software ist modular aufgebaut: eigene Fächer, eigene Aufgaben, sogar Bonusaufgaben – alles kann individuell angepasst werden. Besonders wichtig war mir, dass die App sich lebendig anfühlt. Mit Avataren, dynamischen Menüs und kleinen Erfolgsanimationen.\n\nDas Projekt wächst stetig weiter. Ich freue mich auf den Tag, an dem Kinder (oder Eltern) sagen: ‚Damit macht Lernen wieder Spaß.‘"
+  },
+  {
+    "id": 18,
+    "category": "Shop",
+    "title": "Frohe Weihnachten – Santa Edition Unisex Hoodie 🎅✨",
+    "date": "2025-11-17",
+    "teaser": "Der perfekte Weihnachts-Hoodie: warm, hochwertig und mit klassischem Santa-Design – ideal für die kalte Jahreszeit!",
+    "content": "Passend zur Winterzeit kommt jetzt der *Santa Edition Unisex Hoodie* in den Shop! Ein klassischer, hochwertiger Hoodie mit doppellagiger Kapuze, Kontrastfarben und einem klaren ‚Frohe Weihnachten‘-Design. \n\nDer Stoff ist besonders angenehm weich und hat eine hochwertige Grammatur von **280 g/m²** – perfekt für kalte Wintertage. Das Material besteht aus **80% Baumwolle und 20% Polyester**, was für Komfort, Wärme und Formstabilität sorgt. Die Kapuze ist innen farblich abgesetzt und doppellagig, die flachen Zugbänder setzen einen modernen Akzent. Dazu kommen eine praktische Kängurutasche sowie gerippte Bündchen an Ärmeln und Saum, die für einen bequemen und langlebigen Sitz sorgen. \n\nDer Unisex-Schnitt sitzt bei Männern körpernah und bei Frauen etwas weiter – also je nach gewünschtem Fit lieber eine Größe größer oder kleiner bestellen. Ein Hoodie, der Weihnachtsstimmung, Qualität und Alltagstauglichkeit perfekt verbindet.",
+    "images": [
+      "../assets/images/shop/frohe_weihnachten_santa_edition_unisex_hoodie.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+santa+edition-A69133f196bee861bac5c8632?productType=1007&sellable=mNb7n7ewgOSQqo4YQvbV-1007-22",
+        "text": "→ Hoodie jetzt ansehen"
+      }
+    ],
+    "product": {
+      "name": "Frohe Weihnachten – Santa Edition Unisex Hoodie",
+      "image": "../assets/images/shop/frohe_weihnachten_santa_edition_unisex_hoodie.jpg",
+      "price": "42.49",
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+santa+edition-A69133f196bee861bac5c8632?productType=1007&sellable=mNb7n7ewgOSQqo4YQvbV-1007-22",
+      "type": "hoodie"
+    }
+  },
+  {
+    "id": 19,
+    "category": "Projekte",
+    "title": "Warum ich Webseiten anders baue als viele Agenturen – meine Webdesign-Leistungen erklärt",
+    "date": "2025-11-18",
+    "teaser": "Mit meinen Webdesign-Leistungen geht jetzt der nächste Schritt online. Hier erkläre ich, wie ich arbeite – transparent, modern und menschlich.",
+    "content": "Mit dem Launch meiner Webdesign-Leistungen beginnt ein neuer Abschnitt auf nils-digital.de. Was als persönliches Projekt und Portfolio startete, ist inzwischen zu etwas Größerem geworden: einer klaren, ehrlichen und modernen Dienstleistung rund um Webseiten, Shops und kleine digitale Lösungen.\n\nViele fragen sich: Wie arbeite ich eigentlich? Und warum sehen meine Preise so fair aus?\n\n\n## 1. Webseiten, die nicht nur funktionieren – sondern sich echt anfühlen\n\nIch baue keine Webseiten von der Stange. Jeder Auftrag beginnt mit einem Gespräch, bei dem es um das *Warum* geht. Wer bist du? Was brauchst du? Was soll die Seite ausdrücken? Eine gute Website ist nicht einfach nur hübsch – sie erzählt die richtige Geschichte.\n\n\n## 2. Technisch leicht, schnell & sauber\n\nIch setze bewusst auf moderne, aber einfache Technik ohne unnötige Abhängigkeiten. Das bedeutet:\n- schnelle Ladezeiten,\n- gute Google-Bewertung,\n- weniger Fehlerquellen,\n- und Updates, die ich auch später leicht einbauen kann.\n\n\n## 3. Faire Festpreise statt Überraschungen\n\nJemand, der gerade startet oder ein kleines Unternehmen führt, braucht keine teuren Agenturpreise. Deshalb habe ich klare Leistungspakete gebaut – mit festen Beträgen und der Möglichkeit, später problemlos zu erweitern.\n\n\n## 4. Persönlich, ehrlich und ohne Druck\n\nIch verkaufe niemandem etwas, das er nicht braucht. Wenn ein Onepager reicht, baue ich genau den. Wenn später etwas dazukommen soll, kann man jederzeit wachsen.\n\n\n## 5. Ein System, das sich weiterentwickelt\n\nGenau wie meine eigene Website wächst auch mein Service. Neue Tools, Blogsysteme, Shops – alles lässt sich modular kombinieren.\n\nDiese Seite ist nicht nur eine Dienstleistung. Sie ist ein persönliches Projekt, das mit Herz entstanden ist – genauso wie alle anderen Dinge, die du hier findest.\n\nUnd genau das macht für mich gutes Webdesign aus: Technik, die funktioniert, und Arbeit, die echt bleibt.",
+    "images": [
+      "../assets/images/sunny-nils.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/webdesign-leistung.html",
+        "text": "→ Mehr über Leistungen"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "category": "Shop",
+    "title": "Frohe Weihnachten – Tier Edition Kochschürze 🎄🐧🦌",
+    "date": "2025-11-20",
+    "teaser": "Die perfekte, festliche Kochschürze für Weihnachten – mit Rentier, Schneemann & Pinguin. Ideal zum Kochen, Backen & Verschenken!",
+    "content": "Diese weihnachtliche Kochschürze bringt sofort gute Laune in jede Küche! Das festliche Tier-Design mit Rentier, Schneemann und Pinguin macht sie nicht nur zum Hingucker, sondern auch zum idealen Begleiter für die Adventszeit. Egal ob beim Plätzchenbacken, Weihnachtsessen oder gemütlichen Kochabend – mit dieser Schürze wird jeder zum Chefkoch.\n\nDie Schürze besteht aus **100% Baumwolle**, ist **pflegeleicht**, **formbeständig** und dank des durchgehenden Nacken- und Hüftbands flexibel anpassbar. Die robuste Stoffqualität von **240 g/m²** sorgt dafür, dass sie sich hochwertig anfühlt und lange hält. Perfekt als Geschenk für Hobbyköche, Grillfans oder alle, die Weihnachten lieben.\n\nEin wunderschönes, warmes und humorvolles Weihnachtsteil – und eines der beliebtesten Produkte der Tier Edition!",
+    "images": [
+      "../assets/images/shop/frohe_weihnachten_tier_edition_kochschuerze.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+tier+edition-A691331d46bee861bac1efbdf?productType=141&sellable=gN2bjyN25eS9w8GwDRA8-141-35&appearance=22&size=29",
+        "text": "→ Kochschürze jetzt im Shop ansehen"
+      }
+    ],
+    "product": {
+      "name": "Kochschürze – Frohe Weihnachten Tier Edition",
+      "image": "../assets/images/shop/frohe_weihnachten_tier_edition_kochschuerze.jpg",
+      "price": "22.99",
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/frohe+weihnachten+tier+edition-A691331d46bee861bac1efbdf?productType=141&sellable=gN2bjyN25eS9w8GwDRA8-141-35&appearance=22&size=29",
+      "type": "schürze"
+    }
+  },
+  {
+    "id": 21,
+    "category": "Projekte",
+    "title": "Der Onepager – moderne Website auf einer Seite ✨",
+    "date": "2025-11-21",
+    "teaser": "Ein Onepager bietet alles Wichtige auf einer Seite – ideal für kleine Unternehmen, Selbstständige & klare Botschaften. Schnell, modern & bezahlbar.",
+    "content": "Ein Onepager ist die perfekte Lösung für alle, die eine moderne, übersichtliche und unkomplizierte Webseite benötigen. Statt viele Unterseiten aufzubauen, führt ein Onepager Besucher durch alle wichtigen Inhalte – kompakt, klar strukturiert und optisch ansprechend.\n\nBesonders geeignet ist er für Selbstständige, kleine Unternehmen, Dienstleister, Hundeschulen, Friseure, Trainer, Hobbyprojekte oder als digitale Visitenkarte. Wer eine schnelle und professionelle Webpräsenz möchte, ohne ein großes Webseitenprojekt starten zu müssen, ist mit einem Onepager ideal beraten.\n\nIch biete meinen Onepager zum **Festpreis von nur 99 €** an. Darin enthalten sind ein modernes Design, responsives Layout, klare Struktur, mobile Optimierung und eine solide Grundbasis für SEO. Damit erhältst du eine professionelle Webpräsenz, die sofort einsatzbereit ist.\n\nAlle Details zum Onepager findest du hier auf der eigenen Infoseite:",
+    "images": [
+      "../info/onepager/assets/images/hero.png"
+    ],
+    "links": [
+      {
+        "url": "/info/onepager/",
+        "text": "→ Onepager DEMO ansehen"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "category": "Shop",
+    "title": "Schäferhund Sunny mit Nikolausmütze – Limited Christmas Edition 🎅🐾",
+    "date": "2025-12-04",
+    "teaser": "Die perfekte Weihnachtstasse für alle Sunny-Fans und Hundeliebhaber – liebevoll illustriert und nur für kurze Zeit verfügbar!",
+    "content": "Diese limitierte Weihnachtstasse bringt nicht nur Wärme in deine Hände, sondern auch ein Lächeln ins Gesicht. Schäferhund Sunny – liebevoll mit einer Nikolausmütze illustriert – macht sie zum idealen Begleiter für die Adventszeit, fürs Frühstück, Homeoffice oder gemütliche Winterabende.\n\nDer schwarze, glänzende Keramikbecher überzeugt nicht nur durch sein hochwertiges Material, sondern auch durch seinen edlen Look. Innen und außen ist die Tasse komplett durchgefärbt, was sie besonders hochwertig wirken lässt. Mit einem Fassungsvermögen von **325 ml** bietet sie genug Platz für Kakao, Kaffee, Tee oder Glühwein 😉.\n\nEin wunderschönes, tierisch süßes Weihnachtsgeschenk – für dich oder jemanden, der Sunny genauso gern hat. Aber: **Nur für kurze Zeit verfügbar!**",
+    "images": [
+      "../assets/images/shop/schaeferhund_sunny_mit_nikolausmuetze_limited_front.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/schaeferhund+sunny+mit+nikolausmuetze+limited-A691dfbfddf79ec68c7c9458b?productType=949&sellable=Nne79E08jlt5L87v5DX0-949-32&appearance=2&size=29",
+        "text": "→ Jetzt Limited Edition Weihnachtstasse ansehen"
+      }
+    ],
+    "product": {
+      "name": "Keramiktasse – Schäferhund Sunny mit Nikolausmütze (Limited Edition)",
+      "image": "../assets/images/shop/schaeferhund_sunny_mit_nikolausmuetze_limited_front.jpg",
+      "price": "17.99",
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/schaeferhund+sunny+mit+nikolausmuetze+limited-A691dfbfddf79ec68c7c9458b?productType=949&sellable=Nne79E08jlt5L87v5DX0-949-32&appearance=2&size=29",
+      "type": "tasse"
+    }
+  },
+  {
+    "id": 23,
+    "category": "SunnyCam",
+    "title": "Eine kleine Überraschung für Sunny – Kooperation in Aussicht 🐶✨",
+    "date": "2025-12-11",
+    "teaser": "Sunny bekommt bald etwas ganz Besonderes – handgemacht, mit Herz und individuell für sie gefertigt. Eine Kooperation, die mir wirklich viel bedeutet.",
+    "content": "Manchmal begegnet man Menschen oder kleinen Marken ganz zufällig – und spürt sofort, dass dort viel Herz und Liebe drinsteckt. Genau so ging es mir vor Kurzem, als ich *Handmade by Fischer* entdeckt habe.\n\nMelanie fertigt wunderschöne, individuelle Produkte für Hunde – alles in Handarbeit, hochwertig und mit echter Leidenschaft. Wir haben geschrieben, uns ausgetauscht und schnell gemerkt: Das passt einfach. Sunny wird ein maßgeschneidertes Set bekommen, bei dem wir Farben, Größe und Stil komplett frei wählen können.\n\nDie eigentliche Kooperation startet offiziell am **01.01.2026**, weil die Produkte erst nach Vertragsunterzeichnung und individueller Auswahl gefertigt werden. Aber ich wollte diesen Moment der Vorfreude schon jetzt mit euch teilen.\n\nWichtig: Das hier ist **keine Werbung**, sondern einfach ein persönlicher Einblick hinter die Kulissen. Ich freue mich darauf, euch mitzunehmen, wenn Sunny ihr neues Set bekommt – und wenn wir gemeinsam die handgemachten Produkte testen.\n\nWenn ihr neugierig seid, könnt ihr hier bereits einen Blick auf die Seite werfen:",
+    "images": [
+      "../assets/images/blog/sunny-vorfreude.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://www.handmade-by-fischer.de/",
+        "text": "→ Handmade by Fischer ansehen"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "category": "Community",
+    "title": "Anja Sarder – Kinderbuchautorin mit Herz, Fantasie & Tiefe 📚✨",
+    "date": "2025-12-14",
+    "teaser": "Geschichten, die berühren: Anja Sarder verbindet Fantasie, Wärme und echte Lebenserfahrung – für Kinder, Jugendliche und Erwachsene.",
+    "content": "Manchmal begegnet man Menschen, bei denen man sofort merkt: Das, was sie tun, kommt von Herzen. Genau so jemand ist **Anja Sarder**.\n\nAnja ist Kinderkrankenschwester auf einer Neonatologie, vierfache Mama – und Autorin mit ganz viel Gefühl. Schon immer haben sie Geschichten fasziniert, heute schreibt sie selbst Bücher, die berühren, trösten, Mut machen und mitnehmen – für Kinder, Jugendliche und auch Erwachsene.\n\nIn ihren Geschichten geht es um **Liebe, Hoffnung, Mut, Fantasie** und um Themen, die mitten aus dem Leben kommen. Ihre Erfahrungen als Mama und Kinderkrankenschwester fließen dabei spürbar mit ein – besonders bei sensiblen Themen wie Familie, Frühchen oder dem Alltag mit Kindern.\n\nEin schönes Beispiel dafür ist ihr Buch *„Bricksville – Auf der Spur der silbernen Steine“* – eine fantasievolle Reise durch Mut, Freundschaft und die Magie der Klemmbausteine. Zusätzlich erstellt Anja auch **Malbücher und Rätselbücher**, die Kinder und Jugendliche spielerisch fördern und begeistern.\n\nWarum ich Anja hier erwähne? Weil Kinderbücher, Fantasie und Lernen wunderbar zusammenpassen – und genau das auch ein wichtiger Gedanke hinter meiner Lernsoftware ist. Geschichten können motivieren, stärken und Welten öffnen. Deshalb möchte ich Anja hier ganz bewusst **kostenlos unterstützen** und ihr eine kleine Bühne auf meiner Webseite geben.\n\nVielleicht ist eines ihrer Bücher genau das Richtige für euch, eure Kinder oder als Geschenk. Und vielleicht entstehen aus solchen Begegnungen in Zukunft ja noch weitere schöne Ideen. 😊",
+    "images": [
+      "../assets/images/blog/anja-sarder.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://www.amazon.com/stores/author/B0DJRVBXHF/allbooks?ingress=0&visitId=a3740a28-aaf3-4fe0-97ca-c9439259d809",
+        "text": "→ Zur Amazon-Autorenseite von Anja Sarder"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "category": "Community",
+    "title": "Helfer für Tiere in Not e.V. Ibbenbüren – Pflegestellen dringend gesucht 🐾🎄",
+    "date": "2025-12-16",
+    "teaser": "Der Verein Helfer für Tiere in Not e.V. Ibbenbüren sucht dringend Pflegestellen – besonders für Katzen und Kitten. Jede helfende Hand zählt, gerade jetzt in der Adventszeit.",
+    "content": "Die Adventszeit ist eine Zeit der Nächstenliebe – und für den **Helfer für Tiere in Not e.V. Ibbenbüren** endet sie nicht beim Menschen. Oft beginnt Hilfe ganz leise: mit einem freien Zimmer, einer warmen Ecke oder einem offenen Herzen für die anderen Bewohner dieser Erde.\n\nAls Verein erleben die Helfer immer wieder, wie plötzlich und unerwartet Notfälle eintreten. Ein Anruf, ein Fundtier, ein verletztes Tier – und innerhalb weniger Minuten wird ein sicherer Platz benötigt. Ohne eine Pflegestelle kann in solchen Situationen oft nicht geholfen werden.\n\nAktuell fehlen besonders **Pflegestellen für Katzen und Kitten**, aber auch für andere Tierarten ist ein verlässliches Netzwerk aus liebevollen Übergangs- bzw. „Aufpäppel“-Zuhause unglaublich wichtig. Pflegestelle zu sein bedeutet dabei nicht, alles allein stemmen zu müssen oder blind jedes Tier aufnehmen zu müssen.\n\nDer **Helfer für Tiere in Not e.V. Ibbenbüren** begleitet seine Pflegestellen eng, übernimmt die anfallenden Kosten und steht jederzeit unterstützend zur Seite. Was Pflegestellen schenken, ist Zeit, Geduld und ein Zuhause auf Zeit – und damit oft die einzige Chance auf ein Happy End.\n\n💛 Wenn du dir vorstellen kannst, einem Tier vorübergehend ein sicheres Zuhause zu geben – ganz egal ob Katze, Hund oder ein anderes Notfellchen – dann melde dich gern direkt beim Verein. Alles ist unverbindlich, gemeinsam wird geschaut, ob, wann und wie es passen könnte.\n\nJede Pflegestelle zählt. Gerade jetzt.",
+    "images": [
+      "../assets/images/blog/helfer-fuer-tiere-in-not.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://www.facebook.com/share/1E38mQG2Qm/",
+        "text": "→ Helfer für Tiere in Not e.V. Ibbenbüren auf Facebook"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "category": "Community",
+    "title": "Helfer für Tiere in Not e.V. Ibbenbüren – Pflegestelle für Barney dringend gesucht 🐶💛",
+    "date": "2025-12-22",
+    "teaser": "Der liebe Hund Barney sucht dringend eine Ersatz-Pflegestelle. Der Tierschutzverein Helfer für Tiere in Not e.V. Ibbenbüren bittet um Unterstützung.",
+    "content": "Der **Tierschutzverein Helfer für Tiere in Not e.V. Ibbenbüren** sucht dringend eine **Ersatz-Pflegestelle für Barney**, die ihn vorübergehend aufnehmen kann.\n\nBarney ist ein junger, fröhlicher Hund – verspielt, lieb, verschmust und freundlich. Er versteht sich gut mit **Kindern** und **anderen Hunden** und bringt alles mit, was man sich von einem treuen Begleiter wünscht.\n\nWie so oft im Tierschutz kommen Situationen plötzlich und unerwartet. In solchen Momenten entscheidet eine freie Pflegestelle darüber, ob geholfen werden kann oder nicht. Für Barney wird nun dringend ein liebevolles Zuhause auf Zeit gesucht.\n\nPflegestelle zu sein bedeutet dabei nicht, allein gelassen zu werden. **Materialien, Futter und Tierarztkosten werden vollständig vom Verein übernommen.** Wichtig sind ein wenig Hundeerfahrung, Geduld und die Bereitschaft, Barney für eine gewisse Zeit Geborgenheit zu schenken.\n\n💛 Wenn du dir vorstellen kannst, Barney vorübergehend aufzunehmen und ihm Sicherheit zu geben, melde dich bitte **direkt beim Verein**. Jede Pflegestelle zählt – und kann für ein Tier den entscheidenden Unterschied machen.\n\nDer Kontakt läuft ausschließlich über den Tierschutzverein Helfer für Tiere in Not e.V. Ibbenbüren.",
+    "images": [
+      "../assets/images/blog/barney-helfer-fuer-tiere-in-not.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://www.facebook.com/share/1E38mQG2Qm/",
+        "text": "→ Helfer für Tiere in Not e.V. Ibbenbüren auf Facebook"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "thumbFit": "contain",
+    "title": "Handmade by Fischer – Ein Herzensprojekt mit Liebe zum Detail 🐾",
+    "date": "2025-12-26",
+    "category": "Projekte",
+    "teaser": "Für Handmade by Fischer durfte ich ein besonderes Projekt umsetzen: eine Webseite, die handgemachte Hundehalsbänder und Leinen genauso authentisch präsentiert, wie sie entstehen – mit Liebe, Leidenschaft und viel Handarbeit.",
+    "content": "Handarbeit, Herzblut und Liebe zum Detail – genau das beschreibt Handmade by Fischer perfekt.\n\nIm Rahmen dieses Projekts durfte ich die bestehende Webseite überarbeiten und insbesondere für mobile Endgeräte optimieren. Ziel war es, den Fokus klar auf das zu legen, worum es hier wirklich geht: hochwertige, handgefertigte Produkte für Hunde – individuell, langlebig und mit ganz viel Herz hergestellt.\n\nEin besonderer Schwerpunkt lag auf einer klaren, ruhigen Struktur, einem mobil optimierten Header & Menü sowie einer besseren Präsentation der Produkte. Gerade bei kleinen Manufakturen ist es mir wichtig, dass sich eine Webseite nicht \"gebaut\", sondern stimmig anfühlt.\n\nDas Projekt zeigt, dass oft schon gezielte Anpassungen reichen, um einen großen Unterschied zu machen – besonders auf dem Smartphone, wo die meisten Besucher unterwegs sind.",
+    "images": [
+      "../assets/images/blog/handmade-by-fischer-logo.png"
+    ],
+    "links": [
+      {
+        "text": "Zur Webseite von Handmade by Fischer",
+        "url": "https://www.handmade-by-fischer.de/"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "category": "Shop",
+    "title": "SunnyCam Tasse - Hunde heilen Menschen – Perfekt für Kaffee, Tee & gute Laune ☕🐶",
+    "date": "2025-12-24",
+    "teaser": "Brandneu im Shop – eine SunnyCam Tasse, die jeden Morgen ein bisschen besser macht!",
+    "content": "Ab heute gibt’s etwas für alle Kaffee- und Teeliebhaber: Die neue SunnyCam Tasse! Sie ist leicht, hochwertig bedruckt und bringt jeden Morgen ein Lächeln ins Gesicht.\n\nDas Design ist klar, freundlich und passt perfekt zu allem, was SunnyCam ausmacht.\n\nHier findest du die erste Produktvorschau:",
+    "images": [
+      "../assets/images/shop/hunde_heilen_menschen_tasse.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen-A68f6968aa9ec7c35481a0599?productType=268&sellable=mNbMAmlqXRcgwjVBZQbn-268-32&appearance=71&size=29",
+        "text": "→ Tasse hier bestellen"
+      }
+    ],
+    "product": {
+      "name": "SunnyCam Tasse – Hunde heilen Menschen",
+      "image": "../assets/images/shop/hunde_heilen_menschen_tasse.jpg",
+      "price": "17.49",
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen-A68f6968aa9ec7c35481a0599?productType=268&sellable=mNbMAmlqXRcgwjVBZQbn-268-32&appearance=71&size=29",
+      "type": "tasse"
+    }
+  },
+  {
+    "id": 29,
+    "category": "Shop",
+    "title": "Tierische Freundschaft – Hund & Katze im Herzdesign ❤️🐾",
+    "date": "2025-12-26",
+    "teaser": "Ein warmes Motiv voller Liebe, Freundschaft und tierischer Harmonie – perfekt als Geschenk!",
+    "content": "Dieses Design zeigt, was echte Freundschaft bedeutet: Ein fröhlicher Schäferhund und eine glückliche Katze geben sich die Pfote, eingerahmt von einem strahlenden Herz voller kleiner Funken und Liebe.\n\nEgal ob für Paare, beste Freunde oder einfach Tierliebhaber – dieses Motiv bringt Wärme, Freude und positive Energie.\n\nIdeal für Tassen, Hoodies, Kissen oder Shirts – ein echtes Feel-Good-Design!",
+    "images": [
+      "../assets/images/shop/tierische_freundschaft.jpg"
+    ],
+    "links": [
+      {
+        "url": "http://nils-digital.de/pages/shop.html#!/tierische+freundschaft?idea=68fab73b9dc7e31881d103d3",
+        "text": "→ Tierische Freundschaft ansehen"
+      }
+    ],
+    "product": {
+      "name": "Tierische Freundschaft – Hund & Katze",
+      "image": "../assets/images/shop/tierische_freundschaft.jpg",
+      "price": null,
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "http://nils-digital.de/pages/shop.html#!/tierische+freundschaft?idea=68fab73b9dc7e31881d103d3",
+      "type": "design"
+    }
+  },
+  {
+    "id": 30,
+    "category": "Shop",
+    "title": "SunnyCam Hoodie - Hunde heilen Menschen – Warm, weich & mega gemütlich 🐾",
+    "date": "2025-12-24",
+    "teaser": "Der neue SunnyCam Hoodie ist da! Warm, hochwertig und mit frischem Design – perfekt für kalte Tage.",
+    "content": "Heute gibt es etwas ganz Besonderes: Der neue SunnyCam Hoodie! Ein warmes, gemütliches und hochwertiges Kleidungsstück, das die perfekte Mischung aus Style und Liebe zu Sunny bietet.\n\nDas Design lässt sich super kombinieren – egal ob für Spaziergänge, Zuhause oder unterwegs. Der Hoodie ist in verschiedenen Farben verfügbar.\n\nHier findest du die ersten Beispielbilder, wie der Hoodie aussieht.",
+    "images": [
+      "../assets/images/shop/hunde_heilen_menschen_hoodie.jpg"
+    ],
+    "links": [
+      {
+        "url": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen-A68f6968aa9ec7c35481a0599?productType=1047&sellable=mNbMAmlqXRcgwjVBZQbn-1047-22&appearance=2",
+        "text": "→ Hoodie jetzt bestellen"
+      }
+    ],
+    "product": {
+      "name": "SunnyCam Hoodie – Hunde heilen Menschen",
+      "image": "../assets/images/shop/hunde_heilen_menschen_hoodie.jpg",
+      "price": "39.99",
+      "currency": "EUR",
+      "availability": "InStock",
+      "shopUrl": "https://nils-digital.de/pages/shop.html#!/hunde+heilen+menschen-A68f6968aa9ec7c35481a0599?productType=1047&sellable=mNbMAmlqXRcgwjVBZQbn-1047-22&appearance=2",
+      "type": "hoodie"
+    }
+  },
+  {
+    "id": 31,
+    "thumbFit": "contain",
+    "category": "Projekte",
+    "title": "Projektanfrage bei Nils-Digital – Webdesign einfach & persönlich anfragen",
+    "date": "2026-01-23",
+    "teaser": "Du möchtest eine Website erstellen lassen oder ein Spezial Projekt anfragen? Mit der Projektanfrage bei Nils-Digital starten wir strukturiert in dein Projekt.",
+    "content": "Eine moderne Website beginnt nicht mit Code – sondern mit Verständnis. Genau deshalb gibt es bei Nils-Digital die Projektanfrage.\n\nEgal, ob du eine neue Website erstellen lassen möchtest, einen Onepager planst oder dein bestehendes Projekt modernisieren willst: Bevor ich mit dem Webdesign starte, möchte ich wissen, wer du bist, was du brauchst und welches Ziel deine Seite verfolgt.\n\nDer Fragebogen hilft dabei, dein Vorhaben klar einzuordnen. Du kannst ganz entspannt beschreiben, was du dir vorstellst – auch ohne Fachbegriffe oder fertige Konzepte. Stichpunkte reichen völlig aus.\n\nAuf Basis deiner Angaben melde ich mich persönlich bei dir zurück. Du erhältst eine ehrliche Einschätzung, konkrete Vorschläge und – wenn es passt – ein transparentes Angebot. Ohne versteckte Kosten, ohne Druck und ohne unnötige Extras.\n\nWenn du also einen Webdesigner suchst, der nicht nur Webseiten baut, sondern dein Projekt versteht, ist die Projektanfrage bei Nils-Digital der richtige erste Schritt.",
+    "images": [
+      "../assets/images/logo/logo.png"
+    ],
+    "links": [
+      {
+        "url": "/pages/projektfragebogen.html",
+        "text": "→ Jetzt Projektanfrage starten"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "thumbFit": "contain",
+    "category": "Lernsoftware - Lerndex",
+    "title": "Lerndex – Warum ich eine sichere KI-Lernumgebung für Kinder entwickle",
+    "date": "2026-02-15",
+    "teaser": "KI ist überall – doch nicht jede KI hilft beim Lernen. Warum ich mit Lerndex eine sichere, pädagogisch geführte Lernumgebung für Kinder entwickle und weshalb Verantwortung dabei wichtiger ist als Trend.",
+    "image": "/assets/images/blog/lerndex-placeholder.jpg",
+    "content": "Künstliche Intelligenz ist überall.\nHausaufgaben-Apps, Chatbots, automatische Lösungsrechner.\n\nDoch genau hier beginnt das Problem:\n\nViele KI-Tools lösen Aufgaben.\nSie erklären nicht.\nSie ersetzen Denken – statt es zu fördern.\n\nAls Entwickler – und als Mensch mit Verantwortung für junge Menschen – habe ich mir eine Frage gestellt:\n\nWas wäre, wenn KI Kindern wirklich beim Lernen hilft – statt ihnen die Arbeit abzunehmen?\n\nSo entstand Lerndex.\n\n## 🚀 Was ist Lerndex?\n\nLerndex ist eine sichere, kontrollierte KI-Lernumgebung für Kinder im Alter von 6 bis 16 Jahren.\n\nKein offener Chat.\nKeine beliebigen Gespräche.\nKeine unkontrollierten Antworten.\n\nSondern:\n\n📚 Altersgerechte Erklärungen\n🧠 Schritt-für-Schritt-Hilfen\n📸 Foto-Upload von Aufgaben\n🎯 Individuell generierte Übungen\n🛡️ Klare Sicherheitsmechanismen\n\nDie KI löst keine Aufgaben.\nSie erklärt.\n\nUnd genau das ist der Unterschied.\n\n## ❗ Das Problem heutiger KI-Tools\n\nViele Kinder nutzen bereits KI für Hausaufgaben – oft unkontrolliert.\n\nDas führt zu:\n\n- Abschreiben statt Verstehen\n- Keine echte Lernentwicklung\n- Fehlende Transparenz für Eltern\n- Zugang zu unpassenden Inhalten\n\nKI ist nicht das Problem.\nUnkontrollierte KI ist es.\n\n## ✅ Die Lösung: Ein pädagogisch geführtes System\n\nLerndex arbeitet bewusst anders.\n\nWenn ein Kind fragt:\n„Sag mir einfach die Lösung.“\n\nDann bekommt es nicht stumpf die Antwort.\n\nStattdessen:\n\n- Eine Gegenfrage\n- Eine kleine Hilfestellung\n- Eine verständliche Erklärung\n- Motivation zum Mitdenken\n\nDas Ziel ist nicht Geschwindigkeit.\nDas Ziel ist Verständnis.\n\n## 🛡️ Kinderschutz steht an erster Stelle\n\nLerndex ist kein freier Chatbot.\n\nDie KI:\n\n- Gibt keine persönlichen Informationen preis\n- Führt keine privaten Gespräche\n- Bleibt immer beim Schulthema\n- Reagiert sensibel bei problematischen Aussagen\n- Lehnt gefährliche Inhalte konsequent ab\n\nTransparenz ist wichtig.\nSicherheit ist Pflicht.\n\n## 🎮 Motivation statt Druck\n\nKinder lernen besser, wenn sie Fortschritt sehen.\n\nDeshalb gibt es:\n\n- XP-System\n- Level-Aufstiege\n- Belohnungen\n- Streaks\n- Fortschrittsanzeigen\n\nUnd das Besondere:\n\nEltern können Belohnungen individuell festlegen – digital oder im echten Leben.\n\nSo wird Lernen greifbar.\n\n## 👨‍👩‍👧 Das Eltern-Dashboard\n\nEltern behalten die Kontrolle.\n\nIm Dashboard sehen sie:\n\n- Lernzeit\n- Fortschritt\n- Fächer\n- Erreichte Level\n- Freigeschaltete Belohnungen\n\nKeine Überwachung.\nAber Transparenz.\n\n## 🔧 Warum ich Lerndex selbst entwickle\n\nLerndex ist kein Schnellprojekt.\nKeine kopierte App.\nKeine White-Label-Lösung.\n\nIch entwickle es Schritt für Schritt selbst:\n\n- Flutter & Dart\n- Serverseitige Struktur\n- Sichere Login-Logik\n- Offline-Funktion\n- KI-Integration mit klaren Regeln\n- Datenschutz-Konzept\n\nWeil ich möchte, dass es sauber ist.\nTechnisch und ethisch.\n\n## 🌍 Meine Vision\n\nIch glaube, KI wird das Lernen verändern.\n\nDie Frage ist nicht, ob Kinder KI nutzen.\nDie Frage ist, wie sicher sie das tun.\n\nMeine Vision:\n\nEine KI, die Denken fördert.\nEine KI, die Kinder schützt.\nEine KI, die Eltern Vertrauen gibt.\n\nLerndex soll kein Ersatz für Schule sein.\nSondern ein sicherer Lernbegleiter.\n\n## 📢 Aktuell in Entwicklung\n\nLerndex wird aktuell als App für Android und iOS entwickelt.\n\nWenn du Interesse hast, als Testfamilie dabei zu sein,\nmelde dich gerne über meine Webseite.\n\n## 💜 Persönliches Wort\n\nAls Entwickler kann man vieles bauen.\nAber nicht alles sollte man bauen.\n\nLerndex entsteht aus Verantwortung.\nNicht aus Trend.\n\nUnd genau deshalb nehme ich mir die Zeit, es richtig zu machen.",
+    "images": [
+      "../assets/images/lerndex/lerndex_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://lerndex.de",
+        "text": "→ zur Lerndex Webseite"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "thumbFit": "contain",
+    "category": "Lernsoftware - Lerndex",
+    "title": "Verstärkung für Lerndex – Kevin steigt als Entwickler bei Nils-Digital ein",
+    "date": "2026-02-25",
+    "teaser": "Lerndex wächst weiter: Kevin ist als Entwickler mit eingestiegen und bringt neue technische Power ins Projekt. Warum das ein echter Meilenstein für nils-digital ist.",
+    "image": "/assets/images/logo/logo.png",
+    "content": "Manche Projekte startet man allein – mit einer Idee, viel Kaffee und dem festen Glauben, dass das schon irgendwie klappt.\n\nUnd dann gibt es diese Momente, in denen plötzlich jemand auftaucht, der nicht nur versteht, was man da baut – sondern genauso Lust darauf hat.\n\nGenau so war es mit Kevin.\n\nKevin ist als Entwickler bei Nils-Digital eingestiegen. Nicht als „Ich schau mal kurz drüber“, nicht als externer Dienstleister – sondern als echter Mitentwickler.\n\nUnd ich sag’s, wie es ist: Das fühlt sich richtig gut an.\n\nLerndex ist kein kleines Feierabend-Projekt. Es ist eine Vision. Eine sichere KI-Lernumgebung für Kinder – mit Verantwortung, klarer Struktur und einem echten pädagogischen Anspruch.\n\nSo etwas baut man nicht zwischen Tür und Angel. Es braucht saubere Architektur, durchdachte Logik, stabile Sicherheitsmechanismen – und jemanden, der Spaß daran hat, genau diese Dinge auseinanderzunehmen und besser wieder zusammenzusetzen.\n\nKevin ist genau so jemand.\n\nWährend ich viel an Konzept, Nutzerführung, Motivation und Sicherheitslogik arbeite, taucht Kevin tief in die Technik ein. Wir sprechen über GitHub-Workflows, Pull Requests, Branch-Strukturen und darüber, wie wir den Code so aufbauen, dass Lerndex nicht nur heute funktioniert – sondern auch morgen noch stabil läuft.\n\nWas vorher ein Solo-Projekt war, ist jetzt echte Teamarbeit.\n\nUnd plötzlich merkt man: Entscheidungen werden klarer. Der Code sauberer. Diskussionen produktiver. Und ja – manchmal auch einfach nerdig gut.\n\nDas vielleicht Wichtigste aber: Es passt menschlich.\n\nKevin denkt technisch sehr strukturiert. Ich denke oft visionär und aus Nutzerperspektive. Genau diese Mischung macht Nils-Digital stärker.\n\nMit Kevin an Bord bekommt Nils-Digital nicht nur mehr Entwicklungspower – sondern ein Fundament, das trägt.\n\nUnd deshalb gehört er ab jetzt offiziell dazu.\n\nnils-digital war lange mein persönliches Projekt. Meine Ideen, mein Code, meine Verantwortung.\n\nJetzt wächst daraus Schritt für Schritt ein kleines Entwicklerteam.\n\nUnd das ist mehr als nur ein neuer Name im Projekt.\n\nEs ist Vertrauen. Es ist gemeinsame Verantwortung. Und es ist die Entscheidung, etwas richtig gut machen zu wollen.\n\nAlso: Willkommen im Team, Kevin.\n\nUnd an alle, die Lerndex verfolgen oder unterstützen – ihr begleitet ab jetzt nicht nur ein Projekt, sondern ein wachsendes Team.\n\nIch freue mich auf alles, was wir gemeinsam daraus machen.",
+    "images": [
+      "../assets/images/logo/logo.png"
+    ]
+  },
+  {
+    "id": 34,
+    "thumbFit": "contain",
+    "category": "Lernsoftware - Lerndex",
+    "title": "Der KI-Tutor von Lerndex – intelligent helfen, sicher begleiten",
+    "date": "2026-03-09",
+    "teaser": "Der KI-Tutor in Lerndex soll Kinder nicht einfach mit Antworten versorgen, sondern sie sicher, verständlich und Schritt für Schritt beim Lernen begleiten. Genau deshalb setzen wir bei Lerndex auf ein durchdachtes Fünf-Schicht-Schutzsystem.",
+    "image": "/assets/images/lerndex/lerndex_logo.png",
+    "content": "Mit Lerndex entwickeln wir bei Nils-Digital nicht einfach nur eine weitere Lern-App mit KI.\n\nWir bauen einen KI-Tutor, der Kinder wirklich beim Verstehen unterstützt – und dabei klare Grenzen einhält.\n\nDenn genau das ist für uns der entscheidende Unterschied:\n\nEine gute Lern-KI gibt nicht einfach nur Lösungen aus.\n\nSie erklärt.\nSie begleitet.\nUnd sie schützt.\n\n## 🤖 Was den KI-Tutor von Lerndex besonders macht\n\nDer KI-Tutor in Lerndex ist nicht dafür gedacht, wie ein offener Chatbot einfach irgendetwas auszugeben.\n\nEr soll sich eher wie ein digitaler Lernbegleiter anfühlen.\n\nRuhig.\nVerständlich.\nMotivierend.\nUnd vor allem kindgerecht.\n\nDas bedeutet ganz bewusst:\n\n- keine beliebigen Gespräche\n- keine unkontrollierten Antworten\n- keine einfache Hausaufgabenmaschine\n- kein stumpfes „Hier ist die Lösung“\n\nStattdessen soll der Tutor Kindern dabei helfen, selbst auf den richtigen Weg zu kommen.\n\nWenn ein Kind etwas nicht versteht, soll es nicht das Gefühl haben, zu versagen.\n\nEs soll eher merken:\n\n## „Okay, ich kann das schaffen. Ich brauche nur eine Erklärung, die wirklich zu mir passt.“\n\nGenau dafür ist Lerndex gedacht.\n\n## 📚 Erklären statt einfach vorsagen\n\nViele KI-Tools antworten heute sofort.\n\nOft sogar zu schnell.\n\nDas wirkt im ersten Moment praktisch – hilft beim Lernen aber oft nur oberflächlich.\n\nDenn wenn Kinder einfach fertige Ergebnisse bekommen, fehlt am Ende häufig das eigentliche Verständnis.\n\nUnd genau da gehen wir mit Lerndex bewusst einen anderen Weg.\n\nWenn ein Kind nur nach dem Ergebnis fragt, soll der KI-Tutor nicht einfach blind die komplette Lösung ausspucken.\n\nStattdessen gibt es kleine Denkanstöße, passende Zwischenfragen und Erklärungen, die Schritt für Schritt weiterhelfen.\n\nSo bleibt das Denken beim Kind.\n\nUnd genau da gehört es auch hin.\n\n## 🛡️ Das Fünf-Schicht-Schutzsystem von Lerndex\n\nWeil Kinder mit KI arbeiten, reicht es nicht, wenn etwas nur modern aussieht oder freundlich formuliert ist.\n\nSicherheit muss fest im System mitgedacht werden.\n\nDeshalb setzen wir bei Lerndex auf ein Fünf-Schicht-Schutzsystem.\n\n## 1. Themenbegrenzung\n\nDer KI-Tutor bleibt beim Lernen und bei schulbezogenen Inhalten.\n\nEr ist nicht dafür da, private oder völlig freie Gespräche zu führen, sondern soll klar in seiner Rolle bleiben.\n\n## 2. Kindgerechte Antwortlogik\n\nAntworten werden so aufgebaut, dass sie ruhig, verständlich und altersgerecht sind.\n\nKeine unnötig komplizierten Formulierungen.\nKeine verwirrenden Sprünge.\nKeine Antworten, die Kinder eher überfordern als weiterbringen.\n\n## 3. Keine unkontrollierte Lösungsausgabe\n\nLerndex soll beim Lernen helfen – nicht beim Abschreiben.\n\nDeshalb wird nicht einfach immer direkt die fertige Lösung geliefert, wenn das pädagogisch am eigentlichen Ziel vorbeigeht.\n\n## 4. Sicherheitsfilter für problematische Inhalte\n\nUnpassende, gefährliche oder sensible Inhalte werden erkannt und konsequent abgefangen.\n\nLerndex soll ein sicherer Ort zum Lernen sein – kein Raum für Dinge, die Kinder verunsichern, gefährden oder überfordern.\n\n## 5. Systemische Kontrolle statt freier KI-Nutzung\n\nDer vielleicht wichtigste Punkt:\n\nLerndex ist kein offener Chat mit zufälligem Verhalten.\n\nDie KI arbeitet innerhalb klarer Regeln, klarer Rollen und klarer Grenzen.\n\nGenau das macht aus einer allgemeinen KI einen sicheren KI-Tutor für Kinder.\n\nDieses Schutzsystem ist für uns kein Extra.\n\nEs ist das Fundament von Lerndex.\n\n## 👨‍👩‍👧 Warum uns das so wichtig ist\n\nKinder werden in Zukunft ganz selbstverständlich mit KI in Berührung kommen.\n\nDie eigentliche Frage ist also längst nicht mehr, ob das passiert.\n\nDie wichtigere Frage ist:\n\nUnter welchen Bedingungen?\n\nUnkontrolliert, offen und ohne Schutz?\n\nOder sicher, nachvollziehbar und pädagogisch geführt?\n\nMit Lerndex verfolgen wir ganz bewusst den zweiten Weg.\n\nWir wollen eine Lernumgebung schaffen, in der Kinder Unterstützung bekommen, ohne sich in einem unkontrollierten System zu verlieren.\n\nUnd wir möchten Eltern das gute Gefühl geben, dass KI hier nicht gegen Lernen arbeitet – sondern dafür.\n\n## 🎯 Unser Ziel mit dem KI-Tutor\n\nDer KI-Tutor von Lerndex soll kein Ersatz für Schule, Eltern oder Nachhilfe sein.\n\nEr soll ein intelligenter Begleiter sein.\n\nEin Werkzeug, das erklärt.\nEin System, das motiviert.\nUnd eine Lernhilfe, die Verantwortung ernst nimmt.\n\nGerade wenn Kinder mit Technik lernen, gilt für uns ganz klar:\n\nNicht alles, was technisch möglich ist, ist auch sinnvoll.\n\nDeshalb entsteht Lerndex nicht nach dem Motto „Hauptsache KI drin“.\n\nSondern mit einem klaren Anspruch:\n\nKI soll Kinder stärken.\nNicht überrollen.\n\n## 💜 Lerndex wächst weiter\n\nLerndex steckt weiterhin mitten in Entwicklung, Feinschliff und vielen kleinen Entscheidungen, die später einen großen Unterschied machen.\n\nUnd genau daran arbeiten wir bei Nils-Digital gemeinsam.\n\nKevin und ich bauen Lerndex nicht einfach nur technisch auf.\n\nWir denken auch sehr bewusst darüber nach, wie sich ein Kind in der App fühlt, wie sicher der Rahmen ist und wie KI sinnvoll eingesetzt werden kann, ohne den eigentlichen Lernprozess kaputtzumachen.\n\nDenn am Ende ist ein guter KI-Tutor nicht der, der einfach alles weiß.\n\nSondern der, der auf die richtige Weise hilft.\n\nUnd genau das ist die Idee hinter Lerndex.",
+    "images": [
+      "../assets/images/lerndex/lerndex_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://lerndex.de",
+        "text": "Mehr über Lerndex"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "thumbFit": "contain",
+    "category": "Lernsoftware - Lerndex",
+    "title": "Lerndex Update: Payments, App-Launch & die nächsten Schritte 🚀",
+    "date": "2026-03-19",
+    "teaser": "Lerndex macht große Fortschritte: Payment-System wird integriert, der Google Play Release steht bevor und iOS folgt kurz danach. Ein ehrlicher Einblick in unseren aktuellen Stand.",
+    "image": "/assets/images/lerndex/lerndex_logo.png",
+    "content": "Bei Lerndex passiert gerade richtig viel.\n\nWas lange nur eine Idee war, entwickelt sich aktuell Schritt für Schritt zu einer echten, nutzbaren Lernplattform.\n\nUnd genau an diesem Punkt möchten wir euch mal wieder mitnehmen.\n\n## 💳 Payments – der nächste große Schritt\n\nAktuell arbeiten wir daran, das Payment-System sauber zu integrieren.\n\nDas ist für uns ein wichtiger Meilenstein, denn damit wird aus einer reinen Test-App ein echtes Produkt.\n\nNatürlich bringt das auch Herausforderungen mit sich – gerade bei Themen wie Authentifizierung, Store-Anbindung und den unterschiedlichen Anforderungen von Google und Apple.\n\nAber genau das gehört dazu.\n\nWir wollen Lerndex nicht einfach schnell veröffentlichen.\n\nWir wollen es richtig machen.\n\n## 📱 Veröffentlichung im Google Play Store\n\nUnser aktueller Plan ist es, Lerndex zuerst für Android im Google Play Store zu veröffentlichen.\n\nHier sind wir bereits auf einem sehr guten Stand.\n\nSobald die letzten technischen Hürden rund um Payments und Store-Anbindung gelöst sind, kann die Beta starten.\n\n## 🍏 iOS folgt – bewusst etwas später\n\nDie Veröffentlichung für iPhone und iPad ist natürlich ebenfalls geplant.\n\nAllerdings werden wir uns hier bewusst etwas mehr Zeit nehmen.\n\nApple hat strengere Anforderungen – und wir möchten sicherstellen, dass Lerndex auch dort stabil, sicher und sauber läuft.\n\n## 🤝 Lerndex ist Teamarbeit\n\nWas uns besonders freut:\n\nLerndex ist längst kein Einzelprojekt mehr.\n\nGemeinsam mit Kevin wächst die App jeden Tag weiter.\n\nVom Design über die Nutzerführung bis hin zu den Funktionen – es entsteht etwas, das sich wirklich rund anfühlt.\n\nUnd genau das merkt man.\n\n## 🎯 Unser Ziel bleibt klar\n\nLerndex soll keine App sein, die einfach nur Antworten liefert.\n\nSondern eine sichere Lernumgebung, die Kinder wirklich begleitet.\n\nMit Struktur.\nMit Motivation.\nUnd mit einem klaren Fokus auf Verständnis.\n\n## 🔗 Neugierig geworden?\n\nDie Webseite ist bereits online:\n👉 https://lerndex.de\n\nDort findet ihr alle Infos und könnt euch auch als Testuser eintragen.\n\n## 🚀 Was jetzt kommt\n\nDie nächsten Wochen werden spannend.\n\nMit dem App-Release beginnt für uns ein ganz neuer Abschnitt:\n\nNicht mehr nur entwickeln.\nSondern zuhören.\nVerbessern.\nUnd gemeinsam mit echten Nutzern wachsen.\n\nDanke an alle, die uns jetzt schon begleiten 🙌",
+    "images": [
+      "../assets/images/lerndex/lerndex_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://lerndex.de",
+        "text": "Mehr über Lerndex"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "category": "Lernsoftware - Lerndex",
+    "title": "Lerndex startet in die Android Beta – ein großer Meilenstein ist erreicht",
+    "date": "2026-03-23",
+    "teaser": "Ein riesiger Schritt für Lerndex: Die Android Beta ist offiziell gestartet und wurde erfolgreich von Google geprüft. Erste Testuser können die App jetzt erleben – und du kannst dir schon jetzt deinen Platz sichern.",
+    "image": "/assets/images/lerndex/lerndex_android_beta.png",
+    "content": "Heute ist ein ganz besonderer Tag für uns bei Nils-Digital.\n\nLerndex geht offiziell in die Android Beta.\n\nNach intensiver Entwicklung, vielen Ideen, unzähligen Stunden Arbeit und ganz viel Herzblut ist es endlich soweit:\nDie ersten Testuser können Lerndex jetzt auf Android nutzen.\n\nUnd das Beste daran?\n\nDie App wurde bereits erfolgreich von Google geprüft.\n\nDas bedeutet: Lerndex ist nicht mehr nur eine Vision oder ein Projekt im Hintergrund – sondern ein echtes Produkt, das jetzt Schritt für Schritt in die Welt kommt.\n\n\n## Warum dieser Moment so wichtig ist\n\nDie Beta ist für uns einer der wichtigsten Meilensteine überhaupt.\n\nDenn jetzt passiert das, was wirklich zählt:\n\n➡️ Echte Kinder nutzen die App\n➡️ Echte Eltern geben Feedback\n➡️ Echte Nutzung zeigt uns, was funktioniert – und was wir noch besser machen können\n\nGenau dafür wurde Lerndex entwickelt.\n\nNicht für perfekte Theorie.\nSondern für echten Alltag.\n\n\n## Was Lerndex besonders macht\n\nLerndex ist keine klassische Lern-App.\n\nWir haben bewusst einen anderen Weg gewählt:\n\n• Ein KI-Tutor, der Kinder begleitet statt ihnen einfach Antworten zu geben\n• Ein durchdachtes Sicherheitssystem für eine geschützte Lernumgebung\n• Gamification mit XP, Leveln und Belohnungen\n• Individuelle Anpassung je nach Alter und Schulstufe\n\nUnser Ziel ist klar:\n\nKinder sollen verstehen, nicht nur auswendig lernen.\n\n\n## Die Beta ist komplett kostenlos\n\nWährend der gesamten Testphase können alle ausgewählten Nutzer Lerndex kostenlos nutzen.\n\nAuch wenn in der App aktuell bereits Abo-Modelle sichtbar sind:\n\n👉 Für Tester entstehen keine Kosten\n👉 Abos verlängern sich automatisch während der Testphase\n👉 Inaktive Abos werden automatisch pausiert\n\nUns ist wichtig, dass sich alle Tester voll auf das konzentrieren können, was zählt:\n\nFeedback geben und Lerndex gemeinsam mit uns besser machen.\n\n\n## iOS folgt bald\n\nAktuell startet Lerndex auf Android.\n\nDie iOS-Version ist bereits in Vorbereitung und wird schon bald folgen.\n\nWir halten euch natürlich auf dem Laufenden.\n\n\n## Jetzt auf die Warteliste setzen\n\nDu möchtest Lerndex testen oder dein Kind beim Lernen unterstützen?\n\nDann sichere dir jetzt einen Platz auf der Warteliste:\n\n👉 https://lerndex.de\n\nDort kannst du dich eintragen und gehörst zu den Ersten, die Zugang zur App erhalten.\n\n\n## Ein persönliches Wort\n\nLerndex ist für uns mehr als nur ein Projekt.\n\nEs ist eine Vision.\n\nEine Vision davon, wie Lernen in Zukunft aussehen kann:\n\nIndividuell.\nSicher.\nMotivierend.\n\nUnd vor allem:\nMit Spaß.\n\nWir freuen uns unglaublich, diesen Weg jetzt gemeinsam mit euch zu gehen.\n\nDas ist erst der Anfang.\n",
+    "images": [
+      "../assets/images/lerndex/lerndex_android_beta.jpeg"
+    ],
+    "links": [
+      {
+        "url": "https://lerndex.de",
+        "text": "Mehr über Lerndex"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "thumbFit": "contain",
+    "category": "Lernsoftware - Lerndex",
+    "title": "Lerndex lebt von eurem Feedback – und genau das macht es besonders 💬",
+    "date": "2026-03-26",
+    "teaser": "Lerndex entwickelt sich gemeinsam mit seinen Nutzern. Warum Feedback aktuell so wichtig ist und wie du uns dabei helfen kannst, die App Schritt für Schritt besser zu machen.",
+    "content": "Lerndex ist aktuell noch in der Testphase.\n\nUnd ganz ehrlich?\nGenau das ist gerade das Spannendste daran.\n\nDenn Lerndex wächst nicht einfach irgendwo im Hintergrund…\n**es wächst mit euch.**\n\n## Warum Feedback für uns so wichtig ist\n\nWir wollten nie einfach nur irgendeine Lernapp bauen.\n\nLerndex soll sich richtig anfühlen.\nFür Kinder. Für Eltern. Für den Alltag.\n\nAber genau das können wir nicht alleine entscheiden.\n\nDeshalb ist euer Feedback für uns so unglaublich wertvoll.\n\n- Was macht euch Spaß?\n- Wo merkt ihr: „Okay, das passt noch nicht“?\n- Was fehlt euch vielleicht noch komplett?\n\nJede einzelne Rückmeldung hilft uns, Lerndex besser zu machen.\nNicht irgendwann – sondern jetzt, Schritt für Schritt.\n\n## So läuft das aktuell mit den Bewertungen\n\nDa Lerndex noch im geschlossenen Test ist, läuft auch das Feedback etwas anders als bei „fertigen“ Apps.\n\n- Der Zugang erfolgt über einen **speziellen Test-Link**\n- Es gibt aktuell **keine öffentlichen Bewertungen** im klassischen Sinne\n- Euer Feedback landet direkt bei uns – persönlich und ungefiltert\n\nUnd genau das ist uns gerade extrem wichtig.\n\nKein Druck.\nKeine Sterne-Bewertungen.\nKeine „öffentliche Meinung“, die irgendwas verzerrt.\n\nSondern ehrliche Worte von echten Nutzern.\n\n## Öffentliche Unterstützung? Geht trotzdem 🙌\n\nWenn du Lerndex trotzdem öffentlich unterstützen möchtest, gibt es eine Möglichkeit:\n\nÜber eine Bewertung bei **nils-digital** auf Google.\n\nDort kannst du deine Erfahrung teilen und anderen zeigen, was hinter Lerndex steckt.\n\nDas hilft uns enorm – gerade jetzt in der Anfangsphase.\n\n## Lerndex entsteht nicht allein\n\nLerndex ist kein fertiges Produkt, das einfach veröffentlicht wird.\n\nEs ist ein Projekt, das wächst.\nMit jeder Idee.\nMit jedem Test.\nUnd vor allem: mit jedem Feedback.\n\nUnd genau deshalb ist Feedback bei uns nicht nur erlaubt…\n\n**…es ist ausdrücklich gewünscht.**\n\n### Ein ehrlicher Wunsch von uns\n\nWenn du Lerndex testest, dann sag uns bitte offen, was du denkst.\n\n- Was feierst du?\n- Was nervt dich?\n- Was würdest du komplett anders machen?\n\nDu kannst nichts „kaputt machen“ – im Gegenteil.\n\nDu hilfst uns dabei, Lerndex genau so zu bauen, wie es wirklich gebraucht wird.\n\nAm Ende ist Lerndex nicht einfach nur „unsere App“.\n\n**Es ist ein gemeinsames Projekt.**\n\nUnd genau das macht es so besonders. 🚀",
+    "images": [
+      "../assets/images/lerndex/lerndex_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://lerndex.de",
+        "text": "→ Jetzt Lerndex testen"
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "thumbFit": "contain",
+    "category": "Lernsoftware - Lerndex",
+    "title": "Lerndex für iOS – warum Apple noch etwas Geduld braucht 🍏",
+    "date": "2026-04-01",
+    "teaser": "Die Android-Version von Lerndex läuft bereits in der Testphase – doch bei iOS stehen wir aktuell vor einer ganz konkreten Herausforderung. Warum Apple-User noch etwas Geduld brauchen.",
+    "content": "Lerndex entwickelt sich aktuell mit großen Schritten weiter.\n\nDie Android-Version ist bereits im Testbetrieb und wir bekommen täglich wertvolles Feedback von unseren Testusern.\n\nDoch eine Frage erreicht uns immer häufiger:\n\n**Wann kommt Lerndex für iOS?**\n\nUnd genau darauf möchten wir heute offen und ehrlich eingehen.\n\n## Der aktuelle Stand\n\nDie iOS-Version von Lerndex ist technisch bereits mitgedacht.\n\nUnsere App ist von Anfang an so aufgebaut, dass sie sowohl auf Android als auch auf Apple-Geräten laufen kann.\n\nDas bedeutet:\nDie Grundlage ist da.\nDie App ist vorbereitet.\n\nWas aktuell fehlt, ist nicht die Software.\n\nSondern die passende Hardware.\n\n## Warum Apple hier besonders ist\n\nUm eine App für iOS zu testen und zu veröffentlichen, benötigen wir zwingend Apple-Geräte.\n\nOhne ein Mac-Gerät ist es nicht möglich:\n\n- Builds für iOS zu erstellen\n- die App sauber zu testen\n- oder sie im Apple-System zu veröffentlichen\n\nUnd genau an diesem Punkt stehen wir aktuell.\n\n## Warum es gerade stockt\n\nAktuell fehlt uns schlicht die notwendige Hardware, um den nächsten Schritt zu gehen.\n\nWir haben uns bewusst dafür entschieden, Lerndex Schritt für Schritt aufzubauen – ohne große Investoren, sondern aus eigener Kraft.\n\nDas hat viele Vorteile.\n\nAber es bringt auch Herausforderungen mit sich.\n\nUnd genau eine davon ist gerade die iOS-Entwicklung.\n\n## Was das für euch bedeutet\n\nWenn du ein iPhone oder iPad nutzt, bedeutet das aktuell:\n\n👉 Du musst leider noch ein wenig Geduld mitbringen.\n\nWir arbeiten daran, eine Lösung zu finden – und die iOS-Version so schnell wie möglich nachzuziehen.\n\n## Transparenz ist uns wichtig\n\nWir könnten jetzt einfach sagen: „Kommt bald.“\n\nAber das wäre nicht ehrlich.\n\nDeshalb sagen wir lieber:\n\nDie Umsetzung ist vorbereitet.\nDer Wille ist da.\n\nUns fehlt aktuell nur noch der letzte Baustein, um es wirklich umzusetzen.\n\n## Unterstützung – wenn du Teil davon sein willst\n\nFalls du Lerndex unterstützen möchtest, gibt es aktuell zwei Möglichkeiten:\n\n- Zugang zu passender Apple-Hardware\n- oder Unterstützung, um diese Hardware anschaffen zu können\n\nDas ist kein Muss.\n\nAber für uns wäre es ein direkter Schritt, um die iOS-Version deutlich schneller umzusetzen.\n\n## Unser Ziel bleibt gleich\n\nLerndex soll für alle verfügbar sein.\n\nEgal ob Android oder Apple.\n\nUnd wir werden diesen Weg gehen.\n\nVielleicht dauert er an dieser Stelle gerade ein wenig länger –\n\naber wir bleiben dran.\n\nVersprochen. 🚀",
+    "images": [
+      "../assets/images/lerndex/lerndex_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://paypal.me/NilsDigital",
+        "text": "→ Lerndex unterstützen"
+      },
+      {
+        "url": "https://lerndex.de",
+        "text": "→ Mehr über Lerndex erfahren"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "thumbFit": "contain",
+    "category": "Lernsoftware - Lerndex",
+    "title": "Lerndex im Play Store, jetzt vorregistrieren und nichts verpassen",
+    "date": "2026-04-05",
+    "teaser": "Lerndex steht kurz vor dem offiziellen Start im Google Play Store - Aktion für alle, die von Anfang an dabei sind.",
+    "content": "Ein großer Meilenstein ist erreicht.\n\nLerndex steht kurz davor, offiziell im Google Play Store veröffentlicht zu werden.\n\n📅 Geplanter Release: **20.04.2026**\n\nUnd das Beste daran:\n\nDu kannst schon jetzt dabei sein.\n\n## Jetzt vorregistrieren und direkt starten\n\nAb sofort hast du die Möglichkeit, dich für Lerndex im Play Store vorab zu registrieren.\n\nDas bedeutet für dich:\n\n- Du wirst automatisch benachrichtigt, sobald Lerndex verfügbar ist\n- Du kannst die App direkt zum Start installieren\n- Du bist von Anfang an Teil der Lerndex-Community\n\nGerade in der aktuellen Phase ist das besonders spannend.\n\nDenn Lerndex entwickelt sich jeden Tag weiter – mit echtem Feedback von echten Nutzern.\n\n## 🎁 Exklusive Aktion zum Start\n\nZum offiziellen Release haben wir uns etwas Besonderes überlegt.\n\nMit dem Gutscheincode:\n\n**NILSDIGITAL**\n\nbekommst du:\n\n👉 **28 Tage gratis Lerndex-Duo**\n👉 im Wert von **24,99 €**\n\n### Wichtig zu wissen:\n\n- Gültig ab: **20.04.2026 (App Release)**\n- Gültig bis: **31.05.2026**\n- Einlösbar: **einmal pro Familie**\n\nDiese Aktion ist unser Dankeschön an alle, die Lerndex von Anfang an unterstützen und begleiten.\n\n## Warum sich die Vorregistrierung lohnt\n\nLerndex ist nicht einfach nur eine Lernapp.\n\nEs ist eine Kombination aus:\n\n- spielerischem Lernen\n- intelligenter KI-Unterstützung\n- und einem System, das Kinder motiviert statt überfordert\n\nUnd genau jetzt hast du die Chance, von Anfang an dabei zu sein.\n\nDu siehst die Entwicklung.\nDu erlebst die Fortschritte.\nUnd du kannst Teil davon werden.\n\n## Für wen ist Lerndex gedacht?\n\nLerndex richtet sich an Schülerinnen und Schüler von der Grundschule bis zur weiterführenden Schule.\n\nEgal ob:\n\n- Mathe\n- Deutsch\n- Englisch\n- oder andere Schulfächer\n\nLerndex unterstützt beim Lernen – verständlich, sicher und Schritt für Schritt.\n\n## Und iOS?\n\nAuch wenn viele schon fragen:\n\nDie iOS-Version ist in Vorbereitung, benötigt aber aktuell noch etwas Zeit.\n\nDer Fokus liegt derzeit auf einem stabilen und starken Android-Start.\n\n## Sei von Anfang an dabei\n\nDer Start von Lerndex ist mehr als nur ein App-Release.\n\nEs ist der Beginn von etwas, das Lernen verändern soll.\n\nUnd genau jetzt ist der perfekte Moment, einzusteigen.\n\n👉 Sichere dir deinen Platz und begleite Lerndex von Anfang an.\n\nWir freuen uns auf dich. 🚀",
+    "images": [
+      "../assets/images/lerndex/lerndex_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://play.google.com/store/apps/details?id=de.nilsdigital.lerndex&hl=de",
+        "text": "→ Jetzt im Play Store vorregistrieren"
+      },
+      {
+        "url": "https://lerndex.de",
+        "text": "→ Mehr über Lerndex erfahren"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "thumbFit": "contain",
+    "category": "Lernsoftware - Lerndex",
+    "title": "Lerndex ist jetzt im Play Store verfügbar 🚀📚",
+    "date": "2026-05-03",
+    "teaser": "Lerndex ist offiziell im Google Play Store gestartet – inklusive kostenloser Testphase mit exklusiven Gutscheincodes für Familien.",
+    "content": "Ein Moment, auf den wir lange hingearbeitet haben, ist endlich da:\n\n**Lerndex ist offiziell im Google Play Store verfügbar.** 🎉\n\nNach vielen Monaten Entwicklung, Tests, Feedbackrunden und unzähligen Ideen können Kinder und Eltern Lerndex jetzt direkt herunterladen und ausprobieren.\n\n## Was ist Lerndex eigentlich?\n\nLerndex ist mehr als nur eine klassische Lernapp.\n\nDie Idee hinter Lerndex war von Anfang an klar:\n\n👉 Lernen soll motivieren.\n👉 Lernen soll verständlich sein.\n👉 Und Lernen darf sich auch gut anfühlen.\n\nDeshalb kombiniert Lerndex:\n\n- spielerisches Lernen\n- moderne KI-Unterstützung\n- XP & Levelsysteme\n- Belohnungen & Motivation\n- kindgerechte Lernhilfe\n- und eine sichere Umgebung für Familien\n\nAlles in einer App.\n\n## Die Besonderheit von Lerndex 💡\n\nViele Lernapps fühlen sich wie digitale Arbeitsblätter an.\n\nLerndex soll anders sein.\n\nKinder sammeln XP, steigen Level auf und erleben kleine Fortschritte sichtbar – fast wie in einem Spiel.\n\nDabei steht aber nicht „höher, schneller, besser“ im Mittelpunkt.\n\nSondern:\n\n**Motivation ohne Druck.**\n\nZusätzlich unterstützt die integrierte KI beim Lernen, Erklären und Verstehen – angepasst an das jeweilige Alter und den Lernstand.\n\n## 🎁 28 Tage kostenlos testen\n\nZum offiziellen Start kannst du Lerndex aktuell kostenlos testen.\n\nBis zum **31.05.2026** sind folgende Gutscheincodes verfügbar:\n\n- **SOLO** → 28 Tage Lerndex für 1 Kind\n- **DUO** → 28 Tage Lerndex für 2 Kinder\n- **FAMILY** → 28 Tage Lerndex für bis zu 4 Kinder\n\n### Wichtig:\n\nNach Ablauf der 28 Tage startet automatisch das jeweils ausgewählte Abo-Modell, sofern es nicht vorher beendet wird.\n\nSo kann Lerndex ganz in Ruhe getestet werden – ohne Einschränkungen.\n\n## Für wen ist Lerndex gedacht?\n\nLerndex richtet sich an Schülerinnen und Schüler verschiedener Altersklassen.\n\nEgal ob:\n\n- Grundschule\n- weiterführende Schule\n- Mathe\n- Deutsch\n- Englisch\n- oder später weitere Lernbereiche\n\nLerndex soll Kinder beim Lernen begleiten – verständlich, motivierend und modern.\n\n## Ein Projekt, das weiter wächst\n\nLerndex entwickelt sich ständig weiter.\n\nNeue Funktionen, neue Inhalte und Verbesserungen entstehen laufend durch echtes Nutzerfeedback.\n\nUnd genau das macht Lerndex besonders:\n\nEs ist kein starres Produkt.\n\nEs ist ein Projekt, das gemeinsam mit seinen Nutzern wächst. 🚀\n\n## Jetzt herunterladen & ausprobieren 📲\n\nWenn du Lerndex testen möchtest, kannst du die App jetzt direkt im Google Play Store herunterladen.\n\nWir freuen uns auf jedes Feedback, jede Idee und jede Familie, die Teil davon wird 💙",
+    "images": [
+      "../assets/images/lerndex/lerndex_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://play.google.com/store/apps/details?id=de.nilsdigital.lerndex&pcampaignid=web_share",
+        "text": "→ Jetzt Lerndex im Play Store herunterladen"
+      },
+      {
+        "url": "https://lerndex.de",
+        "text": "→ Mehr über Lerndex erfahren"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "category": "Kooperationen",
+    "title": "Von einer Anfrage zur echten Kooperation 🐾",
+    "date": "2026-05-08",
+    "teaser": "Aus einer einfachen Nachricht entstand eine besondere Zusammenarbeit: Gemeinsam mit Handmade by Fischer entstand nicht nur eine Kooperation rund um SunnyCam, sondern auch ein Webdesign-Projekt mit ganz viel Herzblut.",
+    "content": "Manchmal entstehen die schönsten Kooperationen genau dann, wenn man einfach den ersten Schritt macht.\n\nGenau so begann auch die Zusammenarbeit mit **Handmade by Fischer**.\n\nVor einiger Zeit bin ich auf die handgemachten Halsbänder und Leinen von Handmade by Fischer aufmerksam geworden und war direkt begeistert.\n\nVor allem die Kombination aus:\n\n- hochwertiger Handarbeit\n- liebevollen Details\n- und individuellem Design\n\nhat sofort perfekt zu Sunny gepasst.\n\nAlso habe ich Melly einfach angeschrieben 😊\n\n## Von Social Media zur echten Zusammenarbeit\n\nEigentlich entstand daraus zuerst nur die Idee einer kleinen Kooperation rund um **SunnyCam** und Social Media.\n\nDoch während unseres Austauschs wurde schnell klar, dass auch die Webseite von Handmade by Fischer noch einiges an Potenzial hatte – besonders im mobilen Bereich.\n\nUnd genau daraus entwickelte sich plötzlich viel mehr.\n\nAus einer einfachen Anfrage wurde eine richtig schöne Zusammenarbeit:\n\nIch durfte die mobile Optimierung der Webseite übernehmen und gleichzeitig entstand daraus die erste offizielle Kooperation für Sunny 🐾\n\n## Heute kam endlich das Paket an 📦\n\nUnd Sunny?\n\nDie war natürlich sofort neugierig 😄\n\nNoch bevor die Box richtig geöffnet war, wurde erstmal ausgiebig geschnüffelt.\n\nBesonders schön fand ich, wie unglaublich liebevoll alles verpackt wurde.\n\nSelbst an ein kleines Leckerli für Sunny wurde gedacht.\n\nGenau solche kleinen Details zeigen einfach, wie viel Herzblut hinter Handmade by Fischer steckt.\n\n## Was im Paket war ✨\n\nIm Paket befanden sich:\n\n- das Halsband **„Neermoor“**\n- und die passende Leine **„dat Quadraat“**\n\nBeides ist handgemacht und wirkt unglaublich hochwertig verarbeitet.\n\nMan merkt sofort, dass hier nicht einfach nur Produkte verkauft werden.\n\nSondern echte Leidenschaft dahinter steckt.\n\n## Rabattcode für die Community 🐾\n\nFür unsere Community hat Melly sogar einen eigenen Rabattcode erstellt:\n\n**SUNNY10**\n\nEin riesiges Dankeschön dafür 💙\n\n## Das war erst der Anfang 🚀\n\nIn den nächsten Tagen folgen auf SunnyCam und meinen Social-Media-Kanälen noch weitere Eindrücke.\n\nGeplant sind unter anderem:\n\n- weitere Bilder\n- kleine Einblicke\n- und wahrscheinlich auch ein Unboxing-Video 😄\n\nIch freue mich riesig auf alles, was aus dieser Kooperation noch entsteht.\n\nEin großes Dankeschön an Melly von Handmade by Fischer für die tolle Zusammenarbeit und diese wirklich schöne Kooperation ❤️",
+    "images": [
+      "../assets/images/blog/kooperation_fischer.jpeg"
+    ],
+    "links": [
+      {
+        "url": "https://www.handmade-by-fischer.de/",
+        "text": "→ Handmade by Fischer entdecken"
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "category": "Community",
+    "title": "Von Herz zu Herz – Andrea startet als Alltagsbegleiterin ❤️",
+    "date": "2026-05-23",
+    "teaser": "Mit viel Herz, Zeit und Menschlichkeit startet Andrea ihre Selbstständigkeit als Alltagsbegleiterin für Senioren – und genau solche Angebote werden heute immer wichtiger.",
+    "content": "Manchmal braucht es gar nicht viel, damit ein Alltag wieder leichter wird:\nZeit, ein offenes Ohr, gemeinsame Gespräche oder einfach jemanden, der wirklich da ist.\n\nGenau diesen Weg geht meine Kollegin Andrea jetzt mit ihrer Selbstständigkeit als Alltagsbegleiterin für Senioren.\n\nUnd ehrlich gesagt finde ich es schön zu sehen, wenn Menschen den Mut haben, etwas mit Herz aufzubauen – besonders in einem Bereich, der heute wichtiger denn je ist.\n\n## Unterstützung im Alltag – menschlich & nah ❤️\n\nAndrea unterstützt ältere Menschen dabei, den Alltag weiterhin selbstständig, sicher und mit Freude zu gestalten.\n\nDabei geht es nicht um klassische Pflegeleistungen, sondern um menschliche Unterstützung im Alltag.\n\nDazu gehören unter anderem:\n\n- Gespräche & Gesellschaft\n- Spaziergänge und gemeinsame Aktivitäten\n- Begleitung zu Arzt- oder Apothekenterminen\n- Unterstützung bei Einkäufen oder Behördengängen\n- Zeit, Nähe und Verlässlichkeit im Alltag\n\nGerade viele ältere Menschen wünschen sich jemanden, der sich wirklich Zeit nimmt.\n\nNicht schnell „abarbeiten“, sondern zuhören, begleiten und Sicherheit vermitteln.\n\nGenau das spiegelt Andrea mit ihrem Projekt wider.\n\n## Erfahrung, Herz und Vertrauen 💙\n\nBesonders schön finde ich, dass Andrea bereits Erfahrung in der Arbeit mit Senioren mitbringt und Menschen dabei helfen möchte, möglichst lange in ihrem eigenen Zuhause bleiben zu können – mit Würde, Respekt und einem sicheren Gefühl im Alltag.\n\nDer Schritt in die Selbstständigkeit ist nie einfach.\n\nUmso mehr verdient es Unterstützung, wenn jemand etwas mit so viel Herz startet.\n\nDeshalb möchte ich sie gerne ein wenig unterstützen – aktuell erst einmal mit etwas Reichweite.\n\n## Ein Projekt mit Herz\n\nIch wünsche dir auf jeden Fall ganz viel Erfolg, Andrea.\n\nUnd ich glaube, dass genau solche Angebote heute unglaublich wichtig sind. 💙\n\n### Interesse oder Fragen?\n\nFalls Interesse an Andreas Unterstützung als Alltagsbegleiterin besteht, stelle ich gerne den Kontakt her 😊",
+    "images": [
+      "../assets/images/blog/alltagsbegleitung_brackemeyer_bsp.png"
+    ]
+  },
+  {
+    "id": 44,
+    "thumbFit": "contain",
+    "category": "Pflegesoftware - Pflegedex",
+    "title": "Pflegedex – Digitale Unterstützung für die Pflegebranche 💙",
+    "date": "2026-06-23",
+    "teaser": "Mit Pflegedex entsteht eine moderne Softwarelösung, die Pflegeeinrichtungen bei Organisation, Dokumentation und Kommunikation im Alltag unterstützen soll.",
+    "content": "Die Digitalisierung macht auch vor der Pflegebranche nicht halt.\n\nViele Einrichtungen stehen täglich vor der Herausforderung, Informationen schnell verfügbar zu machen, Abläufe zu koordinieren und gleichzeitig genügend Zeit für die Menschen zu haben, die im Mittelpunkt stehen: die Bewohner und Patienten.\n\nGenau hier setzt Pflegedex an.\n\n## Warum Pflegedex entstanden ist 💡\n\nPflegekräfte leisten jeden Tag Großartiges. Gleichzeitig steigen die Anforderungen an Dokumentation, Organisation und Kommunikation kontinuierlich.\n\nPflegedex soll dabei helfen, wichtige Informationen zentral bereitzustellen und Arbeitsabläufe einfacher und übersichtlicher zu gestalten.\n\nDas Ziel ist klar:\n\nWeniger Zeit für unnötige Verwaltungsaufgaben und mehr Zeit für die eigentliche Betreuung und Pflege von Menschen.\n\n## Moderne Software für den Pflegealltag 🏥\n\nPflegedex wird als moderne webbasierte Lösung entwickelt und soll Pflegeeinrichtungen bei ihren täglichen Prozessen unterstützen.\n\nDabei stehen vor allem Übersichtlichkeit, einfache Bedienung und praxisnahe Funktionen im Vordergrund.\n\nBesonderen Wert legen wir darauf, dass die Software nicht kompliziert wirkt, sondern den Arbeitsalltag tatsächlich erleichtert.\n\nDenn gute Digitalisierung bedeutet nicht mehr Arbeit – sondern weniger Aufwand.\n\n## Entwicklung aus der Praxis ⚙️\n\nEin großer Vorteil von Pflegedex ist die enge Verbindung zur Praxis.\n\nDurch den direkten Kontakt zu Pflegekräften und Einrichtungen können Anforderungen und Ideen direkt in die Weiterentwicklung einfließen.\n\nDadurch entsteht keine theoretische Software am Reißbrett, sondern eine Lösung, die sich an den tatsächlichen Bedürfnissen der Menschen orientiert, die täglich damit arbeiten.\n\n## Ein weiteres Projekt von Nils-Digital 🚀\n\nMit Pflegedex erweitern wir unser Portfolio um eine Softwarelösung für einen Bereich, der gesellschaftlich immer wichtiger wird.\n\nWährend viele unserer Projekte Webseiten, Automatisierungen oder digitale Dienstleistungen umfassen, steht bei Pflegedex die Entwicklung einer spezialisierten Branchenlösung im Mittelpunkt.\n\nWir freuen uns darauf, die Entwicklung in den kommenden Monaten weiter voranzutreiben und regelmäßig neue Funktionen vorzustellen.\n\n## Ausblick 🔭\n\nDie Digitalisierung der Pflege bietet enormes Potenzial.\n\nPflegedex soll langfristig dazu beitragen, Prozesse zu vereinfachen, Informationen besser verfügbar zu machen und Pflegekräfte bei ihrer täglichen Arbeit zu unterstützen.\n\nVielen Dank an alle Unterstützer, Tester und Ideengeber, die dieses Projekt begleiten. 💙",
+    "images": [
+      "../assets/images/blog/pflegedex_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://pflegedex-digital.de/",
+        "text": "→ Pflegedex ansehen"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "thumbFit": "contain",
+    "category": "Projekte",
+    "title": "Das Landhaus in Tecklenburg-Leeden – eine Website für drei Bereiche 🏡",
+    "date": "2026-07-30",
+    "teaser": "Restaurant, Imbiss und Eventlocation unter einem Dach – und alle drei sprechen unterschiedliche Gäste an. Für Das Landhaus im Ferienpark Tecklenburg-Leeden ist ein Auftritt entstanden, der Stammgäste aus der Region genauso abholt wie Urlauber aus den Niederlanden.",
+    "content": "Manche Projekte sind auf den ersten Blick „nur eine Website“. Beim Landhaus in Tecklenburg-Leeden war schnell klar: Hier stecken eigentlich drei Betriebe unter einem Dach – und jeder davon hat sein eigenes Publikum.\n\n## Ein Haus, drei Bereiche 🍽️\n\nDas **Restaurant** steht für gehobene, saisonale Küche in gemütlicher Landhaus-Atmosphäre – geöffnet Dienstag bis Donnerstag von 17 bis 21 Uhr, freitags bis sonntags bis 22 Uhr, montags Ruhetag.\n\nDer **Imbiss** ist das genaue Gegenteil: schnell, unkompliziert, in der Saison täglich von 12 bis 17 Uhr geöffnet. Pommes, Currywurst, kurze Wege.\n\nUnd **Der Kotten** ist die Eventlocation des Hauses – DJ-Nights, Karaoke, Mottoabende, und auf Anfrage auch privat mietbar.\n\nDrei Bereiche, drei Erwartungshaltungen. Die Herausforderung war, das auf einer Seite abzubilden, ohne dass Gäste sich durch Menüs klicken müssen, um herauszufinden, ob heute Abend überhaupt jemand da ist.\n\n## Warum die Seite dreisprachig ist 🌍\n\nDas Landhaus liegt im Ferienpark Tecklenburg-Leeden – und dort machen jedes Jahr viele niederländische Gäste Urlaub. Genau deshalb gibt es die Seite in **Deutsch, Englisch und Niederländisch**.\n\nDas ist kein Feature auf einer Liste, sondern ein handfester Vorteil: Wer die Speisekarte in seiner eigenen Sprache lesen kann, reserviert eher einen Tisch.\n\n## Reservieren, wie der Gast es will 📞\n\nNicht jeder Gast will ein Formular ausfüllen. Deshalb führen mehrere Wege zum Tisch:\n\n- Telefon – für alle, die es direkt mögen\n- WhatsApp – für die schnelle Anfrage zwischendurch\n- E-Mail – für Gruppen und Feiern mit Vorlauf\n\nDazu kommen ein **Eventkalender** für die Termine im Kotten und eine **Galerie**, die zeigt, wie es vor Ort tatsächlich aussieht.\n\n## Technik im Hintergrund ⚙️\n\nUmgesetzt ist die Seite mit **Next.js**. Für den Gast heißt das vor allem: Sie lädt schnell, funktioniert auf dem Handy genauso wie auf dem Laptop – und sie ist so gebaut, dass neue Events und Bilder ohne Entwickler nachgepflegt werden können.\n\n## Ein Projekt aus der Nachbarschaft ❤️\n\nTecklenburg-Leeden liegt direkt vor der Haustür – zwischen Osnabrück, Münster und Bielefeld. Solche Projekte machen besonders Spaß: kurze Wege, direkter Draht, und man kann sich das Ergebnis am Ende selbst ansehen. Am besten bei einem Essen.",
+    "images": [
+      "../assets/images/blog/das-landhaus-logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://das-landhaus-capfun.de",
+        "text": "→ Das Landhaus ansehen"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "thumbFit": "contain",
+    "category": "Pflegesoftware - Pflegedex",
+    "title": "Pflegedex: Warum unsere Pflegesoftware bewusst ohne Cloud auskommt 🔒",
+    "date": "2026-07-30",
+    "teaser": "Pflegedaten gehören zu den sensibelsten Daten überhaupt. Deshalb läuft Pflegedex nicht in der Cloud, sondern auf dem Server der Einrichtung – und die KI bekommt trotzdem nie einen echten Namen zu sehen.",
+    "content": "Im Juni haben wir Pflegedex das erste Mal vorgestellt. Seitdem hat sich vor allem eine Frage in jedem Gespräch wiederholt: **„Und wo liegen unsere Daten dann?“**\n\nDie Antwort ist der Kern des ganzen Projekts.\n\n## Das Problem mit der Cloud in der Pflege ☁️\n\nPflegedokumentation enthält Gesundheitsdaten – rechtlich gesehen die schützenswerteste Kategorie personenbezogener Daten, die es gibt. Trotzdem läuft ein großer Teil der Software am Markt über Cloud-Server, oft bei Anbietern, die die Einrichtung nie zu Gesicht bekommt.\n\nFür viele Häuser ist das ein Bauchschmerz-Thema. Nicht, weil Cloud grundsätzlich unsicher wäre – sondern weil die Kontrolle das Haus verlässt.\n\n## Deine Daten bleiben bei dir 🏠\n\nPflegedex geht den anderen Weg: Die Software läuft **auf dem eigenen Server der Einrichtung**. Installiert wird sie über Docker, also in einem abgeschlossenen Container, der auf ganz normaler Serverhardware läuft.\n\nKein Datenabfluss an Dritte. Keine Weitergabe. Die Daten verlassen das Haus nicht.\n\n## Pseudonymisierung – auch gegenüber der KI 🕵️\n\nDer Punkt, der uns am wichtigsten war: Auch die KI selbst sieht keine Klarnamen. Bewohnerdaten werden **automatisch pseudonymisiert**, bevor sie verarbeitet werden.\n\nDie KI arbeitet also mit dem Sachverhalt, nicht mit der Person dahinter. Wer wirklich gemeint ist, weiß nur das System vor Ort – und die Pflegekraft, die davor sitzt.\n\n## Die KI schreibt den Entwurf, die Pflegekraft entscheidet ✍️\n\nPflegedex nimmt niemandem die Verantwortung ab. Die KI erstellt einen **Entwurf** für den Pflegebericht – lesen, prüfen und freigeben muss ihn immer ein Mensch.\n\nDas spart genau da Zeit, wo Zeit verloren geht: beim Formulieren. Und es lässt die Entscheidung dort, wo sie hingehört.\n\n## Rollen und Audit-Trail 📋\n\nNicht jeder muss alles sehen. Pflegedex arbeitet mit abgestuften Rechten für Admin, Pflegedienstleitung und Pflegekräfte.\n\nFreigegebene Berichte werden **unveränderbar** archiviert. Damit ist jederzeit nachvollziehbar, wer wann was dokumentiert hat – ohne dass sich nachträglich etwas stillschweigend ändern lässt.\n\n## Für wen Pflegedex gedacht ist 🎯\n\nPflegedex richtet sich an:\n\n- stationäre Einrichtungen mit etwa 10 bis 100 Bewohnern\n- Träger mit ein bis drei Häusern\n- alle, die eine eigene Serverinfrastruktur haben oder aufbauen wollen\n- Häuser, denen Datenhoheit wichtiger ist als der schnellste Cloud-Zugang\n\nWer 30 Standorte betreibt, ist bei uns falsch. Wer die Kontrolle über seine Daten behalten will, genau richtig.\n\n## Testen statt Prospekt lesen 🚀\n\nPflegedex ist aktuell in der Testphase. Einrichtungen können die Software **kostenlos und unverbindlich** ausprobieren – einfach über das Kontaktformular melden, dann klären wir gemeinsam, ob es zu eurem Haus passt.\n\nEin Demo-Video ist in Arbeit und folgt in Kürze.",
+    "images": [
+      "../assets/images/blog/pflegedex_logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://pflegedex-digital.de/",
+        "text": "→ Pflegedex ansehen"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "thumbFit": "contain",
+    "category": "Projekte",
+    "title": "Fahrlehrerin Sarah – eine Website, die wirklich jeder bedienen kann ♿",
+    "date": "2026-08-31",
+    "teaser": "Sarah bildet Menschen mit Handicap zum Führerschein aus – körperlich, seelisch, neurodivergent. Für ihren Auftritt war Barrierefreiheit deshalb kein Extra, sondern der Ausgangspunkt: Schriftgröße, Kontrast, Legasthenie-Schrift und Leselinie sind direkt auf der Seite einstellbar.",
+    "content": "Es gibt Projekte, bei denen die Technik am Ende gar nicht das Spannendste ist. Die Website von **Fahrlehrerin Sarah** ist so eins.\n\nSarah Schweikert ist angestellte Fahrlehrerin bei der Fahrschule Sander und unterwegs in Neu Wulmstorf, Buxtehude, Stade und Hamburg. Sie bildet für die Klassen B und BE aus – und hat sich auf etwas spezialisiert, das man selten auf einer Fahrschul-Seite findet: die Ausbildung von Menschen mit Handicap.\n\n## Warum eine eigene Seite? 🚗\n\nSarah hat keine eigene Fahrschule. Anmeldung, Vertrag, Theorieunterricht und Abrechnung laufen alle über die Fahrschule Sander. Trotzdem brauchte sie einen eigenen Auftritt – weil das, was sie macht, auf keiner normalen Fahrschul-Seite abgebildet wird.\n\nWer nach *Führerschein mit Handicap* sucht, sucht nach einem Menschen, nicht nach einem Betrieb. Nach jemandem, der die Frage schon mal gehört hat. Genau das leistet die Seite: Sie erklärt, wer Sarah ist, wobei sie begleitet – und schickt für die Anmeldung sauber zur Fahrschule Sander weiter.\n\n## Barrierefreiheit war hier kein Häkchen auf einer Liste ♿\n\nBei den meisten Projekten ist Barrierefreiheit ein Qualitätsmerkmal. Bei einer Seite, deren Zielgruppe ausdrücklich Menschen mit körperlichen, seelischen und unsichtbaren Beeinträchtigungen sind, ist sie der Kern der Sache.\n\nDeshalb hat die Seite ein eigenes Bedienfeld für die Darstellung, direkt oben rechts erreichbar. Damit lässt sich einstellen:\n\n- **Schriftgröße**, **Zeilenabstand** und **Buchstabenabstand** in mehreren Stufen\n- **Kontrast & Farben**: Standard, Dunkel, Hoher Kontrast, Graustufen\n- eine **gut lesbare Schrift** und eine **Schrift für Legasthenie**\n- **Leselinie** und hervorgehobene Links als Orientierungshilfe\n- **großer Mauszeiger**\n- **Bewegung stoppen** für alle, die Animationen als anstrengend empfinden\n- **Bilder ausblenden**, wenn es nur um den Text gehen soll\n\nAlle Einstellungen bleiben auf dem Gerät gespeichert – lokal, ohne Konto, ohne Übertragung an irgendjemanden. Wer die Seite mit hohem Kontrast und sehr großer Schrift verlässt, findet sie beim nächsten Besuch genau so wieder.\n\nDazu kommt das, was man nicht sieht: sauberes HTML, Sprunglink zum Inhalt, sinnvolle Beschriftungen für Screenreader und der Hinweis an jedem externen Link, dass er in einem neuen Tab öffnet.\n\n## Die Inhalte: Klartext statt Werbesprache ✍️\n\nDie Seite ist um Sarahs Schwerpunkte herum aufgebaut – jeder mit eigener Erklärung statt Schlagwort:\n\n- **Klasse B und BE** – Automatik oder Schaltung, Anhänger und Rangieren\n- **Ausbildung mit Handicap** – körperlich wie seelisch, mit Handbedienung, Lenkhilfe oder Pedalverlängerung\n- **Ausbildung mit Hörschädigung** – Anweisungen erscheinen als Pop-up auf einem Bildschirm im Auto. Die App dazu heißt **FahrSignal** und ist gerade in der Testphase\n- **Neurodivergenz** – ADHS, Autismus, PTBS und andere unsichtbare Beeinträchtigungen\n- **Angstfrei ans Steuer** – nach mehrfach nicht bestandener Prüfung oder nach einem Unfall\n\nFür die beiden großen Themen *Körperliches Handicap* und *Neurodivergenz* gibt es jeweils eine eigene Unterseite, damit niemand sich durch einen Fließtext arbeiten muss, der ihn nicht betrifft.\n\nDazu eingebunden: Sarahs TikTok-Inhalte direkt auf der Startseite. Kein Hochglanz-Imagefilm, sondern das, was sie ohnehin jeden Tag erklärt.\n\n## Wegbegleiter statt Partnerlogos 🤝\n\nEin Detail, das mir gut gefällt: Statt einer stummen Logo-Reihe hat die Seite einen Bereich namens **Wegbegleiter**. Jeder Eintrag sagt in drei Worten, worum es geht – „Mein Arbeitgeber“, „Baut Autos für Handicap um“, „Video und Livestream“, „Opferhilfe und Beratung“.\n\nJeder Wegbegleiter hat außerdem eine eigene kleine Unterseite, die erklärt, wer das ist und was er tut. Das ist deutlich mehr Arbeit als ein Logo-Slider – aber es ist ehrlicher und für Besucher tatsächlich nützlich.\n\nNils-Digital steht dort übrigens auch drin, unter „Hat diese Website gebaut“. 😄\n\n## Technik im Hintergrund ⚙️\n\nUmgesetzt ist die Seite als schlanke PHP-Anwendung auf Apache – ohne Framework-Ballast, ohne Cookie-Banner, ohne Tracking-Skripte. Dazu kommen strukturierte Daten für Google (Person, Fahrlehrerlaubnis, Einsatzgebiete, Fahrschule) und eine kleine Schaltzentrale im Hintergrund, über die Sarah ihre Termine verwaltet.\n\nDas Ergebnis: Die Seite lädt schnell, funktioniert auf jedem Gerät und lässt sich von jedem bedienen – egal, mit welchen Voraussetzungen jemand davorsitzt.\n\n## Ein Projekt, das man gerne macht ❤️\n\n„Ich sehe nicht zuerst die Einschränkung. Ich schaue auf den Menschen, seine Fähigkeiten, seine Möglichkeiten und darauf, was wir gemeinsam erreichen können.“\n\nDer Satz steht auf Sarahs Startseite – und er hat auch die Entwicklung der Seite geprägt. Für uns war das eine gute Erinnerung daran, dass Barrierefreiheit keine Pflichtübung ist, sondern schlicht bedeutet: Die Seite funktioniert für alle.\n\nIch wünsche Sarah ganz viel Erfolg mit ihrem Auftritt – und allen, die dort landen, den Führerschein, den sie sich vorgenommen haben. 🚦",
+    "images": [
+      "../assets/images/blog/fahrlehrerin-sarah-logo.png"
+    ],
+    "links": [
+      {
+        "url": "https://fahrlehrerinsarah.de/",
+        "text": "→ Zur Website von Fahrlehrerin Sarah"
+      },
+      {
+        "url": "https://www.fahrschule-sander.de/",
+        "text": "→ Anmeldung über die Fahrschule Sander"
+      },
+      {
+        "url": "https://www.tiktok.com/@fahrlehrerin_sarah",
+        "text": "→ Sarah auf TikTok"
+      },
+      {
+        "url": "https://www.instagram.com/fahrlehrerinsarah",
+        "text": "→ Sarah auf Instagram"
+      }
+    ]
+  }
+]

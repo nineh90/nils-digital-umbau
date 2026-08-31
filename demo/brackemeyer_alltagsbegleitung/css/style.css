@@ -1,0 +1,1659 @@
+/* =====================================================
+   style.css – Hauptstylesheet
+   Projekt: Andrea Brackemeyer – Alltagsbegleitung
+   Ansatz: Mobile First (Basis = Mobilgerät, dann größer)
+   Schriftgröße: mind. 16px (Zielgruppe: Senioren)
+   ===================================================== */
+
+
+/* ===== CSS-VARIABLEN (Design-System) ===== */
+:root {
+    /* Farben – abgeleitet direkt aus dem Logo */
+    --farbe-primaer:        #7A4B28;   /* Logo-Braun (Andrea-Schrift) */
+    --farbe-primaer-hell:   #9E6438;   /* Hover / aktive Zustände */
+    --farbe-primaer-dunkel: #5A3318;   /* Kontrast / gedrückte Zustände */
+    --farbe-gruen:          #7E9150;   /* Salbeigrün (Logo-Blätter) – sparsam einsetzen */
+    --farbe-akzent:         #FBF6F0;   /* Warmes Creme (Logo-Hintergrund) */
+    --farbe-akzent-dunkel:  #EDE4D8;   /* Beige für Section-Hintergründe */
+    --farbe-text:           #2D2D2D;   /* Fast-Schwarz – gut lesbar */
+    --farbe-text-hell:      #5A5A5A;   /* Grau für Untertexte */
+    --farbe-weiss:          #FFFFFF;
+    --farbe-erfolg:         var(--farbe-gruen);
+    --farbe-schatten:       rgba(0, 0, 0, 0.12);
+
+    /* Typografie */
+    --schrift-text:       'Lato', 'Helvetica Neue', Arial, sans-serif;
+    --schrift-ueberschrift: 'Merriweather', Georgia, serif;
+    --schrift-groesse-basis: 17px;   /* Bewusst etwas größer für Senioren */
+    --schrift-groesse-klein: 15px;
+    --schrift-groesse-h1:    2rem;
+    --schrift-groesse-h2:    1.6rem;
+    --schrift-groesse-h3:    1.25rem;
+    --zeilenabstand:         1.75;   /* Großzügig für bessere Lesbarkeit */
+
+    /* Abstände */
+    --abstand-xs:  0.5rem;
+    --abstand-s:   1rem;
+    --abstand-m:   1.5rem;
+    --abstand-l:   2.5rem;
+    --abstand-xl:  4rem;
+    --abstand-xxl: 6rem;
+
+    /* Layout */
+    --max-breite:       1100px;
+    --rand-container:   1.25rem;  /* Seitenabstand auf Mobile */
+
+    /* Rahmen */
+    --radius-klein: 6px;
+    --radius-mittel: 12px;
+    --radius-gross: 20px;
+
+    /* Übergänge – dezent, keine Ablenkung */
+    --uebergang: 0.2s ease;
+}
+
+
+/* ===== RESET & BASIS ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--schrift-groesse-basis);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--schrift-text);
+    font-size: 1rem;
+    line-height: var(--zeilenabstand);
+    color: var(--farbe-text);
+    background-color: var(--farbe-weiss);
+    overflow-x: hidden;
+}
+
+/* Bilder immer responsiv */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Links Basis */
+a {
+    color: var(--farbe-primaer);
+    text-decoration: none;
+    transition: color var(--uebergang);
+}
+a:hover,
+a:focus {
+    color: var(--farbe-primaer-dunkel);
+    text-decoration: underline;
+}
+
+/* Fokus-Stil für Tastaturnavigation (Barrierefreiheit) */
+:focus-visible {
+    outline: 3px solid var(--farbe-primaer);
+    outline-offset: 3px;
+}
+
+/* Listen ohne Standard-Styling */
+ul, ol {
+    list-style: none;
+}
+
+/* Überschriften */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--schrift-ueberschrift);
+    line-height: 1.35;
+    color: var(--farbe-text);
+}
+
+h1 { font-size: var(--schrift-groesse-h1); }
+h2 { font-size: var(--schrift-groesse-h2); }
+h3 { font-size: var(--schrift-groesse-h3); }
+
+
+/* ===== LAYOUT-HILFKLASSEN ===== */
+
+/* Container zentriert Inhalt und begrenzt Breite */
+.container {
+    width: 100%;
+    max-width: var(--max-breite);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--rand-container);
+    padding-right: var(--rand-container);
+}
+
+/* Abschnitt-Kopf (Titel + Untertitel) */
+.abschnitt-kopf {
+    text-align: center;
+    margin-bottom: var(--abstand-l);
+}
+.abschnitt-titel {
+    font-size: var(--schrift-groesse-h2);
+    color: var(--farbe-primaer-dunkel);
+    margin-bottom: var(--abstand-xs);
+}
+.abschnitt-untertitel {
+    font-size: 1.05rem;
+    color: var(--farbe-text-hell);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--schrift-text);
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: var(--radius-klein);
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color var(--uebergang), color var(--uebergang), border-color var(--uebergang);
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+/* Primär-Button: warmes Amber – heller als Logo-Braun */
+.btn-primaer {
+    background-color: #B07030;
+    color: var(--farbe-weiss);
+    border-color: #B07030;
+}
+.btn-primaer:hover,
+.btn-primaer:focus {
+    background-color: #8A5520;
+    border-color: #8A5520;
+    color: var(--farbe-weiss);
+    text-decoration: none;
+}
+
+/* Sekundär-Button: transparenter Hintergrund mit Rahmen */
+.btn-sekundaer {
+    background-color: transparent;
+    color: var(--farbe-weiss);
+    border-color: var(--farbe-weiss);
+}
+.btn-sekundaer:hover,
+.btn-sekundaer:focus {
+    background-color: var(--farbe-weiss);
+    color: var(--farbe-primaer);
+    text-decoration: none;
+}
+
+/* Outline-Button: auf hellem Hintergrund */
+.btn-outline {
+    background-color: transparent;
+    color: #B07030;
+    border-color: #B07030;
+}
+.btn-outline:hover,
+.btn-outline:focus {
+    background-color: #B07030;
+    color: var(--farbe-weiss);
+    text-decoration: none;
+}
+
+/* Größen */
+.btn-gross {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+.btn-klein {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+
+/* ===== HEADER ===== */
+.site-header {
+    background-color: var(--farbe-weiss);
+    box-shadow: 0 2px 8px var(--farbe-schatten);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--abstand-s);
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    transition: padding 0.3s ease;
+}
+
+/* Logo */
+.site-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+.site-logo-bild {
+    height: 96px;
+    width: auto;
+    display: block;
+    transition: height 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.10));
+}
+.site-header.ist-gescrollt .site-logo-bild {
+    height: 60px;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.08));
+}
+.site-header.ist-gescrollt .header-herz-deko {
+    transform: translateX(-50%) translateY(-50%) scale(0.72);
+}
+.site-header.ist-gescrollt .header-inner {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+/* Telefon im Header */
+.header-telefon {
+    display: none; /* Auf Mobile ausgeblendet – im Hero sichtbar */
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--farbe-primaer);
+    text-decoration: none;
+}
+.header-telefon:hover {
+    color: var(--farbe-primaer-dunkel);
+    text-decoration: none;
+}
+
+/* Hamburger-Button (Mobile) */
+.nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.5rem;
+    margin-right: -0.5rem; /* visueller Rand = Container-Rand, wie Inhalte */
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-klein);
+}
+.hamburger-linie {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--farbe-text);
+    border-radius: 2px;
+    transition: transform var(--uebergang), opacity var(--uebergang);
+}
+
+/* Navigationsmenü (Mobile: ausgeblendet, per JS eingeblendet) */
+.hauptnavigation {
+    display: none;
+    width: 100%;
+}
+.hauptnavigation.ist-offen {
+    display: block;
+}
+
+.nav-liste {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--farbe-akzent-dunkel);
+    padding-top: var(--abstand-xs);
+    padding-bottom: var(--abstand-xs);
+}
+.nav-liste li a {
+    display: block;
+    padding: 0.7rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--farbe-text);
+    text-decoration: none;
+    border-radius: var(--radius-klein);
+}
+.nav-liste li a:hover,
+.nav-liste li a:focus {
+    background-color: var(--farbe-akzent);
+    color: var(--farbe-primaer);
+    text-decoration: none;
+}
+.nav-liste li a.aktiv {
+    color: var(--farbe-primaer);
+    font-weight: 700;
+}
+
+/* CTA-Link in der Navigation */
+.nav-cta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background-color: var(--farbe-primaer) !important;
+    color: var(--farbe-weiss) !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: var(--radius-klein);
+    font-weight: 700 !important;
+    text-align: center;
+}
+.nav-cta:hover,
+.nav-cta:focus {
+    background-color: var(--farbe-primaer-dunkel) !important;
+    color: var(--farbe-weiss) !important;
+}
+
+
+/* ===== HERO ===== */
+.hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-bild-wrapper {
+    position: absolute;
+    inset: 0;
+}
+.hero-bild {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    animation: hero-bild-einblenden 1.1s ease-out forwards;
+}
+
+@keyframes hero-bild-einblenden {
+    from {
+        opacity: 0;
+        filter: blur(14px);
+        transform: scale(1.06);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-bild {
+        animation: none;
+    }
+}
+
+/* Abdunkeln des Hero-Bilds für Lesbarkeit des Textes */
+/* Dekoratives Herz im Hero – nur Desktop */
+.hero-herz-deko {
+    display: none;
+    position: absolute;
+    right: 18%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 280px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Dekoratives Herz im Header – nur Mobile/Tablet, vollständig zentriert */
+.header-herz-deko {
+    display: block;
+    position: absolute;
+    left: 50%;
+    right: auto;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 68px;
+    height: 63px;
+    pointer-events: none;
+    z-index: 0;
+    transition: transform 0.3s ease;
+}
+.header-herz-pfad {
+    fill: none;
+    stroke: rgba(251, 185, 145, 0.75);  /* Lachs – passt zum Logo-Farbton */
+    stroke-width: 4.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 900;
+    stroke-dashoffset: 900;
+    animation: herz-zeichnen 2.2s ease-out 0.6s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+    .header-herz-pfad { animation: none; stroke-dashoffset: 0; }
+}
+.hero-herz-pfad {
+    fill: none;
+    stroke: rgba(251, 185, 145, 0.45);
+    stroke-width: 4.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 900;
+    stroke-dashoffset: 900;
+    animation: herz-zeichnen 2.2s ease-out 0.5s forwards;
+}
+@keyframes herz-zeichnen {
+    from { stroke-dashoffset: 900; }
+    to   { stroke-dashoffset: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-herz-pfad { animation: none; stroke-dashoffset: 0; }
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(35, 16, 5, 0.82) 0%,
+        rgba(35, 16, 5, 0.55) 55%,
+        rgba(35, 16, 5, 0.15) 100%
+    );
+}
+
+.hero-inhalt {
+    position: relative;
+    z-index: 1;
+    padding-top: var(--abstand-xl);
+    padding-bottom: var(--abstand-xl);
+}
+
+.hero-text {
+    max-width: 580px;
+}
+
+.hero-vortitel {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: var(--abstand-xs);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.hero-vortitel--sichtbar {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-vortitel { opacity: 1; transform: none; transition: none; }
+}
+
+.hero-titel {
+    font-size: 2rem;
+    color: var(--farbe-weiss);
+    line-height: 1.25;
+    margin-bottom: var(--abstand-s);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+}
+
+/* Schreibmaschinen-Cursor hinter dem Titel */
+.tipp-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: #FBB991;
+    margin-left: 3px;
+    vertical-align: middle;
+    animation: cursor-blinken 0.75s step-end infinite;
+}
+
+@keyframes cursor-blinken {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* Auf Unterseiten: H1 jetzt dunkelbraun auf hellem Hintergrund – Cursor entsprechend */
+.seiten-hero-titel .tipp-cursor {
+    background-color: var(--farbe-primaer-dunkel);
+}
+
+/* Fertig-Zustand: Cursor wird zum animierten Herz */
+.tipp-cursor--fertig {
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    color: #FBB991;
+    font-size: 0.85em;
+    line-height: 1;
+    margin-left: 5px;
+    animation: herz-erscheinen 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               herz-schlag 2s ease-in-out 0.4s infinite;
+}
+
+/* Hero-Startseite: Herz groß – ersetzt das Wort "Herz" visuell */
+.hero-titel .tipp-cursor--fertig {
+    font-size: 1.7em;
+    margin-left: 10px;
+    vertical-align: -0.08em;
+}
+
+.seiten-hero-titel .tipp-cursor--fertig {
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    color: #FBB991;
+}
+
+@keyframes herz-erscheinen {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes herz-schlag {
+    0%, 100% { transform: scale(1);    }
+    15%      { transform: scale(1.45); }
+    30%      { transform: scale(1);    }
+    45%      { transform: scale(1.25); }
+    60%      { transform: scale(1);    }
+}
+.hero-titel .akzent {
+    color: #FBB991; /* Lachs – Logo-Herzton, hebt sich auf dunklem Overlay ab */
+}
+
+.hero-slogan {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: var(--abstand-m);
+    line-height: 1.6;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-xs);
+    align-items: flex-start;
+    margin-bottom: var(--abstand-s);
+}
+
+.hero-telefon {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.85);
+}
+.hero-telefon a {
+    color: #FBB991; /* Lachs – gut lesbar auf dunklem Hero-Overlay */
+    font-size: 1.05rem;
+}
+.hero-telefon a:hover {
+    text-decoration: underline;
+    color: var(--farbe-weiss);
+}
+
+
+/* ===== KERNWERTE-STREIFEN ===== */
+.kernwerte-streifen {
+    background-color: var(--farbe-akzent);
+    border-top: 1px solid var(--farbe-akzent-dunkel);
+    border-bottom: 1px solid var(--farbe-akzent-dunkel);
+    padding: var(--abstand-m) 0;
+}
+
+.kernwerte-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--abstand-s) var(--abstand-l);
+}
+
+/* Ein Wert: Icon + Text inline nebeneinander */
+.kernwert {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.kernwert-icon-wrapper {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--farbe-primaer);
+}
+
+.kernwert-titel {
+    font-family: var(--schrift-ueberschrift);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    color: var(--farbe-primaer-dunkel);
+    white-space: nowrap;
+    margin: 0;
+}
+
+/* Herz-Trenner zwischen den Werten */
+.kernwert-trenner {
+    color: #FBB991;
+    font-size: 2.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+    transform: translateY(-0.12em);
+}
+
+
+/* ===== LEISTUNGSÜBERSICHT ===== */
+.leistungen-uebersicht {
+    padding: var(--abstand-xl) 0;
+    background-color: var(--farbe-akzent);
+}
+
+/* Karten-Raster: Mobile = 1 Spalte */
+.karten-raster {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--abstand-m);
+}
+
+.leistungs-karte {
+    background-color: var(--farbe-weiss);
+    border-radius: var(--radius-mittel);
+    padding: var(--abstand-m);
+    box-shadow: 0 2px 12px var(--farbe-schatten);
+    border-top: 4px solid var(--farbe-primaer);
+}
+
+.karte-icon {
+    font-size: 2rem;
+    margin-bottom: var(--abstand-xs);
+}
+.karte-titel {
+    font-size: 1.2rem;
+    color: var(--farbe-primaer-dunkel);
+    margin-bottom: var(--abstand-xs);
+}
+.karte-text {
+    color: var(--farbe-text-hell);
+    margin-bottom: var(--abstand-s);
+    font-size: 0.97rem;
+}
+.karte-link {
+    font-weight: 700;
+    color: var(--farbe-primaer);
+    font-size: 0.95rem;
+}
+.karte-link:hover {
+    color: var(--farbe-primaer-dunkel);
+    text-decoration: underline;
+}
+
+.leistungen-cta {
+    text-align: center;
+    margin-top: var(--abstand-l);
+}
+
+
+/* ===== VERTRAUENSBEREICH ===== */
+.vertrauen {
+    padding: var(--abstand-xl) 0;
+    background-color: var(--farbe-weiss);
+}
+
+.vertrauen-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-l);
+    align-items: center;
+}
+
+.vertrauen-bild-wrapper {
+    width: 100%;
+    max-width: 340px;
+}
+.vertrauen-bild {
+    border-radius: var(--radius-mittel);
+    box-shadow: 0 4px 20px var(--farbe-schatten);
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+.vertrauen-vortitel {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--farbe-primaer);
+    margin-bottom: var(--abstand-xs);
+    font-weight: 700;
+}
+
+.vertrauen-intro {
+    margin-top: var(--abstand-s);
+    margin-bottom: var(--abstand-m);
+    color: var(--farbe-text-hell);
+    font-size: 1rem;
+}
+
+/* Liste der Vertrauenssignale */
+.vertrauens-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: var(--abstand-m);
+}
+.vertrauens-liste li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 1rem;
+}
+.check-icon {
+    color: var(--farbe-erfolg);
+    font-size: 1.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+
+/* ===== ABRECHNUNG HINWEIS ===== */
+.abrechnung-hinweis {
+    background-color: var(--farbe-akzent);
+    padding: var(--abstand-l) 0;
+    border-top: 1px solid var(--farbe-akzent-dunkel);
+    border-bottom: 1px solid var(--farbe-akzent-dunkel);
+}
+
+.abrechnung-hinweis-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--abstand-m);
+    text-align: center;
+}
+
+.abrechnung-icon {
+    font-size: 3rem;
+}
+
+.abrechnung-text h2 {
+    color: var(--farbe-primaer-dunkel);
+    margin-bottom: var(--abstand-xs);
+}
+.abrechnung-text p {
+    color: var(--farbe-text-hell);
+    max-width: 560px;
+    margin: 0 auto var(--abstand-m);
+}
+
+
+/* ===== KONTAKT-CTA ===== */
+.kontakt-cta {
+    background-color: var(--farbe-primaer-dunkel);
+    color: var(--farbe-weiss);
+    padding: var(--abstand-xl) 0;
+    text-align: center;
+}
+
+.kontakt-cta-inner h2 {
+    color: var(--farbe-weiss);
+    margin-bottom: var(--abstand-s);
+    font-size: 1.6rem;
+}
+.kontakt-cta-inner p {
+    color: rgba(255,255,255,0.88);
+    margin-bottom: var(--abstand-m);
+    font-size: 1.05rem;
+}
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--abstand-s);
+}
+
+
+/* ===== FOOTER ===== */
+.site-footer {
+    background-color: #2C1A0A; /* Sehr dunkles Warmbraun – edel und ruhig */
+    color: rgba(255,255,255,0.85);
+    padding-top: var(--abstand-xl);
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--abstand-l);
+}
+
+/* Mobile: Spalten zentriert */
+.footer-spalte {
+    text-align: center;
+    width: 100%;
+}
+
+.footer-logo-link {
+    display: block; /* Logo mittig via text-align */
+}
+
+.footer-ueberschrift {
+    font-family: var(--schrift-ueberschrift);
+    font-size: 1.1rem;
+    color: var(--farbe-weiss);
+    margin-bottom: var(--abstand-s);
+}
+
+.footer-tagline {
+    font-size: 0.95rem;
+    color: #FBB991; /* Lachs – gut lesbar auf dunklem Footer */
+    margin-bottom: var(--abstand-xs);
+    font-style: italic;
+}
+
+.footer-spalte p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 0.5rem;
+}
+
+.footer-kernwerte {
+    margin-top: var(--abstand-xs);
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.05em;
+    font-size: 0.88rem !important;
+}
+
+.footer-einzugsgebiet {
+    margin-top: var(--abstand-xs);
+    color: rgba(255,255,255,0.55);
+    font-size: 0.82rem !important;
+    line-height: 1.6;
+}
+
+/* Footer-Logo */
+.footer-logo-link {
+    display: inline-block;
+    margin-bottom: var(--abstand-s);
+    cursor: pointer;
+}
+.footer-logo {
+    height: 64px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1) drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+    transition: opacity var(--uebergang), transform var(--uebergang);
+}
+.footer-logo-link:hover .footer-logo {
+    opacity: 0.8;
+    transform: scale(1.04);
+}
+
+/* Footer-Navigation */
+.footer-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+.footer-nav li {
+    margin-bottom: 0.5rem;
+}
+.footer-nav a {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+.footer-nav a:hover {
+    color: var(--farbe-weiss);
+    text-decoration: underline;
+}
+
+/* Kontakt im Footer */
+.footer-kontakt {
+    font-style: normal;
+}
+.footer-telefon {
+    color: #FBB991; /* Lachs – gut lesbar auf dunklem Footer */
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+.footer-telefon:hover {
+    color: var(--farbe-weiss);
+    text-decoration: underline;
+}
+
+/* Unterer Footer-Streifen */
+.footer-unten {
+    margin-top: var(--abstand-l);
+    padding: 1.2rem 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    background-color: rgba(0,0,0,0.15);
+}
+.footer-unten-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--abstand-xs);
+    text-align: center;
+}
+.copyright {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+}
+.footer-rechtliches {
+    display: flex;
+    gap: var(--abstand-s);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.footer-rechtliches a {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+}
+.footer-rechtliches a:hover {
+    color: var(--farbe-weiss);
+    text-decoration: underline;
+}
+.footer-credit {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: var(--abstand-xs);
+}
+.footer-credit a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+}
+.footer-credit a:hover {
+    color: var(--farbe-weiss);
+    text-decoration: underline;
+}
+
+
+/* ===== SEITEN-HERO (Unterseiten) ===== */
+.seiten-hero {
+    background: linear-gradient(135deg, var(--farbe-akzent-dunkel) 0%, var(--farbe-akzent) 100%);
+    color: var(--farbe-text);
+    padding: var(--abstand-xl) 0 var(--abstand-l);
+    text-align: center;
+    border-bottom: 1px solid var(--farbe-akzent-dunkel);
+}
+.seiten-hero-vortitel {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--farbe-text-hell);
+    margin-bottom: 0.5rem;
+}
+.seiten-hero-titel {
+    color: var(--farbe-primaer-dunkel);
+    font-size: var(--schrift-groesse-h1);
+    margin-bottom: var(--abstand-xs);
+}
+.seiten-hero-untertitel {
+    color: var(--farbe-text-hell);
+    font-size: 1.05rem;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+
+/* ===== ÜBER MICH: INTRO ===== */
+.about-intro {
+    padding: var(--abstand-xl) 0;
+    background-color: var(--farbe-weiss);
+}
+.about-intro-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-l);
+    align-items: center;
+}
+.about-bild-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    flex-shrink: 0;
+}
+.about-bild {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: var(--radius-mittel);
+    box-shadow: 0 4px 20px var(--farbe-schatten);
+}
+/* Zitat-Karte über dem Portrait */
+.about-zitat-karte {
+    background-color: var(--farbe-primaer);
+    color: var(--farbe-weiss);
+    border-radius: var(--radius-klein);
+    padding: 1rem 1.2rem;
+    margin-top: 1rem;
+    box-shadow: 0 3px 12px var(--farbe-schatten);
+}
+.about-zitat {
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+}
+.about-zitat-name {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 700;
+}
+
+/* Mein Ansatz */
+.mein-ansatz {
+    padding: var(--abstand-xl) 0;
+    background-color: var(--farbe-akzent);
+}
+.ansatz-karten {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--abstand-m);
+}
+.ansatz-karte {
+    background-color: var(--farbe-weiss);
+    border-radius: var(--radius-mittel);
+    padding: var(--abstand-m);
+    box-shadow: 0 2px 10px var(--farbe-schatten);
+}
+.ansatz-icon {
+    font-size: 2rem;
+    margin-bottom: var(--abstand-xs);
+}
+.ansatz-karte h3 {
+    color: var(--farbe-primaer-dunkel);
+    margin-bottom: var(--abstand-xs);
+}
+.ansatz-karte p {
+    color: var(--farbe-text-hell);
+    font-size: 0.97rem;
+}
+
+/* Hinweis: Keine Pflege */
+.hinweis-keine-pflege {
+    background-color: #FBF2E8;
+    border-left: 4px solid var(--farbe-primaer);
+    padding: var(--abstand-m);
+}
+.hinweis-keine-pflege--seite {
+    border-radius: var(--radius-klein);
+    margin-bottom: var(--abstand-l);
+}
+.hinweis-inner {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+.hinweis-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+.hinweis-text {
+    font-size: 0.97rem;
+    color: var(--farbe-text);
+    line-height: 1.6;
+}
+
+
+/* ===== LEISTUNGEN: DETAIL-BEREICHE ===== */
+.leistung-detail {
+    padding: var(--abstand-xl) 0;
+    background-color: var(--farbe-weiss);
+}
+.leistung-detail--beige {
+    background-color: var(--farbe-akzent);
+}
+.leistung-detail-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-l);
+    align-items: center;
+}
+/* Umgekehrte Reihenfolge auf Mobilgeräten nicht nötig – Desktop regelt responsive.css */
+.leistung-bild-wrapper {
+    width: 100%;
+    max-width: 480px;
+    flex-shrink: 0;
+}
+.leistung-bild {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: var(--radius-mittel);
+    box-shadow: 0 4px 16px var(--farbe-schatten);
+}
+.leistung-icon-gross {
+    font-size: 2.5rem;
+    margin-bottom: var(--abstand-xs);
+}
+.leistung-intro {
+    color: var(--farbe-text-hell);
+    margin-top: var(--abstand-s);
+    margin-bottom: var(--abstand-m);
+    font-size: 1rem;
+}
+.leistung-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.leistung-liste li {
+    padding-left: 1.4rem;
+    position: relative;
+    font-size: 1rem;
+    color: var(--farbe-text);
+}
+.leistung-liste li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--farbe-erfolg);
+    font-weight: 700;
+}
+
+
+/* ===== ABRECHNUNG: ZWEI WEGE ===== */
+.abrechnung-wege {
+    padding: var(--abstand-xl) 0;
+    background-color: var(--farbe-weiss);
+}
+.wege-raster {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--abstand-m);
+}
+.weg-karte {
+    background-color: var(--farbe-akzent);
+    border-radius: var(--radius-mittel);
+    padding: var(--abstand-m);
+    border: 2px solid var(--farbe-akzent-dunkel);
+}
+.weg-karte--primaer {
+    background-color: var(--farbe-weiss);
+    border-color: var(--farbe-primaer);
+    box-shadow: 0 4px 20px rgba(74, 127, 165, 0.15);
+}
+.weg-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--abstand-s);
+}
+.weg-karte h3 {
+    color: var(--farbe-primaer-dunkel);
+    font-size: 1.3rem;
+    margin-bottom: var(--abstand-xs);
+}
+.weg-highlight {
+    font-size: 1.1rem;
+    color: var(--farbe-primaer-dunkel);
+    margin-bottom: var(--abstand-s);
+    padding: 0.5rem 0.8rem;
+    background-color: rgba(74, 127, 165, 0.1);
+    border-radius: var(--radius-klein);
+}
+.weg-karte p {
+    color: var(--farbe-text-hell);
+    margin-bottom: var(--abstand-s);
+}
+.weg-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: var(--abstand-s);
+}
+.weg-liste li {
+    font-size: 0.97rem;
+    color: var(--farbe-text);
+}
+
+/* §45b Erklärung */
+.paragraf-erklaerung {
+    padding: var(--abstand-xl) 0;
+    background-color: var(--farbe-akzent);
+}
+.paragraf-inhalt {
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-l);
+}
+.paragraf-text p {
+    margin-bottom: var(--abstand-s);
+    color: var(--farbe-text-hell);
+}
+.paragraf-fakten h3 {
+    color: var(--farbe-primaer-dunkel);
+    margin-bottom: var(--abstand-m);
+    font-size: 1.2rem;
+}
+.fakten-liste {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--abstand-s);
+}
+.fakten-karte {
+    background-color: var(--farbe-weiss);
+    border-radius: var(--radius-mittel);
+    padding: var(--abstand-m);
+    box-shadow: 0 2px 8px var(--farbe-schatten);
+    border-top: 4px solid var(--farbe-primaer);
+}
+.fakten-karte dt {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--farbe-primaer-dunkel);
+    margin-bottom: 0.5rem;
+}
+.fakten-karte dd {
+    font-size: 1.15rem;
+    color: var(--farbe-text);
+    line-height: 1.4;
+}
+
+/* Ablauf-Schritte */
+.ablauf {
+    padding: var(--abstand-xl) 0;
+    background-color: var(--farbe-weiss);
+}
+.ablauf-schritte {
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-m);
+    max-width: 700px;
+    margin: 0 auto;
+    list-style: none;
+    counter-reset: none;
+}
+.ablauf-schritt {
+    display: flex;
+    gap: var(--abstand-s);
+    align-items: flex-start;
+}
+.schritt-nummer {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--farbe-primaer);
+    color: var(--farbe-weiss);
+    font-family: var(--schrift-ueberschrift);
+    font-size: 1.3rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.schritt-text h3 {
+    color: var(--farbe-primaer-dunkel);
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+}
+.schritt-text p {
+    color: var(--farbe-text-hell);
+    font-size: 0.97rem;
+}
+
+
+/* ===== KONTAKT ===== */
+.kontakt-bereich {
+    padding: var(--abstand-xl) 0;
+    background-color: var(--farbe-weiss);
+}
+.kontakt-bereich-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-xl);
+}
+.kontakt-karte {
+    display: flex;
+    gap: var(--abstand-s);
+    align-items: flex-start;
+    padding: var(--abstand-m);
+    border-radius: var(--radius-mittel);
+    background-color: var(--farbe-akzent);
+    margin-bottom: var(--abstand-s);
+}
+/* Doppel-Klasse erhöht Spezifität auf (0,2,x) und gewinnt sicher gegen .kontakt-karte h3/p (0,1,x) */
+.kontakt-karte.kontakt-karte--hervorgehoben {
+    background-color: var(--farbe-primaer);
+    color: var(--farbe-weiss);
+}
+.kontakt-karte.kontakt-karte--hervorgehoben h3,
+.kontakt-karte.kontakt-karte--hervorgehoben p {
+    color: var(--farbe-weiss);
+}
+/* Hinweistext etwas zurückgenommen – bleibt aber klar lesbar */
+.kontakt-karte.kontakt-karte--hervorgehoben p.kontakt-hinweis {
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 0.85rem;
+}
+/* Telefon-Link: Lachs – konsistent mit Hero und Footer auf dunklem Hintergrund */
+.kontakt-karte.kontakt-karte--hervorgehoben .kontakt-telefon-link {
+    color: #FBB991;
+}
+.kontakt-karte.kontakt-karte--hervorgehoben .kontakt-telefon-link:hover {
+    color: var(--farbe-weiss);
+    text-decoration: underline;
+}
+
+.kontakt-karte-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+/* Basis-Karte (heller Hintergrund) */
+.kontakt-karte h3 {
+    color: var(--farbe-primaer-dunkel);
+    margin-bottom: 0.3rem;
+    font-size: 1.05rem;
+}
+.kontakt-karte p {
+    font-size: 0.95rem;
+    color: var(--farbe-text-hell);
+    line-height: 1.55;
+}
+/* Telefon-Link auf hellem Hintergrund (falls außerhalb der hervorgehobenen Karte verwendet) */
+.kontakt-telefon-link {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--farbe-primaer);
+    text-decoration: none;
+    margin: 0.4rem 0;
+}
+.kontakt-telefon-link:hover {
+    color: var(--farbe-primaer-dunkel);
+    text-decoration: underline;
+}
+.kontakt-datenschutz-hinweis {
+    font-size: 0.88rem;
+    color: var(--farbe-text-hell);
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-top: var(--abstand-s);
+}
+.kontakt-datenschutz-hinweis a {
+    color: var(--farbe-primaer);
+}
+
+/* Kontaktformular */
+.kontakt-formular-wrapper {
+    background-color: var(--farbe-akzent);
+    border-radius: var(--radius-mittel);
+    padding: var(--abstand-m);
+}
+.formular-gruppe {
+    margin-bottom: var(--abstand-s);
+}
+.formular-label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+    color: var(--farbe-text);
+}
+.formular-eingabe {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: var(--schrift-text);
+    font-size: 1rem;
+    color: var(--farbe-text);
+    background-color: var(--farbe-weiss);
+    border: 2px solid var(--farbe-akzent-dunkel);
+    border-radius: var(--radius-klein);
+    transition: border-color var(--uebergang);
+    line-height: 1.5;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.formular-eingabe:focus {
+    border-color: var(--farbe-primaer);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 127, 165, 0.2);
+}
+.formular-textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+.formular-hinweis {
+    font-size: 0.85rem;
+    color: var(--farbe-text-hell);
+    margin-top: 0.3rem;
+}
+/* Checkbox */
+.formular-gruppe--checkbox {
+    margin-top: var(--abstand-s);
+}
+.checkbox-label {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    cursor: pointer;
+}
+.checkbox-eingabe {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    accent-color: var(--farbe-primaer);
+    cursor: pointer;
+}
+.checkbox-text {
+    font-size: 0.93rem;
+    color: var(--farbe-text);
+    line-height: 1.55;
+}
+.checkbox-text a {
+    color: var(--farbe-primaer);
+}
+.pflichtfeld {
+    color: #B33;
+    font-weight: 700;
+}
+.pflichtfeld-hinweis {
+    font-size: 0.85rem;
+    color: var(--farbe-text-hell);
+    margin-top: 0.5rem;
+}
+.formular-absenden {
+    width: 100%;
+}
+/* Erfolgshinweis nach Absenden */
+.formular-erfolg {
+    background-color: #DFF0D8;
+    color: #2D6A2D;
+    border: 1px solid #C3E6CB;
+    border-radius: var(--radius-klein);
+    padding: var(--abstand-s);
+    margin-bottom: var(--abstand-m);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+
+/* ===== LOGO & SPRÜCHE-SEKTION ===== */
+.logo-sprueche {
+    background: linear-gradient(160deg, var(--farbe-akzent) 0%, var(--farbe-weiss) 100%);
+    padding: var(--abstand-xl) 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.logo-sprueche-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--abstand-m);
+}
+
+/* Logo */
+.logo-sprueche-logo-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.logo-sprueche-logo {
+    max-width: 280px;
+    height: auto;
+    filter: drop-shadow(0 3px 10px rgba(122, 75, 40, 0.18));
+    animation: logo-puls 3s ease-in-out infinite;
+    transform-origin: center;
+}
+/* Beim Hovern hält das Pulsieren inne – ruhiger Moment */
+.logo-sprueche-logo:hover {
+    animation-play-state: paused;
+}
+
+@keyframes logo-puls {
+    0%, 100% { transform: scale(1);    }
+    50%       { transform: scale(1.03); }
+}
+
+/* Dekorativer Trennstrich mit Verzierung */
+.logo-sprueche-trenner {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--farbe-primaer), transparent);
+    border-radius: 2px;
+    margin: var(--abstand-xs) auto;
+}
+
+/* Sprüche-Container */
+.sprueche-container {
+    position: relative;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: var(--abstand-m) var(--abstand-s);
+}
+
+/* Großes dekoratives Anführungszeichen */
+.sprueche-dekor {
+    display: block;
+    font-family: var(--schrift-ueberschrift);
+    font-size: 6rem;
+    line-height: 0.6;
+    color: var(--farbe-primaer);
+    opacity: 0.18;
+    margin-bottom: var(--abstand-xs);
+    user-select: none;
+}
+
+/* Stapel: CSS-Grid – alle Sprüche in derselben Zelle übereinander.
+   Höhe passt sich automatisch dem längsten Spruch an (auch opacity:0-Elemente beeinflussen das Layout). */
+.sprueche-stapel {
+    display: grid;
+}
+
+/* Einzelner Spruch – alle in derselben Grid-Zelle, per Animation sichtbar */
+.spruch {
+    grid-area: 1 / 1;   /* alle Sprüche übereinander, gleiche Zelle */
+    font-family: var(--schrift-ueberschrift);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--farbe-text);
+    line-height: 1.65;
+    opacity: 0;
+    animation: spruch-wechsel 35s infinite;
+}
+.spruch em {
+    color: var(--farbe-primaer);
+    font-style: italic;
+}
+
+/* Verzögerungen: 5 Sprüche × 7 Sekunden = 35 Sekunden Gesamtzyklus */
+.spruch--1 { animation-delay: 0s;   }
+.spruch--2 { animation-delay: 7s;   }
+.spruch--3 { animation-delay: 14s;  }
+.spruch--4 { animation-delay: 21s;  }
+.spruch--5 { animation-delay: 28s;  }
+
+/* Keyframes: ~1 s Einblenden (3 %), ~5 s sichtbar (bis 17 %), ~1 s Ausblenden (bis 20 %) */
+@keyframes spruch-wechsel {
+    0%       { opacity: 0; transform: translateY(8px);  }
+    3%       { opacity: 1; transform: translateY(0);    }
+    17%      { opacity: 1; transform: translateY(0);    }
+    20%      { opacity: 0; transform: translateY(-8px); }
+    100%     { opacity: 0; transform: translateY(0);    }
+}
+
+/* Autorenzeile */
+.sprueche-attribution {
+    display: block;
+    margin-top: var(--abstand-s);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--farbe-primaer);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Barrierefreiheit: Animation reduzieren wenn vom System gewünscht */
+@media (prefers-reduced-motion: reduce) {
+    .logo-sprueche-logo {
+        animation: none;
+    }
+    .spruch {
+        animation: none;
+        opacity: 0;
+    }
+    .spruch--1 {
+        opacity: 1;
+    }
+}
+
+
+/* ===== SCROLL-ANIMATIONEN (Intersection Observer) ===== */
+/* Basis-Zustand: unsichtbar + leicht nach unten versetzt */
+.scroll-rein {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+/* Sichtbar-Zustand: eingeblendet, in Position */
+.scroll-rein.scroll-sichtbar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animationsfreie Umgebung – Barrierefreiheit */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-rein,
+    .scroll-rein.scroll-sichtbar {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+/* ===== RECHTSTEXTE (Impressum, Datenschutz) ===== */
+.rechtstext-bereich {
+    padding: var(--abstand-xl) 0;
+}
+.rechtstext-inhalt {
+    max-width: 750px;
+}
+.rechtstext-inhalt h2 {
+    margin-top: var(--abstand-l);
+    margin-bottom: var(--abstand-xs);
+    color: var(--farbe-primaer-dunkel);
+    font-size: 1.3rem;
+}
+.rechtstext-inhalt h3 {
+    margin-top: var(--abstand-s);
+    margin-bottom: var(--abstand-xs);
+    font-size: 1.1rem;
+}
+.rechtstext-inhalt p,
+.rechtstext-inhalt address {
+    margin-bottom: var(--abstand-s);
+    color: var(--farbe-text-hell);
+    font-style: normal;
+    line-height: 1.7;
+}
+.rechtstext-inhalt a {
+    color: var(--farbe-primaer);
+}

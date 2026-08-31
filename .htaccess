@@ -1,0 +1,156 @@
+# ============================================================
+#  Nils-Digital – .htaccess (Apache, Strato)
+#  Reihenfolge: Weiterleitungen → Schutz → Performance → Header
+#  ACHTUNG: Falls auf dem Server schon eine .htaccess liegt,
+#  NICHT blind überschreiben – erst vergleichen (siehe CLAUDE.md).
+# ============================================================
+
+# ------------------------------------------------------------
+#  Verzeichnis-Listing abschalten
+#  Verhindert, dass z. B. /assets/images/ als Dateiliste
+#  im Browser angezeigt wird.
+# ------------------------------------------------------------
+Options -Indexes
+
+
+# ------------------------------------------------------------
+#  Standard-Startseite
+# ------------------------------------------------------------
+DirectoryIndex index.html index.php
+
+
+# ------------------------------------------------------------
+#  Zeichensatz
+#  Sorgt dafür, dass Umlaute überall korrekt ankommen.
+# ------------------------------------------------------------
+AddDefaultCharset UTF-8
+
+
+# ------------------------------------------------------------
+#  HTTPS erzwingen + www entfernen
+#  Kanonische Adresse ist https://nils-digital.de (ohne www),
+#  passend zu den canonical-Tags und der sitemap.xml.
+# ------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http → https
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://nils-digital.de/$1 [R=301,L]
+
+  # www.nils-digital.de → nils-digital.de
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+</IfModule>
+
+
+# ------------------------------------------------------------
+#  Sensible Dateien sperren
+#  config.php enthält die SMTP-Zugangsdaten. PHP wird zwar
+#  serverseitig ausgeführt und nicht ausgeliefert – aber falls
+#  PHP mal deaktiviert ist, würde der Klartext sichtbar.
+#  Deshalb zusätzlich hart sperren.
+# ------------------------------------------------------------
+<FilesMatch "^(config\.php|config\.example\.php)$">
+  Require all denied
+</FilesMatch>
+
+# Editor-Reste, Backups und Logs nicht ausliefern
+<FilesMatch "\.(bak|old|save|swp|sql|log|ini|sh)$">
+  Require all denied
+</FilesMatch>
+
+# Interne Doku (CLAUDE.md, README.md) nicht öffentlich ausliefern.
+# Praktisch beim Deployment: der komplette Ordner darf hochgeladen
+# werden, ohne dass diese Dateien im Web erreichbar sind.
+<FilesMatch "\.md$">
+  Require all denied
+</FilesMatch>
+
+# .htaccess selbst und andere Dotfiles sperren
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+
+# ------------------------------------------------------------
+#  Komprimierung (mod_deflate)
+#  Größter Hebel für die Ladezeit: main.css und blog.json
+#  schrumpfen dadurch deutlich.
+# ------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/manifest+json
+</IfModule>
+
+
+# ------------------------------------------------------------
+#  Browser-Caching (mod_expires)
+#  Bilder lange, CSS/JS mittel, HTML und JSON kurz –
+#  damit neue Blogbeiträge nicht tagelang veraltet ausgeliefert
+#  werden, Logos aber nicht bei jedem Besuch neu laden.
+# ------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Bilder & Schriften
+  ExpiresByType image/jpeg              "access plus 6 months"
+  ExpiresByType image/png               "access plus 6 months"
+  ExpiresByType image/gif               "access plus 6 months"
+  ExpiresByType image/webp              "access plus 6 months"
+  ExpiresByType image/svg+xml           "access plus 6 months"
+  ExpiresByType image/x-icon            "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+
+  # Stylesheets & Skripte
+  ExpiresByType text/css                "access plus 1 week"
+  ExpiresByType application/javascript  "access plus 1 week"
+
+  # Inhalte, die sich häufiger ändern
+  ExpiresByType application/json        "access plus 1 hour"
+  ExpiresByType text/html               "access plus 1 hour"
+  ExpiresByType application/manifest+json "access plus 1 week"
+</IfModule>
+
+
+# ------------------------------------------------------------
+#  MIME-Typen nachziehen
+#  Manche Server liefern diese Typen falsch aus.
+# ------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType application/json                      .json
+  AddType application/manifest+json             .webmanifest
+  AddType image/svg+xml                         .svg
+  AddType font/woff2                            .woff2
+</IfModule>
+
+
+# ------------------------------------------------------------
+#  Sicherheits-Header
+#  Bewusst ohne Content-Security-Policy: die Seite lädt
+#  Google Fonts, Google Analytics, Spreadshop, TikTok-Embeds
+#  und Google-Forms-iframes – eine zu strenge CSP würde das
+#  zerschießen. Falls später gewünscht, gezielt aufbauen.
+# ------------------------------------------------------------
+<IfModule mod_headers.c>
+  # Kein MIME-Type-Sniffing
+  Header set X-Content-Type-Options "nosniff"
+
+  # Seite darf nicht in fremde iframes eingebettet werden
+  Header set X-Frame-Options "SAMEORIGIN"
+
+  # Referrer-Verhalten – passend zu den Meta-Tags im HTML
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Zugriff auf Kamera, Mikrofon & Standort pauschal ablehnen
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>

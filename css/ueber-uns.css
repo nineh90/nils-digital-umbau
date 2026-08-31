@@ -1,0 +1,128 @@
+/* ================================================
+   ueber-uns.css – pages/ueber-uns.html
+================================================ */
+
+.breadcrumb {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.2rem 1.5rem 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.breadcrumb span {
+  opacity: 0.5;
+}
+
+.ueber-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 5rem;
+}
+
+.ueber-block {
+  margin-bottom: 3rem;
+}
+
+.ueber-block h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.ueber-block p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 0.8rem;
+}
+
+.ueber-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.ueber-value-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ueber-value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ueber-value-card:hover {
+  border-color: rgba(0, 188, 212, 0.35);
+  box-shadow: 0 4px 24px rgba(0, 188, 212, 0.1);
+}
+
+.ueber-value-card:hover::before {
+  opacity: 1;
+}
+
+.ueber-value-card h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.ueber-value-card p {
+  color: var(--text-muted);
+  font-size: 0.87rem;
+  line-height: 1.65;
+}
+
+.ueber-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.ueber-cta p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  flex-basis: 100%;
+}
+
+@media (max-width: 600px) {
+  .ueber-values {
+    grid-template-columns: 1fr;
+  }
+
+  .ueber-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

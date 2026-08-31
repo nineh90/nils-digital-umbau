@@ -1,0 +1,319 @@
+/* =====================================================
+   responsive.css – Breakpoints (Mobile First)
+   Projekt: Andrea Brackemeyer – Alltagsbegleitung
+
+   Breakpoints:
+   - Basis:    < 600px   (Mobile)
+   - Tablet:   ≥ 600px
+   - Desktop:  ≥ 900px
+   - Breit:    ≥ 1200px
+   ===================================================== */
+
+
+/* ===== TABLET: ab 600px ===== */
+@media (min-width: 600px) {
+
+    :root {
+        --rand-container: 2rem;
+        --schrift-groesse-h1: 2.4rem;
+        --schrift-groesse-h2: 1.85rem;
+    }
+
+    /* Karten: 2 Spalten */
+    .karten-raster {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Kernwerte-Streifen: auf Tablet größerer Abstand zwischen den Items */
+    .kernwerte-inner {
+        gap: var(--abstand-s) var(--abstand-xl);
+    }
+
+    /* Hero-Buttons nebeneinander */
+    .hero-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    /* CTA-Buttons nebeneinander */
+    .cta-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    /* Footer: 2-spaltig, Spalten wieder linksbündig */
+    .footer-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+    .footer-spalte {
+        flex: 1;
+        min-width: 180px;
+        text-align: left;
+    }
+    .footer-logo-link {
+        display: inline-block;
+    }
+    .footer-nav {
+        text-align: left;
+    }
+}
+
+
+/* ===== TABLET: Ergänzungen für Unterseiten ===== */
+@media (min-width: 600px) {
+
+    /* Über mich: Ansatz-Karten 3-spaltig */
+    .ansatz-karten {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Abrechnung: 2-spaltig */
+    .wege-raster {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Fakten-Karten: 2-spaltig ab 600px */
+    .fakten-liste {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Kontakt: nebeneinander */
+    .kontakt-bereich-inner {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .kontakt-info {
+        flex: 1;
+    }
+    .kontakt-formular-wrapper {
+        flex: 1.2;
+    }
+}
+
+
+/* ===== DESKTOP: ab 900px ===== */
+@media (min-width: 900px) {
+
+    /* Hero-Herz: auf Desktop einblenden */
+    .hero-herz-deko {
+        display: block;
+    }
+
+    /* Header-Herz: auf Desktop ausblenden (Hero übernimmt) */
+    .header-herz-deko {
+        display: none;
+    }
+
+    :root {
+        --rand-container: 2.5rem;
+        --schrift-groesse-h1: 2.8rem;
+        --schrift-groesse-h2: 2rem;
+    }
+
+    /* Fakten-Karten: alle 5 nebeneinander ab 900px */
+    .fakten-liste {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    /* Navigation: Desktop-Modus */
+    .nav-toggle {
+        display: none; /* Hamburger ausblenden */
+    }
+
+    .hauptnavigation {
+        display: block !important; /* Immer sichtbar auf Desktop */
+        width: auto;
+    }
+
+    .nav-liste {
+        flex-direction: row;
+        align-items: center;
+        border-top: none;
+        padding: 0;
+        gap: 0.25rem;
+    }
+
+    .nav-liste li a {
+        padding: 0.5rem 0.8rem;
+        white-space: nowrap;
+    }
+
+    .nav-cta {
+        margin-top: 0 !important;
+        padding: 0.55rem 1.2rem !important;
+    }
+
+    /* Telefon im Header anzeigen */
+    .header-telefon {
+        display: flex;
+    }
+
+    /* Logo auf Desktop größer */
+    .site-logo-bild {
+        height: 92px;
+    }
+    .site-header.ist-gescrollt .site-logo-bild {
+        height: 62px;
+    }
+
+    /* Vertrauen: Bild + Text nebeneinander */
+    .vertrauen-inner {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--abstand-xl);
+    }
+    .vertrauen-bild-wrapper {
+        flex-shrink: 0;
+        width: 320px;
+    }
+    .vertrauen-bild {
+        height: 420px;
+    }
+
+    /* Karten: 4 nebeneinander auf breitem Desktop */
+    .karten-raster {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Abrechnung-Hinweis: nebeneinander */
+    .abrechnung-hinweis-inner {
+        flex-direction: row;
+        text-align: left;
+        gap: var(--abstand-l);
+    }
+    .abrechnung-text p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Über mich: Bild + Text nebeneinander */
+    .about-intro-inner {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--abstand-xl);
+    }
+    .about-bild-wrapper {
+        flex-shrink: 0;
+        width: 300px;
+    }
+    .about-bild {
+        height: 400px;
+    }
+
+    /* Leistungen: Bild + Text nebeneinander */
+    .leistung-detail-inner {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--abstand-xl);
+    }
+    /* Umgekehrte Reihenfolge (Text links, Bild rechts) – DOM-Reihenfolge ist bereits getauscht */
+    .leistung-detail-inner--umgekehrt {
+        flex-direction: row;
+    }
+    .leistung-bild {
+        height: 320px;
+    }
+
+    /* Footer: 3 Spalten */
+    .footer-inner {
+        flex-wrap: nowrap;
+        gap: var(--abstand-xl);
+    }
+
+    /* Footer unten: zweispaltig */
+    .footer-unten-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+
+/* ===== TABLET: Logo-Sprüche ===== */
+@media (min-width: 600px) {
+
+    .logo-sprueche-logo {
+        max-width: 340px;
+    }
+    .spruch {
+        font-size: 1.2rem;
+    }
+}
+
+
+/* ===== MOBILE: Hero-Anpassungen (nur < 600px) ===== */
+@media (max-width: 599px) {
+
+    /* Weniger vertikaler Atem */
+    .hero-inhalt {
+        padding-top: var(--abstand-l);
+        padding-bottom: var(--abstand-l);
+    }
+
+    /* Vortitel: kleiner + weniger Letter-Spacing damit er auf einer Zeile bleibt */
+    .hero-vortitel {
+        font-size: 0.72rem;
+        letter-spacing: 0.05em;
+    }
+
+    /* H1: etwas kompakter */
+    .hero-titel {
+        font-size: 1.7rem;
+    }
+
+    /* Slogan: eine Stufe kleiner */
+    .hero-slogan {
+        font-size: 1rem;
+        margin-bottom: var(--abstand-s);
+    }
+
+    /* Buttons: zentriert, angenehme Maximalbreite */
+    .hero-buttons {
+        align-items: center;
+        align-self: stretch;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+    }
+
+    /* Telefon-Zeile zentriert */
+    .hero-telefon {
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Hero-Buttons auf Mobile etwas kompakter */
+    .hero-buttons .btn-gross {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    /* Herz-Trenner (ZEIT ♥ NÄHE ♥ UNTERSTÜTZUNG) auf Mobile verkleinern */
+    .kernwert-trenner {
+        font-size: 1.2rem;
+    }
+
+    /* Hero-Herz nach dem Tipp-Effekt auf Mobile verkleinern */
+    .hero-titel .tipp-cursor--fertig {
+        font-size: 1.1em;
+        margin-left: 6px;
+    }
+}
+
+
+/* ===== BREIT: ab 1100px ===== */
+@media (min-width: 1100px) {
+
+    /* Alle 4 Karten in einer Reihe */
+    .karten-raster {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero {
+        min-height: 520px;
+    }
+}

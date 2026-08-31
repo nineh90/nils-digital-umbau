@@ -1,0 +1,204 @@
+/* ================================================
+   team.css – pages/team.html
+================================================ */
+
+.breadcrumb {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.2rem 1.5rem 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.breadcrumb span {
+  opacity: 0.5;
+}
+
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+}
+
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 2.2rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(36px);
+}
+
+.team-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.team-card:nth-child(2).visible {
+  transition-delay: 0.15s;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 188, 212, 0.35);
+  box-shadow: 0 8px 40px rgba(0, 188, 212, 0.12);
+}
+
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.team-card:hover::before {
+  opacity: 1;
+}
+
+.team-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0, 188, 212, 0.3);
+  margin-bottom: 1.2rem;
+  display: block;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.team-avatar-placeholder {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg-secondary), #1e2a38);
+  border: 2px solid rgba(0, 188, 212, 0.3);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem;
+  color: var(--accent);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.team-card:hover .team-avatar,
+.team-card:hover .team-avatar-placeholder {
+  border-color: var(--accent);
+  transform: scale(1.04);
+}
+
+.team-name {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  margin: 0 0 0.3rem;
+  color: var(--text-main);
+}
+
+.team-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(0, 188, 212, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(0, 188, 212, 0.25);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  margin-bottom: 1.1rem;
+}
+
+.team-bio {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.4rem;
+}
+
+.team-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.4rem;
+}
+
+.skill-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+.team-fact {
+  background: rgba(0, 188, 212, 0.06);
+  border-left: 3px solid var(--accent);
+  padding: 0.7rem 1rem;
+  border-radius: 0 10px 10px 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.team-fact strong {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.team-divider {
+  text-align: center;
+  padding: 0 1.5rem 3rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.team-divider p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.team-divider a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.team-divider a:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 1rem 4rem;
+  }
+}
