@@ -114,7 +114,6 @@ class ImportLegacy extends Command
         $ueberTitel = [
             'fahrlehrerin-sarah' => 'Fahrlehrerin Sarah',
             'das-landhaus' => 'Landhaus',
-            'handmade-by-fischer' => 'Handmade by Fischer',
             'crazyfamily' => 'CRAZYFAMILY',
         ];
 

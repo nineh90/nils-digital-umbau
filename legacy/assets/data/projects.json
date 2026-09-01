@@ -98,21 +98,5 @@
     "link": "sunnycam.html",
     "internal": true,
     "imageFit": "cover"
-  },
-  {
-    "id": "handmade-by-fischer",
-    "title": "Handmade by Fischer",
-    "type": "Kundenprojekt",
-    "status": "live",
-    "description": "Mobile Optimierung der bestehenden Webseite – Header, Navigation und Nutzerführung für Smartphones überarbeitet. Fokus auf Usability, Klarheit und ein stimmiges Gesamtbild.",
-    "image": "../assets/images/projekte/handmade-by-fischer.png",
-    "tags": [
-      "Webdesign",
-      "Mobile",
-      "UX"
-    ],
-    "link": "https://www.handmade-by-fischer.de/",
-    "internal": false,
-    "imageFit": "cover"
   }
 ]
