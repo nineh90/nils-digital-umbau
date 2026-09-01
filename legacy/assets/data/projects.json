@@ -5,10 +5,16 @@
     "type": "App / Lernsoftware",
     "status": "live",
     "description": "Sichere KI-Lernumgebung für Kinder von 6–16 Jahren. Mit pädagogisch geführtem KI-Tutor, XP-System, Eltern-Dashboard und konsequentem Kinderschutz. Entwickelt von Nils & Kevin – seit Mai 2026 im Google Play Store.",
-    "image": "../assets/images/lerndex/lerndex_logo.png",
-    "tags": ["Flutter", "KI", "Android", "iOS"],
+    "image": "../assets/images/projekte/lerndex.png",
+    "tags": [
+      "Flutter",
+      "KI",
+      "Android",
+      "iOS"
+    ],
     "link": "https://lerndex.de",
-    "internal": false
+    "internal": false,
+    "imageFit": "cover"
   },
   {
     "id": "pflegedex",
@@ -16,10 +22,16 @@
     "type": "Software / Pflegebranche",
     "status": "beta",
     "description": "KI-gestützte Pflegedokumentation, die komplett auf dem eigenen Server der Einrichtung läuft – keine Cloud. Mit automatischer Pseudonymisierung, KI-Entwürfen für Pflegeberichte, Rollenrechten und lückenlosem Audit-Trail. Aktuell in der Testphase.",
-    "image": "../assets/images/blog/pflegedex_logo.png",
-    "tags": ["KI", "Pflege", "On-Premise", "DSGVO"],
+    "image": "../assets/images/projekte/pflegedex.png",
+    "tags": [
+      "KI",
+      "Pflege",
+      "On-Premise",
+      "DSGVO"
+    ],
     "link": "https://pflegedex-digital.de",
-    "internal": false
+    "internal": false,
+    "imageFit": "cover"
   },
   {
     "id": "fahrlehrerin-sarah",
@@ -27,9 +39,14 @@
     "type": "Kundenprojekt",
     "status": "live",
     "description": "Website für Fahrlehrerin Sarah Schweikert (Fahrschule Sander) – spezialisiert auf die Führerschein-Ausbildung von Menschen mit Handicap. Mit eigenem Barrierefreiheits-Panel: Schriftgröße, Kontrast, Legasthenie-Schrift, Leselinie und „Bewegung stoppen“ direkt auf der Seite einstellbar.",
-    "image": "../assets/images/blog/fahrlehrerin-sarah-screenshot.png",
+    "image": "../assets/images/projekte/fahrlehrerin-sarah.png",
     "imageFit": "cover",
-    "tags": ["Webentwicklung", "Barrierefreiheit", "PHP", "SEO"],
+    "tags": [
+      "Webentwicklung",
+      "Barrierefreiheit",
+      "PHP",
+      "SEO"
+    ],
     "link": "https://fahrlehrerinsarah.de/",
     "internal": false
   },
@@ -39,10 +56,16 @@
     "type": "Kundenprojekt",
     "status": "live",
     "description": "Website für Restaurant, Imbiss und die Eventlocation \"Der Kotten\" im Ferienpark Tecklenburg-Leeden. Mit Eventkalender, Galerie, Reservierung per Telefon, WhatsApp und E-Mail – dreisprachig in Deutsch, Englisch und Niederländisch.",
-    "image": "../assets/images/blog/das-landhaus-logo.png",
-    "tags": ["Webentwicklung", "Next.js", "Gastronomie", "Mehrsprachig"],
+    "image": "../assets/images/projekte/das-landhaus.png",
+    "tags": [
+      "Webentwicklung",
+      "Next.js",
+      "Gastronomie",
+      "Mehrsprachig"
+    ],
     "link": "https://das-landhaus-capfun.de",
-    "internal": false
+    "internal": false,
+    "imageFit": "cover"
   },
   {
     "id": "crazyfamily",
@@ -50,10 +73,15 @@
     "type": "Kundenprojekt",
     "status": "live",
     "description": "Community-Webseite für Streamer Kevin & Alex – inkl. Struktur, Design, Sounds, Highlights, Mod-Bereich und Merch-Anbindung. Lebendig, laut und authentisch.",
-    "image": "../assets/images/shop/crazy_family_logo.png",
-    "tags": ["Webdesign", "Community", "Merch"],
+    "image": "../assets/images/projekte/crazyfamily.png",
+    "tags": [
+      "Webdesign",
+      "Community",
+      "Merch"
+    ],
     "link": "https://crazyfamily.info",
-    "internal": false
+    "internal": false,
+    "imageFit": "cover"
   },
   {
     "id": "sunnycam",
@@ -61,10 +89,15 @@
     "type": "Herzensprojekt",
     "status": "live",
     "description": "Sunny ist nicht nur Hündin – sie ist Inspirationsquelle, Content-Star und Namenspatin. SunnyCam zeigt die Welt auf vier Pfoten: Videos, Geschichten und echte Momente.",
-    "image": "../assets/images/sunny.jpg",
-    "tags": ["Content", "TikTok", "Social Media"],
+    "image": "../assets/images/projekte/sunnycam.jpg",
+    "tags": [
+      "Content",
+      "TikTok",
+      "Social Media"
+    ],
     "link": "sunnycam.html",
-    "internal": true
+    "internal": true,
+    "imageFit": "cover"
   },
   {
     "id": "handmade-by-fischer",
@@ -72,9 +105,14 @@
     "type": "Kundenprojekt",
     "status": "live",
     "description": "Mobile Optimierung der bestehenden Webseite – Header, Navigation und Nutzerführung für Smartphones überarbeitet. Fokus auf Usability, Klarheit und ein stimmiges Gesamtbild.",
-    "image": "../assets/images/blog/handmade-by-fischer-logo.png",
-    "tags": ["Webdesign", "Mobile", "UX"],
+    "image": "../assets/images/projekte/handmade-by-fischer.png",
+    "tags": [
+      "Webdesign",
+      "Mobile",
+      "UX"
+    ],
     "link": "https://www.handmade-by-fischer.de/",
-    "internal": false
+    "internal": false,
+    "imageFit": "cover"
   }
 ]

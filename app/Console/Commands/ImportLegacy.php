@@ -15,15 +15,22 @@ use Illuminate\Support\Str;
 /**
  * Übernimmt den Inhalt der alten statischen Seite aus legacy/ in die Datenbank.
  *
- * Wiederholbar: alles läuft über updateOrCreate, der Befehl darf während der
- * Bauphase beliebig oft laufen. Beiträge werden über legacy_id
- * wiedererkannt – dieses Feld trägt später die 301-Weiterleitungen von
- * /pages/blog-post.html?id=N und darf deshalb nie neu vergeben werden.
+ * Beiträge werden über legacy_id wiedererkannt – dieses Feld trägt die
+ * 301-Weiterleitungen von /pages/blog-post.html?id=N und darf deshalb nie neu
+ * vergeben werden.
+ *
+ * Wichtig: Ohne --ueberschreiben werden vorhandene Datensätze NICHT angefasst.
+ * Sobald in der Redaktion gearbeitet wird, ist die Datenbank die Wahrheit und
+ * nicht mehr die JSON-Datei aus legacy/. Ein unbedachter zweiter Lauf würde
+ * sonst jede dort gemachte Korrektur zurückdrehen – und das ohne Warnung, weil
+ * der Befehl ja "nur importiert". So bleibt er gefahrlos wiederholbar und
+ * ergänzt nur, was fehlt.
  */
 class ImportLegacy extends Command
 {
     protected $signature = 'nd:import-legacy
-                            {--ohne-bilder : Bilder nicht nach public/ kopieren}';
+                            {--ohne-bilder : Bilder nicht nach public/ kopieren}
+                            {--ueberschreiben : Vorhandene Datensätze auf den Stand aus legacy/ zurücksetzen}';
 
     protected $description = 'Importiert Beiträge, Projekte, Leistungen und Kundenstimmen aus legacy/';
 
@@ -50,6 +57,8 @@ class ImportLegacy extends Command
 
     private string $legacy;
 
+    private int $uebersprungen = 0;
+
     public function handle(): int
     {
         $this->legacy = base_path('legacy');
@@ -74,6 +83,12 @@ class ImportLegacy extends Command
         $this->pruefung();
 
         $this->newLine();
+
+        if ($this->uebersprungen > 0) {
+            $this->line("Unveraendert:   {$this->uebersprungen} vorhandene Datensaetze");
+            $this->comment('Mit --ueberschreiben wuerden sie auf den Stand aus legacy/ zurueckgesetzt.');
+        }
+
         $this->info('Import abgeschlossen.');
 
         return self::SUCCESS;
@@ -163,6 +178,28 @@ class ImportLegacy extends Command
         }
     }
 
+    /**
+     * Anlegen – oder nur mit --ueberschreiben aktualisieren.
+     *
+     * @param  class-string<\Illuminate\Database\Eloquent\Model>  $model
+     */
+    private function sichern(string $model, array $schluessel, array $werte)
+    {
+        $vorhanden = $model::where($schluessel)->first();
+
+        if ($vorhanden === null) {
+            return $model::create($schluessel + $werte);
+        }
+
+        if ($this->option('ueberschreiben')) {
+            $vorhanden->update($werte);
+        } else {
+            $this->uebersprungen++;
+        }
+
+        return $vorhanden;
+    }
+
     private function json(string $datei): array
     {
         return json_decode(File::get("{$this->legacy}/assets/data/{$datei}"), true, flags: JSON_THROW_ON_ERROR);
@@ -203,7 +240,7 @@ class ImportLegacy extends Command
         foreach ($namen as $i => $name) {
             [$farbe, $textfarbe] = self::FARBEN[$name] ?? [null, null];
 
-            Category::updateOrCreate(
+            $this->sichern(Category::class,
                 ['slug' => $this->slug($name)],
                 ['name' => $name, 'color' => $farbe, 'text_color' => $textfarbe, 'position' => $i]
             );
@@ -235,7 +272,7 @@ class ImportLegacy extends Command
 
             $kategorie = Category::where('slug', $this->slug($alt['category']))->first();
 
-            $post = Post::updateOrCreate(
+            $post = $this->sichern(Post::class,
                 ['legacy_id' => $alt['id']],
                 [
                     'category_id' => $kategorie?->id,
@@ -252,6 +289,14 @@ class ImportLegacy extends Command
                     'published_at' => $alt['date'],
                 ]
             );
+
+            // Ohne --ueberschreiben in Ruhe lassen: sonst verschwinden in der
+            // Redaktion ergaenzte Schaltflaechen bei jedem Lauf.
+            if (! $this->option('ueberschreiben') && $post->exists && $post->wasRecentlyCreated === false) {
+                $neu++;
+
+                continue;
+            }
 
             $post->links()->delete();
             foreach ($alt['links'] ?? [] as $i => $link) {
@@ -286,7 +331,7 @@ class ImportLegacy extends Command
         $projekte = collect($this->json('projects.json'));
 
         foreach ($projekte as $i => $alt) {
-            Project::updateOrCreate(
+            $this->sichern(Project::class,
                 ['slug' => $alt['id']],
                 [
                     'title' => $alt['title'],
@@ -316,13 +361,13 @@ class ImportLegacy extends Command
         $anzahl = 0;
 
         foreach ($gruppen as $i => $gruppe) {
-            $kategorie = ServiceCategory::updateOrCreate(
+            $kategorie = $this->sichern(ServiceCategory::class,
                 ['slug' => $this->slug($gruppe['category'])],
                 ['name' => $gruppe['category'], 'position' => $i]
             );
 
             foreach ($gruppe['services'] as $j => $leistung) {
-                Service::updateOrCreate(
+                $this->sichern(Service::class,
                     ['service_category_id' => $kategorie->id, 'slug' => $leistung['id']],
                     [
                         'name' => $leistung['name'],
@@ -345,7 +390,7 @@ class ImportLegacy extends Command
         $stimmen = collect($this->json('reviews.json'));
 
         foreach ($stimmen as $i => $alt) {
-            Review::updateOrCreate(
+            $this->sichern(Review::class,
                 ['name' => $alt['name'], 'text' => $alt['text']],
                 [
                     'rating' => $alt['rating'] ?? null,
