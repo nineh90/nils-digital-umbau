@@ -93,8 +93,29 @@ jobs:
           # Verbinden an. Ohne || true bricht der Schritt wegen "bash -e" ab.
           ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null || true
 
+      # Mit Wiederholung: die Verbindung vom GitHub-Runner zum VPS läuft
+      # gelegentlich ins Zeitlimit, obwohl der Server durchgehend erreichbar
+      # ist – vermutlich eine Schutzfunktion auf Netzebene bei Hostinger, die
+      # wiederholte SSH-Versuche von wechselnden Runner-Adressen drosselt.
+      #
+      # Der Deploy selbst ist idempotent (git reset --hard, docker compose up),
+      # ein zweiter Anlauf ist also gefahrlos. Das Verbindungs-Zeitlimit ist
+      # bewusst kurz: lieber schnell scheitern und neu ansetzen, als zwei
+      # Minuten auf einen Versuch zu warten, der ohnehin nicht durchkommt.
       - name: Deploy anstoßen
         run: |
-          ssh -i ~/.ssh/id_ed25519 -o BatchMode=yes \
-            -o StrictHostKeyChecking=accept-new \
-            "root@${{ secrets.VPS_HOST }}" deploy-nils-digital-web
+          for versuch in 1 2 3; do
+            if ssh -i ~/.ssh/id_ed25519 -o BatchMode=yes \
+                 -o StrictHostKeyChecking=accept-new \
+                 -o ConnectTimeout=20 \
+                 "root@${{ secrets.VPS_HOST }}" deploy-nils-digital-web; then
+              exit 0
+            fi
+
+            echo "Versuch ${versuch} fehlgeschlagen."
+            [ "$versuch" = 3 ] && break
+            sleep $((versuch * 30))
+          done
+
+          echo "::error::Deploy nach drei Versuchen nicht durchgekommen."
+          exit 1
