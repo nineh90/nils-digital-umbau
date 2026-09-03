@@ -31,7 +31,7 @@
 
     <div class="mx-auto max-w-4xl px-5 py-14">
 
-        <section class="mb-16">
+        <section class="mb-16" data-auftritt="0">
             <h2 class="text-2xl">Was uns antreibt</h2>
             <div class="fliesstext mt-5 text-text-leise">
                 <p>
@@ -48,10 +48,10 @@
         </section>
 
         <section class="mb-16">
-            <h2 class="mb-6 text-2xl">Wofür wir stehen</h2>
+            <h2 class="mb-6 text-2xl" data-auftritt="0">Wofür wir stehen</h2>
             <div class="grid gap-5 sm:grid-cols-2">
-                @foreach ($werte as [$titel, $text])
-                    <article class="rounded-2xl border border-linie bg-karte p-6">
+                @foreach ($werte as $i => [$titel, $text])
+                    <article class="rounded-2xl border border-linie bg-karte p-6" data-auftritt="{{ $i }}">
                         <h3 class="text-lg text-akzent">{{ $titel }}</h3>
                         <p class="mt-2 text-sm leading-relaxed text-text-leise">{{ $text }}</p>
                     </article>
@@ -59,7 +59,7 @@
             </div>
         </section>
 
-        <section class="mb-16">
+        <section class="mb-16" data-auftritt="0">
             <h2 class="text-2xl">Wie wir arbeiten</h2>
             <div class="fliesstext mt-5 text-text-leise">
                 <p>
@@ -78,7 +78,8 @@
             </div>
         </section>
 
-        <section class="rounded-2xl border border-akzent/30 bg-flaeche-2 p-8 text-center">
+        <section class="rounded-2xl border border-akzent/30 bg-flaeche-2 p-8 text-center"
+                 data-auftritt="0" data-aus="naeher">
             <h2 class="text-xl">Neugierig, wer hinter Nils-Digital steckt?</h2>
             <div class="mt-6 flex flex-wrap justify-center gap-3">
                 <a href="{{ route('team') }}"

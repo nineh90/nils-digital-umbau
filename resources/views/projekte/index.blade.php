@@ -28,8 +28,10 @@
         </header>
 
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            @foreach ($projekte as $projekt)
-                <x-projektkachel :projekt="$projekt" />
+            @foreach ($projekte as $i => $projekt)
+                <div data-auftritt="{{ $i }}">
+                    <x-projektkachel :projekt="$projekt" />
+                </div>
             @endforeach
         </div>
 

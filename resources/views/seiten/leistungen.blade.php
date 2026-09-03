@@ -49,11 +49,12 @@
 
         @foreach ($gruppen as $gruppe)
             <section class="mb-14" aria-labelledby="gruppe-{{ $gruppe->slug }}">
-                <h2 id="gruppe-{{ $gruppe->slug }}" class="mb-6 text-2xl">{{ $gruppe->name }}</h2>
+                <h2 id="gruppe-{{ $gruppe->slug }}" class="mb-6 text-2xl" data-auftritt="0">{{ $gruppe->name }}</h2>
 
                 <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                    @foreach ($gruppe->services as $leistung)
-                        <article class="flex flex-col rounded-2xl border border-linie bg-karte p-6 transition-colors hover:border-akzent/40">
+                    @foreach ($gruppe->services as $i => $leistung)
+                        <article class="flex flex-col rounded-2xl border border-linie bg-karte p-6 transition-colors hover:border-akzent/40"
+                                 data-auftritt="{{ $i }}">
                             @if ($leistung->icon)
                                 <span class="mb-3 text-2xl" aria-hidden="true">{{ $leistung->icon }}</span>
                             @endif
@@ -76,7 +77,7 @@
         {{-- Inhaltlich unverändert von der alten Leistungsseite übernommen:
              die Aussage zur Inhaberschaft der Zugänge ist eine Zusage an den
              Kunden und darf sich beim Umbau nicht still verändern. --}}
-        <section class="rounded-2xl border border-linie bg-karte p-8">
+        <section class="rounded-2xl border border-linie bg-karte p-8" data-auftritt="0">
             <h2 class="text-xl">Hosting und Pflege</h2>
             <p class="mt-4 leading-relaxed text-text-leise">
                 Domain und Hosting werden <strong class="text-text">im Auftrag des Kunden</strong>
@@ -91,7 +92,8 @@
             </p>
         </section>
 
-        <section class="mt-14 rounded-2xl border border-akzent/30 bg-flaeche-2 p-8 text-center">
+        <section class="mt-14 rounded-2xl border border-akzent/30 bg-flaeche-2 p-8 text-center"
+                 data-auftritt="0" data-aus="naeher">
             <h2 class="text-xl">Nichts Passendes dabei?</h2>
             <p class="mx-auto mt-3 max-w-xl text-text-leise">
                 Die meisten Projekte sind eine Mischung. Schreib uns, was du vorhast –

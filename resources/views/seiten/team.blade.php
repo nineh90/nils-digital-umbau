@@ -30,8 +30,9 @@
     <div class="mx-auto max-w-4xl px-5 py-14">
 
         <div class="space-y-8">
-            @foreach ($team as $person)
-                <article class="overflow-hidden rounded-2xl border border-linie bg-karte sm:flex">
+            @foreach ($team as $i => $person)
+                <article class="overflow-hidden rounded-2xl border border-linie bg-karte sm:flex"
+                         data-auftritt="{{ $i }}">
                     <div class="shrink-0 sm:w-52">
                         @if ($person->image)
                             <img src="/{{ ltrim($person->image, '/') }}" alt="{{ $person->name }}"
@@ -75,7 +76,8 @@
             @endforeach
         </div>
 
-        <section class="mt-14 rounded-2xl border border-akzent/30 bg-flaeche-2 p-8 text-center">
+        <section class="mt-14 rounded-2xl border border-akzent/30 bg-flaeche-2 p-8 text-center"
+                 data-auftritt="0" data-aus="naeher">
             <h2 class="text-xl">Projekte jeder Größe</h2>
             <p class="mx-auto mt-3 max-w-xl text-text-leise">
                 Von der digitalen Visitenkarte bis zur komplexen Webanwendung.

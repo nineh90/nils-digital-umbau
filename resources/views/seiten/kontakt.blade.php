@@ -109,8 +109,11 @@
                 </form>
             </div>
 
+            {{-- Nur die Randspalte tritt auf. Das Formular bleibt außen vor:
+                 ein Feld, das ausblendet, während jemand tippt oder eine
+                 Fehlermeldung liest, ist ein Ärgernis und kein Auftritt. --}}
             <aside class="space-y-6">
-                <div class="rounded-2xl border border-linie bg-karte p-6">
+                <div class="rounded-2xl border border-linie bg-karte p-6" data-auftritt="0">
                     <h2 class="text-lg">Direkt</h2>
                     <p class="mt-3 text-sm text-text-leise">
                         Lieber ohne Formular?
@@ -120,7 +123,7 @@
                 </div>
 
                 @if (\Illuminate\Support\Facades\Route::has('termine'))
-                    <div class="rounded-2xl border border-linie bg-karte p-6">
+                    <div class="rounded-2xl border border-linie bg-karte p-6" data-auftritt="1">
                         <h2 class="text-lg">Lieber sprechen?</h2>
                         <p class="mt-3 text-sm text-text-leise">
                             Buch dir einen Termin für ein kostenloses Videogespräch.
@@ -132,7 +135,7 @@
                     </div>
                 @endif
 
-                <div class="rounded-2xl border border-linie bg-karte p-6">
+                <div class="rounded-2xl border border-linie bg-karte p-6" data-auftritt="2">
                     <h2 class="text-lg">Schon Kunde?</h2>
                     <p class="mt-3 text-sm text-text-leise">
                         Anfragen zu laufenden Projekten gehen am schnellsten über den Kundenbereich.

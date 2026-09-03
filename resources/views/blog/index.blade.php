@@ -87,8 +87,10 @@
             <p class="text-text-leise">Hier steht noch nichts.</p>
         @else
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach ($beitraege as $beitrag)
-                    <x-beitragskachel :beitrag="$beitrag" />
+                @foreach ($beitraege as $i => $beitrag)
+                    <div data-auftritt="{{ $i }}">
+                        <x-beitragskachel :beitrag="$beitrag" />
+                    </div>
                 @endforeach
             </div>
 
