@@ -65,7 +65,25 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    /*
+     * Europe/Berlin, nicht UTC.
+     *
+     * Die Redaktion trägt deutsche Uhrzeiten ein – wer um 23:43 auf
+     * "veröffentlichen" stellt, meint 23:43 hier und nicht 23:43 UTC. Bei UTC
+     * wurde daraus im Sommer eine Terminierung zwei Stunden in der Zukunft,
+     * und der Beitrag blieb unsichtbar, ohne dass irgendwo ein Fehler stand.
+     *
+     * APP_TIMEZONE war in der .env längst gesetzt, nur las diese Zeile die
+     * Variable nicht. Bestehende Beiträge tragen Mitternacht als Uhrzeit; für
+     * die ändert sich das angezeigte Datum dadurch nicht.
+     *
+     * Der Vorgabewert ist Europe/Berlin und nicht UTC: die .env auf dem Server
+     * führt APP_TIMEZONE nicht, dort liefe die Anwendung sonst weiter auf UTC
+     * und zeigte andere Zeiten als lokal. Ein Unterschied zwischen den
+     * Maschinen, den niemand sieht, bis ein Beitrag zur falschen Stunde
+     * erscheint.
+     */
+    'timezone' => env('APP_TIMEZONE', 'Europe/Berlin'),
 
     /*
     |--------------------------------------------------------------------------
