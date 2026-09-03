@@ -223,4 +223,37 @@ class RedaktionTest extends TestCase
             $this->get("/admin/{$pfad}/create")->assertOk();
         }
     }
+
+    /*
+     * Widgets brechen erst beim Rendern – ein Tippfehler in einer Abfrage
+     * faellt beim Aufruf von artisan nicht auf, und das Dashboard ist die
+     * Seite, die Nils als erste sieht.
+     */
+    public function test_dashboard_rendert_mit_kennzahlen(): void
+    {
+        Project::create([
+            'slug' => 'ein-projekt',
+            'title' => 'Ein Projekt',
+            'description' => 'Beschreibung.',
+            'is_featured' => true,
+            'position' => 1,
+        ]);
+
+        $this->actingAs($this->angemeldet())
+            ->get('/admin')
+            ->assertOk();
+
+        \Livewire\Livewire::test(\App\Filament\Widgets\Kennzahlen::class)
+            ->assertOk();
+
+        \Livewire\Livewire::test(\App\Filament\Widgets\VorDemUmzug::class)
+            ->assertOk()
+            // Das Projekt oben hat keine Fallstudie und muss deshalb hier
+            // auftauchen – sonst zaehlt das Feld ins Leere.
+            ->assertSee('Projekte ohne Fallstudie');
+
+        \Livewire\Livewire::test(\App\Filament\Widgets\Kundenbereich::class)
+            ->assertOk()
+            ->assertSee('Ticketsystem');
+    }
 }

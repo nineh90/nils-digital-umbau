@@ -94,7 +94,10 @@ zieht `<x-seo>`, die Schriften über `Vite::fonts()`, `<x-kopfzeile>` und `<x-fu
   die Seite ohne JS benutzbar bleibt.
 
 ### Inhalte kommen aus der Datenbank
-`/admin` (Filament) ist die Redaktionsschicht. **Alles, was auf der Seite steht, soll dort
+`/admin` (Filament) ist die Redaktionsschicht. Das Dashboard zeigt Kennzahlen und darunter,
+was noch offen ist – bewusst nur Punkte, die sich in der Redaktion selbst erledigen lassen.
+`PostForm` und `ProjectForm` sind der Maßstab für neue Resources: deutsche Beschriftungen,
+Hilfetexte an allem, was Erklärung braucht, Abschnitte statt einer Feldliste. **Alles, was auf der Seite steht, soll dort
 pflegbar sein** – das ist eine ausdrückliche Anforderung, kein Nebenziel. Neue sichtbare Texte
 gehören deshalb nicht fest ins Blade, sondern in ein Modell mit Filament-Resource.
 
@@ -223,10 +226,10 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
 - **Startseiten-Texte** (Hero, „Was wir machen", Schlussabschnitt) stehen noch fest im Blade und
   müssen in die Redaktion wandern. Die Teamseite ist diesen Weg schon gegangen – ihre Migration
   taugt als Muster, weil sie die bestehenden Inhalte gleich mitnimmt.
-- **Übersicht auf `/admin`** ist noch der leere Vorgabezustand; Kennzahlen wären dort gewünscht.
-  Alles andere in der Redaktion ist seit September 2026 überarbeitet: deutsche Beschriftungen,
-  Hilfetexte, Abschnitte, Sortieren per Ziehen. `PostForm` und `ProjectForm` sind der Maßstab
-  für neue Resources.
+- **Neuigkeiten aus dem Ticketsystem auf `/admin`.** Es läuft als eigene Anwendung auf
+  `intern.nils-digital.de` und teilt weder Datenbank noch Sitzung – dafür braucht es dort eine
+  Schnittstelle, hier einen Zugang und einen Zwischenspeicher, damit das Dashboard nicht bei
+  jedem Aufruf auf einen fremden Server wartet. Bis dahin verlinkt das Widget nur.
 - **Datenübertragung lokal → Server** für den Umzug. Der Deploy fasst Inhalte bewusst nicht
   an (`entrypoint.sh` migriert nur), es gibt also auch kein Werkzeug dafür. Gebraucht wird es
   genau einmal: kurz vor dem Domain-Umzug wird der lokale Stand geschlossen auf den Server
