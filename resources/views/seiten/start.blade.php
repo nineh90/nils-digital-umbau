@@ -70,7 +70,7 @@
                      Ab sm läuft die Spalte neben oder über dem Projektfenster
                      und wird wieder linksbündig. --}}
                 <div class="text-center sm:text-left">
-                    <p class="font-mono text-xs tracking-[0.2em] text-akzent uppercase">
+                    <p class="heroauftritt font-mono text-xs tracking-[0.2em] text-akzent uppercase">
                         {{-- Zwei Gruppen statt eines durchlaufenden Satzes: auf
                              schmalen Geräten bricht die Zeile sonst nach
                              „Unternehmen" und lässt „& Selbstständige" allein
@@ -81,12 +81,25 @@
                         <span class="inline-block">Unternehmen &amp; Selbstständige</span>
                     </p>
 
+                    {{-- Wortweise, damit sich die Überschrift aufbaut statt
+                         umzuschalten. Jedes Wort braucht dafür inline-block:
+                         auf einem reinen Inline-Element greift translate nicht.
+
+                         Ausgeschrieben und nicht in der Schleife zerlegt – der
+                         Zeilenumbruch nach „Lösungen," ist gesetzt und nicht
+                         gerechnet, und das Akzentwort trägt eine eigene
+                         Farbe. --}}
                     <h1 class="mt-5 text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
-                        Digitale Lösungen,<br>
-                        die für euch <span class="text-akzent">arbeiten</span>
+                        <span class="heroauftritt inline-block" style="--stufe: 1">Digitale</span>
+                        <span class="heroauftritt inline-block" style="--stufe: 2">Lösungen,</span><br>
+                        <span class="heroauftritt inline-block" style="--stufe: 3">die</span>
+                        <span class="heroauftritt inline-block" style="--stufe: 4">für</span>
+                        <span class="heroauftritt inline-block" style="--stufe: 5">euch</span>
+                        <span class="heroauftritt inline-block text-akzent" style="--stufe: 6">arbeiten</span>
                     </h1>
 
-                    <p class="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-text-leise sm:mx-0">
+                    <p class="heroauftritt mx-auto mt-6 max-w-lg text-lg leading-relaxed text-text-leise sm:mx-0"
+                       style="--stufe: 7">
                         KI-Automatisierung, Webentwicklung und individuelle Apps.
                         Ihr arbeitet direkt mit uns – feste Ansprechpartner, kurze Wege,
                         kein anonymes Support-Team.
@@ -96,7 +109,8 @@
                          einnimmt: nebeneinander passen die beiden Schaltflächen
                          auf dem Handy nicht, und untereinander linksbündig
                          hängen sie an einer Kante, die sonst niemand hat. --}}
-                    <div class="mt-9 flex flex-wrap justify-center gap-3 sm:justify-start">
+                    <div class="heroauftritt mt-9 flex flex-wrap justify-center gap-3 sm:justify-start"
+                         style="--stufe: 8">
                         <a href="{{ route('kontakt') }}"
                            class="rounded-lg bg-akzent px-6 py-3 font-medium text-flaeche transition-all hover:bg-akzent-hell hover:shadow-lg hover:shadow-akzent/25">
                             Kostenlos anfragen
@@ -111,7 +125,8 @@
                          unter den Schaltflächen: genau dort entscheidet sich,
                          ob jemand klickt. --}}
                     @if ($stimmenGesamt->isNotEmpty())
-                        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm sm:justify-start">
+                        <div class="heroauftritt mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm sm:justify-start"
+                             style="--stufe: 9">
                             <span class="text-akzent" aria-hidden="true">{{ str_repeat('★', 5) }}</span>
                             <span class="font-mono text-text-leise">
                                 {{ number_format($stimmenGesamt->avg('rating'), 1, ',', '') }}/5

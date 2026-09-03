@@ -279,6 +279,35 @@
 
 /*
  * ---------------------------------------------------------------------------
+ * Auftritt des Hero-Textes
+ * ---------------------------------------------------------------------------
+ *
+ * Der Hero ist der einzige Bereich ohne data-auftritt, und das bleibt so: der
+ * Auftritt beim Scrollen wartet auf app.js, und ausgerechnet über der Falz
+ * soll nichts auf ein Modul warten. Diese Animation läuft deshalb allein im
+ * Stylesheet – lädt das CSS nicht, steht der Text einfach da.
+ *
+ * animation-fill-mode: backwards ist der Kern: ohne das wäre jedes Element vor
+ * seinem Einsatz sichtbar und würde beim Start hart auf unsichtbar springen.
+ *
+ * 60ms Abstand je Stufe. Die Überschrift läuft wortweise, aber mit demselben
+ * Takt wie der Rest – ein eigener, langsamerer Takt für die Wörter sah nach
+ * Tippen aus, und das war ausdrücklich nicht gewollt.
+ */
+.heroauftritt {
+    animation: heroauftritt 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+    animation-delay: calc(var(--stufe, 0) * 60ms);
+}
+
+@keyframes heroauftritt {
+    from {
+        opacity: 0;
+        translate: 0 0.8rem;
+    }
+}
+
+/*
+ * ---------------------------------------------------------------------------
  * Blätternde Projektfenster im Hero
  * ---------------------------------------------------------------------------
  *
@@ -452,7 +481,8 @@
      * Kein Blättern im Hero. Ohne Animation blieben alle Blätter
      * übereinander sichtbar, deshalb hier ausdrücklich nur das erste.
      */
-    .heldenstapel__blatt {
+    .heldenstapel__blatt,
+    .heroauftritt {
         animation: none;
     }
 
