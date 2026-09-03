@@ -36,28 +36,30 @@
 
 <x-layouts.oeffentlich :titel="$titel" :beschreibung="$beschreibung" :robots="$robots" :jsonld="$jsonld">
 
-    <div class="mx-auto max-w-6xl px-5 py-14">
+    {{-- Derselbe Kopf wie auf allen Unterseiten; die Kategorieansicht
+         wechselt nur Überschrift und Text.
 
-        <header class="mb-10">
-            @if ($istKategorie)
-                <nav aria-label="Sie sind hier" class="mb-4 text-sm text-text-leise">
-                    <a href="{{ route('blog.index') }}" class="hover:text-akzent">Blog</a>
-                    <span aria-hidden="true"> / </span>
-                    <span>{{ $aktiveKategorie->name }}</span>
-                </nav>
-                <h1 class="text-3xl sm:text-4xl">{{ $aktiveKategorie->name }}</h1>
-                <p class="mt-3 max-w-2xl text-text-leise">
-                    {{ trans_choice(':count Beitrag|:count Beiträge', $beitraege->total(), ['count' => $beitraege->total()]) }}
-                    in dieser Kategorie.
-                </p>
-            @else
-                <h1 class="text-3xl sm:text-4xl">Blog</h1>
-                <p class="mt-3 max-w-2xl text-text-leise">
-                    Was wir bauen, warum wir es so bauen und was dabei schiefgeht.
-                    Keine Pressemitteilungen.
-                </p>
-            @endif
-        </header>
+         An die Stelle des früheren Pfads „Blog / Kategorie" tritt dabei der
+         Knopf zurück zur Übersicht: er führt dorthin, wohin der Pfad geführt
+         hätte, und passt in die Zeile, die auf den anderen Seiten die
+         Handlungsaufforderung trägt. --}}
+    <x-seitenkopf
+        :ueberschrift="$istKategorie ? $aktiveKategorie->name : 'Blog'"
+        :text="$istKategorie
+            ? trans_choice(':count Beitrag|:count Beiträge', $beitraege->total(), ['count' => $beitraege->total()]) . ' in dieser Kategorie.'
+            : 'Was wir bauen, warum wir es so bauen und was dabei schiefgeht. Keine Pressemitteilungen.'">
+
+        @if ($istKategorie)
+            <x-slot:aktionen>
+                <a href="{{ route('blog.index') }}"
+                   class="rounded-lg border border-linie px-5 py-2.5 transition-colors hover:border-akzent hover:text-akzent">
+                    Alle Beiträge
+                </a>
+            </x-slot:aktionen>
+        @endif
+    </x-seitenkopf>
+
+    <div class="mx-auto max-w-6xl px-5 py-14">
 
         {{-- Kategoriefilter. Echte Links statt JavaScript-Filter: jede
              Kategorie ist damit eine eigene, indexierbare Seite. --}}

@@ -18,14 +18,11 @@
     beschreibung="Websites, Apps und Automatisierungen, die wir gebaut haben – vom barrierefreien Auftritt einer Fahrlehrerin bis zur Pflegesoftware ohne Cloud."
     :jsonld="$jsonld">
 
-    <div class="mx-auto max-w-6xl px-5 py-14">
+    <x-seitenkopf
+        ueberschrift="Projekte"
+        text="Was wir gebaut haben – und warum es so gebaut ist." />
 
-        <header class="mb-12 max-w-2xl">
-            <h1 class="text-3xl sm:text-4xl">Projekte</h1>
-            <p class="mt-3 text-text-leise">
-                Was wir gebaut haben – und warum es so gebaut ist.
-            </p>
-        </header>
+    <div class="mx-auto max-w-6xl px-5 py-14">
 
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($projekte as $i => $projekt)
