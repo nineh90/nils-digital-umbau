@@ -10,6 +10,8 @@ Zielgruppe: KMU, Selbstständige, Freiberufler – Region Münster / Osnabrück 
 deutschlandweit.
 
 Positionierung: professionell aber persönlich, "du bekommst mich direkt, kein anonymes Team".
+**Reiner Firmenauftritt** – über andere zu berichten (Kunden, Kooperationen, Projekte) gehört
+dazu, Privates über Nils selbst nicht. Danach ist der Blog im September 2026 ausgedünnt worden.
 Alle Texte auf Deutsch, Du-/Ihr-Ansprache. **Code, Kommentare, Klassennamen, Routen und
 Feldnamen ebenfalls auf Deutsch**, soweit es nicht Laravel-Konventionen bricht: Blade-Views und
 Komponenten heißen `kopfzeile`, `beitragskachel`, `seiten/leistungen`; Eloquent-Modelle und
@@ -98,7 +100,9 @@ gehören deshalb nicht fest ins Blade, sondern in ein Modell mit Filament-Resour
 
 | Tabelle | Modell | Inhalt |
 |---|---|---|
-| `posts` + `post_links` + `products` | `Post` | Blogbeiträge, Shop-Produktposts |
+| `posts` + `post_links` + `products` | `Post` | Blogbeiträge. `products` ist seit dem
+  Ausdünnen leer – die Shop-Beiträge sind weg, die Tabelle bleibt für den Fall, dass wieder
+  etwas verkauft wird |
 | `categories` | `Category` | Blog-Kategorien inkl. Badge-Farben (`color`, `text_color`) |
 | `projects` | `Project` | Referenzen, `is_featured` steuert die Startseite |
 | `service_categories` + `services` | `Service` | Leistungen und Preise |
@@ -230,4 +234,6 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
   gebracht. **Ab dann ist der Server die Wahrheit** und der Weg dreht sich um – lokal zieht man
   sich von dort.
 - **Hinweis-/Popup-System** für Aktionen und Feiertage ist geplant, aber noch nicht gebaut.
+- **Übersicht auf `/admin`:** das Filament-Dashboard ist noch der leere Vorgabezustand. Gewünscht
+  sind Kennzahlen auf einen Blick – Anzahl Beiträge, Projekte, Kundenstimmen und Ähnliches.
 - `legacy/` kann raus, sobald der Import endgültig abgeschlossen ist.

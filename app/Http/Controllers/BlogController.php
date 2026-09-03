@@ -10,8 +10,19 @@ use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    /** Sechs Beiträge je Seite – wie in der alten Übersicht. */
-    private const PRO_SEITE = 6;
+    /*
+     * Zwölf Beiträge je Seite.
+     *
+     * Sechs waren von der alten Übersicht übernommen und füllten auf dem
+     * Desktop nur zwei Reihen – man blätterte mehr, als man las.
+     *
+     * Zwölf und nicht fünfzehn, weil das Raster die Zahl vorgibt: drei
+     * Spalten ab lg, zwei ab sm. Zwölf geht in beiden auf (vier Reihen
+     * beziehungsweise sechs), fünfzehn lässt bei zwei Spalten eine Kachel
+     * allein in der letzten Reihe stehen. Wer die Zahl ändert, nimmt
+     * deshalb ein Vielfaches von sechs.
+     */
+    private const PRO_SEITE = 12;
 
     public function index(Request $request): View
     {
