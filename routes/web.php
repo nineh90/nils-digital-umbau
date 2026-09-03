@@ -37,6 +37,7 @@ Route::get('/agb', [PageController::class, 'agb'])->name('agb');
  */
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/feed', [FeedController::class, 'blog'])->name('blog.feed');
+Route::get('/blog/feed.xsl', [FeedController::class, 'stylesheet'])->name('blog.feed.stylesheet');
 Route::get('/blog/kategorie/{category}', [BlogController::class, 'kategorie'])->name('blog.kategorie');
 Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 

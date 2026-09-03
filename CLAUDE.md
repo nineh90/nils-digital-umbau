@@ -246,7 +246,5 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
   Instagram, später Newsletter. **Erst nach dem Domain-Umzug einrichten** – der Feed nennt
   heute `neu.nils-digital.de`, jeder automatische Beitrag verlinkte sonst die `noindex`-Vorschau.
   Eigenes Thema, eigene Anwendung, kein Nebenbei.
-- **RSS-Feed im Browser lesbar machen** (XSLT-Stylesheet). Optional: der Feed ist technisch
-  fertig, sieht im Browser aber aus wie Quelltext, weil kein Browser RSS mehr rendert.
 - **Hinweis-/Popup-System** für Aktionen und Feiertage ist geplant, aber noch nicht gebaut.
 - `legacy/` kann raus, sobald der Import endgültig abgeschlossen ist.
