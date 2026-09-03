@@ -73,6 +73,11 @@ class TeamMemberForm
                         ->label('Auf der Seite zeigen')
                         ->default(true),
 
+                    Toggle::make('in_schema')
+                        ->label('Als Mitarbeiter an Suchmaschinen melden')
+                        ->default(true)
+                        ->helperText('Trägt den Eintrag in die strukturierten Daten der Seite ein. Für alles, was kein Mensch ist, ausschalten – Google nimmt einen jobTitle wörtlich.'),
+
                     TextInput::make('position')
                         ->label('Reihenfolge')
                         ->numeric()

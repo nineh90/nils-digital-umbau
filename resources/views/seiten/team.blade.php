@@ -10,11 +10,17 @@
         '@type' => 'Organization',
         'name' => 'Nils-Digital',
         'url' => url('/'),
-        'employee' => $team->map(fn ($person) => [
+        /*
+         * Nur, wer dort auch hingehört. Sunny steht auf der Seite, aber nicht
+         * als Person mit jobTitle in den strukturierten Daten – Google nimmt
+         * das wörtlich, und eine falsche Auszeichnung ist schlechter als
+         * keine.
+         */
+        'employee' => $team->where('in_schema', true)->map(fn ($person) => [
             '@type' => 'Person',
             'name' => $person->name,
             'jobTitle' => $person->role,
-        ])->all(),
+        ])->values()->all(),
     ];
 @endphp
 
@@ -50,7 +56,12 @@
                         <h2 class="text-xl">{{ $person->name }}</h2>
                         <p class="text-sm text-akzent">{{ $person->role }}</p>
 
-                        <p class="mt-4 leading-relaxed text-text-leise">{{ $person->bio }}</p>
+                        {{-- Leerzeile im Formular wird zum Absatz. Vorher lief alles in
+                             einem <p> zusammen, und wer im Textfeld zweimal Enter drückte,
+                             bekam davon auf der Seite nichts zu sehen. --}}
+                        @foreach (preg_split('/\R\s*\R/', trim($person->bio)) as $absatz)
+                            <p class="mt-4 leading-relaxed text-text-leise">{{ $absatz }}</p>
+                        @endforeach
 
                         @if ($person->skills)
                             <div class="mt-5 flex flex-wrap gap-1.5">

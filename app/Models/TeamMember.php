@@ -14,6 +14,7 @@ class TeamMember extends Model
         return [
             'skills' => 'array',
             'is_visible' => 'boolean',
+            'in_schema' => 'boolean',
         ];
     }
 

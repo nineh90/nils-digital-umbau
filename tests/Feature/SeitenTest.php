@@ -19,6 +19,34 @@ class SeitenTest extends TestCase
         Artisan::call('nd:import-legacy', ['--ohne-bilder' => true]);
     }
 
+    /*
+     * Der Umschalter, den Sunny ausgeloest hat: nicht jeder Eintrag auf der
+     * Teamseite gehoert in die strukturierten Daten. Wer ihn ausschaltet, soll
+     * sicher sein koennen, dass der Eintrag wirklich draussen ist.
+     */
+    public function test_wer_nicht_gemeldet_wird_fehlt_im_schema_block(): void
+    {
+        \App\Models\TeamMember::create([
+            'name' => 'Bello',
+            'role' => 'Empfang',
+            'bio' => 'Bellt.',
+            'is_visible' => true,
+            'in_schema' => false,
+            'position' => 9,
+        ]);
+
+        $antwort = $this->get('/team');
+
+        // Auf der Seite sichtbar ...
+        $antwort->assertSee('Bello');
+
+        // ... aber nicht als Person in der Auszeichnung.
+        preg_match('#<script type="application/ld\+json">(.*?)</script>#s', $antwort->getContent(), $treffer);
+        $daten = json_decode(html_entity_decode($treffer[1], ENT_QUOTES), true);
+
+        $this->assertNotContains('Bello', array_column($daten['employee'], 'name'));
+    }
+
     public static function seiten(): array
     {
         return [

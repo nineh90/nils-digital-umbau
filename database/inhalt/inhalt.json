@@ -1,5 +1,5 @@
 {
-    "erzeugt": "2026-09-04T01:07:06+02:00",
+    "erzeugt": "2026-09-04T01:20:17+02:00",
     "quelle": "http://localhost:8000",
     "tabellen": {
         "categories": [
@@ -1250,7 +1250,8 @@
                 "is_visible": 1,
                 "position": 1,
                 "created_at": "2026-09-03 09:55:14",
-                "updated_at": "2026-09-03 09:55:14"
+                "updated_at": "2026-09-03 09:55:14",
+                "in_schema": 1
             },
             {
                 "id": 2,
@@ -1264,7 +1265,23 @@
                 "is_visible": 1,
                 "position": 2,
                 "created_at": "2026-09-03 09:55:14",
-                "updated_at": "2026-09-03 09:55:14"
+                "updated_at": "2026-09-03 09:55:14",
+                "in_schema": 1
+            },
+            {
+                "id": 3,
+                "name": "Sunny",
+                "role": "Sicherheitsdienst",
+                "image": "uploads/team/01M1MRWWDA90J82K4PHYWA93G4.jpg",
+                "bio": "Sunny ist Schäferhund-Husky-Mix und seit dem ersten Tag dabei. Offiziell zuständig für Sicherheit und Wohlbefinden: Sie meldet jede Lieferung zuverlässig, erinnert daran, dass nach vier Stunden vor dem Bildschirm ein Spaziergang ansteht, und liegt ansonsten dort, wo gerade jemand arbeitet.\n\nNebenbei ist sie Namenspatin von SunnyCam – dem Projekt, das die Welt auf vier Pfoten zeigt.",
+                "skills": "[\"T\\u00fcrkontrolle\",\"Pausenmanagement\",\"Ausdauer\",\"Motivation\"]",
+                "highlight_label": "Erfolgsquote",
+                "highlight_text": "Noch keine Lieferung unangekündigt durchgelassen. Hundert Prozent, seit Tag eins.",
+                "is_visible": 1,
+                "position": 99,
+                "created_at": "2026-09-04 01:15:38",
+                "updated_at": "2026-09-04 01:19:40",
+                "in_schema": 1
             }
         ]
     }
