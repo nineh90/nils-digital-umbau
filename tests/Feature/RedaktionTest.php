@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\Service;
+use App\Models\ServiceCategory;
 use App\Models\TeamMember;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -124,5 +126,31 @@ class RedaktionTest extends TestCase
 
         $this->assertSame('Gründer & Entwickler', $person->role);
         $this->assertSame($bild, $person->image);
+    }
+
+    /*
+     * Das Symbolfeld ist eine Auswahl aus App\Support\Symbole. Verschwindet
+     * dort ein Name oder bricht die Klasse, faellt das sonst erst auf, wenn
+     * jemand eine Leistung bearbeiten will.
+     */
+    public function test_leistungsformular_bietet_die_symbole_zur_auswahl(): void
+    {
+        $gruppe = ServiceCategory::create(['slug' => 'web', 'name' => 'Web', 'position' => 1]);
+
+        $leistung = Service::create([
+            'service_category_id' => $gruppe->id,
+            'slug' => 'eine-leistung',
+            'name' => 'Eine Leistung',
+            'description' => 'Beschreibung.',
+            'icon' => 'blitz',
+            'position' => 1,
+        ]);
+
+        $this->assertArrayHasKey('blitz', \App\Support\Symbole::auswahl());
+
+        $this->actingAs($this->angemeldet())
+            ->get("/admin/services/{$leistung->id}/edit")
+            ->assertOk()
+            ->assertSee('Symbol');
     }
 }

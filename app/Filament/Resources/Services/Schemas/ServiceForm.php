@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Services\Schemas;
 
+use App\Support\Symbole;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -32,11 +33,12 @@ class ServiceForm
                 ->required()
                 ->helperText('Interne Kennung, taucht nicht auf der Seite auf.'),
 
-            TextInput::make('icon')
+            Select::make('icon')
                 ->label('Symbol')
-                ->maxLength(8)
-                ->placeholder('⚡')
-                ->helperText('Ein Emoji.'),
+                ->options(Symbole::auswahl())
+                ->searchable()
+                ->placeholder('ohne Symbol')
+                ->helperText('Strichzeichnung, die die Textfarbe erbt. Bewusst kein Emoji: das zeichnet jedes Betriebssystem anders.'),
 
             TextInput::make('price')
                 ->label('Preis')

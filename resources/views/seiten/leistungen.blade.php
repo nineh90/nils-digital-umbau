@@ -56,7 +56,7 @@
                         <article class="flex flex-col rounded-2xl border border-linie bg-karte p-6 transition-colors hover:border-akzent/40"
                                  data-auftritt="{{ $i }}">
                             @if ($leistung->icon)
-                                <span class="mb-3 text-2xl" aria-hidden="true">{{ $leistung->icon }}</span>
+                                <x-symbol :name="$leistung->icon" klasse="mb-3 h-7 w-7 text-akzent" />
                             @endif
 
                             <h3 class="text-lg">{{ $leistung->name }}</h3>

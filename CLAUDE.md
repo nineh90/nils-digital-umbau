@@ -152,7 +152,9 @@ weniger in der Datenschutzerklärung. Neue Schnitte in `vite.config.js` ergänze
 **Keine Emojis.** Sie werden von jedem Betriebssystem anders gezeichnet – ausgerechnet das
 einzige durchgehend farbige Element der Seite wäre damit das, über das wir keine Kontrolle
 haben. Stattdessen `<x-symbol name="chip" />`: Strichzeichnungen, die die Textfarbe erben.
-Neue Symbole kommen in die Liste in `components/symbol.blade.php`, keine Icon-Bibliothek.
+Neue Symbole kommen in die Liste in `app/Support/Symbole.php`, keine Icon-Bibliothek – dort und
+nicht im Blade, weil die Redaktion dieselben Namen zur Auswahl braucht. `services.icon` trägt
+seit September 2026 Symbolnamen statt Emojis, das Feld in Filament ist eine Auswahl.
 Einzelne Emojis sind geduldet, wo sie zu jemandes eigenen Worten gehören – etwa in einer
 zitierten Kundenstimme oder einem persönlichen Satz im Blog („angeschrieben 😊").
 
@@ -226,8 +228,6 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
   (`ProjectForm` bietet `image_fit` als Datei-Upload an, obwohl dort „cover" oder „contain"
   hineingehört). `PostForm` und `TeamMemberForm` zeigen, wie es aussehen soll. Ebenfalls offen:
   hochgeladene Bilder zeigen im Formular keine Miniatur, nur den Dateinamen.
-- **Leistungs-Icons** liegen als Emoji in `services.icon` und müssen auf Symbolnamen umgestellt
-  werden.
 - **Datenübertragung lokal → Server** für den Umzug. Der Deploy fasst Inhalte bewusst nicht
   an (`entrypoint.sh` migriert nur), es gibt also auch kein Werkzeug dafür. Gebraucht wird es
   genau einmal: kurz vor dem Domain-Umzug wird der lokale Stand geschlossen auf den Server
