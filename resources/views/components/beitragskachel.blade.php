@@ -13,7 +13,9 @@
     $einpassen = $beitrag->thumb_fit === 'contain';
 @endphp
 
-<article class="group relative flex flex-col overflow-hidden rounded-2xl border border-linie bg-karte transition-colors hover:border-akzent/40">
+{{-- h-full wie bei der Projektkachel: auf der Startseite liegt zwischen Raster
+     und Kachel noch der Auftritts-Wrapper, der die Streckung sonst schluckt. --}}
+<article class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-linie bg-karte transition-colors hover:border-akzent/40">
 
     <a href="{{ route('blog.show', $beitrag) }}"
        class="block aspect-[2/1] overflow-hidden bg-flaeche-2"
