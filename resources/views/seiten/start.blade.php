@@ -64,9 +64,21 @@
                      Und liefe das Skript einmal nicht, wäre ausgerechnet das
                      Erste, was jemand sieht, eine leere Fläche. Eingeblendet
                      wird erst, was beim Scrollen dazukommt. --}}
-                <div>
+                {{-- Auf dem Handy steht die Spalte allein und mittig: drei
+                     linksbündige Blöcke über zentrierten Schaltflächen hängen
+                     sonst an einer Kante, die darunter nichts mehr aufgreift.
+                     Ab sm läuft die Spalte neben oder über dem Projektfenster
+                     und wird wieder linksbündig. --}}
+                <div class="text-center sm:text-left">
                     <p class="font-mono text-xs tracking-[0.2em] text-akzent uppercase">
-                        Digitale Lösungen für Unternehmen &amp; Selbstständige
+                        {{-- Zwei Gruppen statt eines durchlaufenden Satzes: auf
+                             schmalen Geräten bricht die Zeile sonst nach
+                             „Unternehmen" und lässt „& Selbstständige" allein
+                             stehen. So liegt der einzige mögliche Umbruch
+                             zwischen den beiden Hälften – auf breiten Geräten
+                             passen sie weiter in eine Zeile. --}}
+                        <span class="inline-block">Digitale Lösungen für</span>
+                        <span class="inline-block">Unternehmen &amp; Selbstständige</span>
                     </p>
 
                     <h1 class="mt-5 text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
@@ -74,13 +86,17 @@
                         die für euch <span class="text-akzent">arbeiten</span>
                     </h1>
 
-                    <p class="mt-6 max-w-lg text-lg leading-relaxed text-text-leise">
+                    <p class="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-text-leise sm:mx-0">
                         KI-Automatisierung, Webentwicklung und individuelle Apps.
                         Ihr arbeitet direkt mit uns – feste Ansprechpartner, kurze Wege,
                         kein anonymes Support-Team.
                     </p>
 
-                    <div class="mt-9 flex flex-wrap gap-3">
+                    {{-- Ab hier mittig, solange die Spalte die ganze Breite
+                         einnimmt: nebeneinander passen die beiden Schaltflächen
+                         auf dem Handy nicht, und untereinander linksbündig
+                         hängen sie an einer Kante, die sonst niemand hat. --}}
+                    <div class="mt-9 flex flex-wrap justify-center gap-3 sm:justify-start">
                         <a href="{{ route('kontakt') }}"
                            class="rounded-lg bg-akzent px-6 py-3 font-medium text-flaeche transition-all hover:bg-akzent-hell hover:shadow-lg hover:shadow-akzent/25">
                             Kostenlos anfragen
@@ -95,7 +111,7 @@
                          unter den Schaltflächen: genau dort entscheidet sich,
                          ob jemand klickt. --}}
                     @if ($stimmenGesamt->isNotEmpty())
-                        <div class="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+                        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm sm:justify-start">
                             <span class="text-akzent" aria-hidden="true">{{ str_repeat('★', 5) }}</span>
                             <span class="font-mono text-text-leise">
                                 {{ number_format($stimmenGesamt->avg('rating'), 1, ',', '') }}/5
