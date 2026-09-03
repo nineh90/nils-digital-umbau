@@ -23,6 +23,16 @@ return Application::configure(basePath: dirname(__DIR__))
          * erreichbar, es gibt keinen Weg an dem Proxy vorbei.
          */
         $middleware->trustProxies(at: '*');
+
+        /*
+         * Wohin ein nicht Angemeldeter geschickt wird.
+         *
+         * Laravels Vorgabe zeigt auf eine Route namens "login", die es hier
+         * nicht gibt – die Anmeldung gehört Filament. Ohne diese Zeile endet
+         * jeder Aufruf einer geschützten Adresse (etwa der Beitragsvorschau)
+         * in einem 500er statt auf der Anmeldeseite.
+         */
+        $middleware->redirectGuestsTo(fn () => route('filament.admin.auth.login'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

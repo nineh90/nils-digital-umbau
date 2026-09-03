@@ -92,6 +92,34 @@ class BlogController extends Controller
     }
 
     /**
+     * Vorschau aus der Redaktion – zeigt auch Entwürfe.
+     *
+     * Bewusst eine eigene Route hinter der Anmeldung, statt show() aufzuweichen.
+     * Eine Bedingung wie "Entwurf sichtbar, wenn angemeldet" mitten im
+     * öffentlichen Controller ist genau die Stelle, an der später jemand die
+     * Klammer falsch setzt und Entwürfe im Netz stehen.
+     *
+     * Die Seite sieht aus wie die spätere echte, trägt aber noindex: sonst
+     * fände ein Crawler sie über einen weitergegebenen Link.
+     */
+    public function vorschau(Post $post): View
+    {
+        $post->load(['category', 'links', 'product']);
+
+        $weitere = Post::published()
+            ->where('id', '!=', $post->id)
+            ->latest('published_at')
+            ->limit(3)
+            ->get();
+
+        return view('blog.show', [
+            'post' => $post,
+            'weitere' => $weitere,
+            'vorschau' => true,
+        ]);
+    }
+
+    /**
      * Weiterleitung der alten Adressen /pages/blog-post.html?id=N.
      *
      * Als Route und nicht als Rewrite-Regel im Webserver, weil sich das testen

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Posts\Schemas;
 
+use Filament\Actions\Action as FormAction;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
@@ -11,6 +12,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
+use Filament\Support\Icons\Heroicon;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
@@ -95,6 +97,19 @@ class PostForm
                             'bold', 'italic', 'heading', 'bulletList', 'orderedList',
                             'link', 'blockquote', 'codeBlock', 'undo', 'redo',
                         ])
+                        // Kurz und eingeklappt: eine Anleitung, die immer offen
+                        // steht, liest man nach dem dritten Beitrag nicht mehr –
+                        // sie steht dann nur noch zwischen Titel und Text.
+                        ->hintAction(
+                            FormAction::make('schreibhilfe')
+                                ->label('Wie schreibe ich das?')
+                                ->icon(Heroicon::OutlinedQuestionMarkCircle)
+                                ->modalHeading('Kurz zum Textfeld')
+                                ->modalDescription('Der Text wird als Markdown gespeichert und beim Anzeigen in HTML übersetzt. Die Knöpfe oben machen dasselbe wie die Zeichen unten – wer lieber tippt, tippt.')
+                                ->modalContent(view('filament.hinweise.schreibhilfe'))
+                                ->modalSubmitAction(false)
+                                ->modalCancelActionLabel('Alles klar')
+                        )
                         ->columnSpanFull(),
 
                     FileUpload::make('hero_image')

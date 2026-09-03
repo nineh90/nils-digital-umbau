@@ -55,12 +55,42 @@
     }
 @endphp
 
+@php
+    // Die Vorschau kommt aus der Redaktion und ist nur angemeldet erreichbar.
+    // noindex trotzdem: ein weitergegebener Link soll nicht im Index landen.
+    $vorschau ??= false;
+@endphp
+
 <x-layouts.oeffentlich
     :titel="$post->title"
     :beschreibung="$post->teaser"
     :bild="$bild"
     typ="article"
+    :robots="$vorschau ? 'noindex, nofollow' : null"
     :jsonld="$strukturDaten">
+
+    @if ($vorschau)
+        <div class="border-b border-akzent/30 bg-flaeche-2">
+            <div class="mx-auto flex max-w-3xl flex-wrap items-center gap-x-4 gap-y-2 px-5 py-3 text-sm">
+                <span class="rounded-full bg-akzent px-2.5 py-1 text-xs font-medium text-flaeche">Vorschau</span>
+
+                <span class="text-text-leise">
+                    @if ($post->status !== 'published')
+                        Entwurf – öffentlich noch nicht erreichbar.
+                    @elseif (! $post->published_at?->isPast())
+                        Geplant für {{ $post->published_at?->translatedFormat('d. F Y') }} – bis dahin nicht öffentlich.
+                    @else
+                        Dieser Beitrag ist bereits veröffentlicht.
+                    @endif
+                </span>
+
+                <a href="{{ url('/admin/posts/'.$post->id.'/edit') }}"
+                   class="ml-auto text-akzent underline underline-offset-4 hover:text-akzent-hell">
+                    Zurück zum Bearbeiten
+                </a>
+            </div>
+        </div>
+    @endif
 
     <article class="mx-auto max-w-3xl px-5 py-14">
 

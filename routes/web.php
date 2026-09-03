@@ -65,6 +65,14 @@ Route::redirect('/intern', 'https://intern.nils-digital.de', 301)->name('internb
  * Weiterleitungsketten kosten Rankings. Die Liste entspricht
  * database/legacy/url-map.csv, ein Test geht sie vollständig durch.
  */
+/*
+ * Vorschau aus der Redaktion. Hinter der Anmeldung, damit Entwürfe nicht über
+ * einen weitergegebenen Link im Netz landen.
+ */
+Route::get('/vorschau/beitrag/{post}', [BlogController::class, 'vorschau'])
+    ->middleware('auth')
+    ->name('blog.vorschau');
+
 Route::get('/pages/blog-post.html', [BlogController::class, 'legacy']);
 
 foreach ([
