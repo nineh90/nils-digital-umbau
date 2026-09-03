@@ -118,18 +118,23 @@ class InhaltEinlesen extends Command
         }
 
         foreach (Inhalt::TABELLEN as $tabelle) {
-            // post_project hat keine eigene id-Spalte.
+            // post_project hat keine eigene id-Spalte – und selbst wo eine ist,
+            // muss nicht zwingend eine Sequenz daran hängen. setval(NULL, …)
+            // wäre ein Fehler, also erst fragen.
             if (! DB::getSchemaBuilder()->hasColumn($tabelle, 'id')) {
                 continue;
             }
 
-            DB::statement("
-                SELECT setval(
-                    pg_get_serial_sequence('{$tabelle}', 'id'),
-                    COALESCE((SELECT MAX(id) FROM {$tabelle}), 1),
-                    (SELECT MAX(id) IS NOT NULL FROM {$tabelle})
-                )
-            ");
+            $sequenz = DB::selectOne('SELECT pg_get_serial_sequence(?, ?) AS seq', [$tabelle, 'id'])->seq ?? null;
+
+            if (! $sequenz) {
+                continue;
+            }
+
+            DB::statement(
+                "SELECT setval(?, COALESCE((SELECT MAX(id) FROM {$tabelle}), 1), (SELECT MAX(id) IS NOT NULL FROM {$tabelle}))",
+                [$sequenz]
+            );
         }
 
         $this->line('  Sequenzen nachgezogen.');

@@ -41,10 +41,28 @@ class InhaltTransferTest extends TestCase
         parent::tearDown();
     }
 
+    /**
+     * Liest eine Tabelle in stabiler Reihenfolge.
+     *
+     * Ohne order by gibt PostgreSQL die Zeilen nach delete und insert in einer
+     * anderen Folge zurueck als SQLite. Positionsweise verglichen schlaegt der
+     * Test dann fehl, obwohl derselbe Bestand drin steht – sortiert wird nach
+     * dem Inhalt der Zeile, weil post_project keine id hat.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private function lesen(string $tabelle): array
+    {
+        return DB::table($tabelle)->get()
+            ->map(fn ($z) => (array) $z)
+            ->sortBy(fn ($z) => json_encode($z))
+            ->values()
+            ->all();
+    }
+
     public function test_der_stand_ueberlebt_ausgeben_und_einlesen_unveraendert(): void
     {
-        $vorher = collect(Inhalt::TABELLEN)
-            ->mapWithKeys(fn ($t) => [$t => DB::table($t)->get()->map(fn ($z) => (array) $z)->all()]);
+        $vorher = collect(Inhalt::TABELLEN)->mapWithKeys(fn ($t) => [$t => $this->lesen($t)]);
 
         Artisan::call('nd:inhalt-ausgeben', ['--datei' => $this->datei]);
 
@@ -61,7 +79,7 @@ class InhaltTransferTest extends TestCase
         foreach (Inhalt::TABELLEN as $tabelle) {
             $this->assertEquals(
                 $vorher[$tabelle],
-                DB::table($tabelle)->get()->map(fn ($z) => (array) $z)->all(),
+                $this->lesen($tabelle),
                 "Tabelle {$tabelle} kam nicht unverändert zurück."
             );
         }
@@ -147,6 +165,37 @@ class InhaltTransferTest extends TestCase
         $gesichert = json_decode(File::get($sicherungen[0]), true);
         $this->assertCount(0, $gesichert['tabellen']['posts'], 'Die Sicherung zeigt nicht den Stand vor dem Einlesen.');
         $this->assertSame($anzahlVorher, Post::count());
+    }
+
+    /*
+     * Der Grund fuer das Nachziehen der Sequenzen: die IDs kommen aus der
+     * Datei, der Zaehler weiss davon nichts. Auf PostgreSQL liefe der naechste
+     * in der Redaktion angelegte Beitrag sonst in eine Kollision – und zwar
+     * erst irgendwann spaeter, wenn niemand mehr an den Transfer denkt.
+     */
+    public function test_nach_dem_einlesen_laesst_sich_weiter_anlegen(): void
+    {
+        Artisan::call('nd:inhalt-ausgeben', ['--datei' => $this->datei]);
+        Artisan::call('nd:inhalt-einlesen', [
+            '--datei' => $this->datei,
+            '--force' => true,
+            '--ohne-sicherung' => true,
+        ]);
+
+        $hoechste = Post::max('id');
+
+        $neu = Post::create([
+            'category_id' => Post::first()->category_id,
+            'slug' => 'nach-dem-transfer',
+            'title' => 'Nach dem Transfer',
+            'teaser' => 'Kurzfassung.',
+            'content' => 'Text.',
+            'status' => 'published',
+            'published_at' => now(),
+        ]);
+
+        $this->assertGreaterThan($hoechste, $neu->id);
+        $this->assertSame(1, Post::where('slug', 'nach-dem-transfer')->count());
     }
 
     public function test_eine_kaputte_datei_aendert_nichts(): void
