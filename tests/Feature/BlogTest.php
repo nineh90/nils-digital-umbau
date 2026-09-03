@@ -128,7 +128,9 @@ class BlogTest extends TestCase
 
         $this->get('/blog/feed')
             ->assertOk()
-            ->assertHeader('Content-Type', 'application/rss+xml; charset=UTF-8')
+            // application/xml statt application/rss+xml ist Absicht, sonst
+            // wendet Chrome das XSL-Stylesheet nicht an – siehe FeedTest.
+            ->assertHeader('Content-Type', 'application/xml; charset=UTF-8')
             ->assertSee('<rss', false)
             ->assertSee('Ein Beitrag über Barrierefreiheit', false);
     }
