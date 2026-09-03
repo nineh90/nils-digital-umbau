@@ -24,6 +24,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {{-- Muss vor dem ersten Malen laufen, deshalb hier inline und nicht in
+         app.js: die Auftritts-Animation versteckt ihre Abschnitte nur, wenn
+         JavaScript auch wirklich läuft. Ohne diese Zeile bliebe bei einem
+         Skriptfehler die halbe Seite unsichtbar. --}}
+    <script>document.documentElement.classList.add('js')</script>
+
     <x-seo
         :titel="$titel"
         :beschreibung="$beschreibung"
@@ -47,6 +53,8 @@
 </head>
 
 <body class="font-sans antialiased">
+
+    <x-hintergrund />
 
     {{-- Sprunglink: erste Station für alle, die mit der Tastatur navigieren. --}}
     <a href="#inhalt"

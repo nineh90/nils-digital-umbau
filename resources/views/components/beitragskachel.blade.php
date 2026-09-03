@@ -30,7 +30,9 @@
                      'object-cover' => ! $einpassen,
                  ])>
         @else
-            <span class="flex h-full w-full items-center justify-center text-3xl opacity-25">✍️</span>
+            <span class="flex h-full w-full items-center justify-center text-text-leise/25">
+                <x-symbol name="stift" klasse="h-10 w-10" />
+            </span>
         @endif
     </a>
 

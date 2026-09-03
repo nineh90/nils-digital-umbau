@@ -34,7 +34,10 @@
     $kontaktAktiv = collect($kontaktpunkte)->contains(fn ($p) => request()->routeIs($p['route']));
 @endphp
 
-<header class="sticky top-0 z-40 border-b border-linie bg-flaeche/90 backdrop-blur">
+{{-- Die Navigation läuft bewusst über die Monospace: kurze Wörter, feste
+     Breite, technischer Anklang – hier wirkt sie, ohne den Lesefluss zu
+     stören wie im Fließtext. --}}
+<header class="sticky top-0 z-40 border-b border-linie bg-flaeche/80 font-mono backdrop-blur">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
 
         <a href="{{ route('start') }}" class="flex shrink-0 items-center gap-2 font-display text-lg">

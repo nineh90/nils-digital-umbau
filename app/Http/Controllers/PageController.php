@@ -22,7 +22,42 @@ class PageController extends Controller
         return view('seiten.start', [
             'projekte' => Project::featured()->limit(6)->get(),
             'beitraege' => Post::published()->with('category')->latest('published_at')->limit(3)->get(),
-            'stimmen' => Review::visible()->get(),
+
+            /*
+             * Kundenstimmen kommen aus zwei Abfragen.
+             *
+             * Gezeigt wird eine zufällige Auswahl: es werden laufend mehr, und
+             * würden sie alle untereinander stehen, wüchse die Startseite mit
+             * jeder neuen Stimme weiter – gleichzeitig sähe jede Besucherin
+             * ewig dieselben. Die Gesamtbewertung im Schema.org-Block muss
+             * dagegen über *alle* sichtbaren laufen: eine reviewCount, die sich
+             * bei jedem Seitenaufruf ändert, ist für Suchmaschinen ein
+             * Warnzeichen.
+             */
+            'stimmen' => Review::vorzeigbar()->inRandomOrder()->limit(4)->get(),
+            'stimmenGesamt' => Review::visible()->get(),
+
+            /*
+             * Die zwei Screenshots im Hero. Anders als das Referenz-Raster
+             * darunter wechseln sie bei jedem Aufruf: dort geht es um
+             * Bandbreite, hier nur um einen Blickfang, der beweist, dass es
+             * echte laufende Projekte gibt.
+             *
+             * Zwei Bedingungen, beide aus dem Rahmen selbst begründet: ohne
+             * Bild bliebe ein leeres Fenster stehen, das nach Attrappe aussieht.
+             * Und die Adresszeile des Rahmens verspricht eine Seite, die man
+             * besuchen kann – deshalb nur Projekte mit echter Adresse. Sonst
+             * landet dort ein Herzensprojekt ohne eigene Website und der Rahmen
+             * behauptet etwas, das nicht stimmt.
+             *
+             * Beides ist über die Redaktion steuerbar: wer ein Projekt im Hero
+             * haben will, hinterlegt Bild und Adresse.
+             */
+            'heldenprojekte' => Project::featured()
+                ->whereNotNull('image')
+                ->where('link', 'like', 'http%')
+                ->reorder()->inRandomOrder()->limit(2)->get(),
+
             'gruppen' => ServiceCategory::with('services')->orderBy('position')->get(),
         ]);
     }

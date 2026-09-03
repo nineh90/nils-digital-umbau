@@ -13,8 +13,19 @@
  * hart im Markup stehen.
  */
 @theme {
-    --font-sans: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    /*
+     * Drei Schriften mit klarer Aufgabenteilung.
+     *
+     * Vorher lief der gesamte Fließtext über Roboto Mono. Monospace ist für
+     * Code gezeichnet, nicht für Absätze: jeder Buchstabe bekommt dieselbe
+     * Breite, das "i" so viel wie das "m". Auf Satzlänge liest sich das zäh
+     * und bricht unruhig um. Der technische Charakter bleibt trotzdem – aber
+     * als Akzent (font-mono für Labels, Tags, Preise, Daten), nicht als
+     * Grundeinstellung.
+     */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-display: 'Fredoka', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
     --color-flaeche: #0d1117;
     --color-flaeche-2: #111827;
@@ -140,5 +151,118 @@
         border-radius: 4px;
         padding: 0.1em 0.4em;
         font-size: 0.9em;
+    }
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Hintergrundebene
+ * ---------------------------------------------------------------------------
+ *
+ * Eine feste Ebene hinter dem gesamten Inhalt: zwei weiche Lichtschleier in
+ * der Akzentfarbe und ein sehr zurückgenommenes technisches Raster. Weil die
+ * Ebene "fixed" liegt, scrollt sie gar nicht mit – jede Bewegung, die man
+ * wahrnimmt, ist reine Parallaxe. Genau das erzeugt Tiefe, ohne dass etwas
+ * blinkt oder zappelt.
+ *
+ * Bewusst mit radial-gradient statt blur(): ein 80px-Weichzeichner auf
+ * bildschirmgroßen Flächen lässt schwächere Geräte beim Scrollen einbrechen.
+ * Ein Verlauf sieht identisch aus und kostet nichts.
+ *
+ * Die Verschiebung beim Scrollen läuft über die eigenständige
+ * translate-Eigenschaft, nicht über transform – so kommt sie der langsamen
+ * Drift-Animation nicht in die Quere, die transform belegt.
+ */
+.hintergrund {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hintergrund__schleier {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.hintergrund__schleier--eins {
+    top: -25vh;
+    right: -15vw;
+    width: 80vw;
+    height: 80vw;
+    background: radial-gradient(circle, rgba(0, 188, 212, 0.16), transparent 65%);
+    translate: 0 calc(var(--scroll-y, 0) * -0.06px);
+    animation: driften 26s ease-in-out infinite alternate;
+}
+
+.hintergrund__schleier--zwei {
+    bottom: -30vh;
+    left: -20vw;
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle, rgba(0, 188, 212, 0.10), transparent 65%);
+    translate: 0 calc(var(--scroll-y, 0) * 0.04px);
+    animation: driften 34s ease-in-out infinite alternate-reverse;
+}
+
+/* Raster. Die Maske lässt es zur Mitte hin ausblenden – ohne sie wirkt es
+   wie kariertes Papier statt wie Tiefe. */
+.hintergrund__raster {
+    position: absolute;
+    inset: -10%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, #000 10%, transparent 70%);
+    translate: 0 calc(var(--scroll-y, 0) * 0.03px);
+}
+
+@keyframes driften {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(4%, 3%, 0) scale(1.12); }
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Auftritt beim Scrollen
+ * ---------------------------------------------------------------------------
+ *
+ * Abschnitte steigen beim Erscheinen leicht auf. Der versteckte Ausgangszustand
+ * hängt an .js am <html>: ohne JavaScript wird die Klasse nie gesetzt, die
+ * Regel greift nicht und alles steht sofort da. Sonst bliebe die halbe Seite
+ * unsichtbar, falls das Skript scheitert – ein Fehler, der sich hier leicht
+ * einschleicht und im Test nie auffällt.
+ */
+.js [data-auftritt] {
+    opacity: 0;
+    translate: 0 14px;
+    transition:
+        opacity 0.7s ease,
+        translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.js [data-auftritt].ist-da {
+    opacity: 1;
+    translate: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    /*
+     * Die globale Regel weiter oben kürzt nur die Dauer – der Ausgangszustand
+     * opacity: 0 bliebe bestehen und die Seite wäre leer. Deshalb hier
+     * ausdrücklich zurücknehmen.
+     */
+    .js [data-auftritt] {
+        opacity: 1;
+        translate: none;
+        transition: none;
+    }
+
+    .hintergrund__schleier,
+    .hintergrund__raster {
+        animation: none;
+        translate: none;
     }
 }
