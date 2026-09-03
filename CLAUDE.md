@@ -239,5 +239,14 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
   `App\Support\Inhalt::NICHT_UEBERTRAGEN`, weil lokal der Seeder-Vorgabewert darin liegt.
   Offen ist nur noch der Wechsel selbst: sobald Startseiten-Texte, Fallstudien und
   Kundenstimmen stehen, wird der Server die Wahrheit und es braucht den Rückweg.
+- **Verteilung über n8n.** Der RSS-Feed (`/blog/feed`) ist fertig und korrekt ausgeliefert –
+  er ist die Steckdose, an der die Automatisierung später hängt. n8n läuft bereits auf
+  demselben VPS (eigene Container `n8n-n8n-1`, `n8n-postgres-1`, `n8n-traefik-1`), ist aber
+  nicht angebunden. Geplant: RSS-Trigger auf den Feed, daraus Beiträge für LinkedIn und
+  Instagram, später Newsletter. **Erst nach dem Domain-Umzug einrichten** – der Feed nennt
+  heute `neu.nils-digital.de`, jeder automatische Beitrag verlinkte sonst die `noindex`-Vorschau.
+  Eigenes Thema, eigene Anwendung, kein Nebenbei.
+- **RSS-Feed im Browser lesbar machen** (XSLT-Stylesheet). Optional: der Feed ist technisch
+  fertig, sieht im Browser aber aus wie Quelltext, weil kein Browser RSS mehr rendert.
 - **Hinweis-/Popup-System** für Aktionen und Feiertage ist geplant, aber noch nicht gebaut.
 - `legacy/` kann raus, sobald der Import endgültig abgeschlossen ist.
