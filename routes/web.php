@@ -74,6 +74,10 @@ Route::get('/vorschau/beitrag/{post}', [BlogController::class, 'vorschau'])
     ->middleware('auth')
     ->name('blog.vorschau');
 
+Route::get('/vorschau/hinweis/{notice}', [PageController::class, 'hinweisVorschau'])
+    ->middleware('auth')
+    ->name('hinweis.vorschau');
+
 Route::get('/pages/blog-post.html', [BlogController::class, 'legacy']);
 
 foreach ([

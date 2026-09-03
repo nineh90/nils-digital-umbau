@@ -33,10 +33,13 @@
         showModal() und damit nur mit JavaScript. Ein <dialog open> hat sie
         nicht und kostet dafür die Bedienbarkeit ohne Skript.
     --}}
+    {{-- In der Vorschau ohne hidden und ohne Gedaechtnis: sonst saehe man den
+         Hinweis beim zweiten Nachschauen nicht mehr, weil man ihn beim ersten
+         weggeklickt hat. --}}
     <div class="hinweis hinweis--{{ $hinweis->scheme }} hinweis--{{ $hinweis->placement }}"
          data-hinweis="{{ $hinweis->speicherSchluessel() }}"
-         data-haeufigkeit="{{ $hinweis->frequency }}"
-         hidden>
+         data-haeufigkeit="{{ \App\Models\Notice::istVorschau() ? 'always' : $hinweis->frequency }}"
+         @unless (\App\Models\Notice::istVorschau()) hidden @endunless>
 
         <input type="checkbox" id="hinweis-zu" class="hinweis__schalter sr-only">
 

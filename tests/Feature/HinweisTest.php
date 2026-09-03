@@ -141,6 +141,43 @@ class HinweisTest extends TestCase
         $this->assertNotSame($vorher, $hinweis->fresh()->speicherSchluessel());
     }
 
+    /*
+     * Der Sinn der Vorschau: einen Hinweis ansehen, bevor er scharf gestellt
+     * wird. Sie muss ihn also gerade dann zeigen, wenn er oeffentlich nicht
+     * erscheint.
+     */
+    public function test_die_vorschau_zeigt_auch_einen_ausgeschalteten_hinweis(): void
+    {
+        $hinweis = $this->hinweis([
+            'is_active' => false,
+            'starts_at' => now()->addMonth(),
+        ]);
+
+        $nils = User::create([
+            'name' => 'Nils',
+            'email' => 'test@nils-digital.de',
+            'password' => bcrypt('geheim'),
+        ]);
+
+        // Oeffentlich unsichtbar ...
+        $this->get('/')->assertDontSee('Winteraktion');
+
+        // ... in der Vorschau sichtbar, und ohne hidden, damit man ihn sieht,
+        // ohne auf das Skript zu warten.
+        $this->actingAs($nils)
+            ->get(route('hinweis.vorschau', $hinweis))
+            ->assertOk()
+            ->assertSee('Winteraktion')
+            ->assertSee('data-haeufigkeit="always"', false);
+    }
+
+    public function test_die_hinweis_vorschau_ist_ohne_anmeldung_verschlossen(): void
+    {
+        $hinweis = $this->hinweis(['is_active' => false]);
+
+        $this->get(route('hinweis.vorschau', $hinweis))->assertRedirect('/admin/login');
+    }
+
     public function test_das_formular_in_der_redaktion_laesst_sich_oeffnen(): void
     {
         $hinweis = $this->hinweis();

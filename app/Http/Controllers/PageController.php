@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notice;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\Review;
@@ -85,6 +86,21 @@ class PageController extends Controller
 
             'gruppen' => ServiceCategory::with('services')->orderBy('position')->get(),
         ]);
+    }
+
+    /**
+     * Startseite mit einem erzwungenen Hinweis.
+     *
+     * Zeigt ihn auch, wenn er ausgeschaltet ist oder sein Zeitraum noch nicht
+     * begonnen hat – das ist der Sinn: man schaut nach, bevor man ihn scharf
+     * stellt. Der Hinweis ignoriert in der Vorschau ausserdem das Gedaechtnis
+     * im Browser, sonst bekaeme man ihn beim zweiten Blick nicht mehr zu sehen.
+     */
+    public function hinweisVorschau(Notice $notice): View
+    {
+        Notice::alsVorschau($notice);
+
+        return $this->start();
     }
 
     public function leistungen(): View

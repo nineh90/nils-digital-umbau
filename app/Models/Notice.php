@@ -83,8 +83,31 @@ class Notice extends Model
      * Bewusst nur einer: zwei Fenster gleichzeitig sind keine Botschaft mehr,
      * sondern eine Zumutung. Bei mehreren gültigen entscheidet die Reihenfolge.
      */
+    /**
+     * Ein Hinweis, den die Vorschau erzwingt.
+     *
+     * Ohne das liesse sich ein Entwurf nicht ansehen: er ist ausgeschaltet oder
+     * sein Zeitraum liegt in der Zukunft - genau deshalb schaut man ja nach,
+     * bevor man ihn scharf stellt.
+     */
+    protected static ?self $vorschau = null;
+
+    public static function alsVorschau(self $hinweis): void
+    {
+        static::$vorschau = $hinweis;
+    }
+
+    public static function istVorschau(): bool
+    {
+        return static::$vorschau !== null;
+    }
+
     public static function aktueller(): ?self
     {
+        if (static::$vorschau) {
+            return static::$vorschau;
+        }
+
         /*
          * Bewusst ohne once() oder anderen Zwischenspeicher.
          *
