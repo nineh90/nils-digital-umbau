@@ -189,7 +189,7 @@
                     </div>
                     <a href="{{ route('projekte') }}"
                        class="group inline-flex items-center gap-2 text-akzent hover:underline">
-                        Alle Projekte
+                        Alle {{ $projekteGesamt }} Projekte ansehen
                         <x-symbol name="pfeil-rechts" klasse="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </a>
                 </div>

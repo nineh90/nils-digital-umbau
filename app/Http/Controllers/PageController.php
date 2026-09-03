@@ -20,7 +20,24 @@ class PageController extends Controller
     public function start(): View
     {
         return view('seiten.start', [
-            'projekte' => Project::featured()->limit(6)->get(),
+            /*
+             * Drei statt sechs.
+             *
+             * Die Startseite zeigt eine Auswahl, keinen Katalog – dafür gibt
+             * es /projekte. Sechs volle Karten wiederholen nur, was die
+             * Übersicht besser macht, und kosten viel Höhe; im Hero darüber
+             * stehen ohnehin schon zwei Projekte.
+             *
+             * Bewusst nicht "die neuesten": bei Referenzen ist das kein
+             * sinnvolles Kriterium – das beste Projekt ist selten das jüngste,
+             * und ein Fertigstellungsdatum gibt es gar nicht. Welche drei es
+             * sind, entscheidet die Redaktion über is_featured und position.
+             */
+            'projekte' => Project::featured()->limit(3)->get(),
+
+            // Für den Link zur Übersicht. Wächst mit, während die Startseite
+            // gleich hoch bleibt – die Zahl ist selbst ein Argument.
+            'projekteGesamt' => Project::count(),
             'beitraege' => Post::published()->with('category')->latest('published_at')->limit(3)->get(),
 
             /*
