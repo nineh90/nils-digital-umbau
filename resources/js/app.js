@@ -200,3 +200,77 @@ window.addEventListener('resize', () => {
  * zwei Sekunden alles ein, statt die Seite leer zu lassen.
  */
 window.auftrittBereit = true;
+
+/*
+ * Hinweise für Aktionen und Feiertage.
+ *
+ * Das Wegklicken selbst läuft ohne JavaScript – dafür sorgen die versteckte
+ * Checkbox und :has() in app.css. Hier steht nur das Gedächtnis: wer den
+ * Hinweis einmal geschlossen hat, soll ihn nicht bei jedem Seitenaufruf
+ * wiedersehen.
+ *
+ * Deshalb startet der Hinweis im Markup mit hidden und wird erst sichtbar,
+ * wenn feststeht, dass dieser Besucher ihn noch nicht kennt. Andersherum –
+ * zeigen und nachträglich verstecken – blitzte er bei jedem Aufruf kurz auf.
+ * Ohne JavaScript greift die Regel in app.css und zeigt ihn ohnehin.
+ *
+ * Der Schlüssel trägt die Uhrzeit der letzten Änderung: wird ein Hinweis
+ * überarbeitet, ist er für den Besucher ein neuer.
+ */
+const hinweis = document.querySelector('[data-hinweis]');
+
+if (hinweis) {
+    const schluessel = hinweis.dataset.hinweis;
+    const haeufigkeit = hinweis.dataset.haeufigkeit;
+
+    // Ein privates Fenster oder abgeschaltete Website-Daten lassen den Zugriff
+    // werfen. Dann gibt es eben kein Gedächtnis und der Hinweis erscheint.
+    const speicher = (() => {
+        try {
+            return haeufigkeit === 'session' ? window.sessionStorage : window.localStorage;
+        } catch {
+            return null;
+        }
+    })();
+
+    const schonGesehen = () => {
+        if (haeufigkeit === 'always' || ! speicher) {
+            return false;
+        }
+
+        try {
+            return speicher.getItem(schluessel) === 'zu';
+        } catch {
+            return false;
+        }
+    };
+
+    if (! schonGesehen()) {
+        hinweis.hidden = false;
+
+        const merken = () => {
+            try {
+                speicher?.setItem(schluessel, 'zu');
+            } catch {
+                // Kein Speicher, kein Gedächtnis – der Hinweis bleibt trotzdem zu.
+            }
+        };
+
+        hinweis.querySelector('.hinweis__schalter')?.addEventListener('change', merken);
+
+        // Escape schließt, wie man es von einem Fenster erwartet. Die Checkbox
+        // ist der einzige Zustand, den es gibt – deshalb geht das darüber.
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') {
+                return;
+            }
+
+            const schalter = hinweis.querySelector('.hinweis__schalter');
+
+            if (schalter && ! schalter.checked) {
+                schalter.checked = true;
+                merken();
+            }
+        });
+    }
+}

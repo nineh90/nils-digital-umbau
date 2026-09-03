@@ -80,6 +80,10 @@
         Zum Inhalt springen
     </a>
 
+    {{-- Die Leiste oben steht vor der Kopfzeile und schiebt die Seite nach
+         unten, statt sich ueber die Navigation zu legen. --}}
+    <x-hinweis stelle="oben" />
+
     <x-kopfzeile />
 
     <main id="inhalt" class="min-h-[60vh]">
@@ -87,6 +91,11 @@
     </main>
 
     <x-fusszeile />
+
+    {{-- Fenster und Ecke liegen per CSS über der Seite, im Quelltext sollen
+         sie den Inhalt aber nicht vor sich herschieben – weder für einen
+         Screenreader noch für einen Crawler. --}}
+    <x-hinweis stelle="unten" />
 
 </body>
 </html>

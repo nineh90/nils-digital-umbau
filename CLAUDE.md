@@ -111,6 +111,7 @@ gehören deshalb nicht fest ins Blade, sondern in ein Modell mit Filament-Resour
 | `service_categories` + `services` | `Service` | Leistungen und Preise |
 | `reviews` | `Review` | Kundenstimmen |
 | `team_members` | `TeamMember` | Die Personen auf `/team` |
+| `notices` | `Notice` | Hinweise für Aktionen und Feiertage, `<x-hinweis>` |
 
 Badge-Farben stehen jetzt **als Spalte am Datensatz**, nicht mehr als `.cat-…`-CSS-Regel pro
 Kategorie. Eine neue Kategorie braucht deshalb keine CSS-Änderung mehr.
@@ -246,5 +247,4 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
   Instagram, später Newsletter. **Erst nach dem Domain-Umzug einrichten** – der Feed nennt
   heute `neu.nils-digital.de`, jeder automatische Beitrag verlinkte sonst die `noindex`-Vorschau.
   Eigenes Thema, eigene Anwendung, kein Nebenbei.
-- **Hinweis-/Popup-System** für Aktionen und Feiertage ist geplant, aber noch nicht gebaut.
 - `legacy/` kann raus, sobald der Import endgültig abgeschlossen ist.

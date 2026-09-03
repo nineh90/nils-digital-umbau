@@ -499,6 +499,152 @@
     display: none;
 }
 
+/*
+ * Hinweise für Aktionen und Feiertage.
+ *
+ * Fünf Schemata, drei Darstellungen. Die Farben kommen ausnahmslos aus den
+ * Tokens – die Redaktion wählt einen Namen, nicht einen Farbwert. Deshalb
+ * lässt sich hier nichts einstellen, was neben der Seite steht.
+ *
+ * Der Hinweis startet mit hidden im Markup und wird vom Skript sichtbar
+ * gemacht, sobald feststeht, dass dieser Besucher ihn noch nicht weggeklickt
+ * hat. Ohne Skript greift die Regel darunter und zeigt ihn trotzdem.
+ */
+.hinweis[hidden] { display: none; }
+
+html:not(.js) .hinweis[hidden] { display: block; }
+
+/* Weggeklickt: :has() am Container, kein JavaScript nötig. */
+.hinweis:has(.hinweis__schalter:checked) { display: none !important; }
+
+.hinweis__tafel {
+    position: fixed;
+    z-index: 60;
+    display: flex;
+    gap: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--hinweis-linie, var(--color-linie));
+    background: var(--hinweis-flaeche, var(--color-karte));
+    color: var(--hinweis-text, var(--color-text));
+    box-shadow: 0 20px 50px rgb(0 0 0 / .45);
+}
+
+.hinweis__schleier {
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: rgb(0 0 0 / .6);
+    cursor: pointer;
+}
+
+/* --- Darstellung: Mitte --- */
+.hinweis--center .hinweis__tafel {
+    top: 50%;
+    left: 50%;
+    width: min(32rem, calc(100vw - 2rem));
+    translate: -50% -50%;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 1rem;
+}
+
+/* --- Darstellung: Leiste oben ---
+   Im Textfluss, nicht darueber: die Leiste steht vor der Kopfzeile und schiebt
+   die Seite nach unten. Sonst laege sie ueber der Navigation. */
+.hinweis--top .hinweis__tafel {
+    position: static;
+    align-items: center;
+    gap: 0.75rem;
+    border-width: 0 0 1px;
+    padding: 0.7rem 1.25rem;
+    box-shadow: none;
+}
+
+.hinweis--top .hinweis__bild { display: none; }
+.hinweis--top .hinweis__symbol { display: none; }
+
+.hinweis--top .hinweis__text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.15rem 0.6rem;
+    padding: 0;
+    font-size: 0.9375rem;
+}
+
+.hinweis--top .hinweis__titel { margin: 0; font-size: 0.9375rem; font-weight: 600; }
+.hinweis--top .hinweis__rumpf { margin: 0; font-size: 0.9375rem; }
+
+/* In der Leiste ist kein Platz fuer einen Knopf in voller Groesse - er wird
+   zum Link, sonst sprengt er die Zeilenhoehe. */
+.hinweis--top .hinweis__knopf {
+    margin-top: 0;
+    padding: 0;
+    background: none;
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.hinweis--top .hinweis__knopf:hover { filter: none; opacity: .75; }
+
+/* --- Darstellung: Ecke unten --- */
+.hinweis--corner .hinweis__tafel {
+    right: 1rem;
+    bottom: 1rem;
+    width: min(22rem, calc(100vw - 2rem));
+    flex-direction: column;
+    gap: 0;
+    border-radius: 1rem;
+}
+
+/* --- Inhalt --- */
+.hinweis__bild { width: 100%; height: 9rem; object-fit: cover; }
+.hinweis__text { flex: 1; padding: 1.5rem; }
+.hinweis__symbol { width: 1.75rem; height: 1.75rem; margin-bottom: 0.75rem; color: var(--hinweis-akzent, var(--color-akzent)); }
+.hinweis__titel { margin: 0 0 0.5rem; font-family: var(--font-display, inherit); font-size: 1.125rem; }
+.hinweis__rumpf { margin: 0; font-size: 0.9375rem; line-height: 1.6; color: var(--hinweis-leise, var(--color-text-leise)); }
+
+.hinweis__knopf {
+    display: inline-block;
+    margin-top: 1.25rem;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    background: var(--hinweis-akzent, var(--color-akzent));
+    color: var(--hinweis-knopf-text, var(--color-flaeche));
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.hinweis__knopf:hover { filter: brightness(1.1); }
+
+.hinweis__schliessen {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    color: var(--hinweis-leise, var(--color-text-leise));
+    cursor: pointer;
+}
+
+.hinweis__schliessen:hover { color: var(--hinweis-text, var(--color-text)); background: rgb(255 255 255 / .08); }
+.hinweis__schliessen svg { width: 1.125rem; height: 1.125rem; }
+.hinweis--top .hinweis__schliessen { position: static; flex-shrink: 0; }
+
+/*
+ * Die fünf Schemata. Jedes setzt nur Variablen um – die Bausteine darüber
+ * bleiben davon unberührt.
+ */
+.hinweis--akzent   { --hinweis-linie: color-mix(in oklab, var(--color-akzent) 40%, transparent); }
+.hinweis--dezent   { --hinweis-akzent: var(--color-text-leise); --hinweis-knopf-text: var(--color-flaeche); }
+.hinweis--warnung  { --hinweis-akzent: #f0b429; --hinweis-linie: color-mix(in oklab, #f0b429 45%, transparent); }
+.hinweis--festlich { --hinweis-flaeche: #10261c; --hinweis-akzent: #d9a441; --hinweis-linie: color-mix(in oklab, #d9a441 40%, transparent); --hinweis-leise: #b8c9bf; }
+.hinweis--aktion   { --hinweis-flaeche: var(--color-akzent); --hinweis-text: var(--color-flaeche); --hinweis-leise: color-mix(in oklab, var(--color-flaeche) 75%, transparent); --hinweis-akzent: var(--color-flaeche); --hinweis-knopf-text: var(--color-akzent); --hinweis-linie: transparent; }
+
 @media (prefers-reduced-motion: reduce) {
     /*
      * Die globale Regel weiter oben kürzt nur die Dauer – der Ausgangszustand
