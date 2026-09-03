@@ -1,5 +1,5 @@
 {
-    "erzeugt": "2026-09-03T20:18:55+00:00",
+    "erzeugt": "2026-09-03T21:15:24+00:00",
     "quelle": "http://localhost:8000",
     "tabellen": {
         "categories": [
@@ -1177,6 +1177,42 @@
                 "position": 3,
                 "created_at": "2026-08-31 22:01:09",
                 "updated_at": "2026-08-31 22:01:09"
+            },
+            {
+                "id": 5,
+                "name": "Sarah S.",
+                "rating": 5,
+                "text": "Unfassbar , wie schnell und gut Nils-Digital arbeitet. Ich bin einfach sehr begeistert von den bereits erstellten Ergebnissen und freue mich auf unsere weitere gemeinsame Zusammenarbeit. Danke , dass ich eine solche Unterstützung von euch erhalte. Einfach 5 Sterne ⭐️ ⭐️ ⭐️ ⭐️ ⭐️",
+                "source": "Google",
+                "project": "Fahrlehrerin Sarah",
+                "is_visible": 1,
+                "position": 0,
+                "created_at": "2026-09-03 21:06:38",
+                "updated_at": "2026-09-03 21:06:38"
+            },
+            {
+                "id": 6,
+                "name": "Ali C.",
+                "rating": 5,
+                "text": "Immer gute Zusammenarbeit sehr zu empfehlen.",
+                "source": "Google",
+                "project": "Das Landhaus Capfun",
+                "is_visible": 1,
+                "position": 10,
+                "created_at": "2026-09-03 21:12:06",
+                "updated_at": "2026-09-03 21:12:23"
+            },
+            {
+                "id": 7,
+                "name": "KE!N EINZELFALL e.V.",
+                "rating": 5,
+                "text": "Absolut empfehlenswert. Die Beratung war fachlich kompetent, sachlich und zuverlässig!\n\nWas für mich den entscheidenden Unterschied macht: Hier stimmen nicht nur Fachwissen und Professionalität, sondern auch die Menschlichkeit. Freundlich, zugewandt, respektvoll und auf Augenhöhe.\n\nEine Kombination, die man leider nicht überall findet: kompetent, schnell und vor allem menschlich. Klare Empfehlung und fünf Sterne!",
+                "source": "Google",
+                "project": null,
+                "is_visible": 1,
+                "position": 0,
+                "created_at": "2026-09-03 21:13:20",
+                "updated_at": "2026-09-03 21:13:20"
             }
         ],
         "team_members": [
