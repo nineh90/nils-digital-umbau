@@ -26,9 +26,26 @@
 
     {{-- Muss vor dem ersten Malen laufen, deshalb hier inline und nicht in
          app.js: die Auftritts-Animation versteckt ihre Abschnitte nur, wenn
-         JavaScript auch wirklich läuft. Ohne diese Zeile bliebe bei einem
-         Skriptfehler die halbe Seite unsichtbar. --}}
-    <script>document.documentElement.classList.add('js')</script>
+         JavaScript auch wirklich läuft. Stünde das Verstecken allein im
+         Stylesheet, bliebe ohne JavaScript die halbe Seite unsichtbar.
+
+         Das allein reicht aber nicht. Die Klasse sagt nur „JavaScript ist
+         eingeschaltet" – sie sagt nicht, dass app.js auch angekommen ist.
+         Scheitert das Modul (Netzwerk, Fehler in einer früheren Zeile, ein
+         Browser, der IntersectionObserver nicht kennt), ist alles versteckt
+         und niemand blendet es je wieder ein: die Seite scrollt dann durch
+         leere Flächen. Deshalb meldet app.js sich zurück, sobald der
+         Beobachter steht – bleibt die Meldung aus, wird das Verstecken nach
+         zwei Sekunden zurückgenommen. --}}
+    <script>
+        document.documentElement.classList.add('js');
+
+        setTimeout(function () {
+            if (! window.auftrittBereit) {
+                document.documentElement.classList.remove('js');
+            }
+        }, 2000);
+    </script>
 
     <x-seo
         :titel="$titel"

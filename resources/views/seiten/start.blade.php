@@ -132,9 +132,14 @@
                         {{-- Die beiden Fenster sind je 88% breit und das
                              zweite um 12% eingerückt: zusammen genau 100%. So
                              überlappen sie sichtbar, ohne aus der Spalte zu
-                             laufen. --}}
+                             laufen.
+
+                             Die Rechnung gilt aber erst, sobald das zweite
+                             Fenster da ist. Darunter steht das erste allein –
+                             die 12% waren dann nur eine Lücke an der rechten
+                             Kante. Bis sm nimmt es deshalb die volle Breite. --}}
                         <div class="mx-auto max-w-lg">
-                            <div class="w-[88%]">
+                            <div class="w-full sm:w-[88%]">
                                 <x-projektfenster :projekt="$heldenprojekte[0]" neigung="-2" sofort />
                             </div>
 

@@ -96,3 +96,11 @@ const beobachter = new IntersectionObserver(
 );
 
 document.querySelectorAll('[data-auftritt]').forEach((el) => beobachter.observe(el));
+
+/*
+ * Rückmeldung an das Inline-Skript im Layout: der Beobachter steht, das
+ * Verstecken darf bestehen bleiben. Bleibt diese Zeile aus – weil das Modul
+ * gar nicht ankam oder vorher etwas geworfen hat –, blendet das Layout nach
+ * zwei Sekunden alles ein, statt die Seite leer zu lassen.
+ */
+window.auftrittBereit = true;
