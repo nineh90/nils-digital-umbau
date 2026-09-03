@@ -11,7 +11,10 @@
     [$statusLabel, $statusKlasse] = $stati[$projekt->status] ?? [null, null];
 @endphp
 
-<article class="group relative flex flex-col overflow-hidden rounded-2xl border border-linie bg-karte transition-colors hover:border-akzent/40">
+{{-- h-full, damit die Kachel die volle Zeilenhoehe des Rasters einnimmt: auf der
+     Startseite liegt zwischen Raster und Kachel noch der Auftritts-Wrapper, der
+     die Streckung sonst schluckt und die Kacheln unterschiedlich hoch laesst. --}}
+<article class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-linie bg-karte transition-colors hover:border-akzent/40">
 
     <div class="aspect-[2/1] overflow-hidden bg-flaeche-2">
         @if ($projekt->image)
@@ -44,12 +47,16 @@
             </a>
         </h2>
 
-        <p class="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-text-leise">
+        {{-- Kein flex-1 auf dem Absatz: gestreckt wuerde die Box hoeher als drei
+             Zeilen, line-clamp setzt dann zwar seine Ellipsis, die vierte Zeile
+             bliebe darunter aber sichtbar. Den Rest der Hoehe nimmt mt-auto an
+             der Schlagwortzeile auf, die dadurch ueberall buendig unten sitzt. --}}
+        <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-text-leise">
             {{ $projekt->description }}
         </p>
 
         @if ($projekt->tags)
-            <div class="mt-4 flex flex-wrap gap-1.5">
+            <div class="mt-auto flex flex-wrap gap-1.5 pt-4">
                 @foreach (array_slice($projekt->tags, 0, 4) as $tag)
                     <span class="rounded border border-linie px-2 py-0.5 text-xs text-text-leise">{{ $tag }}</span>
                 @endforeach
