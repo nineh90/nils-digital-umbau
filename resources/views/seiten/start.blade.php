@@ -138,18 +138,51 @@
                              Fenster da ist. Darunter steht das erste allein –
                              die 12% waren dann nur eine Lücke an der rechten
                              Kante. Bis sm nimmt es deshalb die volle Breite. --}}
+                        {{-- Beide Fenster blättern durch dieselbe Liste,
+                             das hintere um die halbe Runde versetzt. Dadurch
+                             zeigen sie nie dasselbe Projekt, und es genügt
+                             eine Abfrage statt zweier, die sich gegenseitig
+                             ausschließen müssten.
+
+                             Nur das allererste Bild lädt sofort: es ist das
+                             größte Element im ersten Blickfeld. Die übrigen
+                             kommen nach, sie werden erst Sekunden später
+                             gebraucht. --}}
+                        @php
+                            $anzahl = $heldenprojekte->count();
+                            $versatz = intdiv($anzahl, 2);
+                        @endphp
+
                         <div class="mx-auto max-w-lg">
-                            <div class="w-full sm:w-[88%]">
-                                <x-projektfenster :projekt="$heldenprojekte[0]" neigung="-2" sofort />
+                            <div class="heldenstapel heldenstapel--{{ $anzahl }} w-full sm:w-[88%]"
+                                 style="--takt: 5s; --anzahl: {{ $anzahl }}">
+                                @foreach ($heldenprojekte as $i => $projekt)
+                                    <div class="heldenstapel__blatt" style="--stelle: {{ $i }}">
+                                        <x-projektfenster :projekt="$projekt" neigung="-2" :sofort="$i === 0" />
+                                    </div>
+                                @endforeach
                             </div>
 
                             {{-- Das zweite Fenster macht aus einem Bild eine
                                  Auswahl. Auf schmalen Geräten fällt es weg:
                                  dort stünden zwei versetzte Fenster
                                  übereinander nur im Weg. --}}
-                            @if ($heldenprojekte->count() > 1)
-                                <div class="relative -mt-14 ml-[12%] hidden w-[88%] sm:block">
-                                    <x-projektfenster :projekt="$heldenprojekte[1]" neigung="2" />
+                            @if ($anzahl > 1)
+                                <div class="heldenstapel heldenstapel--{{ $anzahl }} relative -mt-14 ml-[12%] hidden w-[88%] sm:block"
+                                     style="--takt: 5s; --anzahl: {{ $anzahl }}">
+                                    @foreach ($heldenprojekte as $i => $projekt)
+                                        {{-- Der Versatz steckt in der Stelle und nicht in
+                                             einer eigenen Variablen: nur so bleibt der
+                                             Verzug für jedes Blatt negativ. Ein positiver
+                                             hieße, dass die Animation noch gar nicht
+                                             begonnen hat – das Blatt zeigt dann seinen
+                                             Ruhezustand und ist sichtbar, obwohl schon ein
+                                             anderes läuft. --}}
+                                        <div class="heldenstapel__blatt"
+                                             style="--stelle: {{ ($i + $versatz) % $anzahl }}">
+                                            <x-projektfenster :projekt="$projekt" neigung="2" />
+                                        </div>
+                                    @endforeach
                                 </div>
                             @endif
                         </div>

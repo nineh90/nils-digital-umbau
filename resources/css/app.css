@@ -279,6 +279,94 @@
 
 /*
  * ---------------------------------------------------------------------------
+ * Blätternde Projektfenster im Hero
+ * ---------------------------------------------------------------------------
+ *
+ * Die Fenster zeigen nicht ein gewürfeltes Projekt, sondern blättern durch
+ * alle. Bewusst ohne JavaScript: der Hero steht über der Falz und muss sofort
+ * da sein, und ein Wechsel, der erst nach dem Laden eines Moduls anspringt,
+ * ist genau der Fall, den man nicht will.
+ *
+ * Alle Blätter liegen übereinander. Das erste bleibt im Fluss und gibt die
+ * Höhe vor – lägen alle absolut, hätte der Stapel keine und der Hero
+ * kollabierte.
+ *
+ * Der Takt kommt als Custom Property aus dem Markup, die Anzahl ebenfalls.
+ * Die Prozente in den Keyframes lassen sich dagegen nicht rechnen, deshalb
+ * steht unten je ein Satz pro Anzahl. Sichtbar ist ein Blatt 100/n Prozent
+ * der Runde, das Ein- und Ausblenden dauert immer die letzten vier Prozent.
+ */
+.heldenstapel {
+    position: relative;
+}
+
+.heldenstapel__blatt:not(:first-child) {
+    position: absolute;
+    inset: 0;
+}
+
+.heldenstapel__blatt {
+    animation: heldenblende calc(var(--takt) * var(--anzahl)) linear infinite;
+
+    /*
+     * Durchweg negativ, damit gleich beim Aufschlagen der Seite ein Blatt
+     * sichtbar ist statt erst nach der ersten Runde – und damit keines vor
+     * seinem Start seinen Ruhezustand zeigt, während schon ein anderes läuft.
+     * Der Versatz des zweiten Stapels ist deshalb bereits in --stelle
+     * eingerechnet.
+     */
+    animation-delay: calc((var(--stelle) - var(--anzahl)) * var(--takt));
+}
+
+/* Ein einzelnes Projekt hat nichts zum Blättern. */
+.heldenstapel--1 .heldenstapel__blatt {
+    animation: none;
+}
+
+@keyframes heldenblende {
+    0%   { opacity: 1; }
+    96%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.heldenstapel--2 .heldenstapel__blatt { animation-name: heldenblende-2; }
+.heldenstapel--3 .heldenstapel__blatt { animation-name: heldenblende-3; }
+.heldenstapel--4 .heldenstapel__blatt { animation-name: heldenblende-4; }
+.heldenstapel--5 .heldenstapel__blatt { animation-name: heldenblende-5; }
+.heldenstapel--6 .heldenstapel__blatt { animation-name: heldenblende-6; }
+
+@keyframes heldenblende-2 {
+    0%, 46%   { opacity: 1; }
+    50%, 96%  { opacity: 0; }
+    100%      { opacity: 1; }
+}
+
+@keyframes heldenblende-3 {
+    0%, 29%   { opacity: 1; }
+    33%, 96%  { opacity: 0; }
+    100%      { opacity: 1; }
+}
+
+@keyframes heldenblende-4 {
+    0%, 21%   { opacity: 1; }
+    25%, 96%  { opacity: 0; }
+    100%      { opacity: 1; }
+}
+
+@keyframes heldenblende-5 {
+    0%, 16%   { opacity: 1; }
+    20%, 96%  { opacity: 0; }
+    100%      { opacity: 1; }
+}
+
+@keyframes heldenblende-6 {
+    0%, 12%   { opacity: 1; }
+    16%, 96%  { opacity: 0; }
+    100%      { opacity: 1; }
+}
+
+/*
+ * ---------------------------------------------------------------------------
  * Auftritt beim Scrollen
  * ---------------------------------------------------------------------------
  *
@@ -358,5 +446,17 @@
     .hintergrund__raster {
         animation: none;
         translate: none;
+    }
+
+    /*
+     * Kein Blättern im Hero. Ohne Animation blieben alle Blätter
+     * übereinander sichtbar, deshalb hier ausdrücklich nur das erste.
+     */
+    .heldenstapel__blatt {
+        animation: none;
+    }
+
+    .heldenstapel__blatt:not(:first-child) {
+        display: none;
     }
 }

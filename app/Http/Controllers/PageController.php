@@ -71,10 +71,17 @@ class PageController extends Controller
              * Beides ist über die Redaktion steuerbar: wer ein Projekt im Hero
              * haben will, hinterlegt Bild und Adresse.
              */
+            /*
+             * Alle geeigneten, nicht nur zwei: die beiden Fenster im Hero
+             * blättern durch diese Liste, statt sie nur beim Seitenaufruf zu
+             * würfeln. Sechs ist die Obergrenze, für die es im Stylesheet
+             * einen Takt gibt – und mehr Bilder über der Falz will man
+             * ohnehin nicht laden.
+             */
             'heldenprojekte' => Project::featured()
                 ->whereNotNull('image')
                 ->where('link', 'like', 'http%')
-                ->reorder()->inRandomOrder()->limit(2)->get(),
+                ->reorder()->inRandomOrder()->limit(6)->get(),
 
             'gruppen' => ServiceCategory::with('services')->orderBy('position')->get(),
         ]);
