@@ -155,3 +155,6 @@ Homestead.yaml
 # gehören nicht in die Historie.
 /public/css/filament
 /public/js/filament
+
+# Sicherungen vor einem Inhaltstransfer - gehoeren der jeweiligen Maschine.
+/database/inhalt/vorher-*.json

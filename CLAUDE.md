@@ -230,10 +230,14 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
   `intern.nils-digital.de` und teilt weder Datenbank noch Sitzung – dafür braucht es dort eine
   Schnittstelle, hier einen Zugang und einen Zwischenspeicher, damit das Dashboard nicht bei
   jedem Aufruf auf einen fremden Server wartet. Bis dahin verlinkt das Widget nur.
-- **Datenübertragung lokal → Server** für den Umzug. Der Deploy fasst Inhalte bewusst nicht
-  an (`entrypoint.sh` migriert nur), es gibt also auch kein Werkzeug dafür. Gebraucht wird es
-  genau einmal: kurz vor dem Domain-Umzug wird der lokale Stand geschlossen auf den Server
-  gebracht. **Ab dann ist der Server die Wahrheit** und der Weg dreht sich um – lokal zieht man
-  sich von dort.
+- **Richtungswechsel der Inhalte.** Das Werkzeug steht seit September 2026:
+  `nd:inhalt-ausgeben` schreibt alle Inhaltstabellen nach `database/inhalt/inhalt.json`,
+  `nd:inhalt-einlesen` ersetzt sie damit auf dem Ziel – im Transaktionsrahmen, mit Sicherung
+  des vorherigen Stands und mit Nachziehen der PostgreSQL-Sequenzen. Der Weg lokal → Server ist
+  damit wiederholbar; die Datei reist über das Repo, weil der Deploy-Schlüssel auf `deploy.sh`
+  festgenagelt ist und kein `scp` zulässt. **Zugänge gehen nie mit** – `users` steht in
+  `App\Support\Inhalt::NICHT_UEBERTRAGEN`, weil lokal der Seeder-Vorgabewert darin liegt.
+  Offen ist nur noch der Wechsel selbst: sobald Startseiten-Texte, Fallstudien und
+  Kundenstimmen stehen, wird der Server die Wahrheit und es braucht den Rückweg.
 - **Hinweis-/Popup-System** für Aktionen und Feiertage ist geplant, aber noch nicht gebaut.
 - `legacy/` kann raus, sobald der Import endgültig abgeschlossen ist.
