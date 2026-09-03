@@ -149,7 +149,13 @@ einzige durchgehend farbige Element der Seite wäre damit das, über das wir kei
 haben. Stattdessen `<x-symbol name="chip" />`: Strichzeichnungen, die die Textfarbe erben.
 Neue Symbole kommen in die Liste in `components/symbol.blade.php`, keine Icon-Bibliothek.
 Einzelne Emojis sind geduldet, wo sie zu jemandes eigenen Worten gehören – etwa in einer
-zitierten Kundenstimme.
+zitierten Kundenstimme oder einem persönlichen Satz im Blog („angeschrieben 😊").
+
+Die Blogbeiträge sind danach einmal durchgegangen worden: aus Titeln, Teasern und
+Zwischenüberschriften ist alles raus, `👉`- und `➡️`-Zeilen sind zu echten Markdown-Listen
+geworden. Stehen geblieben sind zwölf Emojis in eigenen Sätzen. Für neue Beiträge gilt
+dieselbe Trennung: **Dekoration nein, Stimme ja.** Ein Titel bekommt nie eines – er landet in
+`<title>`, Open Graph und im Google-Snippet.
 
 **Barrierefreiheit ist gesetzt, nicht optional:** `prefers-reduced-motion` schaltet in
 `app.css` global Animationen und weiches Scrollen ab, es gibt einen Sprunglink, einen sichtbaren
@@ -211,7 +217,10 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
   müssen in die Redaktion wandern.
 - **Leistungs-Icons** liegen als Emoji in `services.icon` und müssen auf Symbolnamen umgestellt
   werden.
-- **Emojis im Fließtext** einiger Blogbeiträge (IDs 42–46) – Inhaltsentscheidung, nicht einfach
-  wegräumen.
+- **Datenübertragung lokal → Server** für den Umzug. Der Deploy fasst Inhalte bewusst nicht
+  an (`entrypoint.sh` migriert nur), es gibt also auch kein Werkzeug dafür. Gebraucht wird es
+  genau einmal: kurz vor dem Domain-Umzug wird der lokale Stand geschlossen auf den Server
+  gebracht. **Ab dann ist der Server die Wahrheit** und der Weg dreht sich um – lokal zieht man
+  sich von dort.
 - **Hinweis-/Popup-System** für Aktionen und Feiertage ist geplant, aber noch nicht gebaut.
 - `legacy/` kann raus, sobald der Import endgültig abgeschlossen ist.
