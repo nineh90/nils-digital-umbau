@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\Review;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\TeamMember;
@@ -152,5 +153,74 @@ class RedaktionTest extends TestCase
             ->get("/admin/services/{$leistung->id}/edit")
             ->assertOk()
             ->assertSee('Symbol');
+    }
+
+    /*
+     * Der Fall, der Nils gemeldet hat: ProjectForm bot image_fit als
+     * Datei-Upload an und dazu als Pflichtfeld – in einer Spalte, die "cover"
+     * oder "contain" enthält. Beim Speichern verlangte das Formular deshalb
+     * ein Bild, das es dort gar nicht geben kann.
+     */
+    public function test_bestehendes_projekt_laesst_sich_ohne_neues_bild_speichern(): void
+    {
+        $projekt = Project::create([
+            'slug' => 'ein-projekt',
+            'title' => 'Ein Projekt',
+            'description' => 'Beschreibung.',
+            'image' => 'assets/images/projekte/lerndex.png',
+            'image_fit' => 'cover',
+            'position' => 1,
+        ]);
+
+        $this->actingAs($this->angemeldet());
+
+        \Livewire\Livewire::test(
+            \App\Filament\Resources\Projects\Pages\EditProject::class,
+            // Project löst über den Slug auf, nicht über die ID.
+            ['record' => $projekt->slug]
+        )
+            ->fillForm(['title' => 'Anderer Titel'])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $projekt->refresh();
+
+        $this->assertSame('Anderer Titel', $projekt->title);
+        $this->assertSame('assets/images/projekte/lerndex.png', $projekt->image);
+    }
+
+    /*
+     * Bewertungen ohne Text sind der Normalfall – bei Google vergibt man oft
+     * nur Sterne. Das Formular verlangte den Text und die Spalte stand auf
+     * NOT NULL; eine reine Sternebewertung liess sich gar nicht anlegen.
+     */
+    public function test_kundenstimme_ohne_text_laesst_sich_anlegen(): void
+    {
+        $this->actingAs($this->angemeldet());
+
+        \Livewire\Livewire::test(\App\Filament\Resources\Reviews\Pages\CreateReview::class)
+            ->fillForm(['name' => 'Nur Sterne', 'rating' => 5, 'position' => 1])
+            ->call('create')
+            ->assertHasNoFormErrors();
+
+        $stimme = Review::where('name', 'Nur Sterne')->first();
+
+        $this->assertNotNull($stimme);
+        $this->assertNull($stimme->text);
+
+        // Zählt für den Schnitt, erscheint aber nicht als Zitat.
+        $this->assertTrue(Review::visible()->get()->contains($stimme));
+        $this->assertFalse(Review::vorzeigbar()->get()->contains($stimme));
+    }
+
+    /** Jede Liste und jedes Formular muss sich überhaupt aufbauen lassen. */
+    public function test_alle_uebersichten_rendern(): void
+    {
+        $this->actingAs($this->angemeldet());
+
+        foreach (['posts', 'projects', 'reviews', 'categories', 'services', 'service-categories', 'team-members'] as $pfad) {
+            $this->get("/admin/{$pfad}")->assertOk();
+            $this->get("/admin/{$pfad}/create")->assertOk();
+        }
     }
 }

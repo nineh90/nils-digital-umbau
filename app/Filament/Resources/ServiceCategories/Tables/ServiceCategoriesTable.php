@@ -13,25 +13,19 @@ class ServiceCategoriesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('position')
+            ->reorderable('position')
             ->columns([
-                TextColumn::make('slug')
-                    ->searchable(),
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('position')
-                    ->numeric()
+                    ->label('Gruppe')
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
+
+                TextColumn::make('services_count')
+                    ->label('Leistungen')
+                    ->counts('services')
+                    ->badge()
+                    ->color(fn ($state) => $state > 0 ? 'success' : 'gray'),
             ])
             ->recordActions([
                 EditAction::make(),

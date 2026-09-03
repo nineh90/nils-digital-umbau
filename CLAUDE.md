@@ -223,17 +223,14 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
 - **Startseiten-Texte** (Hero, „Was wir machen", Schlussabschnitt) stehen noch fest im Blade und
   müssen in die Redaktion wandern. Die Teamseite ist diesen Weg schon gegangen – ihre Migration
   taugt als Muster, weil sie die bestehenden Inhalte gleich mitnimmt.
-- **Redaktionsoberfläche aufräumen:** die Resources für Projekte, Kundenstimmen, Kategorien und
-  Leistungen sind noch der generierte Rohstand – englische Feldnamen, teils unsinnige Felder
-  (`ProjectForm` bietet `image_fit` als Datei-Upload an, obwohl dort „cover" oder „contain"
-  hineingehört). `PostForm` und `TeamMemberForm` zeigen, wie es aussehen soll. Ebenfalls offen:
-  hochgeladene Bilder zeigen im Formular keine Miniatur, nur den Dateinamen.
+- **Übersicht auf `/admin`** ist noch der leere Vorgabezustand; Kennzahlen wären dort gewünscht.
+  Alles andere in der Redaktion ist seit September 2026 überarbeitet: deutsche Beschriftungen,
+  Hilfetexte, Abschnitte, Sortieren per Ziehen. `PostForm` und `ProjectForm` sind der Maßstab
+  für neue Resources.
 - **Datenübertragung lokal → Server** für den Umzug. Der Deploy fasst Inhalte bewusst nicht
   an (`entrypoint.sh` migriert nur), es gibt also auch kein Werkzeug dafür. Gebraucht wird es
   genau einmal: kurz vor dem Domain-Umzug wird der lokale Stand geschlossen auf den Server
   gebracht. **Ab dann ist der Server die Wahrheit** und der Weg dreht sich um – lokal zieht man
   sich von dort.
 - **Hinweis-/Popup-System** für Aktionen und Feiertage ist geplant, aber noch nicht gebaut.
-- **Übersicht auf `/admin`:** das Filament-Dashboard ist noch der leere Vorgabezustand. Gewünscht
-  sind Kennzahlen auf einen Blick – Anzahl Beiträge, Projekte, Kundenstimmen und Ähnliches.
 - `legacy/` kann raus, sobald der Import endgültig abgeschlossen ist.

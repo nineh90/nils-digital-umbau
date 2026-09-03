@@ -4,21 +4,34 @@ namespace App\Filament\Resources\ServiceCategories\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class ServiceCategoryForm
 {
     public static function configure(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                TextInput::make('slug')
-                    ->required(),
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('position')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-            ]);
+        return $schema->components([
+            TextInput::make('name')
+                ->label('Gruppe')
+                ->required()
+                ->maxLength(60)
+                ->helperText('Überschrift eines Abschnitts auf der Leistungsseite.')
+                ->live(onBlur: true)
+                ->afterStateUpdated(fn (string $operation, $state, callable $set) => $operation === 'create'
+                    ? $set('slug', Str::slug((string) $state, '-', 'de'))
+                    : null),
+
+            TextInput::make('slug')
+                ->label('Kennung')
+                ->required()
+                ->unique(ignoreRecord: true)
+                ->helperText('Dient als Sprungmarke auf der Leistungsseite.'),
+
+            TextInput::make('position')
+                ->label('Reihenfolge')
+                ->numeric()
+                ->default(0)
+                ->helperText('Kleinere Zahl steht weiter oben.'),
+        ]);
     }
 }
