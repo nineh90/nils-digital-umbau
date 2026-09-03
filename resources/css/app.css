@@ -194,27 +194,61 @@
  * sich sichtbar. Vorher waren es 0,06 px je gescrolltem Pixel – rechnerisch
  * eine Parallaxe, in der Wahrnehmung ein Standbild.
  */
+/*
+ * Die Lichter wandern als Welle, nicht als Strecke.
+ *
+ * Zwei Anläufe waren vorher falsch. Die Verschiebung an der Scroll-Position
+ * in Pixeln zwingt zu einem winzigen Faktor, sonst schiebt sich die Ebene aus
+ * dem Bild. Der Weg über den Anteil der Seite behebt das nicht, er verteilt
+ * es nur: 85vh klingen nach viel, verteilen sich auf einer zehn Bildschirme
+ * langen Seite aber auf 8vh je Bildschirm – und gesehen wird immer nur ein
+ * Bildschirm. Beide Male bewegten sich rund 50px, während man eine ganze
+ * Seitenhöhe scrollt.
+ *
+ * Der Sinus löst beides zugleich: gekoppelt an die Scroll-Strecke in Pixeln,
+ * also unabhängig davon, wie lang die Seite ist – und trotzdem begrenzt,
+ * weil er zurückkehrt.
+ *
+ * Entscheidend ist nicht der Ausschlag, sondern die Steigung: gesehen wird
+ * immer nur eine Bildschirmhöhe, und was zählt, ist der Weg in genau dieser
+ * Strecke. Er ist Ausschlag geteilt durch den Teiler – 40vh auf 900 ergeben
+ * rund 200px je Bildschirm, wo 26vh auf 2400 nur 47px ergaben. Wer hier
+ * schraubt, ändert beide Zahlen zusammen.
+ *
+ * Die zweite Welle hat eine andere Länge und läuft gegen die erste, damit
+ * sich der Abstand zwischen den Lichtern ändert und nicht das Bild als
+ * Ganzes rutscht.
+ *
+ * Gerechnet wird im Stylesheet, JavaScript liefert nur die Zahl.
+ *
+ * will-change hält die Ebene als eigene Schicht im Compositor: dann wird sie
+ * beim Scrollen verschoben statt neu gezeichnet. Ohne das kostet jedes
+ * Scroll-Bild das Neuzeichnen zweier bildschirmfüllender Farbverläufe, was
+ * auf dem Handy nicht zuverlässig in ein Bild passt.
+ */
 .hintergrund__schleier--eins {
-    top: -35vh;
+    top: -30vh;
     right: -15vw;
     width: 85vw;
     height: 85vw;
-    background: radial-gradient(circle, rgba(0, 188, 212, 0.18), transparent 65%);
+    background: radial-gradient(circle, rgba(0, 188, 212, 0.2), transparent 60%);
     translate:
-        calc(var(--scroll-anteil, 0) * -14vw)
-        calc(var(--scroll-anteil, 0) * 85vh);
+        calc(cos(var(--scroll-y, 0) / 1500 * 1rad) * 7vw - 7vw)
+        calc(sin(var(--scroll-y, 0) / 900 * 1rad) * 40vh);
+    will-change: transform;
     animation: driften 26s ease-in-out infinite alternate;
 }
 
 .hintergrund__schleier--zwei {
-    bottom: -40vh;
+    bottom: -35vh;
     left: -20vw;
     width: 75vw;
     height: 75vw;
-    background: radial-gradient(circle, rgba(0, 188, 212, 0.13), transparent 65%);
+    background: radial-gradient(circle, rgba(0, 188, 212, 0.15), transparent 60%);
     translate:
-        calc(var(--scroll-anteil, 0) * 12vw)
-        calc(var(--scroll-anteil, 0) * -75vh);
+        calc(sin(var(--scroll-y, 0) / 1900 * 1rad) * 8vw)
+        calc(sin(var(--scroll-y, 0) / 1250 * 1rad) * -34vh);
+    will-change: transform;
     animation: driften 34s ease-in-out infinite alternate-reverse;
 }
 
@@ -235,7 +269,7 @@
         linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
     background-size: 72px 72px;
     mask-image: radial-gradient(ellipse 100% 55% at 50% 0%, #000 5%, transparent 65%);
-    translate: 0 calc(var(--scroll-anteil, 0) * 6vh);
+    translate: 0 calc(sin(var(--scroll-y, 0) / 2600 * 1rad) * 2.5vh);
 }
 
 @keyframes driften {
@@ -270,12 +304,40 @@
     translate: 0 2.2rem;
     transition:
         opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) var(--auftritt-verzug, 0ms),
-        translate 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) var(--auftritt-verzug, 0ms);
+        translate 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) var(--auftritt-verzug, 0ms),
+        scale 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) var(--auftritt-verzug, 0ms);
+}
+
+/*
+ * Die Richtung setzt app.js nach der Lage im Raster: was links steht, kommt
+ * von links herein, was rechts steht, von rechts. Kommt alles von unten, wirkt
+ * ein mehrspaltiges Raster wie eine Jalousie – die Kacheln sagen dann nichts
+ * darüber aus, wo sie hingehören.
+ *
+ * Untereinander gibt es kein Links und Rechts mehr; dort bleibt es bei der
+ * Bewegung von unten, und genau deshalb steht die Richtung im Markup und
+ * nicht in einer Medienabfrage: sie wird neu bestimmt, wenn sich die
+ * Spaltenzahl ändert.
+ */
+.js [data-aus='links'] {
+    translate: -2.75rem 0;
+}
+
+.js [data-aus='rechts'] {
+    translate: 2.75rem 0;
+}
+
+/* Für große, einzeln stehende Flächen: die kommen nicht von einer Seite,
+   sondern treten hervor. */
+.js [data-aus='naeher'] {
+    translate: none;
+    scale: 0.955;
 }
 
 .js [data-auftritt].ist-da {
     opacity: 1;
     translate: none;
+    scale: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -290,6 +352,8 @@
         transition: none;
     }
 
+    /* Gilt auch für die Scroll-Zeitleisten-Variante: animation: none nimmt
+       beide Schichten zurück, weil sie über dieselbe Eigenschaft laufen. */
     .hintergrund__schleier,
     .hintergrund__raster {
         animation: none;

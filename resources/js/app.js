@@ -130,7 +130,68 @@ const beobachter = new IntersectionObserver((eintraege) => {
     });
 }, { rootMargin: '-8% 0px -22% 0px' });
 
-document.querySelectorAll('[data-auftritt]').forEach((el) => beobachter.observe(el));
+/*
+ * Richtung nach der Lage im Raster.
+ *
+ * Verglichen wird die Mitte der Kachel mit der Mitte ihres Rasters: was
+ * deutlich links sitzt, kommt von links herein, was rechts sitzt, von rechts.
+ * Der tote Bereich in der Mitte ist bewusst breit – eine mittlere Kachel in
+ * einem Dreierraster soll von unten kommen und nicht zufällig zur einen oder
+ * anderen Seite kippen.
+ *
+ * Bei einer Spalte liegen alle Kacheln auf der Mitte, damit fällt die
+ * Seitwärtsbewegung von selbst weg. Genau deshalb wird gemessen und nicht
+ * eine Medienabfrage geschrieben: die Raster wechseln bei verschiedenen
+ * Breiten die Spaltenzahl, und beim Drehen des Handys ändert sie sich noch
+ * einmal.
+ */
+const richtungSetzen = (el) => {
+    if (el.dataset.aus === 'naeher') {
+        return;
+    }
+
+    const raster = el.parentElement;
+
+    if (! raster) {
+        return;
+    }
+
+    const kachel = el.getBoundingClientRect();
+    const umgebung = raster.getBoundingClientRect();
+
+    if (kachel.width === 0 || umgebung.width - kachel.width < 40) {
+        delete el.dataset.aus;
+
+        return;
+    }
+
+    const versatz =
+        (kachel.left + kachel.width / 2) - (umgebung.left + umgebung.width / 2);
+
+    if (Math.abs(versatz) < umgebung.width * 0.12) {
+        delete el.dataset.aus;
+
+        return;
+    }
+
+    el.dataset.aus = versatz < 0 ? 'links' : 'rechts';
+};
+
+const auftrittsElemente = [...document.querySelectorAll('[data-auftritt]')];
+
+auftrittsElemente.forEach((el) => {
+    richtungSetzen(el);
+    beobachter.observe(el);
+});
+
+// Beim Drehen des Handys und beim Ziehen am Fenster wechseln die Raster
+// zwischen nebeneinander und gestapelt – dann stimmt die Richtung nicht mehr.
+let umbruchZaehler;
+
+window.addEventListener('resize', () => {
+    clearTimeout(umbruchZaehler);
+    umbruchZaehler = setTimeout(() => auftrittsElemente.forEach(richtungSetzen), 200);
+}, { passive: true });
 
 /*
  * Rückmeldung an das Inline-Skript im Layout: der Beobachter steht, das
