@@ -28,9 +28,18 @@ document.querySelectorAll('[data-einbettung]').forEach((behaelter) => {
 /*
  * Hintergrund-Parallaxe.
  *
- * Setzt die Scroll-Position als CSS-Eigenschaft --scroll-y; die Verschiebung
- * selbst rechnet das Stylesheet. So bleibt die Gestaltung in app.css und hier
- * steht nur die Zahl.
+ * Setzt zwei Werte als CSS-Eigenschaften; die Verschiebung selbst rechnet das
+ * Stylesheet. So bleibt die Gestaltung in app.css und hier steht nur die Zahl.
+ *
+ * --scroll-y ist die reine Scroll-Position in Pixeln. Damit lässt sich nur
+ * sehr zaghaft arbeiten: der Faktor muss zur längsten Seite passen, sonst
+ * schiebt sich die Ebene auf halber Strecke aus dem Bild. Auf kurzen Seiten
+ * bewegt sich dann sichtbar nichts mehr.
+ *
+ * --scroll-anteil ist stattdessen der zurückgelegte Anteil der Seite, 0 bis 1.
+ * Der Weg lässt sich damit in vh angeben und ist am Ende jeder Seite genau
+ * aufgebraucht – kurze wie lange. Erst dadurch kann die Bewegung groß genug
+ * sein, dass man sie überhaupt bemerkt.
  *
  * requestAnimationFrame drosselt das Ganze auf einen Wert pro Bild: das
  * scroll-Ereignis feuert deutlich öfter, und jedes Schreiben in den Stil löst
@@ -44,7 +53,15 @@ if (! bewegungAus.matches) {
     let angefordert = false;
 
     const schreiben = () => {
-        document.documentElement.style.setProperty('--scroll-y', window.scrollY);
+        const wurzel = document.documentElement;
+        const strecke = wurzel.scrollHeight - window.innerHeight;
+
+        wurzel.style.setProperty('--scroll-y', window.scrollY);
+        wurzel.style.setProperty(
+            '--scroll-anteil',
+            strecke > 0 ? Math.min(window.scrollY / strecke, 1) : 0
+        );
+
         angefordert = false;
     };
 
@@ -55,45 +72,63 @@ if (! bewegungAus.matches) {
         }
     }, { passive: true });
 
+    // Beim Drehen des Handys und beim Ziehen am Fenster ändert sich die
+    // Strecke – der Anteil wäre sonst bis zum nächsten Scrollen falsch.
+    window.addEventListener('resize', schreiben, { passive: true });
+
     schreiben();
 }
 
 /*
  * Auftritt beim Scrollen.
  *
- * Alles mit data-auftritt steigt beim Erscheinen sanft auf. Ein
- * IntersectionObserver macht das ohne eigene Scroll-Rechnerei – der Browser
- * meldet sich, wenn ein Element in Sichtweite kommt.
+ * Alles mit data-auftritt steigt beim Erscheinen sanft auf – und blendet
+ * wieder aus, sobald es das Bild verlässt. Früher wurde das Element nach dem
+ * ersten Auftritt abgemeldet: es gab also gar kein Ausblenden, und beim
+ * Zurückscrollen stand alles hart da, während es beim Vorwärtsscrollen
+ * hereinkam. Genau dieser Unterschied fällt auf.
  *
- * Nach dem ersten Auftritt wird das Element abgemeldet: es soll einmal
- * erscheinen, nicht bei jedem Vorbeiscrollen erneut auf- und abblenden.
+ * Der eingezogene Rand entscheidet über den Zeitpunkt. Unten 22%: die
+ * Einblendung startet, wenn der Abschnitt ein Stück im Bild ist, nicht schon
+ * wenn seine erste Pixelreihe die Kante streift. Oben nur 8% – zöge man dort
+ * ebenso viel ein, verschwände ein Text, während man ihn oben am Rand noch
+ * liest. Die beiden Werte dürfen deshalb ruhig verschieden sein.
  *
- * rootMargin zieht die untere Kante 10% nach oben, damit die Bewegung schon
- * anläuft, während das Element hereinkommt, statt erst wenn es steht.
+ * Kein threshold: ein Abschnitt, der höher ist als das Fenster, käme mit einer
+ * Mindestfläche nie über die Schwelle und bliebe unsichtbar.
  */
-const beobachter = new IntersectionObserver(
-    (eintraege, selbst) => {
-        eintraege.forEach((eintrag) => {
-            if (! eintrag.isIntersecting) {
-                return;
-            }
+const beobachter = new IntersectionObserver((eintraege) => {
+    /*
+     * Versetzter Einsatz nur, wenn wirklich mehrere Kacheln gemeinsam
+     * hereinkommen – im mehrspaltigen Raster liest sich das als eine Bewegung
+     * statt als Umschalten.
+     *
+     * Auf schmalen Geräten steht dasselbe Raster untereinander, dort kommt
+     * jede Kachel für sich. Eine Verzögerung wäre dann keine Staffelung mehr,
+     * sondern nur noch Trägheit: die Kachel steht schon im Bild und fängt erst
+     * eine Viertelsekunde später an. Deshalb hängt der Verzug an der Zahl der
+     * Meldungen und nicht an einem Umbruchpunkt – das trifft auch den Fall,
+     * dass jemand das Fenster schmal zieht.
+     */
+    const staffeln = eintraege.filter((eintrag) => eintrag.isIntersecting).length > 1;
+    let stufe = 0;
 
-            /*
-             * Versetzter Einsatz innerhalb einer Gruppe: die Kacheln eines
-             * Rasters erscheinen nacheinander statt alle gleichzeitig. Das
-             * liest sich als Bewegung, nicht als Umschalten. Bei mehr als
-             * sechs Elementen wird nicht weiter gestaffelt – sonst wartet man
-             * am Ende einer langen Liste spürbar.
-             */
-            const stufe = Number(eintrag.target.dataset.auftritt) || 0;
-            eintrag.target.style.transitionDelay = `${Math.min(stufe, 6) * 70}ms`;
+    eintraege.forEach((eintrag) => {
+        if (eintrag.isIntersecting) {
+            eintrag.target.style.setProperty(
+                '--auftritt-verzug',
+                `${staffeln ? Math.min(stufe++, 5) * 60 : 0}ms`
+            );
             eintrag.target.classList.add('ist-da');
+            return;
+        }
 
-            selbst.unobserve(eintrag.target);
-        });
-    },
-    { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
-);
+        // Hinaus immer ohne Verzug: beim Verlassen wirkt eine Verzögerung wie
+        // ein Hänger, nicht wie Absicht.
+        eintrag.target.style.setProperty('--auftritt-verzug', '0ms');
+        eintrag.target.classList.remove('ist-da');
+    });
+}, { rootMargin: '-8% 0px -22% 0px' });
 
 document.querySelectorAll('[data-auftritt]').forEach((el) => beobachter.observe(el));
 
