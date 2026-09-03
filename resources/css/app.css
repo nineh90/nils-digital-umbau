@@ -457,6 +457,48 @@
     scale: none;
 }
 
+/*
+ * Umschalter zwischen monatlicher und einmaliger Ansicht der Preise.
+ *
+ * Zwei Radios plus :has() – ohne eine Zeile JavaScript. Radios, weil genau
+ * eine Ansicht gilt: Browser und Screenreader kennen die Gruppe von Haus aus,
+ * die Pfeiltasten wechseln, und ohne CSS stehen einfach beide Preise
+ * beschriftet untereinander statt einer leeren Karte.
+ *
+ * Die Regeln hängen an .preise, nicht am :root – der Umschalter steuert nur
+ * seinen eigenen Abschnitt.
+ */
+.preiswahl__knopf {
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--color-text-leise);
+    transition: color 150ms, background-color 150ms;
+}
+
+.preiswahl__knopf:hover {
+    color: var(--color-text);
+}
+
+/* Der sichtbare Fokusrahmen sitzt auf dem Label, weil das Radio selbst
+   ausgeblendet ist – ohne das wäre der Umschalter per Tastatur unsichtbar. */
+.preiswahl__radio:focus-visible + .preiswahl__knopf {
+    outline: 2px solid var(--color-akzent);
+    outline-offset: 2px;
+}
+
+.preiswahl__radio:checked + .preiswahl__knopf {
+    background: var(--color-akzent);
+    color: var(--color-flaeche);
+    font-weight: 500;
+}
+
+.preise:has(#preis-monatlich:checked) [data-preis='einmalig'],
+.preise:has(#preis-einmalig:checked) [data-preis='monatlich'] {
+    display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
     /*
      * Die globale Regel weiter oben kürzt nur die Dauer – der Ausgangszustand

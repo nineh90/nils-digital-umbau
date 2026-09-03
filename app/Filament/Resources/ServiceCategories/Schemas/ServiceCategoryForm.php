@@ -27,6 +27,11 @@ class ServiceCategoryForm
                 ->unique(ignoreRecord: true)
                 ->helperText('Dient als Sprungmarke auf der Leistungsseite.'),
 
+            TextInput::make('note')
+                ->label('Hinweis')
+                ->maxLength(160)
+                ->helperText('Ein Satz unter der Überschrift – für alles, was sonst am einzelnen Preis missverstanden wird, etwa dass eine Erweiterung zusätzlich zu einem Paket gebucht wird.'),
+
             TextInput::make('position')
                 ->label('Reihenfolge')
                 ->numeric()

@@ -33,8 +33,18 @@ class ServicesTable
                     ->placeholder('ohne'),
 
                 TextColumn::make('price')
-                    ->label('Preis')
+                    ->label('Einmalig')
                     ->state(fn ($record) => $record->priceLabel() ?? 'auf Anfrage')
+                    ->sortable(),
+
+                // Zweite Spalte statt einer gemeinsamen: die beiden Preise
+                // gehoeren zusammen, aber wer sie pflegt, muss auf einen Blick
+                // sehen, wo noch kein Abo hinterlegt ist.
+                TextColumn::make('monthly_price')
+                    ->label('Abo')
+                    ->state(fn ($record) => $record->aboLabel())
+                    ->description(fn ($record) => $record->aboBedingungen())
+                    ->placeholder('kein Abo')
                     ->sortable(),
             ])
             ->recordActions([
