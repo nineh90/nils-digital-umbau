@@ -1,32 +1,19 @@
 @php
-    $team = [
-        [
-            'name' => 'Nils Nehring',
-            'rolle' => 'Gründer & Lead-Entwickler',
-            'bild' => 'assets/images/sunny-nils.jpg',
-            'text' => 'Nils ist Gründer von Nils-Digital und dein direkter Ansprechpartner für Konzept, Umsetzung und Kommunikation. Er entwickelt Webseiten, Apps und digitale Lösungen, die nicht nur gut aussehen, sondern echte Ergebnisse liefern – von der ersten Idee bis zum Launch.',
-            'faehigkeiten' => ['Webdesign', 'Frontend', 'Backend', 'KI-Automatisierung', 'SEO', 'Projektleitung'],
-            'merkmal' => ['Arbeitsweise', 'Direkte Kommunikation, kurze Wege, transparente Absprachen. Wer dir antwortet, hat auch gebaut, worum es geht.'],
-        ],
-        [
-            'name' => 'Kevin',
-            'rolle' => 'Entwickler',
-            'bild' => null,
-            'text' => 'Kevin sorgt dafür, dass alles technisch sauber, stabil und zuverlässig läuft – besonders wenn Projekte komplex werden. Mit seinem Blick fürs Detail und strukturiertem Code liefert er genau die technische Tiefe, die anspruchsvolle Projekte brauchen.',
-            'faehigkeiten' => ['JavaScript', 'Frontend', 'Backend', 'Clean Code', 'Problemlösung'],
-            'merkmal' => ['Stärke', 'Kevin hat in kürzester Zeit über 70 Tickets umgesetzt – präzise, strukturiert und schneller als erwartet.'],
-        ],
-    ];
-
+    /*
+     * Die Personen kommen aus der Redaktion, nicht mehr aus einem Array hier
+     * oben. Der Schema.org-Block baut auf derselben Sammlung auf – so kann
+     * eine neue Person nicht in der Auszeichnung fehlen, weil sie jemand nur
+     * an einer von zwei Stellen eingetragen hat.
+     */
     $jsonld = [
         '@context' => 'https://schema.org',
         '@type' => 'Organization',
         'name' => 'Nils-Digital',
         'url' => url('/'),
-        'employee' => collect($team)->map(fn ($m) => [
+        'employee' => $team->map(fn ($person) => [
             '@type' => 'Person',
-            'name' => $m['name'],
-            'jobTitle' => $m['rolle'],
+            'name' => $person->name,
+            'jobTitle' => $person->role,
         ])->all(),
     ];
 @endphp
@@ -46,34 +33,43 @@
             @foreach ($team as $person)
                 <article class="overflow-hidden rounded-2xl border border-linie bg-karte sm:flex">
                     <div class="shrink-0 sm:w-52">
-                        @if ($person['bild'])
-                            <img src="/{{ $person['bild'] }}" alt="{{ $person['name'] }}"
+                        @if ($person->image)
+                            <img src="/{{ ltrim($person->image, '/') }}" alt="{{ $person->name }}"
                                  class="h-56 w-full object-cover sm:h-full">
                         @else
                             {{-- Ohne Foto ein Monogramm statt einer leeren Fläche. --}}
                             <div class="flex h-56 w-full items-center justify-center bg-flaeche-2 font-display text-5xl text-akzent sm:h-full"
                                  aria-hidden="true">
-                                {{ mb_substr($person['name'], 0, 1) }}
+                                {{ $person->monogramm() }}
                             </div>
                         @endif
                     </div>
 
                     <div class="flex-1 p-6">
-                        <h2 class="text-xl">{{ $person['name'] }}</h2>
-                        <p class="text-sm text-akzent">{{ $person['rolle'] }}</p>
+                        <h2 class="text-xl">{{ $person->name }}</h2>
+                        <p class="text-sm text-akzent">{{ $person->role }}</p>
 
-                        <p class="mt-4 leading-relaxed text-text-leise">{{ $person['text'] }}</p>
+                        <p class="mt-4 leading-relaxed text-text-leise">{{ $person->bio }}</p>
 
-                        <div class="mt-5 flex flex-wrap gap-1.5">
-                            @foreach ($person['faehigkeiten'] as $f)
-                                <span class="rounded border border-linie px-2 py-0.5 text-xs text-text-leise">{{ $f }}</span>
-                            @endforeach
-                        </div>
+                        @if ($person->skills)
+                            <div class="mt-5 flex flex-wrap gap-1.5">
+                                @foreach ($person->skills as $schlagwort)
+                                    <span class="rounded border border-linie px-2 py-0.5 text-xs text-text-leise">{{ $schlagwort }}</span>
+                                @endforeach
+                            </div>
+                        @endif
 
-                        <p class="mt-5 border-l-2 border-akzent pl-4 text-sm text-text-leise">
-                            <strong class="text-text">{{ $person['merkmal'][0] }}</strong> —
-                            {{ $person['merkmal'][1] }}
-                        </p>
+                        {{-- Beides optional: eine neue Person darf ohne den
+                             hervorgehobenen Satz auskommen, ohne dass ein
+                             Gedankenstrich ins Leere zeigt. --}}
+                        @if ($person->highlight_text)
+                            <p class="mt-5 border-l-2 border-akzent pl-4 text-sm text-text-leise">
+                                @if ($person->highlight_label)
+                                    <strong class="text-text">{{ $person->highlight_label }}</strong> —
+                                @endif
+                                {{ $person->highlight_text }}
+                            </p>
+                        @endif
                     </div>
                 </article>
             @endforeach

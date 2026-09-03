@@ -61,7 +61,7 @@ werden**.
 ```bash
 php artisan serve      # → http://localhost:8000
 npm run dev            # Vite, Assets + HMR
-php artisan test       # 65 Tests
+php artisan test       # 74 Tests
 ```
 
 Beides muss laufen: ohne Vite fehlen Stylesheet und Schriften.
@@ -103,6 +103,7 @@ gehören deshalb nicht fest ins Blade, sondern in ein Modell mit Filament-Resour
 | `projects` | `Project` | Referenzen, `is_featured` steuert die Startseite |
 | `service_categories` + `services` | `Service` | Leistungen und Preise |
 | `reviews` | `Review` | Kundenstimmen |
+| `team_members` | `TeamMember` | Die Personen auf `/team` |
 
 Badge-Farben stehen jetzt **als Spalte am Datensatz**, nicht mehr als `.cat-…`-CSS-Regel pro
 Kategorie. Eine neue Kategorie braucht deshalb keine CSS-Änderung mehr.
@@ -214,7 +215,13 @@ Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das 
   Dabei `noindex` entfernen und die Sitemap bei Google einreichen.
 - **Startseiten-Hero** hat noch kein Motiv, nur einen Farbverlauf als Platzhalter.
 - **Startseiten-Texte** (Hero, „Was wir machen", Schlussabschnitt) stehen noch fest im Blade und
-  müssen in die Redaktion wandern.
+  müssen in die Redaktion wandern. Die Teamseite ist diesen Weg schon gegangen – ihre Migration
+  taugt als Muster, weil sie die bestehenden Inhalte gleich mitnimmt.
+- **Redaktionsoberfläche aufräumen:** die Resources für Projekte, Kundenstimmen, Kategorien und
+  Leistungen sind noch der generierte Rohstand – englische Feldnamen, teils unsinnige Felder
+  (`ProjectForm` bietet `image_fit` als Datei-Upload an, obwohl dort „cover" oder „contain"
+  hineingehört). `PostForm` und `TeamMemberForm` zeigen, wie es aussehen soll. Ebenfalls offen:
+  hochgeladene Bilder zeigen im Formular keine Miniatur, nur den Dateinamen.
 - **Leistungs-Icons** liegen als Emoji in `services.icon` und müssen auf Symbolnamen umgestellt
   werden.
 - **Datenübertragung lokal → Server** für den Umzug. Der Deploy fasst Inhalte bewusst nicht

@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\TeamMember;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -76,5 +77,52 @@ class RedaktionTest extends TestCase
             ->get('/admin/projects')
             ->assertOk()
             ->assertSee('Fahrlehrerin Sarah');
+    }
+
+    public function test_teamuebersicht_rendert(): void
+    {
+        $this->actingAs($this->angemeldet())
+            ->get('/admin/team-members')
+            ->assertOk()
+            ->assertSee('Nils Nehring');
+    }
+
+    public function test_teamformular_rendert(): void
+    {
+        $person = TeamMember::where('name', 'Nils Nehring')->firstOrFail();
+
+        $this->actingAs($this->angemeldet())
+            ->get("/admin/team-members/{$person->id}/edit")
+            ->assertOk()
+            ->assertSee('Vorstellungstext');
+    }
+
+    /*
+     * Das Foto liegt als Pfad im Datensatz, nicht als Upload der Redaktion –
+     * Nils' Bild kommt noch aus public/assets. Beim Speichern ueber das
+     * Formular darf es nicht verloren gehen, nur weil das Upload-Feld es nicht
+     * selbst hochgeladen hat.
+     */
+    public function test_speichern_behaelt_ein_vorhandenes_foto(): void
+    {
+        $person = TeamMember::where('name', 'Nils Nehring')->firstOrFail();
+        $bild = $person->image;
+
+        $this->assertNotNull($bild);
+
+        $this->actingAs($this->angemeldet());
+
+        \Livewire\Livewire::test(
+            \App\Filament\Resources\TeamMembers\Pages\EditTeamMember::class,
+            ['record' => $person->id]
+        )
+            ->fillForm(['role' => 'Gründer & Entwickler'])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $person->refresh();
+
+        $this->assertSame('Gründer & Entwickler', $person->role);
+        $this->assertSame($bild, $person->image);
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Project;
 use App\Models\Review;
 use App\Models\ServiceCategory;
+use App\Models\TeamMember;
 use Illuminate\View\View;
 
 /**
@@ -83,6 +84,13 @@ class PageController extends Controller
     {
         return view('seiten.leistungen', [
             'gruppen' => ServiceCategory::with('services')->orderBy('position')->get(),
+        ]);
+    }
+
+    public function team(): View
+    {
+        return view('seiten.team', [
+            'team' => TeamMember::visible()->get(),
         ]);
     }
 
