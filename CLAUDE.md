@@ -4,180 +4,214 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Projekt
 
-Offizielle Business-Website von **Nils-Digital** (Inhaber: Nils Nehring, info@nils-digital.de),
-live unter https://nils-digital.de, gehostet bei Strato (Apache), Deployment per FTP/Filemanager.
+Offizielle Business-Website von **Nils-Digital** (Inhaber: Nils Nehring, info@nils-digital.de).
 Leistungen: KI-Automatisierung, Web-Entwicklung, App-Entwicklung, individuelle Lösungen.
-Zielgruppe: KMU, Selbstständige, Freiberufler – Region Münster / Osnabrück / Ibbenbüren und deutschlandweit.
+Zielgruppe: KMU, Selbstständige, Freiberufler – Region Münster / Osnabrück / Ibbenbüren und
+deutschlandweit.
 
 Positionierung: professionell aber persönlich, "du bekommst mich direkt, kein anonymes Team".
-Alle Texte auf Deutsch, Du-Ansprache. Code-Kommentare ebenfalls auf Deutsch.
+Alle Texte auf Deutsch, Du-/Ihr-Ansprache. **Code, Kommentare, Klassennamen, Routen und
+Feldnamen ebenfalls auf Deutsch**, soweit es nicht Laravel-Konventionen bricht: Blade-Views und
+Komponenten heißen `kopfzeile`, `beitragskachel`, `seiten/leistungen`; Eloquent-Modelle und
+Migrationen bleiben englisch (`Post`, `Review`, `posts.published_at`), weil Laravel daraus
+Tabellennamen und Beziehungen ableitet.
+
+### Zwei Adressen, ein Stand
+
+| Adresse | Was dort läuft |
+|---|---|
+| `https://nils-digital.de` | **noch die alte statische Seite** bei Strato, unverändert |
+| `https://neu.nils-digital.de` | diese Laravel-Anwendung auf dem Hostinger-VPS, `noindex` |
+| `http://localhost:8000` | lokale Entwicklung – hier wird gearbeitet |
+
+Die Vorschau dient Nils ausschließlich dazu, das Layout auf echten Geräten zu prüfen. **Inhalte
+werden dort nicht gepflegt** und fließen nicht zurück; die lokale SQLite-Datei ist beim Bauen die
+Wahrheit. Der Domain-Umzug steht noch aus – bis dahin ist die alte Seite live.
+
+## Der Umbau (Stand: September 2026)
+
+Das Projekt war bis August 2026 eine statische HTML/CSS/JS-Seite mit einem kleinen PHP-Backend,
+per FTP auf einen Strato-Webspace kopiert. Inhalte lagen als JSON in `assets/data/`, Kopf- und
+Fußzeile wurden zur Laufzeit per `fetch()` nachgeladen, SEO-Tags für Blogbeiträge erst im Browser
+gesetzt.
+
+Seit dem Umbau ist es eine **Laravel-13-Anwendung mit Filament als Redaktion**. Die alte Seite
+liegt vollständig unter `legacy/` und ist nur noch Quelle für den Import – **kein Vorbild mehr**.
+Wer dort etwas nachschlägt, sollte wissen, dass die Lösung im neuen Stand meist bewusst anders ist:
+
+| Früher | Heute |
+|---|---|
+| `js/include.js` lud Header/Footer per `fetch()`, Nav-Links trugen `data-path` statt `href` | Blade-Layout `components/layouts/oeffentlich.blade.php`, echte `href`s, funktioniert ohne JS |
+| Inhalte in `assets/data/*.json`, von Hand gepflegt | Datenbank, gepflegt über Filament auf `/admin` |
+| Meta-Tags für Beiträge per `post.js` im Browser gesetzt | `<x-seo>` rendert alles serverseitig ins HTML |
+| Projekt-Karten doppelt (hart in `index.html` **und** in `projects.json`) | eine Quelle: Tabelle `projects` |
+| `sitemap.xml` von Hand gepflegt | `SitemapController` erzeugt sie aus der Datenbank |
+| Mini-Markdown-Parser in `js/post.js` | CommonMark serverseitig, `app/Support/Markdown.php` |
+| Deployment per FTP/Filemanager | Push auf `main` → GitHub Actions → SSH → Docker |
+| Cookie-Banner + Google Analytics nach Zustimmung | **kein Analytics, kein Banner** – Einbettungen laden erst auf Klick |
+
+Der Import läuft über `php artisan import:legacy`. **Ohne `--ueberschreiben` fasst er vorhandene
+Datensätze nicht an** – sobald in der Redaktion gearbeitet wurde, ist die Datenbank die Wahrheit
+und nicht mehr die JSON-Datei. Beiträge werden über `posts.legacy_id` wiedererkannt; dieses Feld
+trägt die 301-Weiterleitungen von `/pages/blog-post.html?id=N` und darf **nie neu vergeben
+werden**.
 
 ## Entwickeln & Testen
 
-Kein Build-Step, kein Paketmanager, kein Git-Repo. Reines HTML/CSS/JS + ein PHP-Backend.
-
-**Die Seite MUSS über HTTP ausgeliefert werden** – `file://` bricht, weil Header, Footer und
-alle Inhalte per `fetch()` nachgeladen werden:
-
 ```bash
-python3 -m http.server 8000      # → http://localhost:8000
-php -S localhost:8000            # nötig, wenn backend/*.php mitgetestet werden soll
+php artisan serve      # → http://localhost:8000
+npm run dev            # Vite, Assets + HMR
+php artisan test       # 65 Tests
 ```
 
-Warnung: `js/kontakt.js` postet an die **absolute Produktions-URL**
-`https://nils-digital.de/backend/contact.php` – ein lokaler Formular-Test verschickt echte Mails.
+Beides muss laufen: ohne Vite fehlen Stylesheet und Schriften.
 
-Deployment = Dateien per FTP/Filemanager auf den Strato-Webspace kopieren. **Die `.htaccess` ist
-eine versteckte Datei** – viele FTP-Clients zeigen sie standardmäßig nicht an ("versteckte Dateien
-anzeigen" aktivieren), sonst wird sie beim Upload stillschweigend übersprungen.
+- **Datenbank:** lokal SQLite (`database/database.sqlite`), auf dem Server PostgreSQL.
+  Migrationen müssen auf beiden laufen – keine SQLite- oder Postgres-Eigenheiten.
+- **Redaktionszugang lokal:** `info@nils-digital.de` / `umbau-lokal`. Das ist der bewusst
+  unbrauchbare Vorgabewert aus `DatabaseSeeder`; er greift nur, wenn `ADMIN_PASSWORT` leer und die
+  Umgebung nicht `production` ist. In `production` legt der Seeder ohne gesetztes `ADMIN_PASSWORT`
+  **gar keinen Zugang** an, sondern warnt – dort stattdessen `php artisan make:filament-user`.
+- **Mail:** `MAIL_MAILER=log` – das Kontaktformular verschickt lokal nichts, die Mails landen in
+  `storage/logs/laravel.log`. (Auf der alten Seite postete das Formular an die Produktions-URL;
+  ein lokaler Test verschickte echte Mails. Das ist vorbei.)
 
 ## Architektur
 
 ### Seitengerüst
-Jede Seite ist eine vollständige HTML-Datei (`index.html` im Root, alles andere in `pages/`).
-Header und Footer werden **nicht** in den Dateien dupliziert, sondern zur Laufzeit injiziert:
+`components/layouts/oeffentlich.blade.php` ist das Grundgerüst aller öffentlichen Seiten. Es
+zieht `<x-seo>`, die Schriften über `Vite::fonts()`, `<x-kopfzeile>` und `<x-fusszeile>` ein.
 
-- `js/include.js` erkennt an `location.pathname.includes("/pages/")`, ob relative Pfade ein `../`
-  brauchen, lädt `components/header.html` + `components/footer.html` in `<div id="header">` /
-  `<div id="footer">` und schreibt danach die `data-path`-Attribute der Nav-Links in echte `href`s um.
-- Nav-Links im Header tragen deshalb **kein `href`**, sondern `data-path="pages/blog.html"` bzw.
-  `data-path="index"`. Neue Menüpunkte immer nach diesem Muster ergänzen.
-- Nach dem Einfügen des Headers feuert `document` das Custom-Event **`headerLoaded`** – alles, was
-  Header-DOM braucht (Hamburger-Menü, Dropdown in `main.js`), muss darauf lauschen, nicht auf
-  `DOMContentLoaded`.
-- Der Footer-Callback ruft `initCookieBanner()` aus `main.js` auf, sobald er im DOM ist.
+- **Kopfzeile:** Navigation als Liste im Markup, aktiver Punkt über `request()->routeIs()`.
+  Untermenü und Menü auf schmalen Geräten laufen über `<details>` – aufklappbar ohne eine Zeile
+  JavaScript, von Haus aus per Tastatur bedienbar und für Screenreader korrekt ausgezeichnet.
+- **JavaScript** gibt es fast keins: `resources/js/app.js` enthält ausschließlich das Nachladen
+  der Einbettungen auf Klick. Es gibt **kein Framework, kein Alpine, kein jQuery**. Neue
+  Interaktion zuerst mit HTML und CSS versuchen (`<details>`, `:has()`, `:target`,
+  scroll-driven animations); JavaScript nur, wenn es ohne wirklich nicht geht, und dann so, dass
+  die Seite ohne JS benutzbar bleibt.
 
-Jede Seite lädt am Ende des `<body>`: `include.js`, `main.js` und optional ihr Seiten-Skript
-(`blog.js`, `post.js`, `projects.js`, `service-loader.js` + `service-schema.js`, `kontakt.js`).
+### Inhalte kommen aus der Datenbank
+`/admin` (Filament) ist die Redaktionsschicht. **Alles, was auf der Seite steht, soll dort
+pflegbar sein** – das ist eine ausdrückliche Anforderung, kein Nebenziel. Neue sichtbare Texte
+gehören deshalb nicht fest ins Blade, sondern in ein Modell mit Filament-Resource.
 
-### Inhalte kommen aus JSON, nicht aus HTML
-`assets/data/` ist die Redaktionsschicht. Neue Inhalte werden dort gepflegt, nicht in HTML:
-
-| Datei | Konsument | Inhalt |
+| Tabelle | Modell | Inhalt |
 |---|---|---|
-| `blog.json` | `js/blog.js` (Übersicht), `js/post.js` (Einzelansicht) | Alle Blogbeiträge inkl. Shop-Produktposts |
-| `projects.json` | `js/projects.js` | Karten auf `pages/projekte.html` |
-| `services.json` | `js/service-loader.js`, `js/service-schema.js` | Leistungen + Preise auf `pages/webdesign-leistung.html` |
-| `reviews.json` | `js/reviews.js` | Kundenstimmen-Rotation auf der Startseite |
-| `seasonal.json` | `js/season-effects.js` | Datumsgesteuerte Popups/Effekte (Advent, Halloween, …) |
+| `posts` + `post_links` + `products` | `Post` | Blogbeiträge, Shop-Produktposts |
+| `categories` | `Category` | Blog-Kategorien inkl. Badge-Farben (`color`, `text_color`) |
+| `projects` | `Project` | Referenzen, `is_featured` steuert die Startseite |
+| `service_categories` + `services` | `Service` | Leistungen und Preise |
+| `reviews` | `Review` | Kundenstimmen |
 
-**Wichtig – Pfad-Konvention:** Bildpfade in `blog.json`, `projects.json` stehen als
-`../assets/images/...`, weil die konsumierenden Seiten in `pages/` liegen. `post.js` und
-`service-schema.js` normalisieren das für Schema.org per `.replace("../", "")`.
-`seasonal.json` wird dagegen absolut (`/assets/data/seasonal.json`) geladen.
+Badge-Farben stehen jetzt **als Spalte am Datensatz**, nicht mehr als `.cat-…`-CSS-Regel pro
+Kategorie. Eine neue Kategorie braucht deshalb keine CSS-Änderung mehr.
 
-**Achtung – Duplikat:** Die Projekt-Karten im Carousel auf `index.html` sind **hart im HTML**
-(`.home-proj-card`) und werden *nicht* aus `projects.json` gerendert. Ein neues Projekt muss an
-beiden Stellen gepflegt werden, sonst laufen Startseite und Projektseite auseinander.
+### Kundenstimmen
+Zwei Scopes mit unterschiedlichem Zweck:
 
-### Blogbeiträge anlegen
-Objekt an `assets/data/blog.json` anhängen:
+- `Review::visible()` – alle sichtbaren, nach `position`. Grundlage für die **Gesamtbewertung**
+  im Schema.org-Block.
+- `Review::vorzeigbar()` – zusätzlich nur die **mit Text**, Sortierung entfernt. Grundlage für
+  die **Anzeige**.
 
-```json
-{
-  "id": 45,
-  "category": "Projekte",
-  "title": "Titel",
-  "date": "2026-07-30",
-  "teaser": "1–2 Sätze, wird als Meta-Description und og:description genutzt",
-  "content": "Fließtext im Mini-Markdown",
-  "images": ["../assets/images/blog/bild.jpg"],
-  "thumbFit": "contain",
-  "links": [{ "url": "https://…", "text": "→ Linktext" }]
-}
+Die Startseite zeigt vier davon in zufälliger Reihenfolge (`inRandomOrder()`). Zwei Gründe: es
+werden laufend mehr, und alle untereinander ließen die Seite endlos wachsen, während jede
+Besucherin trotzdem immer dieselben sähe. **Die Zufallsauswahl darf nie in die
+`aggregateRating` einfließen** – eine `reviewCount`, die bei jedem Aufruf schwankt, ist für
+Suchmaschinen ein Warnzeichen. Deshalb bekommt die View beides: `$stimmen` (Auswahl) und
+`$stimmenGesamt` (alle).
+
+Bewertungen ohne Text sind normal – bei Google vergibt man oft nur Sterne. Sie zählen für den
+Schnitt, erscheinen aber nicht als leere Kachel.
+
+### Gestaltung
+
+Design-Tokens stehen als Custom Properties im `@theme`-Block von `resources/css/app.css` und
+werden daraus zu Tailwind-Klassen (`bg-flaeche`, `text-akzent`, `border-linie`). **Farben immer
+über diese Tokens, nie hart kodiert** – auch nicht als `rgba()` im Markup.
+
+```
+--color-flaeche  #0d1117    Grundfläche      --color-text        #f9fafb
+--color-flaeche-2 #111827   abgesetzt        --color-text-leise  #9ca3af
+--color-karte    #1a1f27    Kacheln          --color-akzent      #00bcd4
+--color-fuss     #0b0f14    Fußzeile         --color-akzent-hell #02c8e3
+                                             --color-linie       rgba(255,255,255,.1)
 ```
 
-- `id` ist die URL: `pages/blog-post.html?id=45`. Muss eindeutig sein. Aktuell 43 Posts,
-  höchste ID 44, ID 42 fehlt (Lücke ist unkritisch, aber nicht neu vergeben).
-- Sortierung erfolgt automatisch nach `date` absteigend; Übersicht paginiert mit 6 Posts/Seite.
-- Lesezeit wird aus `content` + `teaser` berechnet (200 Wörter/Min), nicht im JSON pflegen.
-- `images[0]` wird zum Hero-Bild des Posts und zum Thumbnail der Karte; ab `images[1]` erscheinen
-  die Bilder im Fließtext.
-- `links` erzeugt Buttons am Ende des Beitrags – **Links gehören nicht in `content`**, der
-  Markdown-Parser kennt keine Link-Syntax.
-- `thumbFit` (optional) steuert nur die Kachel in der Blog-Übersicht: `"contain"` passt das Bild
-  vollständig ein (richtig für **Logos**), ohne das Feld füllt es die Kachel und wird beschnitten
-  (richtig für **Fotos und Screenshots**). Gesetzt in `js/blog.js` → `.blog-thumb--contain`.
-- `product` (optional, für Shop-Posts) rendert Produktbox + Product-JSON-LD und unterdrückt das
-  Hero-Bild und die `links`-Buttons.
+Schriften werden über `laravel-vite-plugin/fonts` von Bunny **beim Bauen heruntergeladen und
+selbst ausgeliefert** – kein Google-Fonts-Aufruf, eine Fremdverbindung weniger, ein Absatz
+weniger in der Datenschutzerklärung. Neue Schnitte in `vite.config.js` ergänzen, nicht per
+`<link>` ins Layout.
 
-Der Mini-Markdown-Parser in `js/post.js` (`parseContent`) kann ausschließlich:
-`## H2`, `### H3`, `**fett**`, `*kursiv*`, `- Listenpunkt`, Leerzeile = neuer Absatz,
-einzelner Zeilenumbruch = `<br>`. Alles andere landet als Rohtext auf der Seite.
-Inhalte werden per `innerHTML` eingesetzt – keine fremden/ungeprüften Texte einpflegen.
+**Keine Emojis.** Sie werden von jedem Betriebssystem anders gezeichnet – ausgerechnet das
+einzige durchgehend farbige Element der Seite wäre damit das, über das wir keine Kontrolle
+haben. Stattdessen `<x-symbol name="chip" />`: Strichzeichnungen, die die Textfarbe erben.
+Neue Symbole kommen in die Liste in `components/symbol.blade.php`, keine Icon-Bibliothek.
+Einzelne Emojis sind geduldet, wo sie zu jemandes eigenen Worten gehören – etwa in einer
+zitierten Kundenstimme.
 
-**Kategorien:** Die Badge-Farbe entsteht aus `normalizeCategory()` (lowercase, Leerzeichen → `-`,
-Umlaute ausgeschrieben) und einer Klasse `.cat-…` in `css/main.css` (~Zeile 1534). Achtung: Aus
-`" - "` werden dabei **drei** Bindestriche, z. B. `Lernsoftware - Lerndex` →
-`.cat-lernsoftware---lerndex`. Aktuell haben alle verwendeten Kategorien eine eigene Farbe.
-Produktreihen bekommen eine eigene Serien-Kategorie (`Lernsoftware - Lerndex`,
-`Pflegesoftware - Pflegedex`), damit der Filter auf `pages/blog.html` nutzbar bleibt.
-Bei einer neuen Kategorie also immer eine `.cat-…`-Regel ergänzen, sonst fällt das Badge auf
-transparentes Schwarz zurück.
+**Barrierefreiheit ist gesetzt, nicht optional:** `prefers-reduced-motion` schaltet in
+`app.css` global Animationen und weiches Scrollen ab, es gibt einen Sprunglink, einen sichtbaren
+Fokusrahmen und `aria-current` in der Navigation. Neue Bewegung muss sich in diese Regel fügen.
 
 ### SEO
-- Statische Seiten tragen ihren kompletten SEO-Block inline im `<head>`: Meta-Description,
-  Keywords, Canonical, Open Graph, Twitter Card und ein oder mehrere JSON-LD-Blöcke
-  (`ProfessionalService` auf `index.html`, `Blog`, `CollectionPage`, `BreadcrumbList`, …).
-  Neue Seiten nach diesem Muster aufbauen – am besten aus einer bestehenden Seite kopieren.
-- `pages/blog-post.html` ist die Ausnahme: leere Meta-Tags mit IDs (`seo-description`,
-  `og-title`, `jsonld`, …), die `post.js` → `setSeoDynamic()` zur Laufzeit füllt.
-  Das ist clientseitig – neue Beiträge zusätzlich sinnvoll intern verlinken.
-- `sitemap.xml` wird **manuell** gepflegt (Blog-Posts sind dort nicht einzeln gelistet).
-- `robots.txt` sperrt bewusst `pages/sunnycam.html` und `pages/shop.html`.
+`<x-seo>` rendert Titel, Description, Canonical, Open Graph, Twitter Card und JSON-LD
+**serverseitig**. Das war der Kern des Umbaus: Crawler von WhatsApp, LinkedIn und Facebook führen
+kein JavaScript aus, jeder geteilte Blogbeitrag zeigte deshalb früher „Blog – nils-digital" ohne
+Bild.
 
-### CSS
-`css/main.css` (~2.500 Zeilen) ist das Hauptstylesheet für alle Seiten, thematisch in
-Kommentarblöcke gegliedert. Design-Tokens stehen als Custom Properties im `:root` ganz oben
-(Dark Theme: `--bg-main:#0d1117`, `--accent:#00bcd4`, `--text-main`, `--bg-card` …) – Farben immer
-über diese Variablen, nie hart kodieren. Fonts: `Fredoka` (Headlines) + `Roboto Mono` (Body).
-Ergänzend gibt es nur zwei seiten-spezifische Stylesheets: `css/team.css`, `css/ueber-uns.css`.
-Mobile First: einige Regeln gelten gezielt nur für Unterseiten (`body:not(.home)`), die Startseite
-trägt `class="home"`.
+Jede Seite übergibt `titel`, `beschreibung` und bei Bedarf `bild`, `typ` und `jsonld` an das
+Layout. `sitemap.xml` und `robots.txt` erzeugt der `SitemapController` aus der Datenbank – nichts
+davon wird von Hand gepflegt.
 
-### Backend (PHP)
-Trotz "HTML/CSS/JS-Projekt" existiert ein PHP-Teil:
+Alte Adressen leiten in `routes/web.php` per 301 auf ihr **Endziel**, nie über eine
+Zwischenstation; `UmzugTest` geht die Liste aus `database/legacy/url-map.csv` vollständig durch.
 
-- `backend/contact.php` – nimmt das Kontaktformular per POST an, sanitized, prüft die Honeypot-
-  Feldnamen `website`, versendet zwei HTML-Mails (Admin-Benachrichtigung + Auto-Antwort an den
-  Kunden) über PHPMailer/SMTP Strato (`smtp.strato.de:465`), antwortet JSON `{success: bool}`.
-- `backend/config.php` enthält die echten SMTP-Zugangsdaten, `config.example.php` ist die Vorlage.
-  `config.php` niemals in Ausgaben, Commits oder Uploads streuen.
-- `backend/phpmailer/` ist eine eingecheckte PHPMailer-Kopie (kein Composer).
+### Formulare und Einbettungen
+- **Kontaktformular** → `KontaktController` + `KontaktRequest`, versendet `KontaktAnfrage`
+  (an Nils) und `KontaktBestaetigung` (an die Absenderin) über Laravels Mailer.
+- **Projektanfrage** (Google Forms) und **Termine** (Google Calendar) sind Einbettungen.
+  `<x-einbettung>` zeigt zunächst nur eine Vorschau; der iframe entsteht erst auf Klick, weil
+  Google sonst schon beim Seitenaufruf Cookies setzt und die IP überträgt. Ohne JavaScript bleibt
+  die Vorschau samt Link zum Anbieter stehen.
+- Der frühere Spreadshop-Shop und die SunnyCam-Seite wurden **nicht** neu gebaut; ihre alten
+  Adressen leiten auf die Startseite.
 
-Projektanfrage (`pages/projektfragebogen.html`) und Terminbuchung (`pages/reservierung.html`)
-laufen nicht über dieses Backend, sondern über eingebettete iframes (Google Forms bzw. Google
-Calendar Appointment Scheduling). Der Shop (`pages/shop.html`) ist ein Spreadshop-Embed.
+### Betrieb
+`deploy/` enthält Dockerfile, Compose-Datei, `entrypoint.sh` und `deploy.sh`. Push auf `main`
+löst `.github/workflows/deploy.yml` aus: Tests gegen PostgreSQL, dann über SSH das Skript auf dem
+VPS. Der hinterlegte Schlüssel ist per erzwungenem Kommando auf genau dieses Skript festgenagelt –
+eine Shell bekommt man damit nicht.
 
-### demo/
-`demo/brackemeyer_alltagsbegleitung/` ist eine eigenständige Kunden-Demo-Website in PHP mit
-`includes/header.php` + `includes/footer.php`. Sie gehört nicht zur Hauptseite, zeigt aber genau
-das Include-Muster, das für Phase 4 der Roadmap (Migration der Hauptseite auf PHP) angestrebt wird.
+Zwei Fallstricke sind dort schon gelöst und sollten nicht „vereinfacht" werden:
+`deploy.sh` kapselt seinen gesamten Ablauf in eine Funktion, weil `git reset --hard` das Skript
+**während des Laufs überschreibt** und Bash Dateien nach Byte-Position nachliest. Und die
+GitHub-Action versucht die SSH-Verbindung dreimal mit wachsender Pause, weil Hostinger wechselnde
+Runner-Adressen gelegentlich abweist.
 
-### Server-Konfiguration
-`.htaccess` im Root regelt für Apache/Strato: HTTPS-Zwang und `www` → ohne `www` (kanonisch ist
-`https://nils-digital.de`), Verzeichnis-Listing aus, Sperre für `backend/config.php` und Dotfiles,
-gzip-Komprimierung, Browser-Caching (Bilder lang, CSS/JS mittel, HTML/JSON kurz) und
-Security-Header. Bewusst **ohne** Content-Security-Policy – die Seite bindet Google Fonts,
-Analytics, Spreadshop, TikTok-Embeds und Google-Forms-iframes ein, eine CSP müsste gezielt dafür
-aufgebaut werden. Es gibt noch **keine 404-Seite**, entsprechend auch keine `ErrorDocument`-Zeile.
-
-### Tracking / DSGVO
-Google Analytics (`G-Q78R7SM9W9`) wird **erst nach Zustimmung** im Cookie-Banner nachgeladen
-(`loadAnalytics()` in `main.js`). Consent liegt in `localStorage` (`cookieConsent`,
-`cookieConsentTime`) und läuft nach 90 Tagen ab. Keine Tracking-Skripte fest ins HTML einbauen.
-
-## Roadmap
-
-- Phase 1: Inhalt und Design auf Business umbauen (HTML/CSS/JS) – weitgehend erledigt
-- Phase 2: Code aufräumen – veraltete Schnipsel, auskommentierte Blöcke, unbenutzte Dateien
-- Phase 3: SEO ausbauen
-- Phase 4 (später): Migration auf PHP mit Includes für saubere Wartbarkeit
+Traefik terminiert TLS und setzt für die Vorschau den `noindex`-Header (`ndweb-noindex@docker`).
+Beim Domain-Umzug muss dieser Header weg – die `robots.txt` allein regelt das nicht.
 
 ## Arbeitsweise in diesem Repo
 
 - Bestehende Dateien zuerst analysieren, dann Bericht geben.
-- Nichts löschen oder umbauen ohne vorherige Absprache; vor jeder Roadmap-Phase Freigabe abwarten.
-- Kein Git – Änderungen sind sofort "echt", es gibt kein Undo über Versionskontrolle.
-- Da die Live-Seite parallel online ist: Inhalte (JSON) und Struktur (HTML/CSS/JS) getrennt denken;
-  reine Inhaltsupdates betreffen nur `assets/data/` + `assets/images/`.
+- **Es gibt Git** – anders als früher. Änderungen sind rücknehmbar, Commits auf Deutsch,
+  Betreffzeile ohne Präfix, im Rumpf das *Warum* statt des *Was*.
+- Push auf `main` deployt sofort auf die Vorschau. Nichts pushen, was nicht laufen soll.
+- `.env` und die Zugangsdaten darin niemals in Ausgaben, Commits oder Uploads streuen.
+- Vor größeren Umbauten Freigabe abwarten.
+
+## Offene Punkte
+
+- **Domain-Umzug** `nils-digital.de` von Strato auf den VPS – der letzte große Schritt.
+  Dabei `noindex` entfernen und die Sitemap bei Google einreichen.
+- **Startseiten-Hero** hat noch kein Motiv, nur einen Farbverlauf als Platzhalter.
+- **Startseiten-Texte** (Hero, „Was wir machen", Schlussabschnitt) stehen noch fest im Blade und
+  müssen in die Redaktion wandern.
+- **Leistungs-Icons** liegen als Emoji in `services.icon` und müssen auf Symbolnamen umgestellt
+  werden.
+- **Emojis im Fließtext** einiger Blogbeiträge (IDs 42–46) – Inhaltsentscheidung, nicht einfach
+  wegräumen.
+- **Hinweis-/Popup-System** für Aktionen und Feiertage ist geplant, aber noch nicht gebaut.
+- `legacy/` kann raus, sobald der Import endgültig abgeschlossen ist.
