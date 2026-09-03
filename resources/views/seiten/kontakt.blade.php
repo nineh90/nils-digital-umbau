@@ -19,7 +19,7 @@
 
     <x-seitenkopf
         ueberschrift="Lass uns reden"
-        text="Beschreib kurz, was du vorhast. Wir melden uns in der Regel innerhalb eines Werktags – persönlich, nicht aus einem Ticketsystem." />
+        text="Beschreib kurz, was du vorhast. Wir melden uns in der Regel innerhalb eines Werktags – persönlich und mit einer echten Einschätzung, nicht mit einer Standardantwort." />
 
     <div class="mx-auto max-w-6xl px-5 py-14">
         <div class="grid gap-10 lg:grid-cols-[1fr_20rem]">

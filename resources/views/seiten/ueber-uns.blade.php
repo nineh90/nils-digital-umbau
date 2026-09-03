@@ -1,6 +1,6 @@
 @php
     $werte = [
-        ['Persönlich', 'Du arbeitest direkt mit uns – keine Ticketsysteme, kein anonymes Support-Team. Feste Ansprechpartner, kurze Wege.'],
+        ['Persönlich', 'Du arbeitest direkt mit uns – vom ersten Gespräch bis nach dem Launch dieselben Ansprechpartner. Kein anonymes Support-Team, keine wechselnden Zuständigkeiten.'],
         ['Individuell', 'Kein Copy-Paste aus dem Template-Baukasten. Jede Lösung wird auf deine Anforderungen zugeschnitten.'],
         ['Transparent', 'Klare Preise, ehrliche Kommunikation. Du weißt jederzeit, woran wir arbeiten und was dich das kostet.'],
         ['Langfristig', 'Wir denken über das Projekt hinaus. Technische Qualität und Wartbarkeit sind für uns kein Bonus – sie sind Standard.'],

@@ -6,7 +6,7 @@
             'bild' => 'assets/images/sunny-nils.jpg',
             'text' => 'Nils ist Gründer von Nils-Digital und dein direkter Ansprechpartner für Konzept, Umsetzung und Kommunikation. Er entwickelt Webseiten, Apps und digitale Lösungen, die nicht nur gut aussehen, sondern echte Ergebnisse liefern – von der ersten Idee bis zum Launch.',
             'faehigkeiten' => ['Webdesign', 'Frontend', 'Backend', 'KI-Automatisierung', 'SEO', 'Projektleitung'],
-            'merkmal' => ['Arbeitsweise', 'Direkte Kommunikation, kurze Wege, transparente Absprachen. Kein Ticket-System, kein anonymes Support-Team.'],
+            'merkmal' => ['Arbeitsweise', 'Direkte Kommunikation, kurze Wege, transparente Absprachen. Wer dir antwortet, hat auch gebaut, worum es geht.'],
         ],
         [
             'name' => 'Kevin',
