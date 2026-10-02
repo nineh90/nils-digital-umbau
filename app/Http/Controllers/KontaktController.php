@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\KontaktRequest;
 use App\Mail\KontaktAnfrage;
 use App\Mail\KontaktBestaetigung;
+use App\Models\Inquiry;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
@@ -35,6 +36,16 @@ class KontaktController extends Controller
         }
 
         RateLimiter::hit($schluessel, 3600);
+
+        // Erst speichern, dann verschicken. Die Mail ist die Benachrichtigung;
+        // geht sie verloren, steht die Anfrage trotzdem in der Redaktion.
+        Inquiry::create([
+            'type' => 'kontakt',
+            'name' => $daten['name'],
+            'email' => $daten['email'],
+            'subject' => $daten['subject'],
+            'message' => $daten['message'],
+        ]);
 
         Mail::to(config('mail.from.address'))->queue(new KontaktAnfrage(
             $daten['name'], $daten['email'], $daten['subject'], $daten['message'],

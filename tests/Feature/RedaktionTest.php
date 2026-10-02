@@ -256,4 +256,96 @@ class RedaktionTest extends TestCase
             ->assertOk()
             ->assertSee('Ticketsystem');
     }
+
+    /*
+     * Anfragen sind die einzige Liste, die sich von aussen fuellt. Liste und
+     * Einzelansicht muessen rendern, und der gesperrte Teil darf sich beim
+     * Speichern des Stands nicht aendern lassen.
+     */
+    public function test_anfragen_rendern_und_lassen_sich_abhaken(): void
+    {
+        $anfrage = \App\Models\Inquiry::create([
+            'name' => 'Erika Beispiel',
+            'email' => 'erika@example.com',
+            'subject' => 'Frage zum Abo',
+            'message' => 'Wie lange laeuft der Vertrag mindestens?',
+        ]);
+
+        $this->actingAs($this->angemeldet());
+
+        $this->get('/admin/inquiries')
+            ->assertOk()
+            ->assertSee('Erika Beispiel')
+            ->assertSee('Frage zum Abo');
+
+        $this->get("/admin/inquiries/{$anfrage->id}/edit")->assertOk();
+
+        \Livewire\Livewire::test(\App\Filament\Resources\Inquiries\Pages\EditInquiry::class, ['record' => $anfrage->id])
+            ->fillForm(['status' => 'erledigt', 'note' => 'Telefonisch geklaert.', 'message' => 'Ueberschrieben'])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $anfrage->refresh();
+
+        $this->assertSame('erledigt', $anfrage->status);
+        $this->assertSame('Telefonisch geklaert.', $anfrage->note);
+        $this->assertSame('Wie lange laeuft der Vertrag mindestens?', $anfrage->message);
+    }
+
+    public function test_anfragen_lassen_sich_in_der_redaktion_nicht_anlegen(): void
+    {
+        $this->actingAs($this->angemeldet())
+            ->get('/admin/inquiries/create')
+            ->assertNotFound();
+    }
+
+    /*
+     * Das Formular sagt "Danke", sobald die Mail in der Warteschlange liegt.
+     * Ob sie ankommt, erfaehrt es nie – das Dashboard ist die einzige Stelle,
+     * an der ein stehender Versand auffaellt. Zaehlt es falsch, faellt er
+     * wieder niemandem auf.
+     */
+    public function test_dashboard_meldet_haengende_und_gescheiterte_mails(): void
+    {
+        $this->actingAs($this->angemeldet());
+
+        \Livewire\Livewire::test(\App\Filament\Widgets\Eingang::class)
+            ->assertOk()
+            ->assertSee('alles beantwortet')
+            ->assertSee('Warteschlange läuft')
+            ->assertDontSee('der Versand steht');
+
+        \App\Models\Inquiry::create([
+            'name' => 'Erika Beispiel',
+            'email' => 'erika@example.com',
+            'message' => 'Eine Nachricht.',
+        ]);
+
+        // Eine Mail von eben ist normal, eine von vor einer Stunde nicht.
+        foreach ([now(), now()->subHour()] as $zeit) {
+            \Illuminate\Support\Facades\DB::table('jobs')->insert([
+                'queue' => 'default',
+                'payload' => '{}',
+                'attempts' => 0,
+                'available_at' => $zeit->getTimestamp(),
+                'created_at' => $zeit->getTimestamp(),
+            ]);
+        }
+
+        \Illuminate\Support\Facades\DB::table('failed_jobs')->insert([
+            'uuid' => (string) \Illuminate\Support\Str::uuid(),
+            'connection' => 'database',
+            'queue' => 'default',
+            'payload' => '{}',
+            'exception' => 'Versand abgelehnt',
+            'failed_at' => now(),
+        ]);
+
+        \Livewire\Livewire::test(\App\Filament\Widgets\Eingang::class)
+            ->assertSee('warten auf Antwort')
+            ->assertSee('der Versand steht')
+            ->assertSee('Nach drei Versuchen aufgegeben');
+
+        $this->get('/admin')->assertOk();
+    }
 }

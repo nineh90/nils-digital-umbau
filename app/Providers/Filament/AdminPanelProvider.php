@@ -32,6 +32,12 @@ class AdminPanelProvider extends PanelProvider
                 // Markenfarbe aus dem :root der alten main.css
                 'primary' => Color::hex('#00bcd4'),
             ])
+            /*
+             * Feste Reihenfolge der Gruppen. Ohne sie sortiert Filament nach
+             * dem Zeitpunkt, an dem es eine Gruppe zum ersten Mal sieht – und
+             * der Eingang soll oben stehen, nicht irgendwo dazwischen.
+             */
+            ->navigationGroups(['Eingang', 'Inhalte', 'Leistungen', 'Struktur'])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

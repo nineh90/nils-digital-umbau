@@ -260,6 +260,47 @@ class SeitenTest extends TestCase
         Mail::assertQueued(\App\Mail\KontaktBestaetigung::class);
     }
 
+    /*
+     * Die Mail ist nur die Benachrichtigung. Kommt sie nicht an, muss die
+     * Anfrage trotzdem in der Redaktion stehen – vorher war sie dann weg,
+     * und das Formular hatte "Danke" gesagt.
+     */
+    public function test_kontaktanfrage_wird_gespeichert(): void
+    {
+        Mail::fake();
+
+        $this->post('/kontakt', [
+            'name' => 'Testkunde',
+            'email' => 'kunde@example.com',
+            'subject' => 'Neue Website',
+            'message' => 'Wir brauchen eine neue Website für unseren Betrieb.',
+        ])->assertSessionHas('erfolg');
+
+        $this->assertDatabaseHas('inquiries', [
+            'type' => 'kontakt',
+            'email' => 'kunde@example.com',
+            'subject' => 'Neue Website',
+            'status' => 'neu',
+        ]);
+    }
+
+    public function test_abgewiesene_anfragen_werden_nicht_gespeichert(): void
+    {
+        Mail::fake();
+
+        $this->post('/kontakt', [
+            'name' => 'Robot',
+            'email' => 'robot@example.com',
+            'subject' => 'Werbung',
+            'message' => 'Kaufen Sie unsere Produkte, sehr guenstig.',
+            'website' => 'https://spam.example',
+        ]);
+
+        $this->post('/kontakt', ['name' => 'Nur ein Name']);
+
+        $this->assertDatabaseCount('inquiries', 0);
+    }
+
     public function test_ausgefuellter_honigtopf_verschickt_nichts(): void
     {
         Mail::fake();

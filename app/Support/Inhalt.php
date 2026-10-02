@@ -34,11 +34,16 @@ class Inhalt
      * auf einen öffentlich erreichbaren Server. Zugänge werden auf dem Ziel
      * angelegt, nie übertragen.
      *
+     * inquiries sind keine Inhalte, sondern Post: Anfragen entstehen dort, wo
+     * das Formular abgeschickt wurde, und gehören nur dorthin. Ein Transfer
+     * von lokal ersetzte auf dem Server echte Anfragen durch Testeinträge.
+     *
      * Der Rest ist Laufzeit: Sitzungen, Zwischenspeicher, Warteschlangen und
      * der Migrationsstand gehören der jeweiligen Maschine.
      */
     public const NICHT_UEBERTRAGEN = [
         'users',
+        'inquiries',
         'password_reset_tokens',
         'sessions',
         'cache',
