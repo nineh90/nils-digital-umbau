@@ -34,21 +34,24 @@ abgearbeitet. Wer etwas erledigt, hakt es ab und schreibt das Datum dahinter.
 
 ## 2 · Kontaktformular scharf schalten
 
-- [ ] Anfragen in der Datenbank speichern (Tabelle für Anfragen, Ansicht in der
-      Redaktion). Heute wird nur verschickt – scheitert der Versand, ist die
-      Anfrage weg und das Formular meldet trotzdem Erfolg.
-- [ ] Fehlgeschlagene Mails sichtbar machen (Dashboard-Hinweis)
+- [x] Anfragen in der Datenbank speichern: Tabelle `inquiries`, Ansicht
+      „Anfragen" in der Redaktion mit Stand (neu, in Arbeit, erledigt) und
+      Notiz. Gebaut am 02.10.2026, noch nicht committet.
+- [x] Dashboard-Feld „Eingang": neue Anfragen, hängende Mails (über zehn
+      Minuten in der Warteschlange) und gescheiterte Mails (02.10.2026)
 - [ ] Google-App-Passwort für `info@nils-digital.de` erzeugen und in `deploy/.env`
       auf dem Server eintragen (`MAIL_MAILER=smtp`, `MAIL_USERNAME`,
-      `MAIL_PASSWORD`) – **N**. Nicht ins Repo, nicht in den Chat.
-- [ ] Probeanfrage auf der Vorschau: kommt die Anfrage an, kommt die Bestätigung
+      `MAIL_PASSWORD`) – **N**, macht Nils später. Nicht ins Repo, nicht in den Chat.
+- [ ] Probeanfrage auf der Vorschau (**N**, nach Passwort und Push): kommt die Anfrage an, kommt die Bestätigung
       an, landet keine im Spam? Die Domain weist per DMARC alles ab, was nicht
       über Google läuft.
 
-## 3 · Eigener Projektfragebogen statt Google Forms
+## 3 · Eigener Projektfragebogen statt Google Forms (nach dem Live-Gang)
 
-Braucht vor dem Bau eine Freigabe – größerer Umbau. Muss den Live-Gang nicht
-aufhalten: die Google-Einbettung funktioniert und lädt erst auf Klick.
+**Am 02.10.2026 von Nils zurückgestellt: erst nach dem Live-Gang.** Gewünscht
+ist eine richtige Lead-Strecke, später eventuell mit direktem Angebot. Bis dahin
+bleibt die Google-Einbettung, sie funktioniert und lädt erst auf Klick. Die
+Tabelle `inquiries` ist dafür schon vorbereitet (`type`, `details`).
 
 - [ ] Fragen festlegen – **N**. Der alte Bogen hat 17 Fragen und fragt
       Wartungsstufen ab, die es nicht mehr gibt; er sollte zu Abo und Festpreis
@@ -88,7 +91,12 @@ aufhalten: die Google-Einbettung funktioniert und lädt erst auf Klick.
       Umschalten ist der Server die Wahrheit
 - [ ] Inhalte frisch ausgeben (`nd:inhalt-ausgeben`), pushen, auf dem Server
       einlesen (`nd:inhalt-einlesen`)
-- [ ] Große Bilder verkleinern (`sunny.jpg` 4 MB, mehrere Logos über 1 MB)
+- [x] Große Bilder verkleinert (02.10.2026): `sunny.jpg` und `sunnycam.jpg` von
+      4 MB auf 370 KB, Beitragsbild Alltagsbegleitung als JPG (205 KB statt
+      2,2 MB, das alte PNG bleibt unter seiner Adresse liegen), Sunnys Teamfoto.
+      Blog und Projekte laden damit unter 1 MB Bilder statt 3–4,5 MB. Vier
+      große Logos unter `assets/images` bleiben unangetastet – keine Seite lädt
+      sie, sie liegen nur noch für alte Adressen da.
 
 ## 7 · Der Umschalttag
 

@@ -1,5 +1,5 @@
 {
-    "erzeugt": "2026-10-02T22:24:29+02:00",
+    "erzeugt": "2026-10-02T23:50:07+02:00",
     "quelle": "http://localhost:8000",
     "tabellen": {
         "categories": [
@@ -388,12 +388,12 @@
                 "title": "Von Herz zu Herz – Andrea startet als Alltagsbegleiterin",
                 "teaser": "Mit viel Herz, Zeit und Menschlichkeit startet Andrea ihre Selbstständigkeit als Alltagsbegleiterin für Senioren – und genau solche Angebote werden heute immer wichtiger.",
                 "content": "Manchmal braucht es gar nicht viel, damit ein Alltag wieder leichter wird:\nZeit, ein offenes Ohr, gemeinsame Gespräche oder einfach jemanden, der wirklich da ist.\n\nGenau diesen Weg geht meine Kollegin Andrea jetzt mit ihrer Selbstständigkeit als Alltagsbegleiterin für Senioren.\n\nUnd ehrlich gesagt finde ich es schön zu sehen, wenn Menschen den Mut haben, etwas mit Herz aufzubauen – besonders in einem Bereich, der heute wichtiger denn je ist.\n\n## Unterstützung im Alltag – menschlich & nah\n\nAndrea unterstützt ältere Menschen dabei, den Alltag weiterhin selbstständig, sicher und mit Freude zu gestalten.\n\nDabei geht es nicht um klassische Pflegeleistungen, sondern um menschliche Unterstützung im Alltag.\n\nDazu gehören unter anderem:\n\n- Gespräche & Gesellschaft\n- Spaziergänge und gemeinsame Aktivitäten\n- Begleitung zu Arzt- oder Apothekenterminen\n- Unterstützung bei Einkäufen oder Behördengängen\n- Zeit, Nähe und Verlässlichkeit im Alltag\n\nGerade viele ältere Menschen wünschen sich jemanden, der sich wirklich Zeit nimmt.\n\nNicht schnell „abarbeiten“, sondern zuhören, begleiten und Sicherheit vermitteln.\n\nGenau das spiegelt Andrea mit ihrem Projekt wider.\n\n## Erfahrung, Herz und Vertrauen\n\nBesonders schön finde ich, dass Andrea bereits Erfahrung in der Arbeit mit Senioren mitbringt und Menschen dabei helfen möchte, möglichst lange in ihrem eigenen Zuhause bleiben zu können – mit Würde, Respekt und einem sicheren Gefühl im Alltag.\n\nDer Schritt in die Selbstständigkeit ist nie einfach.\n\nUmso mehr verdient es Unterstützung, wenn jemand etwas mit so viel Herz startet.\n\nDeshalb möchte ich sie gerne ein wenig unterstützen – aktuell erst einmal mit etwas Reichweite.\n\n## Ein Projekt mit Herz\n\nIch wünsche dir auf jeden Fall ganz viel Erfolg, Andrea.\n\nUnd ich glaube, dass genau solche Angebote heute unglaublich wichtig sind. 💙\n\n### Interesse oder Fragen?\n\nFalls Interesse an Andreas Unterstützung als Alltagsbegleiterin besteht, stelle ich gerne den Kontakt her 😊",
-                "hero_image": "assets/images/blog/alltagsbegleitung_brackemeyer_bsp.png",
+                "hero_image": "assets/images/blog/alltagsbegleitung_brackemeyer_bsp.jpg",
                 "thumb_fit": null,
                 "status": "published",
                 "published_at": "2026-05-23 00:00:00",
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-09-03 09:14:59"
+                "updated_at": "2026-10-02 23:23:45"
             },
             {
                 "id": 43,
@@ -463,12 +463,12 @@
                 "title": "KE!N EINZELFALL e.V. – wir übernehmen den Relaunch",
                 "teaser": "Der Hamburger Opferhilfe-Verein KE!N EINZELFALL e.V. bekommt eine neue Website: barrierefrei von Grund auf, deutlich schlanker im Text und technisch neu aufgebaut. Warum bei diesem Projekt der Notausgang der wichtigste Knopf ist.",
                 "content": "Seit Kurzem arbeiten wir mit dem [**KE!N EINZELFALL e.V.**](https://kein-einzelfall.de) aus Hamburg zusammen. Wir\nübernehmen den Relaunch der Vereinswebsite – und das ist eins der Projekte, bei denen\nuns von Anfang an klar war, dass es nicht um Optik geht.\n\n## Wer hinter KE!N EINZELFALL steht\n\nDer Verein wurde 2024 gegründet, aus persönlicher Betroffenheit heraus, mit einem Ziel:\nvon schädigenden Taten betroffene Menschen nicht länger allein zu lassen. Er ist eine\nAustausch- und Informationsplattform für Opfer und Mit-Opfer, für Angehörige,\nInteressierte und Fachpersonen.\n\nKonkret heißt das kostenfreie Selbsthilfegruppen, die an keine Mitgliedschaft gebunden\nsind, Arbeitsgruppen und die Veranstaltungsreihe „KE!N EINZELFALL im Dialog\". Dazu\nOrientierung in einem Bereich, in dem sich Betroffene sonst allein durchkämpfen: Soziales\nEntschädigungsrecht, Schwerbehindertenausweis, Pflegegrad. Ein Satz von der Startseite\nfasst es zusammen – „Keiner soll mehr sagen müssen: Ich hab es nicht gewusst.\"\n\n## Was wir ändern\n\nDie bestehende Seite läuft auf WordPress mit einem Pagebuilder und ist über die Zeit auf\n24 Seiten gewachsen. Inhaltlich steckt dort viel Arbeit, aber sie ist schwer zu\nüberblicken – gerade für jemanden, der sie in keiner guten Situation aufruft.\n\nDrei Dinge stehen deshalb im Vordergrund:\n\n- **Barrierefreiheit von Grund auf**, nicht als nachträgliches Werkzeug obendrauf.\n  Kontrast, Schriftgröße, Tastaturbedienung und Screenreader-Tauglichkeit gehören ins\n  Fundament, nicht in ein Zusatzmodul.\n- **Weniger Text, klarere Wege.** Nicht weil die Inhalte unwichtig wären, sondern damit\n  man in dem Moment, in dem man Hilfe sucht, nicht erst lesen muss.\n- **Ein neues Design**, das die ruhige, warme Tonalität des Vereins aufnimmt – seriös,\n  aber nicht kalt, und in keinem Fall reißerisch.\n\nTechnisch bauen wir die Seite neu auf Laravel auf, mit einem schlanken Redaktionsbereich\nstatt eines gewachsenen Plugin-Baukastens.\n\n## Der wichtigste Knopf ist der, den man hoffentlich nie braucht\n\nAuf der bestehenden Seite gibt es unten rechts einen Notausgang: ein Klick, und die Seite\nist weg. Für die meisten Websites wäre das ein kurioses Detail. Hier ist es das Gegenteil,\nund er hat gleich zwei Gründe.\n\nDer eine ist praktisch: Es kann sein, dass jemand die Seite liest, während jemand anderes\nim Raum ist. Der andere ist der wichtigere: Wer sich mit diesen Themen befasst, kann von\neinem einzelnen Satz unerwartet getroffen werden. Dann braucht es keinen Weg durchs Menü\nund keine zwei Klicks, sondern einen Ausgang – sofort, ohne nachzudenken.\n\nDiese Funktion bleibt, und sie wird besser. Sie ist auch ein ganz guter Maßstab für das\nganze Projekt: Es geht nicht darum, was auf einem Screenshot gut aussieht, sondern darum,\nwas jemandem in einer schwierigen Minute wirklich hilft.\n\nDazu kommt, dass hier besonders schützenswerte Daten im Spiel sind. Datenschutz ist bei\ndiesem Projekt keine Pflichtübung am Ende, sondern eine Vorgabe von der ersten\nEntscheidung an.\n\n## Eine Bewertung, bevor die Seite steht\n\nEtwas, das uns wirklich gefreut hat: Der Verein hat uns schon bewertet, als von der neuen\nWebsite erst die Beratung und ein erster Entwurf standen – lange vor dem Livegang. Auf\ndie Rückmeldung „kompetent, schnell und vor allem menschlich\" sind wir ehrlich gesagt\nstolzer als auf jedes fertige Layout.\n\n## Wie es weitergeht\n\nDer Relaunch läuft in Phasen, ohne künstliche Deadline. Was hier entsteht, soll\nfunktionieren und nicht schnell fertig sein. Und über den Relaunch hinaus ist\nlängerfristig noch mehr geplant – dazu sagen wir zu gegebener Zeit mehr.",
-                "hero_image": "assets/images/blog/kein-einzelfall-entwurf.jpg",
+                "hero_image": "assets/images/blog/kein-einzelfall-startseite.jpg",
                 "thumb_fit": "cover",
                 "status": "published",
                 "published_at": "2026-09-03 23:43:00",
                 "created_at": "2026-09-03 21:26:28",
-                "updated_at": "2026-09-03 21:43:34"
+                "updated_at": "2026-10-02 23:30:59"
             }
         ],
         "post_links": [
@@ -1259,7 +1259,7 @@
                 "id": 2,
                 "name": "Kevin Herrmann",
                 "role": "Entwickler",
-                "image": "uploads/team/kevin.jpg",
+                "image": "assets/images/team/kevin.jpg",
                 "bio": "Kevin sorgt dafür, dass alles technisch sauber, stabil und zuverlässig läuft – besonders wenn Projekte komplex werden. Mit seinem Blick fürs Detail und strukturiertem Code liefert er genau die technische Tiefe, die anspruchsvolle Projekte brauchen.",
                 "skills": "[\"JavaScript\",\"Frontend\",\"Backend\",\"Clean Code\",\"Probleml\\u00f6sung\"]",
                 "highlight_label": "Stärke",
@@ -1267,7 +1267,7 @@
                 "is_visible": 1,
                 "position": 2,
                 "created_at": "2026-09-03 09:55:14",
-                "updated_at": "2026-10-02 21:46:27",
+                "updated_at": "2026-10-02 23:50:07",
                 "in_schema": 1,
                 "website_url": "https://kevins-werkstatt.nils-digital.de",
                 "website_label": "Kevins Werkstatt"
