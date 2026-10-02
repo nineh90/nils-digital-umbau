@@ -87,6 +87,50 @@ class TeamTest extends TestCase
             ->assertSee('"jobTitle":"Entwicklerin"', false);
     }
 
+    /*
+     * Kevins Verweis kommt aus der Migration, aus demselben Grund wie die
+     * Personen selbst: auf dem Server laeuft kein Seeder.
+     */
+    public function test_migration_traegt_kevins_seite_ein(): void
+    {
+        $this->assertSame(
+            'https://kevins-werkstatt.nils-digital.de',
+            TeamMember::where('name', 'Kevin')->value('website_url'),
+        );
+    }
+
+    public function test_eigene_seite_wird_verlinkt_und_ausgezeichnet(): void
+    {
+        TeamMember::query()->delete();
+
+        TeamMember::create([
+            'name' => 'Mit Seite',
+            'role' => 'R',
+            'bio' => 'T',
+            'website_url' => 'https://beispiel.test',
+            'website_label' => 'Meine Werkstatt',
+        ]);
+
+        $this->get('/team')
+            ->assertOk()
+            ->assertSee('href="https://beispiel.test"', false)
+            ->assertSee('Meine Werkstatt')
+            ->assertSee('"url":"https://beispiel.test"', false);
+    }
+
+    /** Ohne Adresse kein Verweis – auch kein leerer. */
+    public function test_ohne_adresse_erscheint_kein_verweis(): void
+    {
+        TeamMember::query()->delete();
+
+        TeamMember::create(['name' => 'Ohne Seite', 'role' => 'R', 'bio' => 'T']);
+
+        $this->get('/team')
+            ->assertOk()
+            ->assertDontSee('Zur eigenen Seite')
+            ->assertDontSee('"url":null', false);
+    }
+
     /** Ohne Foto steht der Anfangsbuchstabe in der Kachel. */
     public function test_ohne_foto_erscheint_das_monogramm(): void
     {

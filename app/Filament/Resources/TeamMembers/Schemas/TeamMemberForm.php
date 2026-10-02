@@ -66,6 +66,23 @@ class TeamMemberForm
                         ->maxLength(300),
                 ]),
 
+            Section::make('Eigene Seite')
+                ->description('Ein Verweis am Ende der Karte, etwa auf einen eigenen Auftritt. Ohne Adresse entfällt er.')
+                ->columns(2)
+                ->schema([
+                    TextInput::make('website_url')
+                        ->label('Adresse')
+                        ->url()
+                        ->maxLength(255)
+                        ->placeholder('https://…'),
+
+                    TextInput::make('website_label')
+                        ->label('Beschriftung')
+                        ->maxLength(60)
+                        ->placeholder('Kevins Werkstatt')
+                        ->helperText('Der Text, der angeklickt wird. Bleibt er leer, steht dort „Zur eigenen Seite".'),
+                ]),
+
             Section::make('Anzeige')
                 ->columns(2)
                 ->schema([

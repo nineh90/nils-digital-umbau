@@ -57,7 +57,13 @@
         :jsonld="$jsonld"
     />
 
-    <link rel="icon" href="/assets/images/logo/logo.png">
+    {{-- Die Dateien liegen unter denselben Adressen wie auf der alten Seite:
+         Google hat sie dort für die Suchergebnisse abgeholt und fragt sie
+         wieder ab. /favicon.ico steht bewusst nicht hier – Browser und
+         Crawler holen es ungefragt von der Wurzel. --}}
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
     <link rel="alternate" type="application/rss+xml" title="Blog von Nils-Digital" href="{{ route('blog.feed') }}">
 
     {{-- Selbst gehostete Schriften (Fredoka für Überschriften, Roboto Mono für

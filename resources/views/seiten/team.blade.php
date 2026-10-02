@@ -16,11 +16,12 @@
          * das wörtlich, und eine falsche Auszeichnung ist schlechter als
          * keine.
          */
-        'employee' => $team->where('in_schema', true)->map(fn ($person) => [
+        'employee' => $team->where('in_schema', true)->map(fn ($person) => array_filter([
             '@type' => 'Person',
             'name' => $person->name,
             'jobTitle' => $person->role,
-        ])->values()->all(),
+            'url' => $person->website_url,
+        ]))->values()->all(),
     ];
 @endphp
 
@@ -31,7 +32,7 @@
 
     <x-seitenkopf
         ueberschrift="Das Team"
-        text="Wir sind Nils und Kevin – zwei Entwickler mit Fokus auf moderne Webseiten, KI-Automatisierung und individuelle digitale Lösungen. Kein anonymes Unternehmen, keine Zwischenhändler." />
+        text="Wir sind Nils und Kevin – zwei Entwickler mit Fokus auf moderne Webseiten, KI-Automatisierung und individuelle digitale Lösungen. Und Sunny, die aufpasst. Kein anonymes Unternehmen, keine Zwischenhändler." />
 
     <div class="mx-auto max-w-4xl px-5 py-14">
 
@@ -81,6 +82,14 @@
                                 @endif
                                 {{ $person->highlight_text }}
                             </p>
+                        @endif
+
+                        @if ($person->website_url)
+                            <a href="{{ $person->website_url }}"
+                               class="mt-5 inline-flex items-center gap-2 text-sm text-akzent hover:underline">
+                                {{ $person->website_label ?: 'Zur eigenen Seite' }}
+                                <x-symbol name="pfeil-rechts" klasse="h-4 w-4" />
+                            </a>
                         @endif
                     </div>
                 </article>

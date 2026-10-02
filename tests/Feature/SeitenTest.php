@@ -299,4 +299,22 @@ class SeitenTest extends TestCase
             $this->assertStringContainsString('Inhalt laden', $html);
         }
     }
+
+    /**
+     * Die favicon.ico lag einen Monat lang als leere Datei im Repo. Der
+     * Server antwortet darauf mit 200 – es faellt also nichts auf, ausser
+     * dass im Suchergebnis kein Symbol neben der Seite steht.
+     */
+    public function test_symbole_der_seite_sind_keine_leeren_dateien(): void
+    {
+        $html = $this->get('/')->assertOk()->getContent();
+
+        foreach (['favicon.ico', 'favicon-32x32.png', 'android-icon-192x192.png', 'apple-icon-180x180.png'] as $datei) {
+            $this->assertGreaterThan(0, filesize(public_path($datei)), "{$datei} ist leer.");
+
+            if ($datei !== 'favicon.ico') {
+                $this->assertStringContainsString('href="/'.$datei.'"', $html);
+            }
+        }
+    }
 }

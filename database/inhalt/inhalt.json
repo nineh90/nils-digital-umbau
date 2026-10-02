@@ -1,5 +1,5 @@
 {
-    "erzeugt": "2026-09-04T01:20:17+02:00",
+    "erzeugt": "2026-10-02T22:24:29+02:00",
     "quelle": "http://localhost:8000",
     "tabellen": {
         "categories": [
@@ -496,7 +496,7 @@
             {
                 "id": 199,
                 "post_id": 19,
-                "url": "https://nils-digital.de/pages/webdesign-leistung.html",
+                "url": "/leistungen",
                 "label": "→ Mehr über Leistungen",
                 "position": 0
             },
@@ -517,7 +517,7 @@
             {
                 "id": 211,
                 "post_id": 31,
-                "url": "/pages/projektfragebogen.html",
+                "url": "/projektanfrage",
                 "label": "→ Jetzt Projektanfrage starten",
                 "position": 0
             },
@@ -1241,7 +1241,7 @@
             {
                 "id": 1,
                 "name": "Nils Nehring",
-                "role": "Gründer & Lead-Entwickler",
+                "role": "Gründer, Entwickler & Ansprechpartner",
                 "image": "assets/images/sunny-nils.jpg",
                 "bio": "Nils ist Gründer von Nils-Digital und dein direkter Ansprechpartner für Konzept, Umsetzung und Kommunikation. Er entwickelt Webseiten, Apps und digitale Lösungen, die nicht nur gut aussehen, sondern echte Ergebnisse liefern – von der ersten Idee bis zum Launch.",
                 "skills": "[\"Webdesign\",\"Frontend\",\"Backend\",\"KI-Automatisierung\",\"SEO\",\"Projektleitung\"]",
@@ -1250,14 +1250,16 @@
                 "is_visible": 1,
                 "position": 1,
                 "created_at": "2026-09-03 09:55:14",
-                "updated_at": "2026-09-03 09:55:14",
-                "in_schema": 1
+                "updated_at": "2026-10-02 21:51:18",
+                "in_schema": 1,
+                "website_url": null,
+                "website_label": null
             },
             {
                 "id": 2,
-                "name": "Kevin",
+                "name": "Kevin Herrmann",
                 "role": "Entwickler",
-                "image": null,
+                "image": "uploads/team/kevin.jpg",
                 "bio": "Kevin sorgt dafür, dass alles technisch sauber, stabil und zuverlässig läuft – besonders wenn Projekte komplex werden. Mit seinem Blick fürs Detail und strukturiertem Code liefert er genau die technische Tiefe, die anspruchsvolle Projekte brauchen.",
                 "skills": "[\"JavaScript\",\"Frontend\",\"Backend\",\"Clean Code\",\"Probleml\\u00f6sung\"]",
                 "highlight_label": "Stärke",
@@ -1265,8 +1267,10 @@
                 "is_visible": 1,
                 "position": 2,
                 "created_at": "2026-09-03 09:55:14",
-                "updated_at": "2026-09-03 09:55:14",
-                "in_schema": 1
+                "updated_at": "2026-10-02 21:46:27",
+                "in_schema": 1,
+                "website_url": "https://kevins-werkstatt.nils-digital.de",
+                "website_label": "Kevins Werkstatt"
             },
             {
                 "id": 3,
@@ -1280,8 +1284,10 @@
                 "is_visible": 1,
                 "position": 99,
                 "created_at": "2026-09-04 01:15:38",
-                "updated_at": "2026-09-04 01:19:40",
-                "in_schema": 1
+                "updated_at": "2026-10-02 21:51:32",
+                "in_schema": 0,
+                "website_url": null,
+                "website_label": null
             }
         ]
     }
