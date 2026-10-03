@@ -15,7 +15,7 @@ services:
       APP_ENV: production
       APP_DEBUG: 'false'
       APP_KEY: ${APP_KEY:?APP_KEY fehlt – einmalig mit "php artisan key:generate --show" erzeugen und in deploy/.env eintragen}
-      APP_URL: ${APP_URL:-https://neu.nils-digital.de}
+      APP_URL: ${APP_URL:-https://nils-digital.de}
       APP_LOCALE: de
       APP_FALLBACK_LOCALE: en
       APP_TIMEZONE: Europe/Berlin
@@ -59,27 +59,41 @@ services:
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ndweb.entrypoints=web,websecure"
-      - "traefik.http.routers.ndweb.rule=Host(`neu.nils-digital.de`)"
-      - "traefik.http.routers.ndweb.tls.certresolver=mytlschallenge"
 
-      # --- Vorschaubetrieb -------------------------------------------------
+      # Zwei Router an einem Container – ohne ausdrücklich benannten Dienst
+      # weiss Traefik nicht, wohin der zweite zeigen soll.
+      - "traefik.http.services.ndweb.loadbalancer.server.port=80"
+
+      # --- Die Seite selbst ------------------------------------------------
       #
-      # Die Vorschau ist frei erreichbar, damit der Link teilbar ist. Aus dem
-      # Suchindex hält sie allein dieser Header heraus.
+      # Seit dem Domain-Umzug am 3. Oktober 2026 ohne noindex. Vorher hing an
+      # diesem Router ein X-Robots-Tag, der die Vorschau aus dem Suchindex
+      # hielt; kommt er je zurück, ist die Seite für Google unsichtbar. Die
+      # Prüfung am Ende von deploy.sh schlägt in dem Fall Alarm.
+      - "traefik.http.routers.ndweb.entrypoints=web,websecure"
+      - "traefik.http.routers.ndweb.rule=Host(`nils-digital.de`)"
+      - "traefik.http.routers.ndweb.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.ndweb.service=ndweb"
+
+      # --- Nebenadressen ---------------------------------------------------
       #
-      # Bewusst OHNE Sperre in der robots.txt: ein "Disallow: /" verbietet das
-      # Crawlen, verhindert aber nicht, dass eine verlinkte Adresse im Index
-      # landet – und weil Google die Seite dann nicht abrufen darf, sieht es
-      # diesen noindex nie. Die beiden Sperren blockieren sich gegenseitig.
-      # Google muss die Seite lesen dürfen, damit es sie draußen lassen kann.
+      # www und die frühere Vorschau leiten auf die nackte Domain. Nötig, weil
+      # <x-seo> das Canonical aus der aufgerufenen Adresse baut: ohne die
+      # Weiterleitung gäbe es dieselbe Seite unter drei Namen, jede mit sich
+      # selbst als Original.
       #
-      # BEIM UMSCHALTEN AUF DIE ECHTE DOMAIN müssen die nächsten beiden Zeilen
-      # entfernt werden. Das ist der häufigste Relaunch-Fehler: die Seite geht
-      # live und bleibt wochenlang auf noindex. Die Prüfung am Ende von
-      # deploy.sh schlägt in dem Fall Alarm.
-      - "traefik.http.middlewares.ndweb-noindex.headers.customresponseheaders.X-Robots-Tag=noindex, nofollow"
-      - "traefik.http.routers.ndweb.middlewares=ndweb-noindex@docker"
+      # neu. bleibt als Weiterleitung stehen, solange Links dorthin im Umlauf
+      # sind – dafür muss auch der DNS-Eintrag bleiben.
+      #
+      # Doppeltes Dollarzeichen, weil Compose sonst ${1} als Variable liest.
+      - "traefik.http.routers.ndweb-neben.entrypoints=web,websecure"
+      - "traefik.http.routers.ndweb-neben.rule=Host(`www.nils-digital.de`) || Host(`neu.nils-digital.de`)"
+      - "traefik.http.routers.ndweb-neben.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.ndweb-neben.service=ndweb"
+      - "traefik.http.routers.ndweb-neben.middlewares=ndweb-hauptdomain@docker"
+      - "traefik.http.middlewares.ndweb-hauptdomain.redirectregex.regex=^https?://[^/]+/(.*)"
+      - "traefik.http.middlewares.ndweb-hauptdomain.redirectregex.replacement=https://nils-digital.de/$${1}"
+      - "traefik.http.middlewares.ndweb-hauptdomain.redirectregex.permanent=true"
 
   # Verschickt die Mails aus dem Kontaktformular. Ohne diesen Container bleibt
   # jede Anfrage in der Warteschlange liegen – das Formular meldet Erfolg, aber
