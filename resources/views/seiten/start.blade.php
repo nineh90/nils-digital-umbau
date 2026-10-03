@@ -33,7 +33,7 @@
 @endphp
 
 <x-layouts.oeffentlich
-    titel="Nils-Digital"
+    titel="Nils-Digital – KI-Automatisierung, Webentwicklung & Apps"
     beschreibung="KI-Automatisierung, Webentwicklung und individuelle Apps für kleine Unternehmen und Selbstständige – deutschlandweit und im Raum Münster, Osnabrück und Ibbenbüren."
     :jsonld="$jsonld">
 

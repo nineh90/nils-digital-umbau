@@ -25,7 +25,17 @@
     $kanonisch ??= url()->current();
     $beschreibung = $beschreibung ? \Illuminate\Support\Str::limit(strip_tags($beschreibung), 160) : null;
     $bild = $bild ? url($bild) : url('assets/images/logo/logo.png');
-    $seitenTitel = $titel === config('app.name') ? $titel : $titel.' – '.config('app.name');
+    /*
+     * Der Firmenname hängt hinten an – ausser er steht schon im Titel, oder
+     * der Titel würde damit länger als das, was Google im Suchergebnis zeigt.
+     * Bei rund 60 Zeichen schneidet es ab; ein Beitragstitel, der mitten im
+     * Wort endet, damit dahinter „– Nils-Digital" Platz hätte, ist das
+     * schlechtere Suchergebnis. Wer den Beitrag findet, sieht die Domain ohnehin.
+     */
+    $name = config('app.name');
+    $seitenTitel = str_contains($titel, $name) || mb_strlen($titel.' – '.$name) > 60
+        ? $titel
+        : $titel.' – '.$name;
 @endphp
 
 <title>{{ $seitenTitel }}</title>

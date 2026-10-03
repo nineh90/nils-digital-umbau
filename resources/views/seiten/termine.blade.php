@@ -1,5 +1,5 @@
 <x-layouts.oeffentlich
-    titel="Termin buchen"
+    titel="Kostenlose Video-Beratung buchen"
     beschreibung="Buch dir ein kostenloses Videogespräch – unverbindlich, ohne Verkaufsdruck.">
 
     <x-seitenkopf

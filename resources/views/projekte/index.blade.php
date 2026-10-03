@@ -14,7 +14,7 @@
 @endphp
 
 <x-layouts.oeffentlich
-    titel="Referenzen und Projekte"
+    titel="Referenzen & Projekte – Webentwicklung"
     beschreibung="Websites, Apps und Automatisierungen, die wir gebaut haben – vom barrierefreien Auftritt einer Fahrlehrerin bis zur Pflegesoftware ohne Cloud."
     :jsonld="$jsonld">
 

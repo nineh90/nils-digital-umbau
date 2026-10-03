@@ -3,7 +3,7 @@
 
     $titel = $istKategorie
         ? $aktiveKategorie->name.' – Blog'
-        : 'Blog – Webentwicklung, KI-Automatisierung und Projekte';
+        : 'Blog – Webentwicklung & KI-Automatisierung';
 
     $beschreibung = $istKategorie
         ? "Alle Beiträge aus der Kategorie {$aktiveKategorie->name} von Nils-Digital."

@@ -13,7 +13,7 @@
 @endphp
 
 <x-layouts.oeffentlich
-    titel="Kontakt"
+    titel="Kontakt – Webentwicklung anfragen"
     beschreibung="Schreib uns, was du vorhast. Du arbeitest direkt mit uns – feste Ansprechpartner, kein anonymes Support-Team."
     :jsonld="$jsonld">
 

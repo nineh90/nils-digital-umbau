@@ -48,7 +48,7 @@
 @endphp
 
 <x-layouts.oeffentlich
-    titel="Leistungen und Preise"
+    titel="Leistungen & Preise – Webdesign, Apps, KI-Automatisierung"
     beschreibung="Webentwicklung, KI-Automatisierung, Hosting und Pflege – monatlich ab 99 € inklusive Hosting und Pflege, oder einmalig zum Festpreis. Alle Preise auf einen Blick."
     :jsonld="$jsonld">
 

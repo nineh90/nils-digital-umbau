@@ -1,5 +1,5 @@
 <x-layouts.oeffentlich
-    titel="Projektanfrage"
+    titel="Projektanfrage – Website erstellen lassen"
     beschreibung="Beschreib dein Projekt im Fragebogen – Ziel, Umfang, Zeitrahmen. Danach melden wir uns mit einer Einschätzung.">
 
     <x-seitenkopf
