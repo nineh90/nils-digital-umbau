@@ -1,5 +1,5 @@
 {
-    "erzeugt": "2026-10-02T23:50:07+02:00",
+    "erzeugt": "2026-10-03T11:40:01+02:00",
     "quelle": "http://localhost:8000",
     "tabellen": {
         "categories": [
@@ -723,11 +723,11 @@
                 "image_fit": "cover",
                 "link": "https://das-landhaus-capfun.de",
                 "is_internal": 0,
-                "is_featured": 1,
+                "is_featured": 0,
                 "tags": "[\"Webentwicklung\",\"Next.js\",\"Gastronomie\",\"Mehrsprachig\"]",
                 "position": 3,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-09-03 12:47:53"
+                "updated_at": "2026-10-03 11:40:00"
             },
             {
                 "id": 5,
