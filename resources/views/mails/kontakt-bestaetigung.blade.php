@@ -10,7 +10,7 @@ Zur Sicherheit hier noch einmal, was du geschrieben hast:
 
 > {{ $nachricht }}
 
-Bis gleich
+Bis gleich<br>
 Dein Team von Nils-Digital
 
 <x-mail::subcopy>
