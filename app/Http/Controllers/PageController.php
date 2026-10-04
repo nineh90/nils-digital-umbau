@@ -127,11 +127,6 @@ class PageController extends Controller
         return view('seiten.kontakt');
     }
 
-    public function projektanfrage(): View
-    {
-        return view('seiten.projektanfrage');
-    }
-
     public function termine(): View
     {
         return view('seiten.termine');

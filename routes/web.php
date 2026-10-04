@@ -5,7 +5,9 @@ use App\Http\Controllers\FeedController;
 use App\Http\Controllers\KontaktController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjektanfrageController;
 use App\Http\Controllers\SitemapController;
+use App\Support\Fragebogen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +24,21 @@ Route::get('/team', [PageController::class, 'team'])->name('team');
 
 Route::get('/kontakt', [PageController::class, 'kontakt'])->name('kontakt');
 Route::post('/kontakt', [KontaktController::class, 'senden'])->name('kontakt.senden');
-Route::get('/projektanfrage', [PageController::class, 'projektanfrage'])->name('projektanfrage');
+/*
+ * Projektfragebogen in vier Schritten.
+ *
+ * /projektanfrage/danke muss vor dem Platzhalter stehen. Der erste Schritt
+ * behält die bekannte Adresse – auf sie zeigen Navigation, Sitemap und die
+ * 301 der alten Seite.
+ */
+Route::get('/projektanfrage', [ProjektanfrageController::class, 'zeigen'])->name('projektanfrage');
+Route::get('/projektanfrage/danke', [ProjektanfrageController::class, 'danke'])->name('projektanfrage.danke');
+Route::get('/projektanfrage/{schritt}', [ProjektanfrageController::class, 'zeigen'])
+    ->whereIn('schritt', array_slice(Fragebogen::SCHRITTE, 1))
+    ->name('projektanfrage.schritt');
+Route::post('/projektanfrage/{schritt}', [ProjektanfrageController::class, 'speichern'])
+    ->whereIn('schritt', Fragebogen::SCHRITTE)
+    ->name('projektanfrage.speichern');
 Route::get('/termine', [PageController::class, 'termine'])->name('termine');
 
 Route::get('/impressum', [PageController::class, 'impressum'])->name('impressum');

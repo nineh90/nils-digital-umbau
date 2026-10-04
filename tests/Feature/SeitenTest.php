@@ -333,7 +333,7 @@ class SeitenTest extends TestCase
      */
     public function test_google_einbettungen_laden_nicht_von_allein(): void
     {
-        foreach (['/projektanfrage', '/termine'] as $pfad) {
+        foreach (['/termine'] as $pfad) {
             $html = $this->get($pfad)->assertOk()->getContent();
 
             $this->assertStringNotContainsString('<iframe', $html, "Auf {$pfad} steht ein iframe im HTML.");

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Inquiries\Schemas;
 
 use App\Models\Inquiry;
+use App\Support\Fragebogen;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -44,6 +45,29 @@ class InquiryForm
                         ->disabled()
                         ->autosize()
                         ->columnSpanFull(),
+
+                    /*
+                     * Was der anfragenden Person am Ende des Fragebogens als
+                     * Preis genannt wurde. Aus dem Datensatz und nicht neu
+                     * gerechnet: steht hier eine andere Zahl als in ihrer
+                     * Mail, beginnt das Gespräch mit einer Rückfrage.
+                     */
+                    Textarea::make('richtpreis')
+                        ->label('Genannter Richtpreis')
+                        ->disabled()
+                        ->dehydrated(false)
+                        ->autosize()
+                        ->columnSpanFull()
+                        ->visible(fn (?Inquiry $record) => $record?->type === 'projektanfrage')
+                        ->afterStateHydrated(function (Textarea $component, ?Inquiry $record) {
+                            $zeilen = Fragebogen::preisZeilen($record?->details['preis'] ?? [
+                                'monatlich' => null, 'festpreis' => null, 'zahlweise' => 'offen',
+                            ]);
+
+                            $component->state($zeilen === []
+                                ? 'Kein Preis genannt – das Vorhaben ließ sich keiner Leistung zuordnen.'
+                                : collect($zeilen)->map(fn ($z) => $z['titel'].': '.$z['betrag'].' – '.$z['zusatz'])->implode("\n"));
+                        }),
                 ]),
 
             Section::make('Bearbeitung')
