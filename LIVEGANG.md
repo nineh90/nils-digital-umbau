@@ -1,5 +1,10 @@
 # Live-Gang: was noch zu tun ist
 
+> **Live seit 3. Oktober 2026, 12:37 Uhr.** `nils-digital.de` läuft auf dem VPS,
+> Zertifikat gültig, kein `noindex`, alle 60 alten Adressen leiten weiter.
+> Mailversand läuft seit 13:41 Uhr. Offen im Betrieb: Datenschutzerklärung, AGB,
+> Sitemap bei Google.
+
 Stand der Bestandsaufnahme: **1. Oktober 2026**. Die Liste wird von oben nach unten
 abgearbeitet. Wer etwas erledigt, hakt es ab und schreibt das Datum dahinter.
 
@@ -39,12 +44,9 @@ abgearbeitet. Wer etwas erledigt, hakt es ab und schreibt das Datum dahinter.
       Notiz. Gebaut am 02.10.2026, noch nicht committet.
 - [x] Dashboard-Feld „Eingang": neue Anfragen, hängende Mails (über zehn
       Minuten in der Warteschlange) und gescheiterte Mails (02.10.2026)
-- [ ] Google-App-Passwort für `info@nils-digital.de` erzeugen und in `deploy/.env`
-      auf dem Server eintragen (`MAIL_MAILER=smtp`, `MAIL_USERNAME`,
-      `MAIL_PASSWORD`) – **N**, macht Nils später. Nicht ins Repo, nicht in den Chat.
-- [ ] Probeanfrage auf der Vorschau (**N**, nach Passwort und Push): kommt die Anfrage an, kommt die Bestätigung
-      an, landet keine im Spam? Die Domain weist per DMARC alles ab, was nicht
-      über Google läuft.
+- [x] Mailversand scharf (03.10.2026): App-Passwort von Nils eingetragen, Versand
+      über `smtp.gmail.com`. Probeanfrage über das Live-Formular – Anfrage und
+      Bestätigung sind beide rausgegangen und bei Nils angekommen.
 
 ## 3 · Eigener Projektfragebogen statt Google Forms (nach dem Live-Gang)
 
@@ -83,13 +85,13 @@ Tabelle `inquiries` ist dafür schon vorbereitet (`type`, `details`).
 
 ## 6 · Umschalten vorbereiten
 
-- [ ] Traefik-Regel: `nils-digital.de`, `www` → Weiterleitung auf die nackte
+- [x] Traefik-Regel: `nils-digital.de`, `www` → Weiterleitung auf die nackte
       Domain, `neu.` → Weiterleitung auf die Hauptdomain
-- [ ] `APP_URL` in `deploy/.env` auf dem Server umstellen
-- [ ] Die beiden `noindex`-Zeilen in `deploy/docker-compose.yml` entfernen
+- [x] `APP_URL` in `deploy/.env` auf dem Server umstellen
+- [x] Die beiden `noindex`-Zeilen in `deploy/docker-compose.yml` entfernen
 - [ ] Sicherung für Datenbank und hochgeladene Bilder einrichten – ab dem
       Umschalten ist der Server die Wahrheit
-- [ ] Inhalte frisch ausgeben (`nd:inhalt-ausgeben`), pushen, auf dem Server
+- [x] Inhalte frisch ausgeben (`nd:inhalt-ausgeben`), pushen, auf dem Server
       einlesen (`nd:inhalt-einlesen`)
 - [x] Große Bilder verkleinert (02.10.2026): `sunny.jpg` und `sunnycam.jpg` von
       4 MB auf 370 KB, Beitragsbild Alltagsbegleitung als JPG (205 KB statt
@@ -100,12 +102,12 @@ Tabelle `inquiries` ist dafür schon vorbereitet (`type`, `details`).
 
 ## 7 · Der Umschalttag
 
-- [ ] Vorher die DNS-Laufzeit bei Strato niedrig stellen
-- [ ] A-Eintrag von `nils-digital.de` auf den VPS (187.124.178.193)
-- [ ] **AAAA-Eintrag löschen** – er zeigt auf den alten Webspace, der VPS hat
+- [x] Vorher die DNS-Laufzeit bei Strato niedrig stellen
+- [x] A-Eintrag von `nils-digital.de` auf den VPS (187.124.178.193)
+- [x] **AAAA-Eintrag löschen** – er zeigt auf den alten Webspace, der VPS hat
       keinen. Bleibt er stehen, sehen IPv6-Besucher weiter die alte Seite.
-- [ ] MX, SPF, DKIM, DMARC und Kevins Subdomain **nicht anfassen**
-- [ ] Prüfen: Zertifikat da, `www` leitet weiter, kein `noindex` im Antwortkopf,
+- [x] MX, SPF, DKIM, DMARC und Kevins Subdomain **nicht anfassen**
+- [x] Prüfen: Zertifikat da, `www` leitet weiter, kein `noindex` im Antwortkopf,
       `robots.txt` nennt die Sitemap, Stichprobe alter Adressen
 - [ ] Sitemap in der Search Console einreichen, Startseite neu prüfen lassen
 - [ ] Alte Seite bei Strato liegen lassen – der Rückweg ist ein DNS-Eintrag.
@@ -115,6 +117,8 @@ Tabelle `inquiries` ist dafür schon vorbereitet (`type`, `details`).
 
 - [ ] Links in Google-Unternehmensprofil, LinkedIn, Instagram, Mail-Signatur prüfen
 - [ ] Search Console nach zwei Wochen ansehen: 404er, Abdeckung
+- [ ] Anfragen aus `inquiries` ins Kunden-/Ticketsystem übergeben (Wunsch vom
+      03.10.2026, gehört zur Lead-Strecke aus Abschnitt 3)
 - [ ] n8n an den Feed hängen
 - [ ] `legacy/` entfernen
 - [ ] `actions/checkout` und `setup-node` auf `@v5`

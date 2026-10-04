@@ -1,5 +1,5 @@
 {
-    "erzeugt": "2026-10-03T11:40:01+02:00",
+    "erzeugt": "2026-10-04T16:16:52+02:00",
     "quelle": "http://localhost:8000",
     "tabellen": {
         "categories": [
@@ -469,6 +469,21 @@
                 "published_at": "2026-09-03 23:43:00",
                 "created_at": "2026-09-03 21:26:28",
                 "updated_at": "2026-10-02 23:30:59"
+            },
+            {
+                "id": 48,
+                "legacy_id": null,
+                "category_id": 6,
+                "slug": "gemeinsam-freude-schenken-ricardas-adventskalender-aktion",
+                "title": "Gemeinsam Freude schenken – Ricardas Adventskalender-Aktion",
+                "teaser": "Ricarda Belmar bringt Menschen zusammen, die einen Adventskalender verschenken, und Familien, die sich einen für ihre Kinder wünschen. Wir haben die Website dazu gebaut – und dabei bewusst auf KI verzichtet, wo es um Vertrauen geht.",
+                "content": "Am 1. Dezember soll möglichst jedes Kind ein Türchen öffnen können. Das ist der Wunsch von\nRicarda Belmar, und daraus ist ihre Adventskalender-Aktion entstanden:\n[**Gemeinsam Freude schenken**](https://gemeinsamfreudeschenken.de) bringt Menschen zusammen,\ndie in diesem Jahr einen Kalender verschenken können, und Familien, die einen für ihre Kinder\nannehmen möchten. Wir durften der Aktion ihre Website bauen.\n\n## Wie die Aktion funktioniert\n\nWer schenken möchte, meldet sich als Weihnachtswichtel an und sagt, wie viele Kalender es\nsein dürfen. Wer sich einen Kalender wünscht, nennt nur, für wie viele Kinder. Nachweise,\nEinkommensangaben oder eine Begründung verlangt niemand – auf der Seite steht dazu ein Satz,\nder das ganze Projekt trägt: „Dein Wort genügt.\"\n\nDanach werden Spender und Familien einander zugeordnet. Der Spender besorgt den Kalender\nselbst und schickt ihn direkt an die Familie. Es fließt kein Geld, und es gibt kein Lager, in\ndem Pakete zwischenlanden. Die Aktion vermittelt, mehr nicht.\n\nDie Anmeldung für dieses Jahr läuft bis zum **23. November 2026**.\n\n## Die eigentliche Aufgabe: eine Adresse weitergeben, ohne sie preiszugeben\n\nDamit ein Kalender ankommt, muss der Spender die Anschrift der Familie erfahren. Genau\ndieser eine Moment ist heikel, denn es geht um Familien mit Kindern, die sich hier\nanvertrauen. Um ihn herum ist die ganze Anwendung gebaut:\n\n- **Kein Automatismus gibt eine Adresse heraus.** Jede Zuordnung wird von einem Menschen\n  geprüft und freigegeben, bevor irgendjemand eine Anschrift sieht.\n- **Die Zuordnung arbeitet ohne Namen und Adressen.** Sie kennt nur, was sie braucht:\n  wie viele Kalender, wie viele Kinder, welche Region.\n- **Anschriften liegen verschlüsselt in der Datenbank**, und jeder Zugriff darauf wird\n  protokolliert.\n- **30 Tage nach dem Ende der Aktion werden Namen, Anschriften und Kontaktdaten\n  automatisch gelöscht.** Übrig bleibt eine anonyme Statistik.\n\n## Warum hier bewusst keine KI zuordnet\n\nWir bauen sonst gern Automatisierungen, auch mit KI. Hier haben wir uns dagegen\nentschieden. Die Zuordnung folgt festen Regeln: gleiche Eingaben, gleiches Ergebnis, und\njede einzelne Zuordnung lässt sich begründen. Wenn eine Familie fragt, warum sie diesem\nSpender zugeordnet wurde, soll es darauf eine Antwort geben und kein Schulterzucken.\n\nDas ist keine Absage an die Technik, sondern eine Frage dessen, was zur Aufgabe passt. Wo\nVertrauen die Währung ist, zählt Nachvollziehbarkeit mehr als Raffinesse.\n\n## Eine Seite, die mit dem Jahr geht\n\nDie Website bleibt das ganze Jahr online und wechselt dabei ihre Rolle: Anmeldung im Herbst,\ndanach die Zuordnung, im Dezember der Advent, zum Schluss der Dank. Den Wechsel schlägt\ndas System vor, ausgelöst wird er per Klick von einem Menschen – eine Verzögerung im Ablauf\nsoll die Seite nicht von allein in die falsche Phase kippen.\n\nBedient wird das alles ohne technisches Wissen. Ricarda und ihre Weihnachtselfen pflegen\nTexte, prüfen Anmeldungen und geben Zuordnungen frei, ohne je eine Kommandozeile zu sehen.\n\n## Ein Wichtelhaus statt eines Formulars\n\nGestalterisch sollte die Seite nicht nach Antrag aussehen. Wer sich einen Kalender für seine\nKinder wünscht, soll sich willkommen fühlen und nicht geprüft. Deshalb empfängt einen ein\nverschneites Wichtelhaus, und alles Wissenswerte steht in „Ricardas Wichtelbuch\", durch das\nman blättert – am Handy mit einem Wisch.\n\nDass Datenschutz dabei kein trockenes Kapitel bleiben muss, zeigt die Überschrift, unter der\ner im Wichtelbuch steht: „Weihnachtszauber? Sehr gern. Datenchaos? Kommt uns nicht ins\nGeschenk.\"\n\n## Danke, Ricarda\n\nAuf der Seite bedankt sich Ricarda bei allen, die mitmachen, und auch bei uns: Wir hätten\nder Idee „einen Ort gegeben, an dem Menschen zueinanderfinden\". Das geben wir gern\nzurück. Eine gute Idee macht die Arbeit leicht – diese hier war eine der schönsten, an\ndenen wir in diesem Jahr gebaut haben.\n\nWenn ihr einen Kalender verschenken könnt oder euch einen für eure Kinder wünscht: Die\nAnmeldung ist offen.\n",
+                "hero_image": "assets/images/blog/gemeinsam-freude-schenken.jpg",
+                "thumb_fit": "cover",
+                "status": "published",
+                "published_at": "2026-10-03 17:07:36",
+                "created_at": "2026-10-03 17:04:44",
+                "updated_at": "2026-10-03 17:07:36"
             }
         ],
         "post_links": [
@@ -653,6 +668,13 @@
                 "url": "https://kein-einzelfall.de",
                 "label": "Webseite",
                 "position": 1
+            },
+            {
+                "id": 233,
+                "post_id": 48,
+                "url": "https://gemeinsamfreudeschenken.de",
+                "label": "Zur Aktion",
+                "position": 1
             }
         ],
         "products": [],
@@ -764,6 +786,24 @@
                 "position": 5,
                 "created_at": "2026-08-31 22:01:09",
                 "updated_at": "2026-09-03 12:47:19"
+            },
+            {
+                "id": 8,
+                "slug": "gemeinsam-freude-schenken",
+                "title": "Gemeinsam Freude schenken",
+                "type": "Kundenprojekt",
+                "status": "live",
+                "description": "Website für Ricarda Belmars Adventskalender-Aktion: Sie bringt Menschen zusammen, die einen Kalender verschenken, und Familien, die sich einen für ihre Kinder wünschen. Anschriften gibt erst ein Mensch frei, die Zuordnung läuft nachvollziehbar und ohne KI, und 30 Tage nach der Aktion werden alle persönlichen Daten gelöscht.",
+                "body": null,
+                "image": "assets/images/projekte/gemeinsam-freude-schenken.jpg",
+                "image_fit": "cover",
+                "link": "https://gemeinsamfreudeschenken.de",
+                "is_internal": 0,
+                "is_featured": 1,
+                "tags": "[\"Webentwicklung\",\"Laravel\",\"Datenschutz\",\"Vermittlung\"]",
+                "position": 6,
+                "created_at": "2026-10-04 15:34:39",
+                "updated_at": "2026-10-04 15:34:39"
             }
         ],
         "post_project": [
@@ -830,6 +870,10 @@
             {
                 "post_id": 12,
                 "project_id": 5
+            },
+            {
+                "post_id": 48,
+                "project_id": 8
             }
         ],
         "service_categories": [
