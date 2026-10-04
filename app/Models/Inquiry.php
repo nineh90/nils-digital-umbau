@@ -29,7 +29,14 @@ class Inquiry extends Model
     {
         return [
             'details' => 'array',
+            'handed_over_at' => 'datetime',
         ];
+    }
+
+    /** Ob es ein Ticketsystem gibt, an das übergeben werden kann. */
+    public static function uebergabeEingerichtet(): bool
+    {
+        return filled(config('services.ticketsystem.url')) && filled(config('services.ticketsystem.token'));
     }
 
     public function scopeNeu(Builder $query): Builder

@@ -35,4 +35,19 @@ return [
         ],
     ],
 
+    /*
+     * Das Ticketsystem auf intern.nils-digital.de.
+     *
+     * url ist der Weg für die Schnittstelle – auf dem Server das Docker-Netz
+     * (http://ticketsystem), ohne Umweg übers Internet. adresse ist das, was
+     * ein Mensch im Browser öffnet. Bleiben url oder token leer, wird nichts
+     * übergeben.
+     */
+    'ticketsystem' => [
+        'url' => env('TICKETSYSTEM_URL'),
+        'token' => env('TICKETSYSTEM_TOKEN'),
+        'projekt' => env('TICKETSYSTEM_PROJEKT', 'anfragen'),
+        'adresse' => env('TICKETSYSTEM_ADRESSE', 'https://intern.nils-digital.de'),
+    ],
+
 ];

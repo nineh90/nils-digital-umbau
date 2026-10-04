@@ -41,6 +41,12 @@ class InquiriesTable
                     ->formatStateUsing(fn (string $state) => Inquiry::HERKUNFT[$state] ?? $state)
                     ->toggleable(),
 
+                TextColumn::make('ticket_ref')
+                    ->label('Ticket')
+                    ->url(fn (Inquiry $record) => $record->ticket_url, shouldOpenInNewTab: true)
+                    ->color('primary')
+                    ->placeholder('–'),
+
                 TextColumn::make('status')
                     ->label('Stand')
                     ->badge()

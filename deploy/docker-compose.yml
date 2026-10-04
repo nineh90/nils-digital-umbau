@@ -48,6 +48,13 @@ services:
       MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-info@nils-digital.de}
       MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Nils-Digital}
 
+      # Anfragen werden Tickets. Das Ticketsystem hängt im selben Docker-Netz,
+      # der Aufruf verlässt den Server also nicht. Ohne Token bleibt die
+      # Übergabe aus.
+      TICKETSYSTEM_URL: ${TICKETSYSTEM_URL:-http://ticketsystem}
+      TICKETSYSTEM_TOKEN: ${TICKETSYSTEM_TOKEN:-}
+      TICKETSYSTEM_PROJEKT: ${TICKETSYSTEM_PROJEKT:-anfragen}
+
     volumes:
       # Hochgeladene Bilder überleben den Neubau des Abbilds nur hier: public/
       # entsteht bei jedem Deploy neu aus dem Repository.

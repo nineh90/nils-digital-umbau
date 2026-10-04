@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\KontaktRequest;
+use App\Jobs\AnfrageUebergeben;
 use App\Mail\KontaktAnfrage;
 use App\Mail\KontaktBestaetigung;
 use App\Models\Inquiry;
@@ -39,7 +40,7 @@ class KontaktController extends Controller
 
         // Erst speichern, dann verschicken. Die Mail ist die Benachrichtigung;
         // geht sie verloren, steht die Anfrage trotzdem in der Redaktion.
-        Inquiry::create([
+        $anfrage = Inquiry::create([
             'type' => 'kontakt',
             'name' => $daten['name'],
             'email' => $daten['email'],
@@ -54,6 +55,8 @@ class KontaktController extends Controller
         Mail::to($daten['email'])->queue(new KontaktBestaetigung(
             $daten['name'], $daten['subject'], $daten['message'],
         ));
+
+        AnfrageUebergeben::dispatch($anfrage);
 
         return redirect()
             ->route('kontakt')

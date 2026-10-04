@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\AnfrageUebergeben;
 use App\Mail\ProjektanfrageBestaetigung;
 use App\Mail\ProjektanfrageEingang;
 use App\Models\Inquiry;
@@ -114,6 +115,7 @@ class ProjektanfrageController extends Controller
 
         Mail::to(config('mail.from.address'))->queue(new ProjektanfrageEingang($anfrage));
         Mail::to($anfrage->email)->queue(new ProjektanfrageBestaetigung($anfrage));
+        AnfrageUebergeben::dispatch($anfrage);
 
         $request->session()->forget(self::SITZUNG);
         $request->session()->put(self::ERGEBNIS, $anfrage->id);
