@@ -91,6 +91,11 @@
   zusätzlich per E-Mail an mich geschickt. Du erhältst eine Bestätigung an die angegebene Adresse.
   Der E-Mail-Versand und mein Postfach laufen über Google Workspace (siehe Abschnitt 4).</p>
 
+  <p>Damit ich deine Anfrage bearbeiten kann, wird sie außerdem als Vorgang in mein internes
+  Ticketsystem übernommen (Name, E-Mail-Adresse, Betreff und Inhalt der Anfrage). Es läuft unter
+  <strong>intern.nils-digital.de</strong> auf demselben Server; die Daten verlassen ihn dabei nicht
+  und werden nicht an Dritte weitergegeben.</p>
+
   <h3>3.2 Schutz vor Missbrauch</h3>
   <p>Um die Formulare vor massenhaftem Missbrauch zu schützen, wird gezählt, wie viele Anfragen von einer
   IP-Adresse eingehen. Die IP-Adresse wird dafür höchstens eine Stunde lang zwischengespeichert und nicht
