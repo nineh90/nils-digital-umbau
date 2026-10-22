@@ -8,6 +8,7 @@ use App\Models\Inquiry;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Support\Fragebogen;
+use App\Support\Spamschutz;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -62,6 +63,7 @@ class ProjektanfrageTest extends TestCase
             'firma' => 'Beispiel GmbH',
             'email' => 'erika@example.com',
             'unternehmer' => '1',
+            Spamschutz::FELD => Spamschutz::stempel(now()->subMinute()),
         ], $werte);
     }
 
@@ -222,8 +224,11 @@ class ProjektanfrageTest extends TestCase
         $this->post('/projektanfrage/kontakt', $this->kontakt(['unternehmer' => null]))
             ->assertSessionHasErrors('unternehmer');
 
+        // Still verworfen: kein Fehler, zurück zum Anfang, Bogen geleert.
         $this->post('/projektanfrage/kontakt', $this->kontakt(['website' => 'https://spam.example']))
-            ->assertSessionHasErrors('website');
+            ->assertRedirect('/projektanfrage')
+            ->assertSessionHasNoErrors()
+            ->assertSessionMissing('fragebogen');
 
         $this->assertDatabaseCount('inquiries', 0);
         Mail::assertNothingQueued();

@@ -7,6 +7,7 @@ use App\Mail\ProjektanfrageBestaetigung;
 use App\Mail\ProjektanfrageEingang;
 use App\Models\Inquiry;
 use App\Support\Fragebogen;
+use App\Support\Spamschutz;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -65,18 +66,24 @@ class ProjektanfrageController extends Controller
         $regeln = Fragebogen::regeln($schritt, $antworten);
         $letzter = $schritt === 'kontakt';
 
-        if ($letzter) {
-            // Honigtopf wie im Kontaktformular: für Menschen unsichtbar.
-            $regeln['website'] = ['nullable', 'prohibited'];
-        }
-
         $neu = $request->validate($regeln, [
             'required' => 'Bitte beantworte :attribute.',
             'unternehmer.accepted' => 'Bitte bestätige, dass du nicht als Privatperson anfragst.',
-            'website.prohibited' => 'Deine Anfrage konnte nicht gesendet werden.',
         ], Fragebogen::bezeichnungen($schritt, $antworten));
 
-        unset($neu['website']);
+        if ($letzter && Spamschutz::stempelFehlt($request)) {
+            return back()->withInput()->withErrors([
+                'name' => 'Die Seite war zu lange offen. Bitte lade sie neu und schick deine Anfrage noch einmal ab.',
+            ]);
+        }
+
+        // Still verwerfen, wie im Kontaktformular: zurück zum Anfang, als wäre
+        // nichts gewesen. Eine Fehlermeldung verriete dem Roboter die Falle.
+        if ($letzter && Spamschutz::istRoboter($request, 'Projektanfrage')) {
+            $request->session()->forget(self::SITZUNG);
+
+            return redirect()->route('projektanfrage');
+        }
 
         // Ein anderes Vorhaben bringt andere Detailfragen mit. Die alten
         // Antworten blieben sonst liegen und flössen in den Preis ein.
@@ -114,7 +121,11 @@ class ProjektanfrageController extends Controller
         $anfrage = $this->anlegen($antworten);
 
         Mail::to(config('mail.from.address'))->queue(new ProjektanfrageEingang($anfrage));
-        Mail::to($anfrage->email)->queue(new ProjektanfrageBestaetigung($anfrage));
+
+        if (Spamschutz::bestaetigungErlaubt()) {
+            Mail::to($anfrage->email)->queue(new ProjektanfrageBestaetigung($anfrage));
+        }
+
         AnfrageUebergeben::dispatch($anfrage);
 
         $request->session()->forget(self::SITZUNG);

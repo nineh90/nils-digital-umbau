@@ -377,7 +377,7 @@ class Fragebogen
      * Fragen und Antworten in Klartext – für Mail, Redaktion und die
      * Abschlussseite. Kontaktdaten stehen nicht darin, die haben eigene Felder.
      *
-     * @return list<array{frage: string, antwort: string}>
+     * @return list<array{frage: string, antwort: string, frei: bool}>
      */
     public static function zusammenfassung(array $antworten): array
     {
@@ -395,7 +395,9 @@ class Fragebogen
                     ? collect((array) $wert)->map(fn ($w) => $feld['optionen'][$w]['label'] ?? $w)->implode(', ')
                     : (string) $wert;
 
-                $zeilen[] = ['frage' => $feld['frage'], 'antwort' => $antwort];
+                // frei: selbst geschrieben statt ausgewählt. Die Bestätigungsmail
+                // lässt solche Antworten weg, siehe ProjektanfrageBestaetigung.
+                $zeilen[] = ['frage' => $feld['frage'], 'antwort' => $antwort, 'frei' => ! isset($feld['optionen'])];
             }
         }
 

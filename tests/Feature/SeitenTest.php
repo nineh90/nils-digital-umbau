@@ -254,6 +254,7 @@ class SeitenTest extends TestCase
             'email' => 'kunde@example.com',
             'subject' => 'Neue Website',
             'message' => 'Wir brauchen eine neue Website für unseren Betrieb.',
+            \App\Support\Spamschutz::FELD => \App\Support\Spamschutz::stempel(now()->subMinute()),
         ])->assertRedirect(route('kontakt'))->assertSessionHas('erfolg');
 
         Mail::assertQueued(\App\Mail\KontaktAnfrage::class);
@@ -274,6 +275,7 @@ class SeitenTest extends TestCase
             'email' => 'kunde@example.com',
             'subject' => 'Neue Website',
             'message' => 'Wir brauchen eine neue Website für unseren Betrieb.',
+            \App\Support\Spamschutz::FELD => \App\Support\Spamschutz::stempel(now()->subMinute()),
         ])->assertSessionHas('erfolg');
 
         $this->assertDatabaseHas('inquiries', [
@@ -311,9 +313,11 @@ class SeitenTest extends TestCase
             'subject' => 'Werbung',
             'message' => 'Kaufen Sie unsere Produkte, sehr guenstig.',
             'website' => 'https://spam.example',
-        ])->assertSessionHasErrors('website');
+            \App\Support\Spamschutz::FELD => \App\Support\Spamschutz::stempel(now()->subMinute()),
+        ])->assertSessionHas('erfolg')->assertSessionHasNoErrors();
 
         Mail::assertNothingQueued();
+        $this->assertDatabaseCount('inquiries', 0);
     }
 
     public function test_unvollstaendiges_formular_wird_abgewiesen(): void

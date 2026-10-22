@@ -156,11 +156,7 @@
             </div>
 
             @if ($letzter)
-                {{-- Honigtopf, wie im Kontaktformular. --}}
-                <div class="absolute left-[-9999px]" aria-hidden="true">
-                    <label for="website">Website</label>
-                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-                </div>
+                <x-spamschutz />
             @endif
 
             <div class="mt-10 flex flex-wrap items-center gap-4">

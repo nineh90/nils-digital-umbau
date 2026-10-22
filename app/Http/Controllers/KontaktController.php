@@ -7,6 +7,7 @@ use App\Jobs\AnfrageUebergeben;
 use App\Mail\KontaktAnfrage;
 use App\Mail\KontaktBestaetigung;
 use App\Models\Inquiry;
+use App\Support\Spamschutz;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
@@ -24,6 +25,16 @@ class KontaktController extends Controller
     public function senden(KontaktRequest $request): RedirectResponse
     {
         $daten = $request->validated();
+
+        if (Spamschutz::stempelFehlt($request)) {
+            return back()
+                ->withInput()
+                ->withErrors(['message' => 'Die Seite war zu lange offen. Bitte lade sie neu und schick deine Nachricht noch einmal ab.']);
+        }
+
+        if (Spamschutz::istRoboter($request, 'Kontaktformular')) {
+            return $this->erfolg();
+        }
 
         // Gegen Massenversand über das Formular. Die alte Fassung hatte nur
         // den Honigtopf – der hält Roboter auf, aber niemanden, der das
@@ -52,12 +63,17 @@ class KontaktController extends Controller
             $daten['name'], $daten['email'], $daten['subject'], $daten['message'],
         ));
 
-        Mail::to($daten['email'])->queue(new KontaktBestaetigung(
-            $daten['name'], $daten['subject'], $daten['message'],
-        ));
+        if (Spamschutz::bestaetigungErlaubt()) {
+            Mail::to($daten['email'])->queue(new KontaktBestaetigung);
+        }
 
         AnfrageUebergeben::dispatch($anfrage);
 
+        return $this->erfolg();
+    }
+
+    private function erfolg(): RedirectResponse
+    {
         return redirect()
             ->route('kontakt')
             ->with('erfolg', 'Danke! Deine Nachricht ist angekommen – ich melde mich in der Regel innerhalb eines Werktags.');

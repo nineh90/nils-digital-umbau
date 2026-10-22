@@ -7,9 +7,9 @@ use Illuminate\Foundation\Http\FormRequest;
 /**
  * Prüfung des Kontaktformulars.
  *
- * Feldnamen bewusst identisch zum alten backend/contact.php – auch das
- * Honigtopf-Feld "website", das für Menschen unsichtbar ist und nur von
- * Formular-Robotern ausgefüllt wird.
+ * Feldnamen bewusst identisch zum alten backend/contact.php. Honigtopf und
+ * Zeitstempel prüft nicht diese Klasse, sondern App\Support\Spamschutz – ein
+ * Roboter soll keine Fehlermeldung zu sehen bekommen.
  */
 class KontaktRequest extends FormRequest
 {
@@ -25,7 +25,6 @@ class KontaktRequest extends FormRequest
             'email' => ['required', 'email:rfc', 'max:180'],
             'subject' => ['required', 'string', 'max:180'],
             'message' => ['required', 'string', 'min:10', 'max:5000'],
-            'website' => ['nullable', 'prohibited'],
         ];
     }
 
@@ -42,7 +41,6 @@ class KontaktRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'website.prohibited' => 'Deine Anfrage konnte nicht gesendet werden.',
             'message.min' => 'Schreib bitte ein paar Sätze mehr, damit ich dir sinnvoll antworten kann.',
         ];
     }

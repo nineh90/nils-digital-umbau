@@ -87,14 +87,7 @@
                                           'border-linie' => ! $errors->has('message')])>{{ old('message') }}</textarea>
                     </div>
 
-                    {{-- Honigtopf. Für Menschen unsichtbar, aber nicht per
-                         display:none – manche Roboter erkennen das. tabindex
-                         und autocomplete halten ihn aus der Tastaturbedienung
-                         und dem Ausfüllvorschlag heraus. --}}
-                    <div class="absolute left-[-9999px]" aria-hidden="true">
-                        <label for="website">Website</label>
-                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-                    </div>
+                    <x-spamschutz />
 
                     <button type="submit"
                             class="rounded-lg bg-akzent px-6 py-3 font-medium text-flaeche transition-colors hover:bg-akzent-hell">

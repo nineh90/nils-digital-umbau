@@ -63,6 +63,7 @@ class TicketUebergabeTest extends TestCase
             'email' => 'erika@example.de',
             'subject' => 'Neue Website',
             'message' => 'Wir brauchen eine neue Seite, am liebsten bis Januar.',
+            \App\Support\Spamschutz::FELD => \App\Support\Spamschutz::stempel(now()->subMinute()),
         ])->assertRedirect('/kontakt');
 
         Queue::assertPushed(AnfrageUebergeben::class, fn ($job) => $job->anfrage->is(Inquiry::sole()));
