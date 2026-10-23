@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Mail\ProjektanfrageBestaetigung;
 use App\Mail\ProjektanfrageEingang;
 use App\Models\Inquiry;
 use App\Models\Service;
@@ -157,7 +156,7 @@ class ProjektanfrageTest extends TestCase
             ->assertSee('noindex', false);
 
         Mail::assertQueued(ProjektanfrageEingang::class, fn ($mail) => $mail->hasTo(config('mail.from.address')));
-        Mail::assertQueued(ProjektanfrageBestaetigung::class, fn ($mail) => $mail->hasTo('erika@example.com'));
+        Mail::assertQueuedCount(1);
     }
 
     public function test_festpreis_und_offene_zahlweise(): void
@@ -234,7 +233,7 @@ class ProjektanfrageTest extends TestCase
         Mail::assertNothingQueued();
     }
 
-    /** Beide Mails muessen sich wirklich rendern lassen, mit und ohne Preis. */
+    /** Die Mail an Nils muss sich wirklich rendern lassen und denselben Preis nennen. */
     public function test_mails_nennen_denselben_preis_wie_die_seite(): void
     {
         $antworten = ['vorhaben' => 'ki', 'bereich' => 'chatbot', 'beschreibung' => 'Fragen beantworten.', 'zahlweise' => 'abo', 'zeitrahmen' => 'sofort'];
@@ -251,11 +250,6 @@ class ProjektanfrageTest extends TestCase
                 'preis' => Fragebogen::preis($antworten),
             ],
         ]);
-
-        (new ProjektanfrageBestaetigung($anfrage))
-            ->assertSeeInHtml('ab 129 € im Monat')
-            ->assertSeeInHtml('innerhalb')
-            ->assertSeeInHtml('Chatbot für Website oder Support');
 
         (new ProjektanfrageEingang($anfrage))
             ->assertSeeInHtml('ab 129 € im Monat')

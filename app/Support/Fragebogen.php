@@ -395,8 +395,7 @@ class Fragebogen
                     ? collect((array) $wert)->map(fn ($w) => $feld['optionen'][$w]['label'] ?? $w)->implode(', ')
                     : (string) $wert;
 
-                // frei: selbst geschrieben statt ausgewählt. Die Bestätigungsmail
-                // lässt solche Antworten weg, siehe ProjektanfrageBestaetigung.
+                // frei: selbst geschrieben statt ausgewählt.
                 $zeilen[] = ['frage' => $feld['frage'], 'antwort' => $antwort, 'frei' => ! isset($feld['optionen'])];
             }
         }

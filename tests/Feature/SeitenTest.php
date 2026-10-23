@@ -245,7 +245,7 @@ class SeitenTest extends TestCase
             ->assertSee('noindex', false);
     }
 
-    public function test_kontaktformular_verschickt_beide_mails(): void
+    public function test_kontaktformular_benachrichtigt_nur_nils(): void
     {
         Mail::fake();
 
@@ -258,7 +258,7 @@ class SeitenTest extends TestCase
         ])->assertRedirect(route('kontakt'))->assertSessionHas('erfolg');
 
         Mail::assertQueued(\App\Mail\KontaktAnfrage::class);
-        Mail::assertQueued(\App\Mail\KontaktBestaetigung::class);
+        Mail::assertQueuedCount(1);
     }
 
     /*

@@ -3,10 +3,6 @@
 namespace Tests\Feature;
 
 use App\Mail\KontaktAnfrage;
-use App\Mail\KontaktBestaetigung;
-use App\Mail\ProjektanfrageBestaetigung;
-use App\Models\Inquiry;
-use App\Support\Fragebogen;
 use App\Support\Spamschutz;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
@@ -15,8 +11,9 @@ use Tests\TestCase;
 /**
  * Die Fallen aus App\Support\Spamschutz (NID-26).
  *
- * Die Beispiele sind dem Angriff vom Oktober 2026 nachgebaut: Betrugslink im
- * Namen, fremde Adresse, abgeschickt binnen Sekunden nach dem Abruf.
+ * Die Beispiele sind den Angriffen vom Oktober 2026 nachgebaut: Betrugslink im
+ * Namen oder in der Nachricht, fremde Adresse, Russisch, abgeschickt binnen
+ * Sekunden nach dem Abruf.
  */
 class SpamschutzTest extends TestCase
 {
@@ -46,8 +43,11 @@ class SpamschutzTest extends TestCase
         return [
             'Honigtopf' => [['website' => 'https://spam.example']],
             'zu schnell' => [['zeitstempel' => 'jetzt']],
+            'neun Sekunden' => [['zeitstempel' => 'vor 9 Sekunden']],
             'gefälschter Zeitstempel' => [['zeitstempel' => 'eyJpdiI6ImZhbHNjaCJ9']],
             'Link im Namen' => [['name' => 'Вам перевод 186201 руб. забрать тут https://x.workers.dev/abc']],
+            'kyrillischer Betreff' => [['name' => 'eruthrog', 'subject' => 'Новый способ создавать результат в интернете']],
+            'kyrillische Nachricht' => [['name' => 'eruthrog', 'message' => 'Вам доступно инвестиционному пулу #7. Занять слот: https://x.buzz/abc']],
         ];
     }
 
@@ -60,9 +60,11 @@ class SpamschutzTest extends TestCase
     {
         Mail::fake();
 
-        if (($werte['zeitstempel'] ?? null) === 'jetzt') {
-            $werte['zeitstempel'] = Spamschutz::stempel();
-        }
+        $werte['zeitstempel'] = match ($werte['zeitstempel'] ?? null) {
+            'jetzt' => Spamschutz::stempel(),
+            'vor 9 Sekunden' => Spamschutz::stempel(now()->subSeconds(9)),
+            default => $werte['zeitstempel'] ?? Spamschutz::stempel(now()->subMinute()),
+        };
 
         $this->post('/kontakt', $this->anfrage($werte))
             ->assertRedirect(route('kontakt'))
@@ -87,50 +89,42 @@ class SpamschutzTest extends TestCase
         Mail::assertNothingQueued();
     }
 
-    public function test_die_bestaetigung_gibt_nichts_aus_dem_formular_wieder(): void
-    {
-        $mail = (new KontaktBestaetigung)->render();
-
-        $this->assertStringContainsString('ist angekommen', $mail);
-
-        $anfrage = Inquiry::create([
-            'type' => 'projektanfrage',
-            'name' => 'Spam https://x.workers.dev',
-            'email' => 'fremd@example.com',
-            'subject' => 'Projektanfrage',
-            'message' => 'Text',
-            'details' => [
-                'zusammenfassung' => [
-                    ['frage' => 'Vorhaben', 'antwort' => 'KI-Automatisierung', 'frei' => false],
-                    ['frage' => 'Beschreibung', 'antwort' => 'Betrug https://y.workers.dev', 'frei' => true],
-                    ['frage' => 'Ältere Anfrage ohne Kennzeichen', 'antwort' => 'Unbekannt'],
-                ],
-                'preis' => Fragebogen::preis(['vorhaben' => 'ki']),
-            ],
-        ]);
-
-        (new ProjektanfrageBestaetigung($anfrage))
-            ->assertSeeInHtml('KI-Automatisierung')
-            ->assertDontSeeInHtml('workers.dev')
-            ->assertDontSeeInHtml('Unbekannt');
-    }
-
     /**
-     * Kommt doch einmal etwas durch, sind die Bestätigungen gedeckelt. Die
-     * Anfragen selbst gehen weiter ein – keine echte geht verloren.
+     * Eine Mail an die angegebene Adresse war das, worauf es der Roboter
+     * abgesehen hatte. Es geht nur noch die Benachrichtigung an Nils raus.
      */
-    public function test_bestaetigungen_sind_je_stunde_gedeckelt(): void
+    public function test_an_die_angegebene_adresse_geht_keine_mail(): void
     {
         Mail::fake();
 
-        for ($i = 0; $i < Spamschutz::BESTAETIGUNGEN_JE_STUNDE + 3; $i++) {
-            // Verschiedene Absender, damit die Drosselung je IP nicht greift.
-            $this->withServerVariables(['REMOTE_ADDR' => '10.0.0.'.$i])
-                ->post('/kontakt', $this->anfrage(['email' => "person{$i}@example.com"]));
-        }
+        $this->post('/kontakt', $this->anfrage());
 
-        $this->assertDatabaseCount('inquiries', Spamschutz::BESTAETIGUNGEN_JE_STUNDE + 3);
-        Mail::assertQueued(KontaktAnfrage::class, Spamschutz::BESTAETIGUNGEN_JE_STUNDE + 3);
-        Mail::assertQueued(KontaktBestaetigung::class, Spamschutz::BESTAETIGUNGEN_JE_STUNDE);
+        $this->assertDatabaseCount('inquiries', 1);
+        Mail::assertQueuedCount(1);
+        Mail::assertQueued(KontaktAnfrage::class, fn ($mail) => $mail->hasTo(config('mail.from.address')));
+    }
+
+    /** Ohne Bestätigungsmail muss die Seite zeigen, was angekommen ist. */
+    public function test_die_erfolgsmeldung_nennt_name_betreff_und_adresse(): void
+    {
+        Mail::fake();
+
+        $this->followingRedirects()
+            ->post('/kontakt', $this->anfrage())
+            ->assertSee('Danke, Erika Beispiel!')
+            ->assertSee('Neue Website')
+            ->assertSee('erika@example.com');
+    }
+
+    /** Ein Roboter sieht dieselbe Meldung, damit er nicht merkt, dass er aufgefallen ist. */
+    public function test_roboter_sehen_dieselbe_erfolgsmeldung(): void
+    {
+        Mail::fake();
+
+        $this->followingRedirects()
+            ->post('/kontakt', $this->anfrage(['website' => 'https://spam.example']))
+            ->assertSee('Danke, Erika Beispiel!');
+
+        $this->assertDatabaseCount('inquiries', 0);
     }
 }

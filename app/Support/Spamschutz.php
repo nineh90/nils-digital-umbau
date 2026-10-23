@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\RateLimiter;
 
 /**
  * Schutz der beiden Formulare vor Robotern.
@@ -19,11 +18,18 @@ use Illuminate\Support\Facades\RateLimiter;
  * Honigtopf allein hielt ihn nicht auf, die Drosselung je IP verteilte er auf
  * mehrere Adressen.
  *
- * Drei Fallen, alle ohne JavaScript:
+ * Einen Tag später kam er wieder, diesmal mit dem Link in der Nachricht und
+ * mit einer Pause zwischen Abruf und Absenden, von der etwa jede fünfzigste
+ * über drei Sekunden lag. Seitdem gibt es gar keine Eingangsbestätigung mehr –
+ * damit ist das Formular für diese Masche wertlos –, und die Fallen sind
+ * schärfer:
+ *
  * - der Honigtopf "website", den nur Roboter ausfüllen;
- * - ein signierter Zeitstempel: der Roboter schickte 0 bis 2 Sekunden nach
- *   dem Abruf ab, so schnell füllt kein Mensch ein Formular aus;
- * - ein Link im Namen, den kein Mensch dort hineinschreibt.
+ * - ein signierter Zeitstempel: schneller als MINDESTSEKUNDEN füllt kein
+ *   Mensch das Formular aus;
+ * - ein Link im Namen, den kein Mensch dort hineinschreibt;
+ * - kyrillische Schrift. Alle Wellen bisher kamen auf Russisch, und eine
+ *   echte Anfrage auf Russisch hat Nils-Digital nie bekommen.
  *
  * Wer hineinfällt, bekommt dieselbe Antwort wie ein Mensch, aber es wird
  * nichts gespeichert und nichts verschickt. Eine Fehlermeldung verriete dem
@@ -33,11 +39,16 @@ class Spamschutz
 {
     public const FELD = 'zeitstempel';
 
-    /** Schneller schickt kein Mensch ein Formular ab. */
-    public const MINDESTSEKUNDEN = 3;
-
-    /** Eingangsbestätigungen je Stunde, beide Formulare und alle Absender zusammen. */
-    public const BESTAETIGUNGEN_JE_STUNDE = 20;
+    /**
+     * Schneller schickt kein Mensch das Formular ab. Beim Kontaktformular
+     * sind vier Felder zu schreiben, darunter eine Nachricht; im Fragebogen
+     * trägt der letzte Schritt nur Name und Adresse, die der Browser oft
+     * selbst einsetzt – dort reichen deshalb wenige Sekunden.
+     */
+    public const MINDESTSEKUNDEN = [
+        'Kontaktformular' => 10,
+        'Projektanfrage' => 3,
+    ];
 
     /** Inhalt des versteckten Feldes: der Zeitpunkt, an dem das Formular ausgeliefert wurde. */
     public static function stempel(?Carbon $zeit = null): string
@@ -55,13 +66,14 @@ class Spamschutz
         return blank($request->input(self::FELD));
     }
 
-    /** Ist eine der drei Fallen zugeschnappt? Wenn ja, steht der Grund im Log. */
+    /** Ist eine der Fallen zugeschnappt? Wenn ja, steht der Grund im Log. */
     public static function istRoboter(Request $request, string $formular): bool
     {
         $grund = match (true) {
             filled($request->input('website')) => 'Honigtopf',
-            self::zuSchnell($request->input(self::FELD)) => 'zu schnell',
+            self::zuSchnell($request->input(self::FELD), self::MINDESTSEKUNDEN[$formular] ?? 3) => 'zu schnell',
             self::hatLink($request->input('name')) => 'Link im Namen',
+            self::hatKyrillisch($request->except(self::FELD, '_token')) => 'kyrillisch',
             default => null,
         };
 
@@ -72,27 +84,7 @@ class Spamschutz
         return $grund !== null;
     }
 
-    /**
-     * Darf noch eine Eingangsbestätigung raus?
-     *
-     * Die letzte Sicherung, falls doch einmal etwas durch die Fallen kommt:
-     * Die Anfrage selbst wird trotzdem gespeichert und übergeben, nur die Mail
-     * an die angegebene – womöglich fremde – Adresse entfällt.
-     */
-    public static function bestaetigungErlaubt(): bool
-    {
-        if (RateLimiter::tooManyAttempts('bestaetigungen', self::BESTAETIGUNGEN_JE_STUNDE)) {
-            Log::warning('Spamschutz: Obergrenze für Eingangsbestätigungen erreicht');
-
-            return false;
-        }
-
-        RateLimiter::hit('bestaetigungen', 3600);
-
-        return true;
-    }
-
-    private static function zuSchnell(mixed $stempel): bool
+    private static function zuSchnell(mixed $stempel, int $mindestsekunden): bool
     {
         try {
             $ausgeliefert = (int) Crypt::decryptString((string) $stempel);
@@ -100,11 +92,19 @@ class Spamschutz
             return true;
         }
 
-        return now()->getTimestamp() - $ausgeliefert < self::MINDESTSEKUNDEN;
+        return now()->getTimestamp() - $ausgeliefert < $mindestsekunden;
     }
 
     private static function hatLink(mixed $name): bool
     {
         return is_string($name) && preg_match('~https?:|://|www\.~i', $name) === 1;
+    }
+
+    /** @param array<string, mixed> $eingaben */
+    private static function hatKyrillisch(array $eingaben): bool
+    {
+        return collect($eingaben)
+            ->flatten()
+            ->contains(fn ($wert) => is_string($wert) && preg_match('~\p{Cyrillic}~u', $wert) === 1);
     }
 }

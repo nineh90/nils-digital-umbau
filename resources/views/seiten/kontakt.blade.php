@@ -29,9 +29,15 @@
                     {{-- role=status statt alert: die Meldung ist eine
                          Bestätigung, keine Warnung. Screenreader lesen sie
                          vor, ohne den Nutzer zu unterbrechen. --}}
+                    @php($erfolg = session('erfolg'))
                     <div role="status"
-                         class="mb-8 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-4 text-emerald-200">
-                        {{ session('erfolg') }}
+                         class="mb-8 space-y-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-4 text-emerald-200">
+                        <p class="font-medium">Danke, {{ $erfolg['name'] }}!</p>
+                        <p>Deine Nachricht zu „{{ $erfolg['betreff'] }}“ ist bei mir angekommen. Ich lese sie
+                           selbst und melde mich in der Regel innerhalb eines Werktags bei dir – an
+                           <strong>{{ $erfolg['email'] }}</strong>.</p>
+                        <p class="text-sm">Hat sich in der Adresse ein Tippfehler eingeschlichen? Dann schreib mir
+                           einfach direkt an <a href="mailto:{{ config('mail.from.address') }}" class="underline">{{ config('mail.from.address') }}</a>.</p>
                     </div>
                 @endif
 

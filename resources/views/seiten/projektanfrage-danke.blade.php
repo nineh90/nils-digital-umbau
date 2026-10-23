@@ -13,7 +13,7 @@
 
     <x-seitenkopf
         ueberschrift="Danke, {{ $anfrage->name }}"
-        text="Deine Anfrage ist angekommen. Wir melden uns innerhalb von 24 Stunden persönlich bei dir – eine Bestätigung ist unterwegs an {{ $anfrage->email }}." />
+        text="Deine Anfrage ist angekommen. Wir melden uns innerhalb von 24 Stunden persönlich bei dir, und zwar an {{ $anfrage->email }}." />
 
     <div class="mx-auto max-w-3xl px-5 py-14">
 

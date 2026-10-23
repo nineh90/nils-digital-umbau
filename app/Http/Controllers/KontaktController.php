@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\KontaktRequest;
 use App\Jobs\AnfrageUebergeben;
 use App\Mail\KontaktAnfrage;
-use App\Mail\KontaktBestaetigung;
 use App\Models\Inquiry;
 use App\Support\Spamschutz;
 use Illuminate\Http\RedirectResponse;
@@ -33,7 +32,7 @@ class KontaktController extends Controller
         }
 
         if (Spamschutz::istRoboter($request, 'Kontaktformular')) {
-            return $this->erfolg();
+            return $this->erfolg($daten);
         }
 
         // Gegen Massenversand über das Formular. Die alte Fassung hatte nur
@@ -63,19 +62,29 @@ class KontaktController extends Controller
             $daten['name'], $daten['email'], $daten['subject'], $daten['message'],
         ));
 
-        if (Spamschutz::bestaetigungErlaubt()) {
-            Mail::to($daten['email'])->queue(new KontaktBestaetigung);
-        }
-
+        // Keine Eingangsbestätigung an die angegebene Adresse: Sie war im
+        // Oktober 2026 das, worauf es der Roboter abgesehen hatte, siehe
+        // App\Support\Spamschutz. Was sie leisten sollte, übernimmt die
+        // Meldung auf der Seite.
         AnfrageUebergeben::dispatch($anfrage);
 
-        return $this->erfolg();
+        return $this->erfolg($daten);
     }
 
-    private function erfolg(): RedirectResponse
+    /**
+     * Die Meldung nennt Name, Betreff und Adresse, damit man ohne
+     * Bestätigungsmail sieht, was angekommen ist – und einen Tippfehler in
+     * der Adresse noch bemerkt. Roboter bekommen dieselbe Meldung; sie sehen
+     * nur, was sie selbst geschickt haben.
+     */
+    private function erfolg(array $daten): RedirectResponse
     {
         return redirect()
             ->route('kontakt')
-            ->with('erfolg', 'Danke! Deine Nachricht ist angekommen – ich melde mich in der Regel innerhalb eines Werktags.');
+            ->with('erfolg', [
+                'name' => $daten['name'],
+                'betreff' => $daten['subject'],
+                'email' => $daten['email'],
+            ]);
     }
 }

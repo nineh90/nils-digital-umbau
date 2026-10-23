@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\AnfrageUebergeben;
-use App\Mail\ProjektanfrageBestaetigung;
 use App\Mail\ProjektanfrageEingang;
 use App\Models\Inquiry;
 use App\Support\Fragebogen;
@@ -121,10 +120,6 @@ class ProjektanfrageController extends Controller
         $anfrage = $this->anlegen($antworten);
 
         Mail::to(config('mail.from.address'))->queue(new ProjektanfrageEingang($anfrage));
-
-        if (Spamschutz::bestaetigungErlaubt()) {
-            Mail::to($anfrage->email)->queue(new ProjektanfrageBestaetigung($anfrage));
-        }
 
         AnfrageUebergeben::dispatch($anfrage);
 

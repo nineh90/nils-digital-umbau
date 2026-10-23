@@ -88,7 +88,8 @@
 
   <h3>3.1 Speicherung und Versand</h3>
   <p>Deine Anfrage wird in der Datenbank dieser Website auf dem oben genannten Server gespeichert und
-  zusätzlich per E-Mail an mich geschickt. Du erhältst eine Bestätigung an die angegebene Adresse.
+  zusätzlich per E-Mail an mich geschickt. An die angegebene Adresse geht erst meine Antwort, keine
+  automatische Bestätigung.
   Der E-Mail-Versand und mein Postfach laufen über Google Workspace (siehe Abschnitt 4).</p>
 
   <p>Damit ich deine Anfrage bearbeiten kann, wird sie außerdem als Vorgang in mein internes
