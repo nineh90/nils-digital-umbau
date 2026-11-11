@@ -153,9 +153,9 @@
             {!! $post->contentHtml() !!}
         </div>
 
-        @if (! $post->product && $post->links->isNotEmpty())
+        @if (! $post->product && ($knoepfe = $post->sichtbareLinks())->isNotEmpty())
             <div class="mt-10 flex flex-wrap gap-3">
-                @foreach ($post->links as $link)
+                @foreach ($knoepfe as $link)
                     <a href="{{ $link->url }}"
                        @if (! str_starts_with($link->url, '/')) rel="noopener" @endif
                        class="rounded-lg border border-akzent px-5 py-2.5 text-sm text-akzent transition-colors hover:bg-akzent hover:text-flaeche">

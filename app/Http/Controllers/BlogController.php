@@ -65,7 +65,7 @@ class BlogController extends Controller
     {
         abort_unless($post->status === 'published' && $post->published_at?->isPast(), 404);
 
-        $post->load(['category', 'links', 'product']);
+        $post->load(['category', 'links', 'product', 'projects']);
 
         // Nachbarbeiträge für die Weiterleitung am Textende. Interne
         // Verlinkung ist einer der Punkte, an denen die alte Seite nichts tat:
@@ -104,7 +104,7 @@ class BlogController extends Controller
      */
     public function vorschau(Post $post): View
     {
-        $post->load(['category', 'links', 'product']);
+        $post->load(['category', 'links', 'product', 'projects']);
 
         $weitere = Post::published()
             ->where('id', '!=', $post->id)

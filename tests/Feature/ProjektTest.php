@@ -95,6 +95,110 @@ class ProjektTest extends TestCase
             ->assertSee('Ein Beitrag über Sarah', false);
     }
 
+    public function test_fruehere_projekte_stehen_gesondert_und_ohne_link(): void
+    {
+        $this->projekt();
+        $frueher = $this->projekt([
+            'slug' => 'altes-projekt',
+            'title' => 'Altes Projekt',
+            'status' => Project::FRUEHER,
+            'link' => 'https://alte-seite.example/',
+        ]);
+
+        $html = $this->get('/projekte')->assertOk()->getContent();
+
+        $this->assertStringContainsString('Frühere Projekte', $html);
+        // Aktuelle stehen vor dem Abschnitt, frühere dahinter.
+        $abschnitt = strpos($html, 'id="fruehere-projekte"');
+        $this->assertLessThan($abschnitt, strrpos($html, 'Fahrlehrerin Sarah'));
+        $this->assertGreaterThan($abschnitt, strrpos($html, 'Altes Projekt'));
+
+        $this->get(route('projekte.show', $frueher))
+            ->assertOk()
+            ->assertSee('Früheres Projekt')
+            ->assertDontSee('alte-seite.example')
+            ->assertDontSee('Projekt ansehen');
+    }
+
+    public function test_ohne_fruehere_projekte_kein_leerer_abschnitt(): void
+    {
+        $this->projekt();
+
+        $this->get('/projekte')->assertOk()->assertDontSee('Frühere Projekte');
+    }
+
+    /** Auch mit stehengebliebenem Schalter: nie auf die Startseite. */
+    public function test_fruehere_projekte_nie_auf_der_startseite(): void
+    {
+        $this->projekt(['is_featured' => true, 'image' => 'assets/a.jpg']);
+        $this->projekt([
+            'slug' => 'altes-projekt',
+            'title' => 'Altes Projekt',
+            'status' => Project::FRUEHER,
+            'is_featured' => true,
+            'image' => 'assets/b.jpg',
+        ]);
+        $this->projekt(['slug' => 'ohne-stand', 'title' => 'Ohne Stand', 'status' => null, 'is_featured' => true]);
+
+        $this->assertEqualsCanonicalizing(
+            ['fahrlehrerin-sarah', 'ohne-stand'],
+            Project::featured()->pluck('slug')->all(),
+        );
+        $this->get('/')->assertOk()->assertDontSee('Altes Projekt');
+    }
+
+    public function test_beitrag_verliert_knopf_zur_seite_eines_frueheren_projekts(): void
+    {
+        $projekt = $this->projekt([
+            'status' => Project::FRUEHER,
+            'link' => 'https://www.alte-seite.example',
+        ]);
+        $kategorie = Category::create(['slug' => 'projekte', 'name' => 'Projekte']);
+        $beitrag = Post::create([
+            'category_id' => $kategorie->id,
+            'slug' => 'ueber-die-alte-seite',
+            'title' => 'Über die alte Seite',
+            'teaser' => 'Anriss.',
+            'content' => 'Text.',
+            'status' => 'published',
+            'published_at' => now()->subDay(),
+        ]);
+        $beitrag->links()->create(['url' => 'https://alte-seite.example/de', 'label' => 'Zur alten Seite', 'position' => 1]);
+        $beitrag->links()->create(['url' => 'https://anderswo.example', 'label' => 'Woanders hin', 'position' => 2]);
+        $projekt->posts()->attach($beitrag);
+
+        $this->get(route('blog.show', $beitrag))
+            ->assertOk()
+            ->assertDontSee('Zur alten Seite')
+            ->assertSee('Woanders hin');
+
+        // Solange das Projekt aktuell ist, bleibt der Knopf.
+        $projekt->update(['status' => 'live']);
+        $this->get(route('blog.show', $beitrag))->assertSee('Zur alten Seite');
+    }
+
+    /** Beim Speichern als früheres Projekt geht der Startseiten-Schalter aus. */
+    public function test_redaktion_schaltet_startseite_bei_frueherem_projekt_aus(): void
+    {
+        $projekt = $this->projekt(['is_featured' => true]);
+        $this->actingAs(User::create([
+            'name' => 'Test',
+            'email' => 'test@nils-digital.de',
+            'password' => bcrypt('geheim'),
+        ]));
+
+        $this->get("/admin/projects/{$projekt->getRouteKey()}/edit")->assertOk();
+
+        \Livewire\Livewire::test(\App\Filament\Resources\Projects\Pages\EditProject::class, ['record' => $projekt->getRouteKey()])
+            ->fillForm(['status' => Project::FRUEHER])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $projekt->refresh();
+        $this->assertSame(Project::FRUEHER, $projekt->status);
+        $this->assertFalse($projekt->is_featured);
+    }
+
     public function test_alte_projektadresse_leitet_dauerhaft_um(): void
     {
         $this->get('/pages/projekte.html')->assertStatus(301)->assertRedirect('/projekte');

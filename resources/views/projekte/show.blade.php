@@ -25,7 +25,7 @@
         ],
     ]];
 
-    $stati = ['live' => 'Live', 'beta' => 'Beta', 'planned' => 'Geplant'];
+    $stati = ['live' => 'Live', 'beta' => 'Beta', 'planned' => 'Geplant', \App\Models\Project::FRUEHER => 'Früheres Projekt'];
 @endphp
 
 <x-layouts.oeffentlich
@@ -56,8 +56,8 @@
 
             <p class="mt-5 text-lg leading-relaxed text-text-leise">{{ $project->description }}</p>
 
-            @if ($project->link)
-                <a href="{{ $project->link }}"
+            @if ($project->sichtbarerLink())
+                <a href="{{ $project->sichtbarerLink() }}"
                    @if (! $project->is_internal) rel="noopener" target="_blank" @endif
                    class="mt-6 inline-block rounded-lg bg-akzent px-5 py-2.5 font-medium text-flaeche transition-colors hover:bg-akzent-hell">
                     Projekt ansehen

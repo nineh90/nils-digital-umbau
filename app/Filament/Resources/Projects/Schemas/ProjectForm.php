@@ -9,7 +9,9 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use App\Models\Project;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
@@ -55,9 +57,13 @@ class ProjectForm
                             'live' => 'Live',
                             'beta' => 'Beta',
                             'planned' => 'Geplant',
+                            Project::FRUEHER => 'Früheres Projekt',
                         ])
                         ->placeholder('ohne Angabe')
-                        ->helperText('Erscheint als farbiges Fähnchen auf der Kachel.'),
+                        ->live()
+                        ->helperText(fn (Get $get) => $get('status') === Project::FRUEHER
+                            ? 'Steht auf /projekte unter „Frühere Projekte“: ohne Fähnchen, ohne Link nach draußen, nie auf der Startseite. Link-Knöpfe in verknüpften Beiträgen, die auf dieselbe Seite zeigen, verschwinden ebenfalls.'
+                            : 'Erscheint als farbiges Fähnchen auf der Kachel. „Früheres Projekt“ für Seiten, die abgeschaltet sind oder die wir nicht mehr betreuen.'),
 
                     Textarea::make('description')
                         ->label('Kurzbeschreibung')
@@ -144,7 +150,16 @@ class ProjectForm
                     Toggle::make('is_featured')
                         ->label('Auf der Startseite zeigen')
                         ->default(true)
-                        ->helperText('Im Hero erscheint das Projekt zusätzlich nur mit Bild und Adresse.'),
+                        // Nicht nur ausgegraut, sondern beim Umstellen auch
+                        // ausgeschaltet: ein stehengebliebenes "an" täte zwar
+                        // nichts (featured() filtert frühere Projekte heraus),
+                        // läse sich in der Liste aber wie ein Widerspruch.
+                        ->disabled(fn (Get $get) => $get('status') === Project::FRUEHER)
+                        ->dehydrateStateUsing(fn ($state, Get $get) => $get('status') === Project::FRUEHER ? false : $state)
+                        ->dehydrated()
+                        ->helperText(fn (Get $get) => $get('status') === Project::FRUEHER
+                            ? 'Frühere Projekte erscheinen nie auf der Startseite.'
+                            : 'Im Hero erscheint das Projekt zusätzlich nur mit Bild und Adresse.'),
 
                     TextInput::make('position')
                         ->label('Reihenfolge')

@@ -32,7 +32,11 @@ class VorDemUmzug extends StatsOverviewWidget
          * steht auf noindex. Von allen Punkten hier ist das der grösste Hebel
          * für die Sichtbarkeit – deshalb steht er vorn.
          */
-        $ohneFallstudie = Project::whereNull('body')->orWhere('body', '')->count();
+        // Frühere Projekte zählen nicht: wer dort eine Fallstudie will, kann
+        // sie schreiben, aber offen ist da nichts.
+        $ohneFallstudie = Project::aktuell()
+            ->where(fn ($q) => $q->whereNull('body')->orWhere('body', ''))
+            ->count();
         $entwuerfe = Post::where('status', 'draft')->count();
         $unsichtbar = Review::where('is_visible', false)->count();
 

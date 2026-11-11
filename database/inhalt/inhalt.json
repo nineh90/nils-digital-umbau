@@ -1,5 +1,5 @@
 {
-    "erzeugt": "2026-11-11T13:40:32+01:00",
+    "erzeugt": "2026-11-11T13:44:25+01:00",
     "quelle": "http://localhost:8000",
     "tabellen": {
         "categories": [
@@ -833,7 +833,7 @@
                 "slug": "das-landhaus",
                 "title": "Das Landhaus",
                 "type": "Kundenprojekt",
-                "status": "live",
+                "status": "archived",
                 "description": "Website für Restaurant, Imbiss und die Eventlocation \"Der Kotten\" im Ferienpark Tecklenburg-Leeden. Mit Eventkalender, Galerie, Reservierung per Telefon, WhatsApp und E-Mail – dreisprachig in Deutsch, Englisch und Niederländisch.",
                 "body": null,
                 "image": "assets/images/projekte/das-landhaus.png",
@@ -844,25 +844,25 @@
                 "tags": "[\"Webentwicklung\",\"Next.js\",\"Gastronomie\",\"Mehrsprachig\"]",
                 "position": 3,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-10-03 11:40:00"
+                "updated_at": "2026-11-11 13:43:15"
             },
             {
                 "id": 5,
                 "slug": "crazyfamily",
                 "title": "CRAZYFAMILY",
                 "type": "Kundenprojekt",
-                "status": null,
+                "status": "archived",
                 "description": "Community-Webseite für Streamer Kevin & Alex – inkl. Struktur, Design, Sounds, Highlights, Mod-Bereich und Merch-Anbindung. Lebendig, laut und authentisch.",
                 "body": null,
                 "image": "assets/images/projekte/crazyfamily.png",
                 "image_fit": "cover",
                 "link": "https://crazyfamily.info",
                 "is_internal": 0,
-                "is_featured": 1,
+                "is_featured": 0,
                 "tags": "[\"Webdesign\",\"Community\",\"Merch\"]",
                 "position": 4,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-10-29 01:36:18"
+                "updated_at": "2026-11-11 13:43:15"
             },
             {
                 "id": 6,

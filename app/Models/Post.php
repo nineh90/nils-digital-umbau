@@ -39,6 +39,31 @@ class Post extends Model
         return $this->hasMany(PostLink::class)->orderBy('position');
     }
 
+    /**
+     * Die Links unter dem Beitrag, ohne die auf frühere Projekte.
+     *
+     * Ein Beitrag über ein Projekt trägt meist einen Knopf zur Seite des
+     * Kunden. Wird das Projekt später zu einem früheren, soll dieser Knopf
+     * verschwinden, ohne dass jemand daran denken muss, jeden alten Beitrag
+     * einzeln anzufassen. Verglichen wird über den Host, weil Projekt und
+     * Beitrag dieselbe Seite oft unterschiedlich schreiben (mit oder ohne
+     * www, mit Pfad, mit Schrägstrich am Ende).
+     *
+     * @return \Illuminate\Support\Collection<int, PostLink>
+     */
+    public function sichtbareLinks()
+    {
+        $host = fn (?string $url) => preg_replace('/^www\./', '', strtolower((string) parse_url((string) $url, PHP_URL_HOST)));
+
+        $gesperrt = $this->projects
+            ->filter(fn (Project $p) => $p->istFrueher() && $p->link)
+            ->map(fn (Project $p) => $host($p->link))
+            ->filter()
+            ->all();
+
+        return $this->links->reject(fn (PostLink $l) => in_array($host($l->url), $gesperrt, true))->values();
+    }
+
     public function product(): HasOne
     {
         return $this->hasOne(Product::class);

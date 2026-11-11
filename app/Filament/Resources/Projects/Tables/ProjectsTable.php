@@ -42,6 +42,7 @@ class ProjectsTable
                         'live' => 'Live',
                         'beta' => 'Beta',
                         'planned' => 'Geplant',
+                        \App\Models\Project::FRUEHER => 'Früher',
                         default => '–',
                     })
                     ->color(fn (?string $state) => match ($state) {
@@ -62,7 +63,9 @@ class ProjectsTable
                     ->color(fn ($state) => $state === 'vorhanden' ? 'success' : 'danger'),
 
                 ToggleColumn::make('is_featured')
-                    ->label('Startseite'),
+                    ->label('Startseite')
+                    // Frühere Projekte erscheinen dort ohnehin nie.
+                    ->disabled(fn ($record) => $record->istFrueher()),
             ])
             ->filters([
                 TernaryFilter::make('is_featured')->label('Auf der Startseite'),

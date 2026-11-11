@@ -10,7 +10,8 @@ class ProjectController extends Controller
     public function index(): View
     {
         return view('projekte.index', [
-            'projekte' => Project::orderBy('position')->withCount('posts')->get(),
+            'projekte' => Project::aktuell()->orderBy('position')->withCount('posts')->get(),
+            'fruehere' => Project::frueher()->orderBy('position')->withCount('posts')->get(),
         ]);
     }
 

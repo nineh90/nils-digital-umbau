@@ -5,7 +5,7 @@
         'name' => 'Referenzen und Projekte',
         'url' => route('projekte'),
         'inLanguage' => 'de-DE',
-        'about' => $projekte->map(fn ($p) => [
+        'about' => $projekte->concat($fruehere)->map(fn ($p) => [
             '@type' => 'CreativeWork',
             'name' => $p->title,
             'url' => route('projekte.show', $p),
@@ -31,6 +31,23 @@
                 </div>
             @endforeach
         </div>
+
+        {{-- Bewusst ohne Begründung: warum ein Projekt nicht mehr läuft, geht
+             die Besucher nichts an. Gezeigt wird, was wir gebaut haben. --}}
+        @if ($fruehere->isNotEmpty())
+            <section class="mt-20 border-t border-linie pt-12" aria-labelledby="fruehere-projekte">
+                <h2 id="fruehere-projekte" class="text-2xl">Frühere Projekte</h2>
+                <p class="mt-2 max-w-2xl text-text-leise">
+                    Seiten, die wir gebaut haben und die heute nicht mehr von uns betreut werden.
+                </p>
+
+                <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach ($fruehere as $projekt)
+                        <x-projektkachel :projekt="$projekt" />
+                    @endforeach
+                </div>
+            </section>
+        @endif
 
     </div>
 
