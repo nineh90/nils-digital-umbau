@@ -1,5 +1,5 @@
 {
-    "erzeugt": "2026-10-25T13:12:46+01:00",
+    "erzeugt": "2026-11-11T13:40:32+01:00",
     "quelle": "http://localhost:8000",
     "tabellen": {
         "categories": [
@@ -529,6 +529,21 @@
                 "published_at": "2026-10-25 13:12:46",
                 "created_at": "2026-10-25 12:31:01",
                 "updated_at": "2026-10-25 13:12:46"
+            },
+            {
+                "id": 52,
+                "legacy_id": null,
+                "category_id": 6,
+                "slug": "gemeinsam-freude-schenken-kalender-fehlen",
+                "title": "Gemeinsam Freude schenken: Es fehlen noch Kalender – werde jetzt Wichtel",
+                "teaser": "Über 1.250 Kinder haben sich für Ricarda Belmars Adventskalender-Aktion angemeldet, doch die zugesagten Kalender reichen noch nicht für alle. Die Anmeldung für Familien ist deshalb geschlossen, Wichtel werden noch bis zum 23. November gesucht.",
+                "content": "„Mein Wunsch ist es, dass am 1. Dezember möglichst jedes Kind ein Türchen öffnen kann.\" Mit\ndiesem Satz hat Ricarda Belmar im Oktober ihre Adventskalender-Aktion\n[**Gemeinsam Freude schenken**](https://gemeinsamfreudeschenken.de) gestartet. Menschen, die\neinen Kalender verschenken können, die Weihnachtswichtel, werden mit Familien\nzusammengebracht, die sich über einen für ihre Kinder freuen.\n\nHeute schreibe ich diesen Beitrag aus einem einfachen Grund: **Es fehlen Kalender.** Und\nzwar nicht wenige.\n\n## Mehr Kinder als Kalender\n\nDie Resonanz auf die Aktion war überwältigend. **Über 1.250 Kinder aus mehr als 540 Familien**\nhaben sich angemeldet. Das ist wunderschön, weil es zeigt, wie viele Familien sich getraut\nhaben, Ja zu sagen. Und es ist eine Herausforderung, denn bisher reichen die zugesagten\nKalender nicht für alle Kinder.\n\nDie Wichtel, die schon dabei sind, leisten Großartiges. Fast 1.000 Kalender sind bereits\nunterwegs. Aber damit Ricardas Wunsch wahr wird, braucht es noch deutlich mehr Menschen, die\nmitmachen.\n\n## Warum die Familien-Anmeldung geschlossen ist\n\nHeute, am 11. November, hat das Team deshalb eine schwere Entscheidung getroffen: **Die\nAnmeldung für Familien ist geschlossen.** Jetzt sollen erst einmal alle Kinder, die schon\nangemeldet sind, auch wirklich ein Türchen öffnen können. Keine Familie soll am 1. Dezember\nleer ausgehen, nachdem sie sich auf die Aktion verlassen hat.\n\nFür Wichtel bleibt die Anmeldung offen, und zwar bis zum **23. November 2026**. Bis dahin\nzählt jeder einzelne Kalender.\n\n## So wirst du Wichtel\n\nEs ist wirklich einfach:\n\n- **Anmelden:** ein kurzes Formular, dazu angeben, wie viele Kalender es sein dürfen. Einer\n  ist schon wunderbar.\n- **Bestätigen:** Du bekommst eine Mail mit einem Link.\n- **Zuordnung abwarten:** Das Elfen-Team bringt dich mit einer Familie zusammen.\n- **Verschenken:** Du besorgst den Kalender selbst und schickst ihn direkt an die Familie.\n\nÜber die Aktion fließt kein Geld, nur Vorfreude.\n\n## Darauf kannst du dich verlassen\n\nWer mitmacht, schenkt der Aktion Vertrauen, auf beiden Seiten. Deshalb war mir beim Bau der\nWebsite wichtig, dass sich niemand Sorgen machen muss. Anschriften werden verschlüsselt\ngespeichert. Ein Wichtel bekommt nur die eine Adresse, an die er schickt, und das erst,\nnachdem ein Mensch aus dem Elfen-Team die Zuordnung geprüft und freigegeben hat. Familien\nmüssen keine Nachweise erbringen und nichts über ihre Situation erzählen. Auf der Seite steht\ndazu schlicht: „Dein Wort genügt.\"\n\nUnd falls doch einmal etwas dazwischenkommt, ein Wichtel weniger schafft als geplant oder\neine Mail in einem vollen Postfach hängen bleibt: Nichts geht still verloren. Die Elfen\nordnen neu zu, damit keine Familie vergeblich wartet.\n\n## Du kannst gerade nicht? Dann hilf trotzdem\n\nNicht jeder kann in diesem Jahr einen Kalender verschenken, und das ist völlig in Ordnung.\nTrotzdem kannst du viel bewirken:\n\n- **Teil den Link** in deiner Familie, im Freundeskreis, im Verein oder bei der Arbeit.\n- **Tut euch zusammen:** Vielleicht schenkt ihr als Team, Klasse oder Nachbarschaft gemeinsam\n  ein paar Kalender.\n- **Erzähl davon.** Manchmal braucht es nur einen Anstoß.\n\nJeder geteilte Beitrag findet vielleicht genau den Wichtel, der noch fehlt.\n\n## Jetzt mitmachen\n\nBis zum 23. November ist noch Zeit. Jeder Kalender bedeutet, dass am 1. Dezember ein Kind mehr\nein Türchen öffnet.\n\n**[Hier wirst du mit einem Klick Wichtel](https://gemeinsamfreudeschenken.de)**\n\nDanke an Ricarda und ihr Elfen-Team, an alle Wichtel, die schon dabei sind, und an alle, die\ndiesen Aufruf weitertragen.\n\nMehr zur Aktion steht in unserem [ersten Beitrag](/blog/gemeinsam-freude-schenken-ricardas-adventskalender-aktion)\nund im [Zwischenstand nach drei Wochen](/blog/gemeinsam-freude-schenken-drei-wochen-live).\n",
+                "hero_image": "assets/images/blog/gemeinsam-freude-schenken-kalender-fehlen.jpg",
+                "thumb_fit": "cover",
+                "status": "published",
+                "published_at": "2026-11-11 13:15:19",
+                "created_at": "2026-11-11 13:13:01",
+                "updated_at": "2026-11-11 13:40:32"
             }
         ],
         "post_links": [
@@ -748,6 +763,13 @@
                 "url": "https://gemeinsamfreudeschenken.de/anmeldung/familie",
                 "label": "Kalender wünschen",
                 "position": 2
+            },
+            {
+                "id": 239,
+                "post_id": 52,
+                "url": "https://gemeinsamfreudeschenken.de/anmeldung/spender",
+                "label": "Wichtel werden",
+                "position": 1
             }
         ],
         "products": [],
@@ -829,7 +851,7 @@
                 "slug": "crazyfamily",
                 "title": "CRAZYFAMILY",
                 "type": "Kundenprojekt",
-                "status": "live",
+                "status": null,
                 "description": "Community-Webseite für Streamer Kevin & Alex – inkl. Struktur, Design, Sounds, Highlights, Mod-Bereich und Merch-Anbindung. Lebendig, laut und authentisch.",
                 "body": null,
                 "image": "assets/images/projekte/crazyfamily.png",
@@ -840,7 +862,7 @@
                 "tags": "[\"Webdesign\",\"Community\",\"Merch\"]",
                 "position": 4,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-09-03 12:47:54"
+                "updated_at": "2026-10-29 01:36:18"
             },
             {
                 "id": 6,
@@ -950,6 +972,10 @@
             },
             {
                 "post_id": 51,
+                "project_id": 8
+            },
+            {
+                "post_id": 52,
                 "project_id": 8
             }
         ],
