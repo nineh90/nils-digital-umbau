@@ -35,6 +35,28 @@
         </div>
 
         <div>
+            <dt class="font-medium">![Beschreibung](/medien/blog/bild.jpg "Bildunterschrift")</dt>
+            <dd class="text-gray-500 dark:text-gray-400">
+                Bild oder Video im Text. Am einfachsten über den Büroklammer-Knopf: Datei wählen oder
+                hineinziehen, die Zeile wird an der Cursorstelle eingesetzt. Danach in die eckigen Klammern
+                beschreiben, was zu sehen ist – das lesen Screenreader vor und Google wertet es aus.
+                Die Bildunterschrift in Anführungszeichen ist freiwillig. Die Zeile muss für sich allein
+                stehen, mit Leerzeile davor und danach.
+            </dd>
+        </div>
+
+        <div>
+            <dt class="font-medium">Videos</dt>
+            <dd class="text-gray-500 dark:text-gray-400">
+                Eine MP4-Datei über denselben Knopf hochladen (bis 95 MB). Hochkant oder quer erkennt die
+                Seite selbst. Ein YouTube-Video bekommt dieselbe Zeile, nur mit dem YouTube-Link als Adresse:
+                <code>![Rundgang](https://youtu.be/…)</code>. Es lädt erst, wenn jemand auf „Inhalt laden“ klickt.
+                Shorts erscheinen automatisch hochkant; bei einem normalen Hochkantvideo
+                <code>#hochkant</code> an den Link hängen.
+            </dd>
+        </div>
+
+        <div>
             <dt class="font-medium">&gt; Zitat</dt>
             <dd class="text-gray-500 dark:text-gray-400">
                 Für Aussagen von anderen. Nicht als Stilmittel für eigene Sätze.

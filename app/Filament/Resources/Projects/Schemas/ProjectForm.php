@@ -89,7 +89,7 @@ class ProjectForm
                         ->label('Screenshot')
                         ->image()
                         ->disk('inhalte')
-                        ->directory('uploads/projekte')
+                        ->directory('medien/projekte')
                         ->visibility('public')
                         ->imagePreviewHeight('160')
                         ->helperText('Ohne Bild erscheint das Projekt nicht im Hero der Startseite.')

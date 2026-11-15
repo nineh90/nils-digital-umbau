@@ -2,7 +2,10 @@
 
 namespace App\Support;
 
-use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Node\Block\Paragraph;
 
 /**
  * Wandelt den Fließtext der Beiträge in HTML.
@@ -22,20 +25,44 @@ use League\CommonMark\CommonMarkConverter;
  * html_input: Der alte Weg über innerHTML hätte eingebettetes HTML ausgeführt.
  * Hier wird es maskiert. Der Altbestand enthält keins, und für neue Beiträge
  * ist es die sicherere Vorgabe.
+ *
+ * Bilder und Videos im Text (NID-49): ein Absatz, der nur aus
+ * ![Beschreibung](adresse "Unterschrift") besteht, wird zur Figur – siehe
+ * MedienRenderer. Das eigene HTML entsteht dort und bleibt damit unabhängig
+ * von html_input: maskiert wird weiterhin alles, was jemand von Hand eintippt.
  */
 class Markdown
 {
-    private CommonMarkConverter $converter;
+    private MarkdownConverter $converter;
 
     public function __construct()
     {
-        $this->converter = new CommonMarkConverter([
+        $umgebung = new Environment([
             'renderer' => [
                 'soft_break' => "<br />\n",
             ],
             'html_input' => 'escape',
             'allow_unsafe_links' => false,
         ]);
+
+        $umgebung->addExtension(new CommonMarkCoreExtension);
+        // Vorrang vor dem Standard-Absatz; gibt null zurück, wenn kein Medium drinsteht.
+        $umgebung->addRenderer(Paragraph::class, new MedienRenderer, 10);
+
+        $this->converter = new MarkdownConverter($umgebung);
+    }
+
+    /**
+     * Alle Adressen von Bildern und Videos im Text, in der Reihenfolge ihres
+     * Auftretens. Für die Prüfung beim Ausgeben der Inhalte.
+     *
+     * @return list<string>
+     */
+    public function medienAdressen(?string $markdown): array
+    {
+        preg_match_all('/!\[[^\]]*\]\(\s*<?([^\s)>]+)>?/', (string) $markdown, $treffer);
+
+        return $treffer[1];
     }
 
     public function toHtml(?string $markdown): string

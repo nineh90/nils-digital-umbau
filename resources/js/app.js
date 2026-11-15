@@ -18,7 +18,18 @@ document.querySelectorAll('[data-einbettung]').forEach((behaelter) => {
         rahmen.title = behaelter.dataset.einbettungTitel || 'Eingebetteter Inhalt';
         rahmen.loading = 'lazy';
         rahmen.className = 'w-full rounded-xl border border-linie bg-white';
-        rahmen.style.height = behaelter.dataset.einbettungHoehe || '1200px';
+
+        // Videos tragen ein Format statt einer Höhe: der Rahmen hält dann das
+        // Seitenverhältnis, und ein Hochkantvideo steht schmal und mittig,
+        // statt mit schwarzen Balken über die ganze Textbreite zu laufen.
+        if (behaelter.dataset.einbettungFormat) {
+            rahmen.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+            rahmen.allowFullscreen = true;
+            rahmen.className = 'einbettung-video';
+            behaelter.dataset.einbettungGeladen = '';
+        } else {
+            rahmen.style.height = behaelter.dataset.einbettungHoehe || '1200px';
+        }
 
         behaelter.replaceChildren(rahmen);
         rahmen.focus();

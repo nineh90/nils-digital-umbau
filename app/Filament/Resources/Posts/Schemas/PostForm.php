@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Posts\Schemas;
 
+use App\Support\MedienAblage;
 use Filament\Actions\Action as FormAction;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
@@ -18,6 +19,13 @@ use Illuminate\Support\Str;
 
 class PostForm
 {
+    /**
+     * Obergrenze für Bilder und Videos im Text, in KB. Ein Hochkantvideo vom
+     * Handy hat schnell 50 MB; GitHub lehnt Dateien ab 100 MB ab – und über
+     * das Repo reisen die Dateien auf den Server.
+     */
+    public const MEDIEN_MAX_KB = 95 * 1024;
+
     public static function configure(Schema $schema): Schema
     {
         return $schema->components([
@@ -95,8 +103,26 @@ class PostForm
                         ->required()
                         ->toolbarButtons([
                             'bold', 'italic', 'heading', 'bulletList', 'orderedList',
-                            'link', 'blockquote', 'codeBlock', 'undo', 'redo',
+                            'link', 'blockquote', 'codeBlock', 'attachFiles', 'undo', 'redo',
                         ])
+                        // Bilder und Videos im Text (NID-49). Der Knopf lädt hoch
+                        // und setzt ![](…) an die Cursorstelle; was daraus wird,
+                        // entscheidet App\Support\MedienRenderer anhand der Endung.
+                        //
+                        // medien/ statt uploads/: public/uploads ist auf dem Server
+                        // ein Volume und überdeckt, was das Repo dort mitbringt.
+                        // Hier hochgeladene Dateien kämen sonst nie dort an.
+                        ->fileAttachmentsDisk('inhalte')
+                        ->fileAttachmentsDirectory('medien/blog')
+                        ->fileAttachmentsAcceptedFileTypes([
+                            'image/jpeg', 'image/png', 'image/webp', 'image/gif',
+                            'video/mp4', 'video/webm', 'video/quicktime',
+                        ])
+                        ->fileAttachmentsMaxSize(self::MEDIEN_MAX_KB)
+                        // Relativ statt mit APP_URL: die Adresse steht im Text und
+                        // muss lokal wie auf dem Server stimmen.
+                        ->getFileAttachmentUrlUsing(fn (string $file) => '/'.ltrim($file, '/'))
+                        ->saveUploadedFileAttachmentUsing(fn ($file) => MedienAblage::speichern($file, 'medien/blog'))
                         // Kurz und eingeklappt: eine Anleitung, die immer offen
                         // steht, liest man nach dem dritten Beitrag nicht mehr –
                         // sie steht dann nur noch zwischen Titel und Text.
@@ -116,7 +142,8 @@ class PostForm
                         ->label('Beitragsbild')
                         ->image()
                         ->disk('inhalte')
-                        ->directory('uploads/blog')
+                        // Siehe Textfeld: uploads/ käme auf dem Server nicht an.
+                        ->directory('medien/blog')
                         ->visibility('public')
                         ->imagePreviewHeight('160')
                         ->helperText('Wird als großes Bild im Beitrag und als Kachel in der Übersicht verwendet.')
@@ -171,7 +198,7 @@ class PostForm
                                 ->label('Produktbild')
                                 ->image()
                                 ->disk('inhalte')
-                                ->directory('uploads/shop')
+                                ->directory('medien/shop')
                                 ->columnSpanFull(),
                         ]),
                 ]),

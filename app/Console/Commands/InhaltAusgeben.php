@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Support\Inhalt;
+use App\Support\Markdown;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -78,6 +79,30 @@ class InhaltAusgeben extends Command
                     if (! File::exists($pfad)) {
                         $funde[] = "{$tabelle}#{$zeile->id}: {$zeile->{$spalte}}";
                     }
+                }
+            }
+        }
+
+        // Bilder und Videos im Beitragstext (NID-49). Nur eigene Dateien –
+        // fremde Adressen wie YouTube lassen sich hier nicht prüfen.
+        foreach (DB::table('posts')->get(['id', 'content']) as $beitrag) {
+            foreach (app(Markdown::class)->medienAdressen($beitrag->content) as $adresse) {
+                if (! str_starts_with($adresse, '/') || str_starts_with($adresse, '//')) {
+                    continue;
+                }
+
+                if (! File::exists(public_path(ltrim((string) parse_url($adresse, PHP_URL_PATH), '/')))) {
+                    $funde[] = "posts#{$beitrag->id} (Text): {$adresse}";
+                }
+            }
+        }
+
+        // uploads/ ist auf dem Server ein Volume: was lokal dort liegt, kommt
+        // über das Repo nicht an, auch wenn es hier vorhanden ist.
+        foreach ($verweise as $tabelle => $spalten) {
+            foreach ($spalten as $spalte) {
+                foreach (DB::table($tabelle)->where($spalte, 'like', '%uploads/%')->get() as $zeile) {
+                    $funde[] = "{$tabelle}#{$zeile->id}: {$zeile->{$spalte}} liegt unter uploads/ und erreicht den Server nicht";
                 }
             }
         }

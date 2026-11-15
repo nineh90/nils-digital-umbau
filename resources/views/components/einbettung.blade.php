@@ -5,6 +5,8 @@
     'hinweis' => null,
     'hoehe' => '1200px',
     'direktlink' => null,
+    // quer / hochkant: Videos laden mit festem Seitenverhältnis statt fester Höhe.
+    'format' => null,
 ])
 
 {{--
@@ -21,6 +23,7 @@
 <div data-einbettung="{{ $quelle }}"
      data-einbettung-titel="{{ $titel }}"
      data-einbettung-hoehe="{{ $hoehe }}"
+     @if ($format) data-einbettung-format="{{ $format }}" @endif
      class="rounded-2xl border border-linie bg-karte p-8 text-center">
 
     <p class="font-display text-lg">{{ $titel }}</p>

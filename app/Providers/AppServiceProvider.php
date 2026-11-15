@@ -51,5 +51,15 @@ class AppServiceProvider extends ServiceProvider
                 ->imageResizeUpscale(false)
                 ->maxSize(4096);
         });
+
+        /*
+         * Livewire nimmt Uploads zuerst in einen Zwischenspeicher und prüft
+         * dabei vorab auf 12 MB. Videos im Beitragstext (NID-49) sind größer.
+         * Die feldgenaue Grenze setzt danach das Feld selbst – für Bilder in
+         * den Bildfeldern bleibt es bei den 4 MB oben.
+         */
+        config(['livewire.temporary_file_upload.rules' => [
+            'required', 'file', 'max:'.\App\Filament\Resources\Posts\Schemas\PostForm::MEDIEN_MAX_KB,
+        ]]);
     }
 }

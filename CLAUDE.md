@@ -63,7 +63,7 @@ werden**.
 ```bash
 php artisan serve      # → http://localhost:8000
 npm run dev            # Vite, Assets + HMR
-php artisan test       # 74 Tests
+php artisan test       # 175 Tests
 ```
 
 Beides muss laufen: ohne Vite fehlen Stylesheet und Schriften.
@@ -184,6 +184,20 @@ davon wird von Hand gepflegt.
 
 Alte Adressen leiten in `routes/web.php` per 301 auf ihr **Endziel**, nie über eine
 Zwischenstation; `UmzugTest` geht die Liste aus `database/legacy/url-map.csv` vollständig durch.
+
+### Bilder und Videos im Beitragstext
+Seit NID-49 (November 2026) gibt es im Text nur eine Schreibweise für beides:
+`![Beschreibung](adresse "Bildunterschrift")` auf eigener Zeile. `MedienRenderer` macht daraus
+eine `<figure>`, die Adresse entscheidet die Art (`App\Support\Medium`): Bild, eigene
+MP4/WebM-Datei als `<video>` (Seitenverhältnis kommt aus der Datei, hochkant passt also von
+selbst) oder YouTube als `<x-einbettung>` über `youtube-nocookie.com`, erst auf Klick. Shorts und
+Links mit `#hochkant` stehen schmal. Der Büroklammer-Knopf im Editor lädt hoch,
+`MedienAblage` verkleinert Fotos auf 1600 px und vergibt lesbare Namen.
+
+**Uploads gehören nach `public/medien/`, nie nach `public/uploads/`.** `uploads/` ist auf dem
+Server ein Docker-Volume und überdeckt, was das Repo dort mitbringt – eine lokal hochgeladene
+und gepushte Datei käme nie an. `nd:inhalt-ausgeben` warnt vor beidem: fehlenden Dateien (auch
+im Text) und Pfaden unter `uploads/`.
 
 ### Formulare und Einbettungen
 - **Kontaktformular** → `KontaktController` + `KontaktRequest`, versendet `KontaktAnfrage`

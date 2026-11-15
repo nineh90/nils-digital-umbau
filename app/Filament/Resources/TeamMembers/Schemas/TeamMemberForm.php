@@ -33,7 +33,7 @@ class TeamMemberForm
                         ->label('Foto')
                         ->image()
                         ->disk('inhalte')
-                        ->directory('uploads/team')
+                        ->directory('medien/team')
                         ->visibility('public')
                         ->imagePreviewHeight('160')
                         ->helperText('Hochformat oder quadratisch. Ohne Foto zeigt die Karte den Anfangsbuchstaben des Namens.')
