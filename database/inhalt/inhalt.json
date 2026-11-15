@@ -1,5 +1,5 @@
 {
-    "erzeugt": "2026-11-11T13:52:21+01:00",
+    "erzeugt": "2026-11-16T00:40:39+01:00",
     "quelle": "http://localhost:8000",
     "tabellen": {
         "categories": [
@@ -544,6 +544,21 @@
                 "published_at": "2026-11-11 13:15:19",
                 "created_at": "2026-11-11 13:13:01",
                 "updated_at": "2026-11-11 13:40:32"
+            },
+            {
+                "id": 53,
+                "legacy_id": null,
+                "category_id": 6,
+                "slug": "kein-einzelfall-neue-website-online",
+                "title": "Geschafft: Die neue Website von KE!N EINZELFALL e.V. ist online",
+                "teaser": "Die neue Website von KE!N EINZELFALL e.V. ist online. Ein Blick auf vorher und nachher – und ein großes Dankeschön an Kevin und an den Verein.",
+                "content": "Es ist geschafft: Die neue Website von [**KE!N EINZELFALL e.V.**](https://kein-einzelfall.de) ist online. Im September haben wir hier [angekündigt, dass wir den Relaunch übernehmen](/blog/kein-einzelfall-relaunch-fuer-einen-verein-der-hinschaut). Jetzt ist sie da, und wir sind ehrlich gesagt ein bisschen stolz.\n\n## Wer KE!N EINZELFALL ist\n\nDer Verein aus Hamburg wurde 2024 aus persönlicher Betroffenheit heraus gegründet, mit einem klaren Ziel: Menschen, die von schädigenden Taten betroffen sind, nicht länger allein zu lassen. Er ist für Opfer und Mit-Opfer da, für Angehörige, Interessierte und Fachpersonen.\n\nDazu gehören kostenfreie Selbsthilfegruppen ohne Mitgliedschaft, Arbeitsgruppen, in denen gemeinsam etwas bewegt wird, und Orientierung in Fragen, mit denen man sonst allein dasteht: Entschädigung, Schwerbehindertenausweis, Pflegegrad. Ein Satz von der Startseite fasst es zusammen: „Keiner soll mehr sagen müssen: Ich hab es nicht gewusst.“\n\n## Vorher und nachher\n\nWie groß der Unterschied ist, zeigt das Video am besten: oben die alte Seite, unten die neue.\n\n![Video: die alte und die neue Website von KE!N EINZELFALL e.V. im Vergleich](/medien/blog/kein-einzelfall-relaunch.mp4 \"Heute und bald – kurz vor dem Go-Live aufgenommen\")\n\nDie alte Seite war mit viel Herzblut entstanden und über die Zeit immer weiter gewachsen. Es steckte viel drin, nur fand man es schwer. Wer sie aufrief, landete zwischen dichten Textkästen, und als Erstes zwischen sich und den Inhalt schob sich ein Cookie-Banner.\n\n![Die bisherige Startseite von KE!N EINZELFALL e.V. mit Textkästen und Cookie-Banner](/assets/images/blog/kein-einzelfall-bisher.jpg \"Vorher: viel Inhalt, schwer zu überblicken\")\n\nDie neue Seite ist ruhiger und wärmer, ohne an Ernst zu verlieren. Klare Wege führen dorthin, wo man hinwill: zu den Selbsthilfegruppen, zu den Arbeitsgruppen, zur eigenen Frage. Der Notausgang, mit dem man die Seite sofort verlassen kann, sitzt jetzt groß oben rechts statt klein in der Ecke. Und wer etwas sucht, muss nicht erst das Menü verstehen.\n\n![Die neue Startseite von KE!N EINZELFALL e.V. mit vier Kacheln zu Selbsthilfegruppen, Arbeitsgruppen, Anfragen und Spenden](/medien/blog/kein-einzelfall-nachher.jpg \"Nachher: klare Wege, der Notausgang immer im Blick\")\n\nDer Weg dahin war länger als gedacht. Jede einzelne Seite ist gemeinsam mit dem Verein durchgegangen worden, jeder Satz der alten Seite hat ein neues Zuhause gefunden, und bis zum Schluss wurde an Details gefeilt. Es hat sich gelohnt.\n\n## Ein großes Dankeschön an Kevin\n\nDiesen Abschnitt hätte ich am liebsten über den ganzen Beitrag gesetzt.\n\n[Kevin](/team) hat diese Website gebaut. Nicht ein bisschen mitgeholfen, sondern gebaut, vom ersten Entwurf bis zur letzten Korrektur. Er hat jede Anmerkung ernst genommen, auch die kleinen, die außer ihm wohl niemand bemerkt hätte, und er ist geduldig geblieben, wenn sich etwas zum dritten Mal geändert hat.\n\nUnd als es ernst wurde, hat er auch den Go-Live übernommen und die Seite sicher an ihren Platz gebracht. Das ist der Teil, den man hinterher nicht sieht, und genau deshalb soll er hier stehen.\n\nKevin, danke. Ohne dich gäbe es diese Seite so nicht.\n\n## Danke an KE!N EINZELFALL e.V.\n\nEin ebenso herzliches Danke geht nach Hamburg: an den Verein, für den Auftrag, für das Vertrauen und für die Geduld bei unzähligen Rückfragen. Ihr habt jede Seite mit uns durchgesehen und uns nie das Gefühl gegeben, nur Dienstleister zu sein. Für eine Arbeit, die Menschen in schweren Situationen auffängt, eine Website bauen zu dürfen, ist etwas Besonderes.\n\nMit dem Go-Live ist für uns nicht Schluss. Wir freuen uns auf die kommenden Projekte mit euch.\n",
+                "hero_image": "medien/blog/kein-einzelfall-online.jpg",
+                "thumb_fit": "cover",
+                "status": "published",
+                "published_at": "2026-11-16 00:15:21",
+                "created_at": "2026-11-16 00:15:21",
+                "updated_at": "2026-11-16 00:30:46"
             }
         ],
         "post_links": [
@@ -770,6 +785,13 @@
                 "url": "https://gemeinsamfreudeschenken.de/anmeldung/spender",
                 "label": "Wichtel werden",
                 "position": 1
+            },
+            {
+                "id": 240,
+                "post_id": 53,
+                "url": "https://kein-einzelfall.de",
+                "label": "Zur neuen Website",
+                "position": 1
             }
         ],
         "products": [],
@@ -788,9 +810,9 @@
                 "is_internal": 0,
                 "is_featured": 1,
                 "tags": "[\"Flutter\",\"KI\",\"Android\",\"iOS\"]",
-                "position": 0,
+                "position": 1,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-11-11 13:52:14"
+                "updated_at": "2026-11-16 00:39:27"
             },
             {
                 "id": 2,
@@ -806,9 +828,9 @@
                 "is_internal": 0,
                 "is_featured": 1,
                 "tags": "[\"KI\",\"Pflege\",\"On-Premise\",\"DSGVO\"]",
-                "position": 1,
+                "position": 2,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-09-01 00:14:25"
+                "updated_at": "2026-11-16 00:39:27"
             },
             {
                 "id": 3,
@@ -824,9 +846,9 @@
                 "is_internal": 0,
                 "is_featured": 1,
                 "tags": "[\"Webentwicklung\",\"Barrierefreiheit\",\"PHP\",\"SEO\"]",
-                "position": 2,
+                "position": 3,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-09-01 00:14:25"
+                "updated_at": "2026-11-16 00:39:27"
             },
             {
                 "id": 4,
@@ -842,9 +864,9 @@
                 "is_internal": 0,
                 "is_featured": 0,
                 "tags": "[\"Webentwicklung\",\"Next.js\",\"Gastronomie\",\"Mehrsprachig\"]",
-                "position": 3,
+                "position": 4,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-11-11 13:43:15"
+                "updated_at": "2026-11-16 00:39:27"
             },
             {
                 "id": 5,
@@ -860,9 +882,9 @@
                 "is_internal": 0,
                 "is_featured": 0,
                 "tags": "[\"Webdesign\",\"Community\",\"Merch\"]",
-                "position": 4,
+                "position": 5,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-11-11 13:43:15"
+                "updated_at": "2026-11-16 00:39:27"
             },
             {
                 "id": 6,
@@ -878,9 +900,9 @@
                 "is_internal": 1,
                 "is_featured": 0,
                 "tags": "[\"Content\",\"TikTok\",\"Social Media\"]",
-                "position": 5,
+                "position": 6,
                 "created_at": "2026-08-31 22:01:09",
-                "updated_at": "2026-09-03 12:47:19"
+                "updated_at": "2026-11-16 00:39:27"
             },
             {
                 "id": 8,
@@ -896,9 +918,27 @@
                 "is_internal": 0,
                 "is_featured": 1,
                 "tags": "[\"Webentwicklung\",\"Laravel\",\"Datenschutz\",\"Vermittlung\"]",
-                "position": 6,
+                "position": 7,
                 "created_at": "2026-10-04 15:34:39",
-                "updated_at": "2026-10-04 15:34:39"
+                "updated_at": "2026-11-16 00:39:27"
+            },
+            {
+                "id": 9,
+                "slug": "kein-einzelfall",
+                "title": "KE!N EINZELFALL e.V.",
+                "type": "Kundenprojekt",
+                "status": "live",
+                "description": "Neue Website für den Hamburger Opferhilfe-Verein KE!N EINZELFALL e.V.: ruhig, warm und barrierefrei von Grund auf. Klare Wege zu Selbsthilfegruppen, Arbeitsgruppen und Orientierung, ein Notausgang, mit dem man die Seite jederzeit sofort verlässt, eine Suche und eine englische Fassung – ganz ohne Tracking.",
+                "body": null,
+                "image": "medien/projekte/kein-einzelfall.jpg",
+                "image_fit": "cover",
+                "link": "https://kein-einzelfall.de",
+                "is_internal": 0,
+                "is_featured": 1,
+                "tags": "[\"Webentwicklung\",\"Relaunch\",\"Barrierefreiheit\",\"Laravel\"]",
+                "position": 0,
+                "created_at": "2026-11-16 00:39:27",
+                "updated_at": "2026-11-16 00:39:27"
             }
         ],
         "post_project": [
@@ -977,6 +1017,14 @@
             {
                 "post_id": 52,
                 "project_id": 8
+            },
+            {
+                "post_id": 47,
+                "project_id": 9
+            },
+            {
+                "post_id": 53,
+                "project_id": 9
             }
         ],
         "service_categories": [
@@ -1423,7 +1471,7 @@
                 "id": 3,
                 "name": "Sunny",
                 "role": "Sicherheitsdienst",
-                "image": "uploads/team/01M1MRWWDA90J82K4PHYWA93G4.jpg",
+                "image": "medien/team/01M1MRWWDA90J82K4PHYWA93G4.jpg",
                 "bio": "Sunny ist Schäferhund-Husky-Mix und seit dem ersten Tag dabei. Offiziell zuständig für Sicherheit und Wohlbefinden: Sie meldet jede Lieferung zuverlässig, erinnert daran, dass nach vier Stunden vor dem Bildschirm ein Spaziergang ansteht, und liegt ansonsten dort, wo gerade jemand arbeitet.\n\nNebenbei ist sie Namenspatin von SunnyCam – dem Projekt, das die Welt auf vier Pfoten zeigt.",
                 "skills": "[\"T\\u00fcrkontrolle\",\"Pausenmanagement\",\"Ausdauer\",\"Motivation\"]",
                 "highlight_label": "Erfolgsquote",
