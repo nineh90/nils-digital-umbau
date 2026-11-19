@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\Projects\Schemas;
 
+use App\Filament\Resources\Posts\Schemas\PostForm;
+use App\Support\MedienAblage;
+use Filament\Actions\Action as FormAction;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
@@ -13,6 +16,7 @@ use App\Models\Project;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Str;
 
 class ProjectForm
@@ -133,8 +137,33 @@ class ProjectForm
                         ->label('Text')
                         ->toolbarButtons([
                             'bold', 'italic', 'heading', 'bulletList', 'orderedList',
-                            'link', 'blockquote', 'undo', 'redo',
+                            'link', 'blockquote', 'attachFiles', 'undo', 'redo',
                         ])
+                        // Bilder und Videos wie im Blog (NID-49, hier NID-53).
+                        // Gerendert wurden sie schon vorher – bodyHtml() läuft
+                        // durch denselben MedienRenderer –, nur hochladen ließ
+                        // sich nichts. Ablage und Grenzen bewusst gleich, damit
+                        // man sich nicht zwei Regeln merken muss.
+                        ->fileAttachmentsDisk('inhalte')
+                        ->fileAttachmentsDirectory('medien/projekte')
+                        ->fileAttachmentsAcceptedFileTypes([
+                            'image/jpeg', 'image/png', 'image/webp', 'image/gif',
+                            'video/mp4', 'video/webm', 'video/quicktime',
+                        ])
+                        ->fileAttachmentsMaxSize(PostForm::MEDIEN_MAX_KB)
+                        ->getFileAttachmentUrlUsing(fn (string $file) => '/'.ltrim($file, '/'))
+                        ->saveUploadedFileAttachmentUsing(fn ($file) => MedienAblage::speichern($file, 'medien/projekte'))
+                        ->hintAction(
+                            FormAction::make('schreibhilfe')
+                                ->label('Wie schreibe ich das?')
+                                ->icon(Heroicon::OutlinedQuestionMarkCircle)
+                                ->modalHeading('Kurz zur Fallstudie')
+                                ->modalDescription('Der Text wird als Markdown gespeichert und beim Anzeigen in HTML übersetzt. Die Knöpfe oben machen dasselbe wie die Zeichen unten – wer lieber tippt, tippt.')
+                                ->modalContent(view('filament.hinweise.schreibhilfe', ['fallstudie' => true]))
+                                ->modalSubmitAction(false)
+                                ->modalCancelActionLabel('Alles klar')
+                        )
+                        ->helperText('Bewährt hat sich: Ausgangslage – die Entscheidungen, auf die es ankam – Umsetzung – wo das Projekt heute steht. Bilder und Videos über die Büroklammer.')
                         ->columnSpanFull(),
                 ]),
 

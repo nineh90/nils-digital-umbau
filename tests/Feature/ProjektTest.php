@@ -216,4 +216,52 @@ class ProjektTest extends TestCase
         $this->actingAs($nutzer)->get('/admin/services/create')->assertOk();
         $this->actingAs($nutzer)->get('/admin/service-categories')->assertOk();
     }
+
+    /*
+     * NID-53: Bilder und Videos in der Fallstudie. Gerendert wurde das schon
+     * vorher über den MedienRenderer – der Test hält fest, dass Projektseiten
+     * dieselbe Schreibweise verstehen wie Beiträge.
+     */
+    public function test_fallstudie_zeigt_bilder_und_videos(): void
+    {
+        $projekt = $this->projekt(['body' => implode("\n\n", [
+            '## Umsetzung',
+            '![Die Startseite](/medien/projekte/startseite.jpg "Startseite am Tag des Starts")',
+            '![Rundgang](/medien/projekte/rundgang.mp4)',
+            '![Vorstellung](https://youtu.be/dQw4w9WgXcQ)',
+        ])]);
+
+        $html = $this->get(route('projekte.show', $projekt))->assertOk()->getContent();
+
+        $this->assertStringContainsString('<figure', $html);
+        $this->assertStringContainsString('src="/medien/projekte/startseite.jpg"', $html);
+        $this->assertStringContainsString('Startseite am Tag des Starts', $html);
+        $this->assertStringContainsString('<video', $html);
+        $this->assertStringContainsString('youtube-nocookie.com', $html);
+    }
+
+    public function test_der_screenshot_hat_eine_beschreibung(): void
+    {
+        $projekt = $this->projekt(['image' => 'medien/projekte/sarah.jpg']);
+
+        $this->get(route('projekte.show', $projekt))
+            ->assertSee('alt="Ansicht von Fahrlehrerin Sarah"', false);
+    }
+
+    public function test_im_fallstudien_editor_laesst_sich_hochladen(): void
+    {
+        $projekt = $this->projekt();
+
+        $this->actingAs(User::create([
+            'name' => 'Nils',
+            'email' => 'redaktion@nils-digital.de',
+            'password' => bcrypt('geheim'),
+        ]));
+
+        $this->get("/admin/projects/{$projekt->getRouteKey()}/edit")
+            ->assertOk()
+            ->assertSee('Wie schreibe ich das?')
+            ->assertSee('attachFiles', false)
+            ->assertSee('Ansehen');
+    }
 }

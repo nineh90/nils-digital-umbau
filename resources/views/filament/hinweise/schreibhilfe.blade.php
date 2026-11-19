@@ -1,6 +1,28 @@
 {{-- Bewusst knapp: die Regeln, die man wirklich braucht, nicht die vollständige
      Markdown-Syntax. Wer mehr wissen will, findet sie überall im Netz. --}}
+@php
+    // Dieselbe Hilfe für Beiträge und Fallstudien. Was nur im Blog gilt –
+    // weiterführende Links, Vorschau eines Entwurfs –, fällt bei Projekten weg.
+    $fallstudie ??= false;
+    $ablage = $fallstudie ? 'projekte' : 'blog';
+@endphp
 <div class="fi-modal-content space-y-4 text-sm leading-relaxed">
+
+    @if ($fallstudie)
+        <div class="rounded-lg bg-gray-50 p-4 dark:bg-white/5">
+            <p class="font-medium">Was in eine Fallstudie gehört</p>
+            <ol class="mt-2 list-decimal space-y-1 pl-5 text-gray-500 dark:text-gray-400">
+                <li><span class="text-gray-700 dark:text-gray-300">Ausgangslage</span> – wer, was war das Problem, was sollte anders werden.</li>
+                <li><span class="text-gray-700 dark:text-gray-300">Die Entscheidungen</span> – die zwei, drei Weichen, auf die es ankam, und warum so.</li>
+                <li><span class="text-gray-700 dark:text-gray-300">Umsetzung</span> – gern mit Screenshots oder einem kurzen Video.</li>
+                <li><span class="text-gray-700 dark:text-gray-300">Heute</span> – was daraus geworden ist. Zahlen nur, wenn der Kunde sie zeigen will.</li>
+            </ol>
+            <p class="mt-2 text-gray-500 dark:text-gray-400">
+                Je eine Zwischenüberschrift. Solange das Feld leer ist, steht die Projektseite
+                für Google auf „nicht indexieren“.
+            </p>
+        </div>
+    @endif
 
     <dl class="space-y-3">
         <div>
@@ -29,13 +51,17 @@
         <div>
             <dt class="font-medium">[Text](https://beispiel.de)</dt>
             <dd class="text-gray-500 dark:text-gray-400">
-                Verlinken. Für Links, auf die es wirklich ankommt, gibt es unten den Abschnitt
-                „Weiterführende Links“ – die stehen dann als Knöpfe am Textende.
+                @if ($fallstudie)
+                    Verlinken. Die Adresse des Projekts steht schon als Knopf oben auf der Seite.
+                @else
+                    Verlinken. Für Links, auf die es wirklich ankommt, gibt es unten den Abschnitt
+                    „Weiterführende Links“ – die stehen dann als Knöpfe am Textende.
+                @endif
             </dd>
         </div>
 
         <div>
-            <dt class="font-medium">![Beschreibung](/medien/blog/bild.jpg "Bildunterschrift")</dt>
+            <dt class="font-medium">![Beschreibung](/medien/{{ $ablage }}/bild.jpg "Bildunterschrift")</dt>
             <dd class="text-gray-500 dark:text-gray-400">
                 Bild oder Video im Text. Am einfachsten über den Büroklammer-Knopf: Datei wählen oder
                 hineinziehen, die Zeile wird an der Cursorstelle eingesetzt. Danach in die eckigen Klammern
@@ -89,7 +115,12 @@
     </div>
 
     <p class="text-gray-500 dark:text-gray-400">
-        Wie es am Ende aussieht, zeigt oben rechts <span class="text-gray-700 dark:text-gray-300">Vorschau</span> –
-        auch bei einem Entwurf, der öffentlich noch nicht erreichbar ist.
+        @if ($fallstudie)
+            Wie es am Ende aussieht, zeigt oben rechts <span class="text-gray-700 dark:text-gray-300">Ansehen</span> –
+            das speichert vorher. Projektseiten sind immer öffentlich, es gibt keinen Entwurf.
+        @else
+            Wie es am Ende aussieht, zeigt oben rechts <span class="text-gray-700 dark:text-gray-300">Vorschau</span> –
+            auch bei einem Entwurf, der öffentlich noch nicht erreichbar ist.
+        @endif
     </p>
 </div>

@@ -69,9 +69,11 @@
             @endif
         </header>
 
+        {{-- Mit Beschreibung statt alt="": ohne Fallstudie ist der Screenshot
+             der halbe Inhalt der Seite, und kein Schmuck. --}}
         @if ($project->image)
             <img src="/{{ ltrim($project->image, '/') }}"
-                 alt=""
+                 alt="Ansicht von {{ $project->title }}"
                  class="mb-10 w-full rounded-2xl border border-linie {{ $project->image_fit === 'cover' ? 'object-cover' : 'bg-flaeche-2 object-contain p-8' }}">
         @endif
 
@@ -96,12 +98,19 @@
                     @foreach ($project->posts as $beitrag)
                         <li>
                             <a href="{{ route('blog.show', $beitrag) }}"
-                               class="group block rounded-xl border border-linie bg-karte p-4 transition-colors hover:border-akzent/40">
-                                <span class="block text-sm text-text-leise">
-                                    {{ $beitrag->published_at?->translatedFormat('d.m.Y') }}
-                                </span>
-                                <span class="mt-1 block transition-colors group-hover:text-akzent">
-                                    {{ $beitrag->title }}
+                               class="group flex items-center gap-4 rounded-xl border border-linie bg-karte p-4 transition-colors hover:border-akzent/40">
+                                @if ($beitrag->hero_image)
+                                    <img src="/{{ ltrim($beitrag->hero_image, '/') }}" alt=""
+                                         loading="lazy" width="96" height="64"
+                                         class="hidden h-16 w-24 shrink-0 rounded-lg object-cover sm:block">
+                                @endif
+                                <span>
+                                    <span class="block text-sm text-text-leise">
+                                        {{ $beitrag->published_at?->translatedFormat('d.m.Y') }}
+                                    </span>
+                                    <span class="mt-1 block transition-colors group-hover:text-akzent">
+                                        {{ $beitrag->title }}
+                                    </span>
                                 </span>
                             </a>
                         </li>
