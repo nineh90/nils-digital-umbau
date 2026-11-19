@@ -41,11 +41,22 @@ class NoticeForm
                         ->searchable()
                         ->placeholder('ohne Symbol'),
 
+                    /*
+                     * uploads/ und nicht medien/ wie bei Beiträgen und Projekten.
+                     *
+                     * Hinweise reisen nicht mit der Momentaufnahme
+                     * (App\Support\Inhalt::TABELLEN), sie entstehen dort, wo
+                     * sie laufen sollen – also meist direkt auf dem Server. Dort
+                     * ist public/ schreibgeschützt und entsteht bei jedem Deploy
+                     * neu; public/uploads ist das einzige Verzeichnis, das
+                     * beschreibbar ist und den nächsten Deploy überlebt. Mit
+                     * hinweise/ schlug deshalb jedes Speichern mit Bild fehl.
+                     */
                     FileUpload::make('image')
                         ->label('Bild')
                         ->image()
                         ->disk('inhalte')
-                        ->directory('hinweise')
+                        ->directory('uploads/hinweise')
                         ->helperText('Optional, und nur bei „Mitte“ und „Ecke“ sichtbar – in der Leiste oben ist kein Platz dafür.'),
                 ]),
 
@@ -61,7 +72,14 @@ class NoticeForm
 
                     TextInput::make('button_url')
                         ->label('Ziel')
-                        ->url()
+                        // Nicht ->url(): die lässt nur vollständige Adressen zu
+                        // und lehnte genau das ab, was der Platzhalter vorschlägt.
+                        // Erlaubt sind https://… und Pfade auf der eigenen Seite;
+                        // //fremd.de wäre trotz Schrägstrich eine fremde Adresse.
+                        ->regex('~^(https?://[^\s]+|/(?!/)[^\s]*)$~')
+                        ->validationMessages([
+                            'regex' => 'Eine vollständige Adresse (https://…) oder ein Pfad auf dieser Seite (/leistungen).',
+                        ])
                         ->requiredWith('button_label')
                         ->placeholder('https://…  oder  /leistungen'),
                 ]),

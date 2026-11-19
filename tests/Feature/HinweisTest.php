@@ -4,7 +4,11 @@ namespace Tests\Feature;
 
 use App\Models\Notice;
 use App\Models\User;
+use App\Filament\Resources\Notices\Pages\CreateNotice;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 /**
@@ -194,5 +198,70 @@ class HinweisTest extends TestCase
             ->assertSee('Darstellung')
             ->assertSee('Farbschema')
             ->assertSee('Häufigkeit');
+    }
+
+    private function anmelden(): void
+    {
+        $this->actingAs(User::create([
+            'name' => 'Nils',
+            'email' => 'redaktion@nils-digital.de',
+            'password' => bcrypt('geheim'),
+        ]));
+    }
+
+    private function formular(array $werte = []): array
+    {
+        return array_merge([
+            'title' => 'Gemeinsam Freude schenken',
+            'body' => 'Wichtel gesucht.',
+            'placement' => 'center',
+            'scheme' => 'festlich',
+            'frequency' => 'once',
+            'position' => 0,
+        ], $werte);
+    }
+
+    /*
+     * NID-52: Auf dem Server ist public/ schreibgeschützt, nur public/uploads
+     * ist beschreibbar und überlebt den Deploy. Mit dem alten Ziel hinweise/
+     * scheiterte dort jedes Speichern mit Bild – und damit auch die Vorschau.
+     */
+    public function test_ein_hinweis_mit_bild_landet_unter_uploads(): void
+    {
+        Storage::fake('inhalte');
+        $this->anmelden();
+
+        Livewire::test(CreateNotice::class)
+            ->fillForm($this->formular([
+                'image' => UploadedFile::fake()->image('wichtel.jpg', 800, 600),
+                'button_label' => 'Mitmachen',
+                'button_url' => '/blog',
+            ]))
+            ->call('create')
+            ->assertHasNoFormErrors();
+
+        $bild = Notice::sole()->image;
+
+        $this->assertStringStartsWith('uploads/hinweise/', $bild);
+        Storage::disk('inhalte')->assertExists($bild);
+    }
+
+    public function test_das_knopfziel_nimmt_pfade_und_volle_adressen(): void
+    {
+        $this->anmelden();
+
+        foreach (['/leistungen', 'https://gemeinsamfreudeschenken.de'] as $ziel) {
+            Livewire::test(CreateNotice::class)
+                ->fillForm($this->formular(['button_label' => 'Los', 'button_url' => $ziel]))
+                ->call('create')
+                ->assertHasNoFormErrors();
+        }
+
+        foreach (['//fremd.example', 'leistungen', 'javascript:alert(1)'] as $ziel) {
+            Livewire::test(CreateNotice::class)
+                ->fillForm($this->formular(['button_label' => 'Los', 'button_url' => $ziel]))
+                ->call('create')
+                ->assertHasFormErrors(['button_url']);
+        }
     }
 }
