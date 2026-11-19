@@ -64,8 +64,13 @@
                 <p class="hinweis__rumpf">{{ $hinweis->body }}</p>
 
                 @if ($hinweis->button_label && $hinweis->button_url)
-                    <a href="{{ $hinweis->button_url }}" class="hinweis__knopf">
+                    <a href="{{ $hinweis->button_url }}" class="hinweis__knopf"
+                       @if ($hinweis->button_new_tab) target="_blank" rel="noopener" @endif>
                         {{ $hinweis->button_label }}
+                        @if ($hinweis->button_new_tab)
+                            <span aria-hidden="true">↗</span>
+                            <span class="sr-only">(öffnet in neuem Tab)</span>
+                        @endif
                     </a>
                 @endif
             </div>

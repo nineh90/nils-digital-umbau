@@ -20,6 +20,7 @@ class Notice extends Model
             'starts_at' => 'datetime',
             'ends_at' => 'datetime',
             'is_active' => 'boolean',
+            'button_new_tab' => 'boolean',
         ];
     }
 
@@ -95,6 +96,16 @@ class Notice extends Model
     public static function alsVorschau(self $hinweis): void
     {
         static::$vorschau = $hinweis;
+    }
+
+    /**
+     * Unter PHP-FPM endet die Vorschau mit der Anfrage. In Tests läuft alles in
+     * einem Prozess – ohne Zurücksetzen erschiene der Vorschau-Hinweis eines
+     * früheren Tests in jedem späteren.
+     */
+    public static function vorschauBeenden(): void
+    {
+        static::$vorschau = null;
     }
 
     public static function istVorschau(): bool

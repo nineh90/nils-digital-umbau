@@ -82,6 +82,11 @@ class NoticeForm
                         ])
                         ->requiredWith('button_label')
                         ->placeholder('https://…  oder  /leistungen'),
+
+                    Toggle::make('button_new_tab')
+                        ->label('In neuem Tab öffnen')
+                        ->helperText('Für Links auf fremde Seiten – dann bleibt unsere Seite offen.')
+                        ->columnSpanFull(),
                 ]),
 
             Section::make('Aussehen')

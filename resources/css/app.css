@@ -580,6 +580,14 @@ html:not(.js) .hinweis[hidden] { display: block; }
 /* Weggeklickt: :has() am Container, kein JavaScript nötig. */
 .hinweis:has(.hinweis__schalter:checked) { display: none !important; }
 
+/*
+ * Die Checkbox liegt fest im Bild statt im Textfluss. Ein Klick aufs <label>
+ * setzt den Fokus auf sie, und der Browser scrollt zum fokussierten Element.
+ * Mit sr-only allein stand sie absolut am Ende des Dokuments: wer den Hinweis
+ * wegklickte, landete ganz unten auf der Seite.
+ */
+.hinweis .hinweis__schalter { position: fixed; top: 0; left: 0; }
+
 .hinweis__tafel {
     position: fixed;
     z-index: 60;

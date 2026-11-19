@@ -22,6 +22,13 @@ class HinweisTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Notice::vorschauBeenden();
+    }
+
     private function hinweis(array $werte = []): Notice
     {
         return Notice::create(array_merge([
@@ -263,5 +270,21 @@ class HinweisTest extends TestCase
                 ->call('create')
                 ->assertHasFormErrors(['button_url']);
         }
+    }
+
+    public function test_der_knopf_oeffnet_auf_wunsch_in_neuem_tab(): void
+    {
+        $hinweis = $this->hinweis([
+            'button_label' => 'Wichtel werden',
+            'button_url' => 'https://gemeinsamfreudeschenken.de',
+        ]);
+
+        $this->get('/')->assertDontSee('target="_blank" rel="noopener"', false);
+
+        $hinweis->update(['button_new_tab' => true]);
+
+        $this->get('/')
+            ->assertSee('target="_blank" rel="noopener"', false)
+            ->assertSee('(öffnet in neuem Tab)');
     }
 }
